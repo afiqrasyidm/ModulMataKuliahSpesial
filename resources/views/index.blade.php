@@ -43,11 +43,11 @@
             <div class='col-md-8'>
                 <div>
                     <center>
-                        Anda Login Sebagai:
-                        <?php
-                            echo $_SESSION["user_login"]->name;
-                        ?>
-                        <a href="{{ route('logout-sso') }}"><button>logout</button></a>
+                        <h2>Modul Mata Kuliah Spesial</h2>
+                        <br>
+                        <h6>Silahkan Login</h6>
+                        <a href="{{ route('login-sso') }}"><button type="button" class="btn btn-default">SSO Login</button></a>
+                        <button type="button" class="btn btn-default">Non SSO Login</button>
                     </center>
                 </div>
             </div>

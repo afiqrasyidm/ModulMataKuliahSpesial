@@ -9,19 +9,26 @@ use Illuminate\Support\Facades\DB;
 class MainController extends Controller
 {
     public function index() {
-    	return view('home');
+    	return view('index');
     }
 
-    public function login() {
-		SSO::authenticate();
-
-		return view('login-sso');
+    public function login_sso() {
+		
+		if(SSO::authenticate())	{
+			$user = SSO::getUser();
+			$_SESSION["user_login"] = $user;
+			return view('home');
+		}
+		else {
+			return redirect()->route('/');
+		}
+		
     }
 
-    public function logout() {
+    public function logout_sso() {
         session_start();
         session_unset();
         session_destroy();
-        return redirect()->route('/');
+        SSO::logout();
     }
 }
