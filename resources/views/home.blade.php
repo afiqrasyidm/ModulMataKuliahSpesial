@@ -3,6 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Scripts -->
+        <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--
@@ -37,7 +46,7 @@
                         <h2>Modul Mata Kuliah Spesial</h2>
                         <br>
                         <h6>Silahkan Login</h6>
-                        <button type="button" class="btn btn-default">SSO Login</button>
+                        <a href="{{ route('login') }}"><button type="button" class="btn btn-default">SSO Login</button></a>
                         <button type="button" class="btn btn-default">Non SSO Login</button>
                     </center>
                 </div>
