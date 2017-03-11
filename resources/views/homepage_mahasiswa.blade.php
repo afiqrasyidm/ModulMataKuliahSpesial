@@ -1,10 +1,10 @@
 @extends('layouts.layout_mahasiswa')
 
-@section('content')       
+@section('mainContent')       
 
 		<br>
 				<br>
 						<br>
 								<br>
-        <h1>CONTOH PAGE MAHASISWA<h1>
+        <h1>CONTOH PAGE MAHASISWA</h1>
 @endsection

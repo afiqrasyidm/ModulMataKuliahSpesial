@@ -17,7 +17,14 @@ class MainController extends Controller
 		if(SSO::authenticate())	{
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
-			return view('homepage_mahasiswa');
+
+			if($user->npm != null) {
+				return redirect()->route('homepage/mahasiswa');
+			}
+
+			else {
+				return redirect()->route('homepage/staf');
+			}
 		}
 		else {
 			return redirect()->route('/');
@@ -32,21 +39,19 @@ class MainController extends Controller
         SSO::logout();
     }
 	
-	 public function staf_homepage(){
-		 if(SSO::authenticate())	{
-			$user = SSO::getUser();
-			$_SESSION["user_login"] = $user;
-			return view('homepage_staf');
-		}
-		 	
-	}	 
-	 public function dosen_homepage(){
-		 if(SSO::authenticate())	{
-			$user = SSO::getUser();
-			$_SESSION["user_login"] = $user;
-			return view('homepage_dosen');
-		}
-		 	
+	public function mahasiswa_homepage(){
+		session_start();
+		return view('homepage_mahasiswa');
+	}
+
+	public function staf_homepage(){
+		session_start();
+		return view('homepage_staf');
+	}
+
+	public function dosen_homepage(){
+		session_start();
+		return view('homepage_dosen');
 	}
 	
 }

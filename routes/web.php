@@ -16,7 +16,8 @@ Route::get('/login-sso', ['as' => 'login-sso', 'uses' => 'MainController@login_s
 
 Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logout_sso']);
 
-Route::get('/homepage/staf', ['as' => 'login-sso', 'uses' => 'MainController@staf_homepage']);
+Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MainController@mahasiswa_homepage']);
 
+Route::get('/homepage/staf', ['as' => 'homepage/staf', 'uses' => 'MainController@staf_homepage']);
 
-Route::get('/homepage/dosen', ['as' => 'login-sso', 'uses' => 'MainController@dosen_homepage']);
+Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
