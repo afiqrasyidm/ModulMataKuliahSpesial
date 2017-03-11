@@ -15,3 +15,8 @@ Route::get('/', 'MainController@index');
 Route::get('/login-sso', ['as' => 'login-sso', 'uses' => 'MainController@login_sso']);
 
 Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logout_sso']);
+
+Route::get('/homepage/staf', ['as' => 'login-sso', 'uses' => 'MainController@staf_homepage']);
+
+
+Route::get('/homepage/dosen', ['as' => 'login-sso', 'uses' => 'MainController@dosen_homepage']);
