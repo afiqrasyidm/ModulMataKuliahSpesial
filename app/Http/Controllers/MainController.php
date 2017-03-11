@@ -17,7 +17,7 @@ class MainController extends Controller
 		if(SSO::authenticate())	{
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
-			return view('home');
+			return view('page');
 		}
 		else {
 			return redirect()->route('/');

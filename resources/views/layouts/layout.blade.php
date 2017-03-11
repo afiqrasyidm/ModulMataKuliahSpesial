@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Modul MKS</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -30,6 +30,13 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
 
+	   <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
+
+	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,7 +53,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>Modul MKS</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -247,15 +254,28 @@
               <li class="dropdown user user-menu">
                 <a href="{{ asset ('#' )  }}" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Pierce</span>
-                </a>
+				  
+					<span class="hidden-xs">
+					<?php
+                            echo $_SESSION["user_login"]->name;
+                        ?>
+                  </span>
+                
+				
+				
+				
+				
+				
+				</a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                    <?php
+                            echo $_SESSION["user_login"]->name;
+                        ?>
+                     
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -276,7 +296,7 @@
                       <a href="{{ asset ('#' )  }}" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="{{ asset ('#' )  }}" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="{{ route('logout-sso') }}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -299,7 +319,9 @@
               <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p> <?php
+                            echo $_SESSION["user_login"]->name;
+                        ?></p>
               <a href="{{ asset ('#' )  }}"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
