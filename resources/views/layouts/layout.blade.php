@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}" />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="" rel="stylesheet" type="text/css">
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ asset ('css/bootstrap.min.css' )  }}">
@@ -29,9 +28,6 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
     </script>
-
-	
-    
   </head>
  
   <body class="hold-transition skin-blue sidebar-mini">
@@ -63,7 +59,6 @@
                       ?>
                   </span>
 				        </a>
-
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
@@ -72,7 +67,6 @@
                     <?php
                             echo $_SESSION["user_login"]->name;
                         ?>
-                     
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -112,32 +106,20 @@
          @yield('contentSideBar')
       </section>
     </aside>
-<div>
-<div class="col-md-2">
-
+    <div class="content-wrapper">
+      <div class="col-md-10">  
+        @yield('mainContent')
+      </div>
+      <div class="col-md-2"> </div>
     </div>
-
-    <div class="col-md-8">  
-      @yield('mainContent')
-    </div>
-
-    <div class="col-md-2">
-
-    </div>
-</div>
-    
-  </body>
 
     <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset  ('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset  ('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="{{ asset  ('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset  ('https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js') }}"></script>
-    <script src="{{ asset  ('plugins/morris/morris.min.js') }}"></script>
     <script src="{{ asset  ('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset  ('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset  ('plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -149,6 +131,6 @@
     <script src="{{ asset  ('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset  ('plugins/fastclick/fastclick.min.js') }}"></script>
     <script src="{{ asset  ('dist/js/app.min.js') }}"></script>
-    <script src="{{ asset  ('dist/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset  ('dist/js/demo.js') }}"></script>
-		
+  </body>
+</html>
