@@ -39,7 +39,7 @@ class MainController extends Controller
 		}
 		
     }
-
+	  
     public function login() {
     	return view('login');
     }
@@ -156,11 +156,12 @@ class MainController extends Controller
 		session_start();
 		return view('mahasiswa/homepage_mahasiswa');
 	}
-
+	
 	public function staf_homepage(){
 		session_start();
 		return view('staf/homepage_staf');
-	}
+	}	
+	
 
 	public function dosen_homepage(){
 		session_start();
