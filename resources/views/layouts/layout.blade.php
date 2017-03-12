@@ -84,33 +84,34 @@
           </div>
         </nav>
       </header>
-    </div>
+    
       
       <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p>
+                <?php
+                            echo $_SESSION["user_login"]->name;
+                ?>
+              </p>
+            </div>
           </div>
-          <div class="pull-left info">
-            <p>
-              <?php
-                          echo $_SESSION["user_login"]->name;
-              ?>
-            </p>
-          </div>
+           @yield('contentSideBar')
+        </section>
+      </aside>
+      <div class="content-wrapper">
+        <div class="col-md-10">  
+          @yield('mainContent')
         </div>
-         @yield('contentSideBar')
-      </section>
-    </aside>
-    <div class="content-wrapper">
-      <div class="col-md-10">  
-        @yield('mainContent')
+        <div class="col-md-2"> </div>
       </div>
-      <div class="col-md-2"> </div>
     </div>
 
     <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
