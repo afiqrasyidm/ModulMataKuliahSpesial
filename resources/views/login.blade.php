@@ -42,20 +42,29 @@
                 <center><h2>Login Industri</h2></center>
                 <br/>
 
-                <form class="form-horizontal">
+                <form class="form-horizontal"  method="post" action="">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <div class="form-group">
                         <label class="control-label col-sm-3">Username:</label>
                         <div class="col-sm-6">
-                          <input class="form-control">
+                          <input class="form-control" name="username">
+                        </div>
+                        <div class='col-sm-3'>
+                          <?php echo $errors->first('username') ?>
+                          <?php echo $errors->first('wrong_username') ?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-sm-3">Password:</label>
                         <div class="col-sm-6">
-                          <input class="form-control" type="password">
+                          <input class="form-control" type="password" name="password">
                         </div>
+                        <div class='col-sm-3'>
+                          <?php echo $errors->first('password') ?>
+                          <?php echo $errors->first('wrong_password') ?>
+                    </div>
                       </div>
-                      <center><button class="btn btn-primary">Login</button></center>
+                      <center><button class="btn btn-primary" type="submit">Login</button></center>
                 </form>
 
                 <center><i><h6>belum punya akun? daftar <a href="{{ route('registrasi') }}">disini</a></h6></i></center>

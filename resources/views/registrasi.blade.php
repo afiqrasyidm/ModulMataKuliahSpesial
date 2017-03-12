@@ -40,51 +40,75 @@
                 <center><h2>Registrasi Akun Industri</h2></center>
                 <br/>
 
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post" action="">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group">
                     <label class="control-label col-sm-3">Username:</label>
                     <div class="col-sm-6">
-                      <input class="form-control">
+                      <input class="form-control" name="username">
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('username') ?>
+                          <?php echo $errors->first('duplicate_username') ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Email:</label>
                     <div class="col-sm-6">
-                      <input class="form-control" type="email">
+                      <input class="form-control" type="email" name="email">
                     </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('email') ?>
+                    </div>
+
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Password:</label>
                     <div class="col-sm-6">
-                      <input class="form-control" type="password">
+                      <input class="form-control" type="password" name="password" >
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('password') ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Password Confirmation:</label>
                     <div class="col-sm-6">
-                      <input class="form-control" type="password">
+                      <input class="form-control" type="password" name="password_confirmation">
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('password_confirmation') ?>
                     </div>
                   </div>
                   <br/>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Nama Lengkap</label>
                     <div class="col-sm-6">
-                      <input class="form-control">
+                      <input class="form-control" name="nama_lengkap">
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('nama_lengkap') ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Asal Institusi</label>
                     <div class="col-sm-6">
-                      <input class="form-control"s>
+                      <input class="form-control" name="nama_industri">
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('nama_industri') ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Jabatan</label>
                     <div class="col-sm-6">
-                      <input class="form-control"s>
+                      <input class="form-control" name="jabatan">
+                    </div>
+                    <div class='col-sm-3'>
+                          <?php echo $errors->first('jabatan') ?>
                     </div>
                   </div>
-                  <center><button class="btn btn-primary">Daftar</button></center>
+                  <center><button class="btn btn-primary" type="submit">Daftar</button></center>
                 </form>
             </div>
             <div class='col-md-2'></div>

@@ -10,13 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'MainController@index');
+Route::get('/', ['as' => '/', 'uses' =>'MainController@index']);
+
+Route::get('/delay', ['as' => '/delay', 'uses' =>'MainController@delay']);
 
 Route::get('/login-sso', ['as' => 'login-sso', 'uses' => 'MainController@login_sso']);
 
 Route::get('/login', ['as' => 'login', 'uses' => 'MainController@login']);
 
+Route::post('/login', ['as' => 'login-submit', 'uses' => 'MainController@login_submit']);
+
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'MainController@registrasi']);
+
+Route::post('/registrasi', ['as' => 'registrasi-submit', 'uses' => 'MainController@registrasi_submit']);
 
 Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logout_sso']);
 
