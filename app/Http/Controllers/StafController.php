@@ -25,7 +25,7 @@ class StafController extends Controller
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
 
-			$staf = Staf::find(2);
+			$staf = Staf::find(4);
 			return view('staf/homepage_staf', array('staf' => $staf));
 				
 		}

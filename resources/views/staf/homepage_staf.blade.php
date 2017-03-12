@@ -2,6 +2,10 @@
 
 @section('content')       
 
+
+@section('title','Home Page')
+
+
 		<br>
 				<br>
 						<br>
