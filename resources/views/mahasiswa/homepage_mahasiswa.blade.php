@@ -1,5 +1,7 @@
 @extends('layouts.layout_mahasiswa')
 
+@section('title','Home Page')
+
 @section('mainContent')
 <div class="col-md-6">
 	<h1>Pengumuman</h1>

@@ -1,5 +1,7 @@
 @extends('layouts.layout_mahasiswa')
 
+@section('title','Pengajuan Topik TA')
+
 @section('mainContent')
 <div class="col-md-1">
 </div>

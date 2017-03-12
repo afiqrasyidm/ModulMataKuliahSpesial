@@ -17,7 +17,7 @@
       <i class="fa fa-dashboard"></i> <span>Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href=""><i class="fa fa-angle-right"></i>Pengajuan Bimbingan TA</a></li>
+      <li><a href="{{ route('mahasiswa/pengajuan-pembimbing-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Pembimbingan TA</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Jadwal Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Log Bimbingan</a></li>
     </ul>

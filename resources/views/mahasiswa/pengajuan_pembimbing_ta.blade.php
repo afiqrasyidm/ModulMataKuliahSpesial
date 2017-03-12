@@ -1,7 +1,6 @@
 @extends('layouts.layout_mahasiswa')
 
-
-@section('title','Pengajuan Permohonan TA')
+@section('title','Pengajuan Pembimbing TA')
 
 @section('mainContent')
 <div class="col-md-1">
@@ -39,38 +38,27 @@
 		  <br/>
 
 		  <div class="form-group">
-		     <label class="control-label col-sm-3">Mata Kuliah</label>
+		     <label class="control-label col-sm-3">Judul</label>
 		    <div class="col-sm-6">
-		       <select class="form-control">
-				  <option value="1">Skripsi</option>
-				  <option value="2">Tesis</option>
-				  <option value="3">Disertasi</option>
-				</select>
+		      <input class="form-control" placeholder="Masukan judul TA">
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		     <label class="control-label col-sm-3">Jenis Bimbingan:</label>
+		     <label class="control-label col-sm-3">Usulan Dosen Pembimbing</label>
 		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Jenis Bimbingan">
+		      <input class="form-control" placeholder="Masukan usulan dosen pembimbing">
 		    </div>
 		  </div>
 
-		  <br/>
+		   <div class="form-group">
+			  <label class="control-label col-sm-3">Latar Belakang:</label>
+			  	<div class="col-sm-6">
+			  		<textarea class="form-control" rows="5"></textarea>
+				</div>
+			</div>
 
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">Judul:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Topik">
-		    </div>
-		  </div>
-
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">Topik:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Judul">
-		    </div>
-		  </div>
+		 
 
 		  <center><button class="btn btn-primary">Ajukan TA</button></center>
 	</form>

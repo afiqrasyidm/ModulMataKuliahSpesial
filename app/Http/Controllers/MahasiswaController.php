@@ -17,4 +17,9 @@ class MahasiswaController extends Controller
     	session_start();
     	return view("mahasiswa/pengajuan_permohonan_ta");
     }
+
+    function pengajuan_pembimbing_ta() {
+    	session_start();
+    	return view("mahasiswa/pengajuan_pembimbing_ta");
+    }
 }
