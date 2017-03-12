@@ -6,7 +6,7 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
-	<center><h2>Pengajuan Permohonan TA</h2></center>
+	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
 
 	<form class="form-horizontal">

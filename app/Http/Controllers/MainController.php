@@ -32,6 +32,14 @@ class MainController extends Controller
 		
     }
 
+    public function login() {
+    	return view('login');
+    }
+
+    public function registrasi() {
+    	return view('registrasi');
+    }
+
     public function logout_sso() {
         session_start();
         session_unset();

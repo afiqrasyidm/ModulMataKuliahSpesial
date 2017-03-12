@@ -1,47 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- Scripts -->
-        <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
-        </script>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!--
-        <script type="text/javascript" src="{{ URL::asset('js/app.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-        <link rel="stylesheet" href="{{ URL::asset('css/AdminLTE.min.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('css/AdminLTE.min.css') }}" />
-        <script src="dist/js/app.js" type="text/javascript"></script>  
-        --> 
-
-        <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
-    
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}" />
-        
-
-        <title>Modul Mata Kuliah Spesial</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link href="" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pengajuan Mata Kuliah Spesial</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}" />
@@ -75,21 +36,29 @@
         <div class='container' style="margin-top: 60px; min-height:550px">
             <div class='col-md-2'></div>
             <div class='col-md-8'>
-                <div>
-                    <center>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <h2>Modul Mata Kuliah Spesial</h2>
-                        <h6>Silahkan Login</h6>
-                        <a href="{{ route('login-sso') }}"><button type="button" class="btn btn-default">SSO Login</button></a>
-                        <br/>
-                        <br/>
-                        <i><h6>berasal dari industri?</h6></i>
-                        <a href="{{ route('login') }}"><button type="button" class="btn btn-default">Non SSO Login</button></a>
-                    </center>
-                </div>
+                <br/>
+                <br/>
+                <br/>
+                <center><h2>Login Industri</h2></center>
+                <br/>
+
+                <form class="form-horizontal">
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">Username:</label>
+                        <div class="col-sm-6">
+                          <input class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">Password:</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" type="password">
+                        </div>
+                      </div>
+                      <center><button class="btn btn-primary">Login</button></center>
+                </form>
+
+                <center><i><h6>belum punya akun? daftar <a href="{{ route('registrasi') }}">disini</a></h6></i></center>
             </div>
             <div class='col-md-2'></div>
         </div>
