@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}" />
         
 
-        <title>Laravel</title>
+        <title>Modul Mata Kuliah Spesial</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">

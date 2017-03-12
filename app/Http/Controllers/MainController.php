@@ -41,17 +41,17 @@ class MainController extends Controller
 	
 	public function mahasiswa_homepage(){
 		session_start();
-		return view('homepage_mahasiswa');
+		return view('mahasiswa/homepage_mahasiswa');
 	}
 
 	public function staf_homepage(){
 		session_start();
-		return view('homepage_staf');
+		return view('staf/homepage_staf');
 	}
 
 	public function dosen_homepage(){
 		session_start();
-		return view('homepage_dosen');
+		return view('dosen/homepage_dosen');
 	}
 	
 }
