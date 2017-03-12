@@ -18,7 +18,7 @@ class MainController extends Controller
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
 
-			if($user->npm != null) {
+			if($user->role == 'mahasiswa') {
 				return redirect()->route('homepage/mahasiswa');
 			}
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Modul MKS</title>
+    <title>Pengajuan Mata Kuliah Spesial</title>
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}" />
@@ -34,7 +34,7 @@
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="{{ asset ('index2.html' )  }}" class="logo">
+        <a href="" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">MKS</span>
           <!-- logo for regular state and mobile devices -->
@@ -98,7 +98,7 @@
             <div class="pull-left info">
               <p>
                 <?php
-                            echo $_SESSION["user_login"]->name;
+                  echo $_SESSION["user_login"]->name;
                 ?>
               </p>
             </div>
@@ -106,11 +106,8 @@
            @yield('contentSideBar')
         </section>
       </aside>
-      <div class="content-wrapper">
-        <div class="col-md-10">  
+      <div class="content-wrapper">  
           @yield('mainContent')
-        </div>
-        <div class="col-md-2"> </div>
       </div>
     </div>
 

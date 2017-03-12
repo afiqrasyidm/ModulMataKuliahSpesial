@@ -45,7 +45,7 @@
                     <center>
                         Anda Login Sebagai:
                         <?php
-                            echo $_SESSION["user_login"]->name;
+                            echo $_SESSION["user_login"]->role;
                         ?>
                         <a href="{{ route('logout-sso') }}"><button>logout</button></a>
                     </center>
