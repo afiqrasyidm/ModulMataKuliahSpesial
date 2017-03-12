@@ -9,7 +9,7 @@
     </a>
     <ul class="treeview-menu">
       <li><a href="{{ route('mahasiswa/pengajuan-topik') }}"><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Pengajuan Permohonan</a></li>
+      <li><a href="{{ route('mahasiswa/pengajuan-permohonan-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Permohonan</a></li>
     </ul>
   </li>
   <li class="treeview">
