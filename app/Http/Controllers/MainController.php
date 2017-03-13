@@ -190,6 +190,27 @@ class MainController extends Controller
 		return view('mahasiswa/homepage_mahasiswa_FTBS_S2_S3');
 	}
 	
+	//test untuk view FTBS-S2-S3
+
+	public function login_sso_PA() {
+		
+		if(SSO::authenticate())	{
+			$user = SSO::getUser();
+			$_SESSION["user_login"] = $user;
+
+			if($user->role == 'mahasiswa') {
+				return redirect()->route('/homepage/PA');
+			}
+
+		
+		}
+    }
+	
+	public function homepage_PA(){
+		session_start();
+		return view('dosen/PA/homepage_dosen_PA');
+	}
+	
 	
 	
 	

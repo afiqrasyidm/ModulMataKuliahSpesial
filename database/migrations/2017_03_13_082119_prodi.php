@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultiesTable extends Migration
+class Prodi extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,23 @@ class CreateFacultiesTable extends Migration
      * @return void
      */
     public function up()
-    {
-         Schema::create('fakultas', function (Blueprint $table) {
+	
+    { 
+	
+		Schema::create('prodi', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('nama',40)->unique();
-            $table-> unsignedInteger ('id_universitas');
-            $table->foreign('id_universitas')
-            ->references('id')->on('universitas')
+            
+			$table-> unsignedInteger ('id_fakultas');
+           $table->foreign('id_fakultas')
+            ->references('id')->on('fakultas')
             ->onDelete('cascade');
-        });
-    }
+        
+		
+		});
+    
+	
+	}
 
     /**
      * Reverse the migrations.

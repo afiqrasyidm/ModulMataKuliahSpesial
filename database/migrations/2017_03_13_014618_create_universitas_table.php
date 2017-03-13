@@ -13,7 +13,7 @@ class CreateUniversitasTable extends Migration
      */
     public function up()
     {
-			Schema::create('universities', function (Blueprint $table) {
+			Schema::create('universitas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',40)->unique();
                  

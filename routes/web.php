@@ -46,3 +46,12 @@ Route::get('/login-sso-FTBS-S2-S3', ['as' => 'login-sso-FTBS-S2-S3', 'uses' => '
 
 Route::get('/homepage/mahasiswa_FTBS_S2_S3', ['as' => 'homepage/mahasiswa_FTBS_S2_S3', 'uses' => 'MainController@homepage_mahasiswa_FTBS_S2_S3']);
 
+//test untuk view DOSEN PA
+
+Route::get('/login-sso-PA', ['as' => 'login-sso-PA', 'uses' => 'MainController@login_sso_PA']);
+
+Route::get('/homepage/PA', ['as' => '/homepage/PA', 'uses' => 'MainController@homepage_PA']);
+
+
+
+
