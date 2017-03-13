@@ -40,4 +40,9 @@ Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainControll
 
 Route::get('/testStaf', 'StafController@cari_staf' );
 
+//test untuk view FTBS-S2-S3
+
+Route::get('/login-sso-FTBS-S2-S3', ['as' => 'login-sso-FTBS-S2-S3', 'uses' => 'MainController@login_sso_FTBS_S2_S3']);
+
+Route::get('/homepage/mahasiswa_FTBS_S2_S3', ['as' => 'homepage/mahasiswa_FTBS_S2_S3', 'uses' => 'MainController@homepage_mahasiswa_FTBS_S2_S3']);
 
