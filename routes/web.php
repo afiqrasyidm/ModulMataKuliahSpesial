@@ -44,5 +44,9 @@ Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainControll
 
 Route::get('/testStaf', 'StafController@cari_staf' );
 
-Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@homepage_industri']);
+Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@industri_homepage']);
+
+Route::get('/industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta']);
+
+Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
 
