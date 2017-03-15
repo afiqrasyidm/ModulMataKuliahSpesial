@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyMahasiswaProdi extends Migration
+class CreatePengajuanSidangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class AddForeignKeyMahasiswaProdi extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('pengajuan_sidang', function (Blueprint $table) {
+            $table->increments('id_pengajuan');
+            $table->date('tgl_pengajuan');
+            $table->string('status',20);
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class AddForeignKeyMahasiswaProdi extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pengajuan_sidang');
     }
 }

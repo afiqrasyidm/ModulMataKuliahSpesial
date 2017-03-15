@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDosenTa extends Migration
+class CreateJenisTaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateDosenTa extends Migration
      */
     public function up()
     {
-        $table->increments('id');
-			$table->string('nama',40)->unique();
-            
-			$table-> unsignedInteger ('id_fakultas');
-           $table->foreign('id_fakultas')
-            ->references('id')->on('fakultas')
-            ->onDelete('cascade');
+        Schema::create('jenis_ta', function (Blueprint $table) {
+            $table->increments('id_jenis_ta');
+            $table->string('nama_ta', 40);
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,6 +28,6 @@ class CreateDosenTa extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('jenis_ta');
     }
 }

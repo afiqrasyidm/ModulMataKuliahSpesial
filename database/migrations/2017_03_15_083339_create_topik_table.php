@@ -15,16 +15,19 @@ class CreateTopikTable extends Migration
     {
         Schema::create('topik', function (Blueprint $table) {
             $table->increments('id_topik');
-            $table->timestamps();
 
             $table->string('judul_topik', 40)->unique;
             $table->string('deskripsi', 150);
-            $table->foreign('id_user_dosen')
-            ->references('id_user_dosen')->on('dosen')
+            $table->unsignedInteger('id_dosen');
+            $table->foreign('id_dosen')
+            ->references('id_user')->on('dosen')
             ->onDelete('cascade');
-            $table->foreign('id_user_industri')
-            ->references('id_user_industri')->on('industri')
+            $table->unsignedInteger('id_industri');
+            $table->foreign('id_industri')
+            ->references('id_user')->on('industri')
             ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

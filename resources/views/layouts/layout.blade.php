@@ -57,6 +57,7 @@
             					<?php
                         if($_SESSION["user_login"]->name!=null) {
                             echo $_SESSION["user_login"]->name;
+                            
                         }
                         else if($_SESSION["user_login"]->name!=null){
 

@@ -14,14 +14,18 @@ class CreateIndustriTable extends Migration
     public function up()
     {
         Schema::create('industri', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-
-            $table->integer('id_user');
+            $table->increments('id_industri');
             $table->string('email', 30);
             $table->string('nama_industri', 50);
             $table->string('nama_lengkap', 50);
             $table->string('jabatan', 30);
+
+            $table-> unsignedInteger ('id_user');
+            $table->foreign('id_user')
+            ->references('id_user')->on('user')
+            ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
