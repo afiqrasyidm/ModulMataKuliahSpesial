@@ -14,6 +14,10 @@ use App\User;
 use App\Industri;
 use App\Mahasiswa;
 
+use App\Prodi;
+use App\Fakultas;
+
+
 class MainController extends Controller
 {
     public function index() {
@@ -34,15 +38,40 @@ class MainController extends Controller
 			
 			
 			if($isUsernameExist){
-				$roleUser = User::where('username', $username)->get()->first()->role;
+				$roleUser = User::where('username', $username)->get()->first();
 				
-				if( ($roleUser == "mahasiswa" )){		
+				if( ($roleUser->role == "mahasiswa" )){		
+						//ambil row dimahasiswa
 						
-				
+						$mahasiswa=Mahasiswa::where('id_user',$roleUser->id_user)->get()->first();
+						
+						//cek jenjang
+						if($mahasiswa->jenjang == "S1"){
+						
+							$_SESSION["mahasiswa_jenjang"] = "S1";
+						}
+						else if($mahasiswa->jenjang == "S2"){
+							$_SESSION["mahasiswa_jenjang"] = "S2";
+							}
+						else{
+							$_SESSION["mahasiswa_jenjang"] = "S3";
+							}
+							
+							
+						//cek fakultas apakah FTBS atau tidak, untuk sementara hanya ada fasilkom dan fh
+						$id_fakultas= Prodi::where('id_prodi',$mahasiswa->id_prodi )->get()->first()->id_fakultas;
+						
+						$namaFakultas = Fakultas::where('id_fakultas',$id_fakultas )->get()->first()->nama_fakultas;
+						
+						
+						$_SESSION["mahasiswa_nama_fakultas"] = $namaFakultas;
+						
 						return redirect()->route('homepage/mahasiswa');
 			
 					}
-				else if(($roleUser == "dosen")){
+				else if(($roleUser->role == "dosen")){
+				
+				
 						return redirect()->route('homepage/dosen');
 								
 				}

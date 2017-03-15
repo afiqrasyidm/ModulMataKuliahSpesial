@@ -1,4 +1,4 @@
-@extends('layouts.layout_staf')
+@extends('layouts.layout_dosen_PA')
 
 @section('title','Home Page')
 
@@ -6,8 +6,8 @@
 <div class="col-md-6">
 	<h1>Pengumuman</h1>
 
-	
-	<p>Untuk  SBA</p>
+	<p>Oleh   : Sub Bagian Akademik</p>
+	<p>Untuk Pembimbing Akademik</p>
 
 	
 	<p>Tanggal: 11 Maret 2017</p>
