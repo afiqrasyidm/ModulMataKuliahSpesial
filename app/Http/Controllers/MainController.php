@@ -82,7 +82,7 @@ class MainController extends Controller
 	        $user = User::where('username', Input::get('username'))->get()->first();
 	        session_start();
 	        $_SESSION["user_login"] = $user;
-	        return 'Homepage industri belom dibuat. Tapi anda login sebagai username:'.$user->username;
+	        return redirect()->route('homepage/industri');
 	    }
 
 	    else {
@@ -169,5 +169,10 @@ class MainController extends Controller
 		session_start();
 		return view('dosen/homepage_dosen');
 	}
+
+	public function industri_homepage(){
+		session_start();
+		return view('industri/homepage_industri');
+	}	
 	
 }
