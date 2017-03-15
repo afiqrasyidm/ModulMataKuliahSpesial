@@ -25,14 +25,16 @@ class MainController extends Controller
 		if(SSO::authenticate())	{
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
-
-			if($user->role == 'mahasiswa') {
+			
+			$UserArr = User::where('username', $user->username)->get();
+			
+			$isUsernameExist = count($UserArr)>0;
+	   	
+			
+			
 				return redirect()->route('homepage/mahasiswa');
-			}
+			
 
-			else {
-				return redirect()->route('homepage/staf');
-			}
 		}
 		else {
 			return redirect()->route('/');
