@@ -1,10 +1,13 @@
 @extends('layouts.layout_dosen')
 
-@section('content')       
+@section('title','Home Page')
 
-		<br>
-				<br>
-						<br>
-								<br>
-        <h1>CONTOH PAGE DOSEN<h1>
+@section('mainContent')
+<div class="col-md-12">
+	<center>
+		<h1>Alur Pengerjaan Tugas Akhir</h1>
+		<img src="{{ asset('img/flowchart.png') }}">
+	</center>
+</div>
+        
 @endsection

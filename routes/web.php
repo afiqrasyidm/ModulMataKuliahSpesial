@@ -42,6 +42,14 @@ Route::get('/staf/verifikasi-permohonan-ta', ['as' => 'staf/verifikasi-permohona
 
 Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
 
+Route::get('/dosen/pilih-role', ['as' => 'dosen/pilih-role', 'uses' => 'DosenController@pilih_role']);
+
+Route::get('/dosen/atur-jadwal-sidang', ['as' => 'dosen/atur-jadwal-sidang', 'uses' => 'DosenController@atur_jadwal_sidang']);
+
+Route::get('/dosen/feedback-sidang', ['as' => 'dosen/feedback-sidang', 'uses' => 'DosenController@feedback_sidang']);
+
+Route::get('/dosen/feedback-sidang/mahasiswa', ['as' => 'dosen/feedback-sidang/mahasiswa', 'uses' => 'DosenController@feedback_sidang_mahasiswa']);
+
 Route::get('/testStaf', 'StafController@cari_staf' );
 
 Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@industri_homepage']);
