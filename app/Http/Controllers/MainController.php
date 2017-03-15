@@ -176,6 +176,7 @@ class MainController extends Controller
 	        $user = new User;
 	        $user->username    = Input::get('username');
 	        $user->password = Input::get('password');
+			$user->role = "industri";
 	        $user->save();
 
 			$industri = new Industri;
