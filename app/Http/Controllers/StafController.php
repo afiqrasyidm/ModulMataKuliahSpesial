@@ -13,25 +13,35 @@ class StafController extends Controller
 	 var $stafs;
 	 
 	 
-     public function __construct() {
-        $this->stafs = Staf::all(array('nama'));
-    }
+  //    public function __construct() {
+  //       $this->stafs = Staf::all(array('nama'));
+  //   }
 	
 	
 	
-	 public function cari_staf() {
+	 // public function cari_staf() {
 		
-		if(SSO::authenticate())	{
-			$user = SSO::getUser();
-			$_SESSION["user_login"] = $user;
+		// if(SSO::authenticate())	{
+		// 	$user = SSO::getUser();
+		// 	$_SESSION["user_login"] = $user;
 
-			$staf = Staf::find(4);
-			return view('staf/homepage_staf', array('staf' => $staf));
+		// 	$staf = Staf::find(4);
+		// 	return view('staf/homepage_staf', array('staf' => $staf));
 				
-		}
+		// }
 	
+  //   }
+
+
+    function post_pengumuman() {
+    	session_start();
+    	return view("staf/post_pengumuman");
     }
 	
+	function verifikasi_permohonan_ta() {
+    	session_start();
+    	return view("staf/verifikasi_permohonan_ta");
+    }
 	
 
 }

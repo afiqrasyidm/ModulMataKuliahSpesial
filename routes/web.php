@@ -36,22 +36,12 @@ Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-p
 
 Route::get('/homepage/staf', ['as' => 'homepage/staf', 'uses' => 'MainController@staf_homepage']);
 
+Route::get('/staf/post-pengumuman', ['as' => 'staf/post-pengumuman', 'uses' => 'StafController@post_pengumuman']);
+
+Route::get('/staf/verifikasi-permohonan-ta', ['as' => 'staf/verifikasi-permohonan-ta', 'uses' => 'StafController@verifikasi_permohonan_ta']);
+
 Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
 
 Route::get('/testStaf', 'StafController@cari_staf' );
-
-//test untuk view FTBS-S2-S3
-
-Route::get('/login-sso-FTBS-S2-S3', ['as' => 'login-sso-FTBS-S2-S3', 'uses' => 'MainController@login_sso_FTBS_S2_S3']);
-
-Route::get('/homepage/mahasiswa_FTBS_S2_S3', ['as' => 'homepage/mahasiswa_FTBS_S2_S3', 'uses' => 'MainController@homepage_mahasiswa_FTBS_S2_S3']);
-
-//test untuk view DOSEN PA
-
-Route::get('/login-sso-PA', ['as' => 'login-sso-PA', 'uses' => 'MainController@login_sso_PA']);
-
-Route::get('/homepage/PA', ['as' => '/homepage/PA', 'uses' => 'MainController@homepage_PA']);
-
-
 
 

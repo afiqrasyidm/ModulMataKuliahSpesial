@@ -58,9 +58,10 @@
                         if($_SESSION["user_login"]->name!=null) {
                             echo $_SESSION["user_login"]->name;
                         }
-                        else if($_SESSION["user_login"]->username!=null){
-                            echo $_SESSION["user_login"]->nama_lengkap;
+                        else if($_SESSION["user_login"]->name!=null){
+
                         }
+
                       ?>
                   </span>
 				        </a>
@@ -69,14 +70,9 @@
                   <li class="user-header">
                     <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                     <p>
-                      <?php
-                        if($_SESSION["user_login"]->name!=null) {
+                    <?php
                             echo $_SESSION["user_login"]->name;
-                        }
-                        else if($_SESSION["user_login"]->username!=null){
-                            echo $_SESSION["user_login"]->nama_lengkap;
-                        }
-                      ?>
+                        ?>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -108,12 +104,7 @@
             <div class="pull-left info">
               <p>
                 <?php
-                  if($_SESSION["user_login"]->name!=null) {
-                            echo $_SESSION["user_login"]->name;
-                  }
-                  else if($_SESSION["user_login"]->username!=null){
-                      echo $_SESSION["user_login"]->nama_lengkap;
-                  }
+                  echo $_SESSION["user_login"]->name;
                 ?>
               </p>
             </div>
