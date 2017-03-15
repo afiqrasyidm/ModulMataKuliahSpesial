@@ -26,13 +26,36 @@ class MainController extends Controller
 			$user = SSO::getUser();
 			$_SESSION["user_login"] = $user;
 			
-			$UserArr = User::where('username', $user->username)->get();
+			$username=$user->username;
+			
+			$UserArr = User::where('username', $username )->get();
 			
 			$isUsernameExist = count($UserArr)>0;
-	   	
 			
 			
-				return redirect()->route('homepage/mahasiswa');
+			if($isUsernameExist){
+				$roleUser = User::where('username', $username)->get()->first()->role;
+				
+				if( ($roleUser == "mahasiswa" )){		
+						
+				
+						return redirect()->route('homepage/mahasiswa');
+			
+					}
+				else if(($roleUser == "dosen")){
+						return redirect()->route('homepage/dosen');
+								
+				}
+				else {
+					return redirect()->route('homepage/staf');
+					
+				}
+	
+			
+			}
+			else {
+				return redirect()->route('/');
+			}
 			
 
 		}
