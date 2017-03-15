@@ -1,4 +1,4 @@
-@extends('layouts.layout_dosen')
+@extends('layouts.layout_dosen_penguji')
 
 @section('title','Feedback Sidang')
 
