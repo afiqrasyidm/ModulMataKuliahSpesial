@@ -44,4 +44,5 @@ Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainControll
 
 Route::get('/testStaf', 'StafController@cari_staf' );
 
+Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@homepage_industri']);
 
