@@ -14,9 +14,10 @@
   </li>
   
   <li class="treeview">
-    <a href="{{ asset ('#' )  }}">
-      <i class="fa fa-dashboard"></i> <span>Pengumuman</span>
+    <a href="{{ route('industri/pengumuman') }}">
+      <i class="fa fa-dashboard"></i> <span>Pengumuman</span> 
     </a>
+  
   </li>
 </ul>
 @endsection

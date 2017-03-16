@@ -75,6 +75,7 @@
                             echo $_SESSION["user_login"]->name;
                         ?>
                     </p>
+                  
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">

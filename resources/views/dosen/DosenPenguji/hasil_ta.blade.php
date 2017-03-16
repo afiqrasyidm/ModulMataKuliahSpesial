@@ -1,6 +1,6 @@
 @extends('layouts.layout_dosen_penguji')
 
-@section('title','Feedback Sidang')
+@section('title','Hasil TA Mahasiswa')
 
 @section('mainContent')       
 
@@ -8,7 +8,7 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
-	<center><h2>Feedback Sidang Sidang</h2></center>
+	<center><h2>Hasil TA Mahasiswa</h2></center>
 	<br/>
 		<div class="box">
             <div class="box-header with-border">
@@ -19,7 +19,6 @@
                     <tr>
                       	<th>Nama Mahasiswa</th>
                       	<th>Judul TA</th>
-                        <th>Jadwal Sidang</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -27,15 +26,13 @@
                     <tr>
                       <td>Mahasiswa XYZ</td>
                       <td>Judul TA ABCD</td>
-                      <td>12 Maret 2017</td>
-                      <td><a href="{{ route('dosen/penguji/feedback-sidang/mahasiswa') }}"><button type="button" class=" btn btn-block btn-primary ">Beri Tanggapan</button></a>
+                      <td><a href="#"><button type="button" class=" btn btn-block btn-primary ">Download Hasil TA</button></a>
                       </td>
                     </tr>
                     <tr>
                       <td>Mahasiswa ABC</td>
                       <td>Judul TA DBCA</td>
-                      <td>12 Maret 2017</td>
-                      <td><button class="btn btn-block btn-primary">Beri Tanggapan</button></td>
+                      <td><a href="#"><button class="btn btn-block btn-primary">Download Hasil TA</button></td>
                     </tr>
                     </tbody>
                  	</table>
