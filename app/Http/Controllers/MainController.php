@@ -201,6 +201,8 @@ class MainController extends Controller
         session_unset();
         session_destroy();
         SSO::logout();
+		return redirect()->route('/');
+	
     }
 
     public function delay() {
