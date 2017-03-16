@@ -42,13 +42,13 @@ Route::get('/staf/verifikasi-permohonan-ta', ['as' => 'staf/verifikasi-permohona
 
 Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
 
-Route::get('/dosen/pilih-role', ['as' => 'dosen/pilih-role', 'uses' => 'DosenController@pilih_role']);
+Route::get('/dosen/penguji/home', ['as' => 'dosen/penguji/home', 'uses' => 'DosenPengujiController@home_dosen_penguji']);
 
-Route::get('/dosen/atur-jadwal-sidang', ['as' => 'dosen/atur-jadwal-sidang', 'uses' => 'DosenController@atur_jadwal_sidang']);
+Route::get('/dosen/penguji/atur-jadwal-sidang', ['as' => 'dosen/penguji/atur-jadwal-sidang', 'uses' => 'DosenPengujiController@atur_jadwal_sidang_dosen_penguji']);
 
-Route::get('/dosen/feedback-sidang', ['as' => 'dosen/feedback-sidang', 'uses' => 'DosenController@feedback_sidang']);
+Route::get('/dosen/penguji/feedback-sidang', ['as' => 'dosen/penguji/feedback-sidang', 'uses' => 'DosenPengujiController@feedback_sidang_dosen_penguji']);
 
-Route::get('/dosen/feedback-sidang/mahasiswa', ['as' => 'dosen/feedback-sidang/mahasiswa', 'uses' => 'DosenController@feedback_sidang_mahasiswa']);
+Route::get('/dosen/penguji/feedback-sidang/mahasiswa', ['as' => 'dosen/penguji/feedback-sidang/mahasiswa', 'uses' => 'DosenPengujiController@feedback_sidang_mahasiswa_dosen_penguji']);
 
 Route::get('/testStaf', 'StafController@cari_staf' );
 
