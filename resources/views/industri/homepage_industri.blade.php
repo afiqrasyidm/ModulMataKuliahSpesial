@@ -5,6 +5,7 @@
 @section('mainContent')
 <div class="col-md-6">
 	<h1>Pengumuman</h1>
+	<p>Untuk Industri </p>
 
 	<p>Oleh   : Sub Bagian Akademik</p>
 	<p>Tanggal: 11 Maret 2017</p>
