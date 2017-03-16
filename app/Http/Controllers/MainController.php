@@ -40,6 +40,7 @@ class MainController extends Controller
 			if($isUsernameExist){
 				$roleUser = User::where('username', $username)->get()->first();
 				
+				
 				if( ($roleUser->role == "mahasiswa" )){		
 						//ambil row dimahasiswa
 						

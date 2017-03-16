@@ -1,6 +1,6 @@
 @extends('layouts.layout_industri')
 
-@section('title','Home Page')
+@section('title','Lihat Hasil TA')
 
 @section('mainContent')
 <div class="col-md-6">

@@ -27,4 +27,17 @@ class DosenPengujiController extends Controller
     	session_start();
     	return view("dosen/DosenPenguji/feedback_sidang_mahasiswa_dosen_penguji");
     }
+
+   function hasil_ta() {
+        session_start();
+        return view("dosen/DosenPenguji/hasil_ta");
+    }
+
+    function pengumuman() {
+        session_start();
+        return view("dosen/DosenPenguji/pengumuman");
+    }
+
+
+
 }
