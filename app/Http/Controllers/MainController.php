@@ -122,7 +122,13 @@ class MainController extends Controller
 	    if ($flagSuccess) {
 	        $user = User::where('username', Input::get('username'))->get()->first();
 	        session_start();
-	        $_SESSION["user_login"] = $user;
+	        $industri = Industri::where('id_user', $user->id_user)->get()->first();
+	        
+			
+			
+			$_SESSION["user_login_industri"] = $industri;
+			
+			
 	        return redirect()->route('homepage/industri');
 	    }
 
@@ -189,7 +195,9 @@ class MainController extends Controller
         session_start();
         session_unset();
         session_destroy();
-        SSO::logout();
+       
+		return redirect()->route('/');
+	
     }
 
     public function delay() {
