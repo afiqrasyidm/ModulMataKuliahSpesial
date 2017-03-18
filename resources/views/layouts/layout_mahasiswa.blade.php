@@ -27,9 +27,38 @@
       <i class="fa fa-dashboard"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href=""><i class="fa fa-angle-right"></i>Pengajuan Permohonan Sidang</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Jadwal Sidang</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Hasil Sidang</a></li>
+        <?php 
+            if($_SESSION["mahasiswa_jenjang"]!="S1"){
+              echo '<li><a href=""><i class="fa fa-angle-right"></i>';
+              echo "Pengajuan Sidang Topik";
+              echo '</a></li>';
+            }
+          ?>
+      </a></li>
+
+      <li><a href=""><i class="fa fa-angle-right"></i>
+        <?php 
+            if($_SESSION["mahasiswa_jenjang"]!=null){
+              echo "Pengajuan Permohonan Sidang";
+            }
+          ?>
+      </a></li>
+
+      <li><a href=""><i class="fa fa-angle-right"></i>
+        <?php 
+            if($_SESSION["mahasiswa_jenjang"]!= null){
+              echo "Jadwal Sidang";
+            }
+          ?>
+      </a></li>
+
+      <li><a href=""><i class="fa fa-angle-right"></i>
+        <?php 
+            if($_SESSION["mahasiswa_jenjang"]!= null){
+              echo "Hasil Sidang";
+            }
+          ?>
+      </a></li>
     </ul>
   </li>
   
