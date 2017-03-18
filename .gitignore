@@ -6,9 +6,5 @@
 /.idea
 Homestead.json
 Homestead.yaml
-<<<<<<< HEAD
 .env
 /config/database.php
-=======
-.env
->>>>>>> 1569b2e0ed9f172ae35f4b28c9f754036ed024bd
