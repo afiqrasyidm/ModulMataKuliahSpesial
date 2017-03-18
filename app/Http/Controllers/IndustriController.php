@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Staf;
-use SSO\SSO;
+
+use Illuminate\Support\Facades\Input;
+use Validator;
+use Redirect;
+
+use App\User;
+use App\Industri;
+use App\Mahasiswa;
+
+use App\Prodi;
+use App\Fakultas;
+use App\Topik;
 
 class IndustriController extends Controller
 {
 	
-<<<<<<< HEAD
 	 // var $industri;
 	 
 	 
@@ -18,10 +28,15 @@ class IndustriController extends Controller
   //       $this->industri = Industri::all(array('nama'));
     
 	
+	function berhasil_industri () {
+
+
+		session_start();
+		return view("pengajuan_topik/berhasil_industri");
+	}
+	
 	function pengajuan_topik_ta () {
-=======
-	function pengajuan_topik_ta() {
->>>>>>> 44ca8e355d876b27eb0f5d67b28ac201876719c0
+
 
 		session_start();
 		return view("industri/pengajuan_topik_ta");
@@ -36,5 +51,50 @@ class IndustriController extends Controller
 		session_start();
 		return view("industri/pengumuman");
 	}
+	
+	
+	 public function pengajuan_topik_ta_submit() {
+		session_start();
+		$validator = Validator::make(
+        Input::all(),
+        array(
+            "topik_ta" => "required",
+            "latar_belakang_ta" => "required", 
+	        )
+	    );
 
+	    $isTopikTaken = count(Topik::where('topik_ta', Input::get('topik_ta'))->get())>0;
+	    
+	    //topik (unique) Validation. Apakah sudah ada atau belum
+	    if($isTopikTaken) {
+	        $validator->getMessageBag()->add('duplicate_topik_ta', 'topik ta telah terpakai.');
+	    }
+
+	    //jika semua validasi terpenuhi simpan ke database
+	    else if($validator->passes()) {
+			$topik = new Topik;
+			$topik->topik_ta = Input::get ('topik_ta');
+			$topik->deskripsi = Input::get ('latar_belakang_ta');
+			
+		
+			$topik->id_industri = 	$_SESSION["user_login_industri"]-> id_industri;
+			$topik->id_dosen = NULL;
+			$topik->sudah_diambil = 0;
+			
+	       	$topik->save();
+	        
+			return view("pengajuan_topik/berhasil_industri");
+	    }
+
+	    //Data error or username taken:
+		return Redirect::to('industri/pengajuan-topik-ta')
+			->withErrors($validator)
+			->withInput();	
+    }
+	
+	
+	
+	
+	
+	
 }

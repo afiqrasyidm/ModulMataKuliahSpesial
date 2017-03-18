@@ -48,6 +48,7 @@
                       <input class="form-control" name="username">
                     </div>
                     <div class='col-sm-3'>
+					
                           <?php echo $errors->first('username') ?>
                           <?php echo $errors->first('duplicate_username') ?>
                     </div>

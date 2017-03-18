@@ -30,7 +30,7 @@
     </a>
     <ul class="treeview-menu">
         <?php 
-            if($_SESSION["mahasiswa_jenjang"]!="S1"){
+            if($_SESSION["mahasiswa"]->jenjang!="S1"){
               echo '<li><a href=""><i class="fa fa-angle-right"></i>';
               echo "Pengajuan Sidang Topik";
               echo '</a></li>';
@@ -40,7 +40,7 @@
 
       <li><a href=""><i class="fa fa-angle-right"></i>
         <?php 
-            if($_SESSION["mahasiswa_jenjang"]!=null){
+            if($_SESSION["mahasiswa"]->jenjang!=null){
               echo "Pengajuan Permohonan Sidang";
             }
           ?>
@@ -48,7 +48,7 @@
 
       <li><a href=""><i class="fa fa-angle-right"></i>
         <?php 
-            if($_SESSION["mahasiswa_jenjang"]!= null){
+            if($_SESSION["mahasiswa"]->jenjang!= null){
               echo "Jadwal Sidang";
             }
           ?>
@@ -56,7 +56,7 @@
 
       <li><a href=""><i class="fa fa-angle-right"></i>
         <?php 
-            if($_SESSION["mahasiswa_jenjang"]!= null){
+            if($_SESSION["mahasiswa"]->jenjang!= null){
               echo "Hasil Sidang";
             }
           ?>

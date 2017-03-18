@@ -19,6 +19,8 @@
 		      </tr>
 		    </thead>
 		    <tbody>
+			
+			
 		      <tr>
 		        <td>Sentiment Analysis</td>
 		        <td>Prof. Zaenal</td>
@@ -61,8 +63,27 @@
 		        <td>Prof. Zaenal</td>
 		        <td><input type="radio" name="pilih-topik"></td>
 		      </tr>
+			  
+			  @foreach ($topik as $topik)
+			  
+			     <tr>
+					<td>{{$topik->topik_ta}}</td>
+					<td>lol</td>
+					<td></td>
+					<td><input type="radio" name="pilih-topik"></td>
+				</tr>
+			  
+			   @endforeach
+			  
+			  
 		    </tbody>
+			
+			
+			
+			
   		</table>
+		
+		
   		<p><i>*centang salah satu</i></p>
 		<center><button class="btn btn-primary">Ajukan Topik</button></center>
 		<br/>
