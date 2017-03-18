@@ -1,11 +1,11 @@
-@extends('layouts.layout_dosen_penguji')
+@extends('layouts.layout_dosen_pembimbing')
 
 @section('title','Pengumuman')
 
 @section('mainContent')
 <div class="col-md-12">
 	<h1>Pengumuman</h1>
-	<p>Untuk Dosen Penguji </p>
+	<p>Untuk Dosen Pembimbing </p>
 
 	<p>Oleh   : Sub Bagian Akademik</p>
 	<p>Tanggal: 11 Maret 2017</p>

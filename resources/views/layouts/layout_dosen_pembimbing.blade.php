@@ -24,7 +24,7 @@
   </li>
 
   <li class="treeview">
-    <a href="{{ route('dosen/penguji/pengumuman') }}">
+    <a href="{{ route('dosen/pembimbing/pengumuman') }}">
       <i class="fa fa-dashboard"></i> <span>Pengumuman</span>
     </a>
   </li>
