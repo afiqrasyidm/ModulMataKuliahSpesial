@@ -22,4 +22,9 @@ class MahasiswaController extends Controller
     	session_start();
     	return view("mahasiswa/pengajuan_pembimbing_ta");
     }
+
+    function pengumuman() {
+        session_start();
+        return view("mahasiswa/pengumuman");
+    }
 }

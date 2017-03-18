@@ -36,7 +36,6 @@ class MainController extends Controller
 			
 			$isUsernameExist = count($UserArr)>0;
 			
-			
 			if($isUsernameExist){
 				$roleUser = User::where('username', $username)->get()->first();
 				
@@ -45,36 +44,26 @@ class MainController extends Controller
 						
 						$mahasiswa=Mahasiswa::where('id_user',$roleUser->id_user)->get()->first();
 						
-						//cek jenjang
-						if($mahasiswa->jenjang == "S1"){
-						
-							$_SESSION["mahasiswa_jenjang"] = "S1";
-						}
-						else if($mahasiswa->jenjang == "S2"){
-							$_SESSION["mahasiswa_jenjang"] = "S2";
-							}
-						else{
-							$_SESSION["mahasiswa_jenjang"] = "S3";
-							}
-							
+						$_SESSION["mahasiswa"] = $mahasiswa;
 							
 						//cek fakultas apakah FTBS atau tidak, untuk sementara hanya ada fasilkom dan fh
-						$id_fakultas= Prodi::where('id_prodi',$mahasiswa->id_prodi )->get()->first()->id_fakultas;
+						$prodi= Prodi::where('id_prodi',$mahasiswa->id_prodi )->get()->first();
 						
-						$namaFakultas = Fakultas::where('id_fakultas',$id_fakultas )->get()->first()->nama_fakultas;
+						$fakultas = Fakultas::where('id_fakultas',$mahasiswa->id_fakultas )->get()->first();
 						
-						
-						$_SESSION["mahasiswa_nama_fakultas"] = $namaFakultas;
+						$_SESSION["fakultas"] = $fakultas;
+						$_SESSION["prodi"] = $prodi;
 						
 						return redirect()->route('homepage/mahasiswa');
-			
-					}
+				}
+
 				else if(($roleUser->role == "dosen")){
 				
 				
 						return redirect()->route('homepage/dosen');
 								
 				}
+
 				else {
 					return redirect()->route('homepage/staf');
 					
@@ -133,7 +122,13 @@ class MainController extends Controller
 	    if ($flagSuccess) {
 	        $user = User::where('username', Input::get('username'))->get()->first();
 	        session_start();
-	        $_SESSION["user_login"] = $user;
+	        $industri = Industri::where('id_user', $user->id_user)->get()->first();
+	        
+			
+			
+			$_SESSION["user_login_industri"] = $industri;
+			
+			
 	        return redirect()->route('homepage/industri');
 	    }
 
@@ -200,8 +195,8 @@ class MainController extends Controller
         session_start();
         session_unset();
         session_destroy();
-        SSO::logout();
-    }
+		SSO::logout();
+	  }
 
     public function delay() {
     	return view('delay');

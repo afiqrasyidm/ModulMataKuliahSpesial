@@ -2,6 +2,10 @@
 
 @section('contentSideBar')
 <ul class="sidebar-menu">
+<div class="col-md-2" style="text-indent: 63px">
+      <a href="#"><i>Login as Dosen PA</i></a>
+    </div>
+    <br>
   <li class="header">MAIN NAVIGATION</li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
@@ -13,7 +17,7 @@
   </li>
   
   <li class="treeview">
-    <a href="{{ asset ('#' )  }}">
+    <a href="{{ route('dosen/PA/pengumuman') }}">
       <i class="fa fa-dashboard"></i> <span>Pengumuman</span>
     </a>
   </li>
