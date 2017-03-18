@@ -55,14 +55,17 @@
   				  
         					<span class="hidden-xs">
             					<?php
-                        if($_SESSION["user_login"]->name!=null) {
+								
+								//selain industri
+                        if(isset($_SESSION["user_login"])) {
                             echo $_SESSION["user_login"]->name;
                             
                         }
-                        else if($_SESSION["user_login"]->name!=null){
-
+						//berarti industri
+                       else if(isset($_SESSION["user_login_industri"])){
+								  echo $_SESSION["user_login_industri"]->nama_industri;
                         }
-
+						
                       ?>
                   </span>
 				        </a>
@@ -72,9 +75,18 @@
                     <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                     <p>
                     <?php
-                            echo $_SESSION["user_login"]->name;
-                        ?>
+							//selain industri
+							 if(isset($_SESSION["user_login"])) {
+								echo $_SESSION["user_login"]->name;
+							 }
+							 //berarti industri
+							 else if(isset($_SESSION["user_login_industri"])){
+								  echo $_SESSION["user_login_industri"]->nama_industri;
+								}
+								
+						?>
                     </p>
+                  
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
@@ -105,7 +117,15 @@
             <div class="pull-left info">
               <p>
                 <?php
-                  echo $_SESSION["user_login"]->name;
+                 
+					//selain industri
+				   if(isset($_SESSION["user_login"])) {
+								echo $_SESSION["user_login"]->name;
+							 }
+							//berarti industri
+					else if(isset($_SESSION["user_login_industri"])){
+								  echo $_SESSION["user_login_industri"]->nama_industri;
+						}
                 ?>
               </p>
             </div>

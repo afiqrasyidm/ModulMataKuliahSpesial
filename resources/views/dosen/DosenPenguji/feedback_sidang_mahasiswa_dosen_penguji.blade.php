@@ -34,16 +34,18 @@
       <input type="text" class="form-control" placeholder="Senin 12 Maret 2017" disabled>
     </div>
   </div>
-  <br><br><br>
+  <br><br>
   <div class="form-group">
     <label>Tanggapan</label>
     <textarea class="form-control" rows="7" placeholder="Enter ..."></textarea>
   </div>
 	
 	<center><button class="btn btn-primary">Beri Tanggapan</button></center>
+
 </form>	
 </div>
 <div class="col-md-1">
 </div>
-
+ <br><br>
+  <br>
 @endsection

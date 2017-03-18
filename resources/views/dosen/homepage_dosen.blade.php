@@ -53,12 +53,12 @@
                         <br/>
                         <h2>Pilih Role Dosen</h2>
                      
-                        <a href="#"><button type="button" class="btn btn-default ">Dosen Pembimbing</button></a>
+                       <a href="{{ route('dosen/pembimbing/home') }}"><button type="button" class=" btn btn-default ">Dosen Pembimbing</button></a>
                        
                         <br/><br>
-                         <a href="#"><button type="button" class=" btn btn-default ">Dosen Penguji</button></a>
+                        <a href="{{ route('dosen/penguji/home') }}"><button type="button" class=" btn btn-default ">Dosen Penguji</button></a>
                         <br/><br>
-                         <a href="#"><button type="button" class="btn btn-default ">PA</button></a>
+                         <a href="{{ route('dosen/PA/home') }}"><button type="button" class="btn btn-default ">PA</button></a>
                         <br/><br>
                         <br/>
                         <i><h5>Ingin Ajukan Topik?<a href="#"> ajukan</a></h5></i>

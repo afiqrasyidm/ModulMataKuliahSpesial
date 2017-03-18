@@ -3,6 +3,7 @@
 @section('title','Home Page')
 
 @section('mainContent')
+<<<<<<< HEAD
 <div class="col-md-12">
 	<h1>Pengajuan Topik TA</h1>
 	<br>
@@ -52,3 +53,14 @@
 
 
 @endsection
+=======
+
+<div class="col-md-12">
+	<center>
+		<h1>Alur Pengerjaan Tugas Akhir</h1>
+		<img src="{{ asset('img/flowchart.png') }}">
+	</center>
+</div>
+        
+@endsection
+>>>>>>> 44ca8e355d876b27eb0f5d67b28ac201876719c0
