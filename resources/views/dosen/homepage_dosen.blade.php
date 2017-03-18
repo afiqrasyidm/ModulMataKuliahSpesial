@@ -53,7 +53,7 @@
                         <br/>
                         <h2>Pilih Role Dosen</h2>
                      
-                        <a href="#"><button type="button" class="btn btn-default ">Dosen Pembimbing</button></a>
+                       <a href="{{ route('dosen/pembimbing/home') }}"><button type="button" class=" btn btn-default ">Dosen Pembimbing</button></a>
                        
                         <br/><br>
                         <a href="{{ route('dosen/penguji/home') }}"><button type="button" class=" btn btn-default ">Dosen Penguji</button></a>

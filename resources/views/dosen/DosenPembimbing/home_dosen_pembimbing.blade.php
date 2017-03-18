@@ -1,4 +1,4 @@
-@extends('layouts.layout_dosen_penguji')
+@extends('layouts.layout_dosen_pembimbing')
 
 @section('title','Home Page')
 
