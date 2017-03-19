@@ -61,7 +61,7 @@
                          <a href="{{ route('dosen/PA/home') }}"><button type="button" class="btn btn-default ">PA</button></a>
                         <br/><br>
                         <br/>
-                        <i><h5>Ingin Ajukan Topik?<a href="#"> ajukan</a></h5></i>
+                        <i><h5>Ingin Ajukan Topik?<a href="{{ route('dosen/pengajuan-topik-ta') }}"> ajukan</a></h5></i>
                    
                     </center>
                 </div>

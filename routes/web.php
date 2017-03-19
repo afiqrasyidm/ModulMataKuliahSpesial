@@ -84,3 +84,6 @@ Route::post('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta
 Route::get('pengajuan_topik/berhasil_industri', ['as' => 'pengajuan_topik/berhasil_industri', 'uses' => 'IndustriController@berhasil_industri']);
 
 
+//PENGAJUAN TA DOSEN
+Route::get('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta']);
+Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta_submit']);

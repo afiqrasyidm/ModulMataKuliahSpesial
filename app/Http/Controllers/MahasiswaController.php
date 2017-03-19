@@ -12,8 +12,14 @@ class MahasiswaController extends Controller
     function pengajuan_topik() {
     	session_start();
 		
-		$topik = Topik::where('sudah_diambil', 0 )->get();
 		
+		$topik = DB::table('topik')
+            ->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
+            ->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
+			->where('topik.sudah_diambil', '=', 0)
+            ->get();
+	
+	
     	return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
     }
 
