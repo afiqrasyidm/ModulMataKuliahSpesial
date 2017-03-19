@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2017 at 05:50 AM
+-- Generation Time: Mar 19, 2017 at 02:26 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -115,7 +115,8 @@ CREATE TABLE `industri` (
 --
 
 INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33');
+(1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
+(2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11');
 
 -- --------------------------------------------------------
 
@@ -254,13 +255,22 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`, `id_fakultas`, `created_at`, `upd
 
 CREATE TABLE `topik` (
   `id_topik` int(10) UNSIGNED NOT NULL,
-  `judul_topik` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `topik_ta` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deskripsi` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_dosen` int(10) UNSIGNED NOT NULL,
-  `id_industri` int(10) UNSIGNED NOT NULL,
+  `id_dosen` int(10) UNSIGNED DEFAULT NULL,
+  `id_industri` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sudah_diambil` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `topik`
+--
+
+INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
+(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 0),
+(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0);
 
 -- --------------------------------------------------------
 
@@ -322,7 +332,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (2, 'mischelle.meilisa', 'propensi2017', 'dosen', NULL, NULL),
 (3, 'aneira.dwira', 'propen18', 'staf', NULL, NULL),
 (4, 'monica.agustin', 'mon1c4', 'mahasiswa', NULL, NULL),
-(5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33');
+(5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
+(6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11');
 
 --
 -- Indexes for dumped tables
@@ -461,7 +472,7 @@ ALTER TABLE `hasil_ta`
 -- AUTO_INCREMENT for table `industri`
 --
 ALTER TABLE `industri`
-  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jenis_ta`
 --
@@ -496,7 +507,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
@@ -511,7 +522,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -563,8 +574,8 @@ ALTER TABLE `prodi`
 -- Constraints for table `topik`
 --
 ALTER TABLE `topik`
-  ADD CONSTRAINT `topik_id_dosen_foreign` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_user`) ON DELETE CASCADE,
-  ADD CONSTRAINT `topik_id_industri_foreign` FOREIGN KEY (`id_industri`) REFERENCES `industri` (`id_user`) ON DELETE CASCADE;
+  ADD CONSTRAINT `topik_id_dosen_foreign` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE CASCADE,
+  ADD CONSTRAINT `topik_id_industri_foreign` FOREIGN KEY (`id_industri`) REFERENCES `industri` (`id_industri`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tugas_akhir`
