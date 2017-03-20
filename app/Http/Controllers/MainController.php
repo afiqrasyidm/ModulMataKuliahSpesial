@@ -195,11 +195,10 @@ class MainController extends Controller
     }
 
     public function logout_sso() {
-        session_start();
+		session_start();
         session_unset();
         session_destroy();
-		SSO::logout();
-	  }
+		SSO::logout(url('/')); }
 
     public function delay() {
     	return view('delay');
