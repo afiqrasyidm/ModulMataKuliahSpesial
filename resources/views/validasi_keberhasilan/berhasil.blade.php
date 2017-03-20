@@ -8,7 +8,10 @@
 		header( "refresh:3;/homepage/industri" );
 
 	}
-	
+	else if($penandaRole == "mahasiswa"){
+		header( "refresh:3;/mahasiswa/pengajuan-topik" );
+		
+	}
 	else {
 		header( "refresh:3;/homepage/dosen" );
 	
