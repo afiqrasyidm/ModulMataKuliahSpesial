@@ -155,7 +155,10 @@ class MahasiswaController extends Controller
 			}
 			else{
 					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
-				
+					DB::table('topik')
+					->where('id_topik', $id_topik)
+					->update(['sudah_diambil' => 0]);
+						
 				}
 			return redirect()->route('mahasiswa/pengajuan-topik');
 	}
@@ -185,6 +188,9 @@ class MahasiswaController extends Controller
 			DB::table('topik')
             ->where('id_topik', $id_topik)
             ->update(['sudah_diambil' => 1]);
+			
+			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+			
 			
 			
 			$tugas_akhir = new Tugas_akhir;

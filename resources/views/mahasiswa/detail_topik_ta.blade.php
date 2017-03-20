@@ -41,7 +41,7 @@
           </div><!-- /.box -->
 		  
 		<center>
-			<a href="{{route('mahasiswa/pengajuan-topik-ta-dosen-industri/')}}">
+			<a href="/mahasiswa/pengajuan-topik-ta-dosen-industri/{{$topik->id_topik}}">
 				<button class="btn btn-primary">Ambil Topik Ini</button>
 			</a>
 		</center>
