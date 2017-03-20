@@ -75,9 +75,10 @@
 												<?php echo $errors->first('latar_belakang_ta') ?>
 											</div>
 										  </div>
-														<div class="col-sm-4">
-													 <button class="btn btn-block btn-primary" type="submit" >Ajukan Topik</button>
+														
+													<div class="pull-right"> <button class="btn btn-block btn-primary" type="submit" >Ajukan Topik</button>
 													 </div>
+													
 										
 									  
 						</section>
