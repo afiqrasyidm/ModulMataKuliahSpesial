@@ -39,6 +39,9 @@ class MainController extends Controller
 			if($isUsernameExist){
 				$roleUser = User::where('username', $username)->get()->first();
 				
+				
+				$_SESSION["id_user"] = $roleUser->id_user;
+				
 				if( ($roleUser->role == "mahasiswa" )){		
 						//ambil row dimahasiswa
 						

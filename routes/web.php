@@ -60,7 +60,7 @@ Route::get('/testStaf', 'StafController@cari_staf' );
 
 Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@industri_homepage']);
 
-Route::get('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta']);
+
 
 Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
 
@@ -74,3 +74,16 @@ Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'Do
 Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' => 'DosenPembimbingController@home_dosen_pembimbing']);
 
 Route::get('/dosen/pembimbing/pengumuman', ['as' => 'dosen/pembimbing/pengumuman', 'uses' => 'DosenPembimbingController@pengumuman']);
+
+
+
+//PENGAJUAN TA INDUSTRI
+
+Route::get('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta']);
+Route::post('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta_submit']);
+Route::get('pengajuan_topik/berhasil_industri', ['as' => 'pengajuan_topik/berhasil_industri', 'uses' => 'IndustriController@berhasil_industri']);
+
+
+//PENGAJUAN TA DOSEN
+Route::get('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta']);
+Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta_submit']);

@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Staf extends Model
 {
     protected $primaryKey = 'id';
-	protected $table = 'stafs';
-		
+	protected $table = 'stafs';	
 }

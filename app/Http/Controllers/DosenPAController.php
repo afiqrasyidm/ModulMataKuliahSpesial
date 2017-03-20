@@ -18,6 +18,11 @@ class DosenPAController extends Controller
         session_start();
         return view("dosen/PA/pengumuman");
     }
+	
+	public function pengajuan_topik_ta() {
+        session_start();
+        return view("dosen/pengajuan_topik_dosen");
+    }
 
 
 }

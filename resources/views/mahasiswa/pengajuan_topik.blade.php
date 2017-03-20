@@ -19,50 +19,46 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr>
-		        <td>Sentiment Analysis</td>
-		        <td>Prof. Zaenal</td>
-		        <td>Prof. Zaenal</td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>Machine Learning</td>
-		        <td>Microsoft Indonesia</td>
-		        <td></td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>E-Goverment</td>
-		        <td>Harry Budi</td>
-		        <td>Harry Budi</td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>Sentiment Analysis</td>
-		        <td>Prof. Zaenal</td>
-		        <td>Prof. Zaenal</td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>Machine Learning</td>
-		        <td>Microsoft Indonesia</td>
-		        <td></td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>E-Goverment</td>
-		        <td>Harry Budi</td>
-		        <td>Harry Budi</td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
-		      <tr>
-		        <td>Sentiment Analysis</td>
-		        <td>Prof. Zaenal</td>
-		        <td>Prof. Zaenal</td>
-		        <td><input type="radio" name="pilih-topik"></td>
-		      </tr>
+			
+			
+		      @foreach ($topik as $topik)
+			  
+			     <tr>
+					<td>{{$topik->topik_ta}}</td>
+					
+					<td>
+						@if(is_null($topik->nama_dosen))
+							{{$topik->nama_industri}}
+						
+						@else
+							{{$topik->nama_dosen}}
+						
+						@endif
+					</td>
+					
+					<td>
+						@if(is_null($topik->nama_dosen))
+						
+						@else
+							{{$topik->nama_dosen}}
+						
+						@endif
+							
+						</td>
+					<td><input type="radio" name="pilih-topik"></td>
+				</tr>
+			  
+			   @endforeach
+			  
+			  
 		    </tbody>
+			
+			
+			
+			
   		</table>
+		
+		
   		<p><i>*centang salah satu</i></p>
 		<center><button class="btn btn-primary">Ajukan Topik</button></center>
 		<br/>

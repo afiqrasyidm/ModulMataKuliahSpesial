@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Dosen;
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,41 +21,15 @@ use App\Prodi;
 use App\Fakultas;
 use App\Topik;
 
-class IndustriController extends Controller
+
+class DosenController extends Controller
 {
-	
-	 // var $industri;
-	 
-	 
-  //    public function __construct() {
-  //       $this->industri = Industri::all(array('nama'));
     
 	
-	function berhasil_industri () {
-
-
-		session_start();
-		return view("pengajuan_topik/berhasil_industri");
-	}
-	
-	function pengajuan_topik_ta () {
-
-
-		session_start();
-		return view("industri/pengajuan_topik_ta");
-	}
-
-	function lihat_hasil_ta () {
-		session_start();
-		return view("industri/lihat_hasil_ta");
-	}
-
-	function pengumuman () {
-		session_start();
-		return view("industri/pengumuman");
-	}
-	
-	
+	public function pengajuan_topik_ta() {
+        session_start();
+        return view("dosen/pengajuan_topik_dosen");
+    }
 	 public function pengajuan_topik_ta_submit() {
 		session_start();
 		$validator = Validator::make(
@@ -76,26 +53,27 @@ class IndustriController extends Controller
 			$topik->topik_ta = Input::get ('topik_ta');
 			$topik->deskripsi = Input::get ('latar_belakang_ta');
 			
-		
-			$topik->id_industri = 	$_SESSION["user_login_industri"]-> id_industri;
-			$topik->id_dosen = NULL;
+			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+			
+			$topik->id_industri = 	NULL;
+			$topik->id_dosen = $id_dosen;
 			$topik->sudah_diambil = 0;
 			
 	       	$topik->save();
-	        $penandaRole = "industri";
+	        $penandaRole = "dosen";
 			
 			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
-	    }
+	    
+		}
 
 	    //Data error or username taken:
-		return Redirect::to('industri/pengajuan-topik-ta')
+		return Redirect::to('dosen/pengajuan-topik-ta')
 			->withErrors($validator)
 			->withInput();	
     }
 	
 	
 	
-	
-	
-	
+
+
 }
