@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2017 at 02:26 AM
+-- Generation Time: Mar 20, 2017 at 10:11 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -32,26 +32,29 @@ CREATE TABLE `dosen` (
   `NIP` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `interest` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`id_dosen`, `nama_dosen`, `NIP`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, 'mischelle', '123', 2, NULL, NULL);
+INSERT INTO `dosen` (`id_dosen`, `nama_dosen`, `NIP`, `id_user`, `created_at`, `updated_at`, `interest`) VALUES
+(1, 'mischelle', '123', 2, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen_ta`
+-- Table structure for table `dosen_pembimbing_ta`
 --
 
-CREATE TABLE `dosen_ta` (
+CREATE TABLE `dosen_pembimbing_ta` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_dosen` int(10) UNSIGNED NOT NULL,
+  `id_tugas_akhir` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -116,7 +119,8 @@ CREATE TABLE `industri` (
 
 INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
-(2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11');
+(2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
+(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27');
 
 -- --------------------------------------------------------
 
@@ -270,7 +274,10 @@ CREATE TABLE `topik` (
 
 INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
 (17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 0),
-(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0);
+(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
+(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
+(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
+(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 0);
 
 -- --------------------------------------------------------
 
@@ -280,12 +287,14 @@ INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_indust
 
 CREATE TABLE `tugas_akhir` (
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
-  `status_tugas_akhir` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tgl_pengajuan` date NOT NULL,
-  `id_jenis_ta` int(10) UNSIGNED NOT NULL,
+  `status_tugas_akhir` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tgl_pengajuan` date DEFAULT NULL,
+  `id_jenis_ta` int(10) UNSIGNED DEFAULT NULL,
   `id_mahasiswa` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `judul_ta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_topik` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -333,7 +342,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (3, 'aneira.dwira', 'propen18', 'staf', NULL, NULL),
 (4, 'monica.agustin', 'mon1c4', 'mahasiswa', NULL, NULL),
 (5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
-(6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11');
+(6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
+(7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27');
 
 --
 -- Indexes for dumped tables
@@ -347,10 +357,12 @@ ALTER TABLE `dosen`
   ADD KEY `dosen_id_user_foreign` (`id_user`);
 
 --
--- Indexes for table `dosen_ta`
+-- Indexes for table `dosen_pembimbing_ta`
 --
-ALTER TABLE `dosen_ta`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `dosen_pembimbing_ta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_dosen` (`id_dosen`),
+  ADD KEY `id_tugas_akhir` (`id_tugas_akhir`);
 
 --
 -- Indexes for table `fakultas`
@@ -454,9 +466,9 @@ ALTER TABLE `user`
 ALTER TABLE `dosen`
   MODIFY `id_dosen` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `dosen_ta`
+-- AUTO_INCREMENT for table `dosen_pembimbing_ta`
 --
-ALTER TABLE `dosen_ta`
+ALTER TABLE `dosen_pembimbing_ta`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fakultas`
@@ -472,7 +484,7 @@ ALTER TABLE `hasil_ta`
 -- AUTO_INCREMENT for table `industri`
 --
 ALTER TABLE `industri`
-  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `jenis_ta`
 --
@@ -507,7 +519,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
@@ -522,7 +534,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -532,6 +544,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `dosen_pembimbing_ta`
+--
+ALTER TABLE `dosen_pembimbing_ta`
+  ADD CONSTRAINT `dosen_pembimbing_ta_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`),
+  ADD CONSTRAINT `dosen_pembimbing_ta_ibfk_2` FOREIGN KEY (`id_tugas_akhir`) REFERENCES `tugas_akhir` (`id_tugas_akhir`);
 
 --
 -- Constraints for table `fakultas`

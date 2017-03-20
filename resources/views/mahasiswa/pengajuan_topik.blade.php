@@ -8,6 +8,13 @@
 <div class="col-md-10">
 	<h1>Daftar Topik TA</h1>
 	</br>
+	<div align="right">
+		<button  class="btn btn-primary">Ajukan Topik Baru</button>
+	</div>
+	
+	<br>
+	<br>
+	
 	<form>
 		<table class="table table-striped">
 		    <thead>
@@ -62,7 +69,6 @@
   		<p><i>*centang salah satu</i></p>
 		<center><button class="btn btn-primary">Ajukan Topik</button></center>
 		<br/>
-		<center><button class="btn btn-primary">Ajukan Topik Baru</button></center>
 		
 	</form>
 </div>
