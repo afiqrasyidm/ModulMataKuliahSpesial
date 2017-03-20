@@ -77,18 +77,32 @@ Route::get('/dosen/pembimbing/pengumuman', ['as' => 'dosen/pembimbing/pengumuman
 
 
 
-//PENGAJUAN TA INDUSTRI
+//PENGAJUAN topik INDUSTRI
 
 Route::get('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta']);
 Route::post('industri/pengajuan-topik-ta', ['as' => 'industri/pengajuan-topik-ta', 'uses' => 'IndustriController@pengajuan_topik_ta_submit']);
 Route::get('pengajuan_topik/berhasil_industri', ['as' => 'pengajuan_topik/berhasil_industri', 'uses' => 'IndustriController@berhasil_industri']);
 
 
-//PENGAJUAN TA DOSEN
+//PENGAJUAN topik  DOSEN
 Route::get('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta']);
 Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'uses' => 'DosenController@pengajuan_topik_ta_submit']);
 
-//PENGAJUAN TA MAHASISWA
+//PENGAJUAN Topik MAHASISWA
 
 Route::get('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta']);
 Route::post('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta_submit']);
+
+//Mengambil topik dari industri dan dosen
+Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
+
+
+//UBAH PENGAJUAN TA
+
+Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-pengajuan-topik-ta', 'uses' => 'MahasiswaController@ubah_pengajuan_topik_ta']);
+
+
+//detail topik TA
+
+
+Route::get('/mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => '/mahasiswa/pengajuan-topik/detail/', 'uses' => 'MahasiswaController@detail_topik_ta']);

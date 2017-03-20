@@ -17,7 +17,7 @@ use App\Prodi;
 use App\Fakultas;
 use App\Topik;
 use App\Tugas_akhir;
-
+use App\Dosen;
 class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
@@ -27,7 +27,9 @@ class MahasiswaController extends Controller
 					 
 		 
 		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-		
+	
+	
+		//jika belum milih topik
 		if($tugas_akhir==NULL){
 					 
 			$topik = DB::table('topik')
@@ -40,12 +42,26 @@ class MahasiswaController extends Controller
 		 	return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
 		
 		}
-		
+		//jika sudah
 		else {
 		
 			$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
-		
-		 	return view("mahasiswa/pengajuan_topik", array('topik_yang_diambil' => $topik_yang_diambil));
+			
+			
+			if($topik_yang_diambil->id_industri != NULL ){
+					
+				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
+				
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'industri' => $industri, 'tugas_akhir' => $tugas_akhir) );
+  			
+			}
+			//berarti diajukan oleh dosen
+			else{
+				$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
+				
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir) );
+  				
+			}
 			
 		}
 
@@ -71,6 +87,7 @@ class MahasiswaController extends Controller
 		session_start();
     	return view("mahasiswa/pengajuan_topik_mandiri");
 	}
+
 	
 	 public function pengajuan_topik_ta_submit() {
 		session_start();
@@ -125,5 +142,64 @@ class MahasiswaController extends Controller
 			
     }
 	
+	public function ubah_pengajuan_topik_ta($id_topik, $id_tugas_akhir){
+		
+			$topik = Topik::where('id_topik', $id_topik )->get()->first();
+			if($topik->id_dosen == NULL && $topik->id_industri == NULL )
+			{
+			
+					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
+					DB::table('topik')->where('id_topik', '=', $id_topik)->delete();
+			
+			
+			}
+			else{
+					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
+				
+				}
+			return redirect()->route('mahasiswa/pengajuan-topik');
+	}
+	public function detail_topik_ta($id_topik){
+	 	session_start();
+    		$topik = Topik::where('id_topik', $id_topik )->get()->first();
+			if($topik->id_industri != NULL ){
+				
+				$industri = Industri::where('id_industri', $topik->id_industri )->get()->first();
+				
+				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'industri' => $industri) );
+  			
+			}
+			//berarti diajukan oleh dosen
+			else{
+				$dosen = Dosen::where('id_dosen', $topik->id_dosen )->get()->first();
+				
+				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'dosen' => $dosen) );
+  				
+			}
+			
+	 
+	}
+	public function pengajuan_topik_ta_dosen_industri($id_topik){
+			session_start();
+			
+			DB::table('topik')
+            ->where('id_topik', $id_topik)
+            ->update(['sudah_diambil' => 1]);
+			
+			
+			$tugas_akhir = new Tugas_akhir;
+			
+			
+			$tugas_akhir->id_mahasiswa = $id_mahasiswa;
+			
+			$tugas_akhir->id_topik = $id_topik; 
+	
+			$tugas_akhir->status_tugas_akhir = "000"; 
+			
+			$tugas_akhir->save();
+	    
+			return redirect()->route('mahasiswa/pengajuan-topik');
+
+	}
 	
 }

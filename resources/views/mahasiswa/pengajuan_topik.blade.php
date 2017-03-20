@@ -35,8 +35,11 @@
 		      @foreach ($topik as $topik)
 			  
 			     <tr>
-					<td>{{$topik->topik_ta}}</td>
-					
+					<td>
+						<a href="/mahasiswa/pengajuan-topik/detail/{{$topik->id_topik}}">
+							{{$topik->topik_ta}}
+						</a>
+					</td>	
 					<td>
 						@if(is_null($topik->nama_dosen))
 							{{$topik->nama_industri}}
@@ -56,7 +59,6 @@
 						@endif
 							
 						</td>
-					<td><input type="radio" name="pilih-topik"></td>
 				</tr>
 			  
 			   @endforeach
@@ -71,13 +73,15 @@
 		
 		
   		<p><i>*centang salah satu</i></p>
-		<center><button class="btn btn-primary">Ajukan Topik</button></center>
+
 		<br/>
 		
 	</form>
 	
 
 @else
+	<br>
+<br><br>
         <section class="content">
 
           <!-- Default box -->
@@ -94,15 +98,14 @@
             </div><!-- /.box-body -->
             <div class="box-footer">
            
-						@if(is_null($topik_yang_diambil->nama_dosen) && is_null($topik_yang_diambil->nama_industri))
-							Topik ini diajukan secara mandiri.
-						
-						@elseif (is_null($topik_yang_diambil->nama_industri))
-							{{$topik_yang_diambil->nama_dosen}}
+						@if (isset($industri))
+							Topik ini diajukan oleh industri : {{$industri->nama_industri}}
+							
+						@elseif (isset($dosen))
+							Topik ini diajukan oleh dosen :{{$dosen->nama_dosen}}
 							
 						@else
-							{{$topik_yang_diambil->nama_industri}}
-							
+							Topik ini diajukan secara mandiri.
 						
 						@endif
 					
@@ -110,6 +113,12 @@
 		   
 		   </div><!-- /.box-footer-->
           </div><!-- /.box -->
+		  	<div align="right">
+				<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+					<button  class="btn btn-primary">Ubah Topik</button>
+				</a>
+			</div>
+
 
         </section><!-- /.content -->
 @endif	
