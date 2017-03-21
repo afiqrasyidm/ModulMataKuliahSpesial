@@ -9,7 +9,7 @@
   <li class="header">MAIN NAVIGATION</li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
-      <i class="fa fa-dashboard"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li><a href=""><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
@@ -18,7 +18,7 @@
   </li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
-      <i class="fa fa-dashboard"></i> <span>Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-user"></i> <span>Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Bimbingan</a></li>
@@ -28,7 +28,7 @@
   </li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
-      <i class="fa fa-dashboard"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Permohonan Sidang</a></li>

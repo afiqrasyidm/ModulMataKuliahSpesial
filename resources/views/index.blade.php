@@ -79,15 +79,19 @@
                     <center>
                         <br/>
                         <br/>
-                        <br/>
-                        <br/>
-                        <h2>Modul Mata Kuliah Spesial</h2>
+                        
+                        <img src="{{ asset  ('dist/img/logomks.png') }}" style="width: 15% ; height: 15%">
+                        <h2>Modul Mata Kuliah Spesial</h2><br>
                         <h6>Silahkan Login</h6>
-                        <a href="{{ route('login-sso') }}"><button type="button" class="btn btn-default">SSO Login</button></a>
-                        <br/>
-                        <br/>
-                        <i><h6>berasal dari industri?</h6></i>
-                        <a href="{{ route('login') }}"><button type="button" class="btn btn-default">Non SSO Login</button></a>
+                        <br><br>
+                        <div class="col-xs-6">
+                        <img src="{{ asset  ('dist/img/ui.png') }}" style="width: 50% ; height: 30%"><br><br>
+                            <a href="{{ route('login-sso') }}"><button type="button" class="btn btn-default">Login SSO</button></a>
+                        </div>
+                        <div class="col-xs-6">
+                        <img src="{{ asset  ('dist/img/industri.png') }}" style="width: 50% ; height: 30%"><br><br>
+                            <a href="{{ route('login') }}"><button type="button" class="btn btn-default">Login Industri</button></a>
+                        </div>
                     </center>
                 </div>
             </div>

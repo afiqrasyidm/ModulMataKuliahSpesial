@@ -9,7 +9,7 @@
   <li class="header">MAIN NAVIGATION</li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
-      <i class="fa fa-dashboard"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li><a href="{{ route('dosen/penguji/atur-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>Atur Jadwal Sidang</a></li>
@@ -27,7 +27,7 @@
   
   <li class="treeview">
     <a href="{{ route('dosen/penguji/pengumuman') }}">
-      <i class="fa fa-dashboard"></i> <span>Pengumuman</span>
+      <i class="fa fa-bullhorn"></i> <span>Pengumuman</span>
     </a>
   </li>
 </ul>
