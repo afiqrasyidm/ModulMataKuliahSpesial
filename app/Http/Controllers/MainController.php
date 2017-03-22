@@ -16,7 +16,7 @@ use App\Mahasiswa;
 
 use App\Prodi;
 use App\Fakultas;
-
+use Crypt;
 
 class MainController extends Controller
 {
@@ -39,6 +39,7 @@ class MainController extends Controller
 			if($isUsernameExist){
 				$roleUser = User::where('username', $username)->get()->first();
 				
+				$_SESSION["role_user"] = $roleUser->role;
 				
 				$_SESSION["id_user"] = $roleUser->id_user;
 				
@@ -113,7 +114,7 @@ class MainController extends Controller
 	        $validator->getMessageBag()->add('wrong_username', 'username tidak terdaftar.');
 	    }
 
-	    else if(($UserArr->first()->password==Input::get('password'))!=1) {
+	    else if((Crypt::decrypt($UserArr->first()->password) == Input::get('password'))!=1) {
 	        $validator->getMessageBag()->add('wrong_password', 'Password salah');
 	    }
 
@@ -130,7 +131,7 @@ class MainController extends Controller
 			
 			
 			$_SESSION["user_login_industri"] = $industri;
-			
+			$_SESSION["role_user"]= "industri";
 			
 	        return redirect()->route('homepage/industri');
 	    }
@@ -173,7 +174,7 @@ class MainController extends Controller
 	    else if($validator->passes()) {
 	        $user = new User;
 	        $user->username    = Input::get('username');
-	        $user->password = Input::get('password');
+	        $user->password = Crypt::encrypt(Input::get('password'));
 			$user->role = "industri";
 	        $user->save();
 
@@ -223,6 +224,17 @@ class MainController extends Controller
 	public function industri_homepage(){
 		session_start();
 		return view('industri/homepage_industri');
-	}	
+	}
+	public function forbidden_access(){
+		session_start();
+		return view('forbidden_access');
+		
+	}
+	
+	public function page_not_found(){
+		session_start();
+		return view('page_not_found');
+		
+	}
 	
 }

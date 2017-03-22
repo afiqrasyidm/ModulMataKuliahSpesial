@@ -2,6 +2,21 @@
 
 @section('contentSideBar')
 
+
+<?php 
+			if(!isset($_SESSION["role_user"])){
+            	header( "refresh:0;/" );
+				return "";
+            }
+			else if($_SESSION["role_user"]!= "staf"){
+            	
+				header( "refresh:0;/forbidden_access" );
+				return "";
+            }
+?>
+
+
+
 <ul class="sidebar-menu">
   <li class="header">MAIN NAVIGATION</li>
   <li class="treeview">

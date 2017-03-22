@@ -1,6 +1,20 @@
 @extends('layouts.layout')
 
 @section('contentSideBar')
+
+
+<?php 
+			if(!isset($_SESSION["role_user"])){
+            	header( "refresh:0;/" );
+				return "";
+            }
+			else if($_SESSION["role_user"]!= "dosen"){
+            	
+				header( "refresh:0;/forbidden_access" );
+				return "";
+            }
+?>
+
 <ul class="sidebar-menu">
 <div class="col-md-2" style="text-indent: 50px">
       <a href="#"><i>Login as Dosen Penguji</i></a>
