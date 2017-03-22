@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php 
+			if(!isset($_SESSION["role_user"])){
+            	header( "refresh:0;/" );
+				return "";
+            }
+			else if($_SESSION["role_user"]!= "dosen"){
+            	
+				header( "refresh:0;/forbidden_access" );
+				return "";
+            }
+?>
 <html>
     <head>
         

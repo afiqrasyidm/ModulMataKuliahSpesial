@@ -1,6 +1,20 @@
 @extends('layouts.layout')
 
 @section('contentSideBar')
+
+<?php 
+			if(!isset($_SESSION["role_user"])){
+            	header( "refresh:0;/" );
+				return "";
+            }
+			else if($_SESSION["role_user"]!= "dosen"){
+            	
+				header( "refresh:0;/forbidden_access" );
+				return "";
+            }
+?>
+
+
 <ul class="sidebar-menu">
   <div class="col-md-2" style="text-indent: 50px">
     <a href="#"><i>Login as Dosen Pembimbing</i></a>
@@ -33,7 +47,12 @@
     <ul class="treeview-menu">
       <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Permohonan Sidang</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Atur Jadwal Sidang</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Hasil Sidang</a></li>
+      <li><a href=""><i class="fa fa-angle-right"></i>Hasil Sidang</a>
+		<ul class="treeview-menu
+		  <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
+		  <li><a href=""><i class="fa fa-angle-right"></i>Download Hasil TA</a></li>
+		</ul>  
+	  </li>
     </ul>
   </li>
 </ul>

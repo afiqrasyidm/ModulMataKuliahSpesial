@@ -4,10 +4,11 @@
 
 @section('mainContent')
 <div class="col-md-12">
-    <center>
-        <h1>Alur Pengerjaan Tugas Akhir</h1>
-        <img src="{{ asset('img/flowchart.png') }}">
-    </center>
+	<center>
+		<h1>Alur Tugas Akhir</h1><br><br>
+		<img src="{{ asset('img/pembimbing.png') }}" style="width: 50% ; height: 30%">
+	</center>
 </div>
+
         
 @endsection

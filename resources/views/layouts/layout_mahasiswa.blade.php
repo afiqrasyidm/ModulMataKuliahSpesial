@@ -1,6 +1,18 @@
 @extends('layouts.layout')
 
 @section('contentSideBar')
+<?php 
+			if(!isset($_SESSION["role_user"])){
+            	header( "refresh:0;/" );
+				return "";
+            }		
+			else if($_SESSION["role_user"]!= "mahasiswa"){
+	
+				header( "refresh:0;/forbidden_access" );
+				return "";
+            }
+?>
+
 <ul class="sidebar-menu">
    
     <br>
