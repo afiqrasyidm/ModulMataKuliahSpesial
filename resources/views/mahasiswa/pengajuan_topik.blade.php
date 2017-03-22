@@ -72,7 +72,7 @@
   		</table>
 		
 		
-  		<p><i>*centang salah satu</i></p>
+  		<p><i>*pilih salah satu</i></p>
 
 		<br/>
 		
