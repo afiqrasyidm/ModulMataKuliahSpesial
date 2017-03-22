@@ -6,8 +6,8 @@
 
 <div class="col-md-12">
 	<center>
-		<h1>Alur Pengerjaan Tugas Akhir</h1>
-		<img src="{{ asset('img/flowchart.png') }}">
+		<h1>Alur Tugas Akhir</h1><br><br>
+		<img src="{{ asset('img/industri.png') }}" style="width: 30% ; height: 10%">
 	</center>
 </div>
         
