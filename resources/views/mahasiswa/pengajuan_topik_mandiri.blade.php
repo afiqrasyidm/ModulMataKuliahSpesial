@@ -1,26 +1,8 @@
-@extends('layouts.layout')
+@extends('layouts.layout_mahasiswa')
 
 @section('title','Pengajuan Topik TA')
 
-
-@section('contentSideBar')
-<ul class="sidebar-menu">
-   
-    <br>
-  <li class="header">MAIN NAVIGATION</li>
-  <li class="treeview">
-    <a href="{{ route('homepage/dosen')  }}">
-      <i class="fa fa-dashboard"></i> <span>Kembali</span> <i class="fa fa-angle-left pull-right"></i>
-    </a>
-  </li>
-  
-  
- @endsection
-
-
-
 @section('mainContent')
-
 
 <script>
             window.Laravel = <?php echo json_encode([
@@ -87,7 +69,6 @@
 
 </div>
 </div>
-
 
 
 @endsection

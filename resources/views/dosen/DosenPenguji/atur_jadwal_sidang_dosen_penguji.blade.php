@@ -44,19 +44,16 @@
                       </td>
                     </tr>
                  	</table>
+                  
                 </div><!-- /.box-body -->
             <center>
             	<button class="btn btn-primary">Atur Jadwal Sidang</button>
             </center><br>
         </div><!-- /.box -->
-
-
-
-		  
-
-	
 </div>
 <div class="col-md-1">
 </div>
+
+
 
 @endsection
