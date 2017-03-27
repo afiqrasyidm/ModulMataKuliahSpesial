@@ -113,6 +113,12 @@
 								</tr>
 
 								<tr>
+								<th bgcolor="#86b7e3">Status</th>
+								<td bgcolor="#c0c5cc"> Menunggu persetujuan</td>
+
+								</tr>
+
+								<tr>
 								<th bgcolor="#86b7e3">Deskripsi</th>
 								<td bgcolor="#c0c5cc"> {{$topik_yang_diambil->deskripsi}}</td>
 
