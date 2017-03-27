@@ -81,14 +81,13 @@
 
 @else
 	<br>
-<br><br>
-        <section class="content">
-
-          <!-- Default box -->
-
+<br>
 
 					<section class="content">
 
+							<h3><center>Bukti Pengajuan Topik</h4>
+
+								<br>
 							<h4><b>{{$topik_yang_diambil->topik_ta}}</b></h4>
 
 							<table class="table table-bordered">
