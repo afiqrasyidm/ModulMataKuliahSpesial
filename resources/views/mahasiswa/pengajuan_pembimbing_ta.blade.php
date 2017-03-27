@@ -6,6 +6,7 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
+	
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
 
@@ -46,23 +47,23 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-			
-			
-			  
-			  
+
+
+
+
 		    </tbody>
-			
-			
-			
-			
+
+
+
+
   		</table>
-		
-		
+
+
   		<p><i>*Pilih salah satu</i></p>
 
 		  <center><button class="btn btn-primary">Ajukan TA</button></center>
 	</form>
-	
+
 </div>
 <div class="col-md-1">
 </div>
