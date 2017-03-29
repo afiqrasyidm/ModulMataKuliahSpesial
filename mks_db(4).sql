@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2017 at 10:11 AM
+-- Generation Time: Mar 29, 2017 at 10:59 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -120,7 +120,12 @@ CREATE TABLE `industri` (
 INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
 (2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
-(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27');
+(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
+(4, 'OjanLagi@gmail.com', 'Ojan', 'Ojan', 'Ojan', 8, '2017-03-21 23:23:32', '2017-03-21 23:23:32'),
+(5, 'andoasdo@asd.sd', 'oasijdoasidjoi', 'asdoiasjdoiasjdo', 'aosidasoidjasiodjasd', 9, '2017-03-21 23:30:27', '2017-03-21 23:30:27'),
+(6, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 10, '2017-03-22 00:54:40', '2017-03-22 00:54:40'),
+(7, 'asdasdas@asd.asds', 'aoisdjoasidj', 'asdoasoiasjdoasi', 'aosidjaoisdjoasi', 11, '2017-03-22 01:23:10', '2017-03-22 01:23:10'),
+(8, 'monica@ui.ac.id', 'Tokopedia', 'Monica Agustin', 'CTO', 12, '2017-03-22 01:29:54', '2017-03-22 01:29:54');
 
 -- --------------------------------------------------------
 
@@ -260,7 +265,7 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`, `id_fakultas`, `created_at`, `upd
 CREATE TABLE `topik` (
   `id_topik` int(10) UNSIGNED NOT NULL,
   `topik_ta` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` varchar(1500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_dosen` int(10) UNSIGNED DEFAULT NULL,
   `id_industri` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -273,11 +278,19 @@ CREATE TABLE `topik` (
 --
 
 INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
-(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 0),
-(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
-(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
-(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
-(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 0);
+(17, 'Sentiment Analisis untuk BukaKaoak', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 0),
+(23, 'Sentiment Analisis untuk Fasilkom', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
+(24, 'Sentiment Analisis untuk FH', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem ', 1, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
+(25, 'Survey Leptop Asus', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, 3, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
+(26, 'Struktur Database BukaPintu', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 0),
+(38, 'Komputer dan Masyarakat', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL, NULL, NULL, 1),
+(39, 'asdasd', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL, NULL, NULL, 1),
+(40, 'P', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL, NULL, NULL, 1),
+(41, 'Machine Learning', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, 1, '2017-03-20 08:38:22', '2017-03-20 08:38:22', 0),
+(42, 'Machine Learning 2', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, 1, '2017-03-20 08:39:21', '2017-03-20 08:39:21', 0),
+(43, 'Sentiment Analisis untuk FK', 'LOREM IPSUM LOL', NULL, 6, '2017-03-22 00:55:11', '2017-03-22 00:55:11', 0),
+(45, 'Matematika Dasar 2', 'Lorem', NULL, 8, '2017-03-22 01:33:27', '2017-03-22 01:33:27', 0),
+(47, 'Sentiment Analisis untuk FMIPA', 'Lorem', 1, NULL, '2017-03-22 01:36:21', '2017-03-22 01:36:21', 1);
 
 -- --------------------------------------------------------
 
@@ -296,6 +309,13 @@ CREATE TABLE `tugas_akhir` (
   `judul_ta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_topik` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tugas_akhir`
+--
+
+INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `created_at`, `updated_at`, `judul_ta`, `id_topik`) VALUES
+(11, '000', NULL, NULL, 1, '2017-03-22 01:37:00', '2017-03-22 01:37:00', NULL, 47);
 
 -- --------------------------------------------------------
 
@@ -326,7 +346,7 @@ INSERT INTO `universitas` (`id_universitas`, `nama_universitas`, `created_at`, `
 CREATE TABLE `user` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `username` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -343,7 +363,12 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (4, 'monica.agustin', 'mon1c4', 'mahasiswa', NULL, NULL),
 (5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
 (6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
-(7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27');
+(7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
+(8, 'OjanOjan', 'eyJpdiI6IkprSlQ0QWJyVkZvc3ZcLzNVanBhYlVRPT0iLCJ2YWx1ZSI6ImNwSFRFbVNMREtyb2FWS0g4SFg0Q2xoUHlFSVhlVnBVTnExRTVQbm1GNW89IiwibWFjIjoiZTU0MzRhMTgxMTIxM2Q5ODYxN2I2ZWE5NzI2NTNhMjNhNjAxY2YzNzNhYjI5ZTcyNWE3ZjM3MTdjNDlhYmQ5NiJ9', 'industri', '2017-03-21 23:23:32', '2017-03-21 23:23:32'),
+(9, 'fauzandimb', 'eyJpdiI6IkY2Rm82aUhxUjFaSU1kaTd6ek9UblE9PSIsInZhbHVlIjoiNWE3V0t6cmxiQ0J5cWJpNXdQZDZXNEFrWmFnd3RLVWxJNFM5Z0RpTU9Zaz0iLCJtYWMiOiJkNmFhOWFjZTQxNGMzMDUxYTI1NzAxNDEwNTljYjQzYzM4ZWIyN2E2ODFlN2JiZmMyMTE1NmM0ODQ3OTJjZDljIn0=', 'industri', '2017-03-21 23:30:27', '2017-03-21 23:30:27'),
+(10, 'afiq.rasyid2', 'eyJpdiI6Im5hOGlSdmJyQm11TjFxelZcL2E2a0RBPT0iLCJ2YWx1ZSI6IjFWMnhNV3NsSmdUM3lvQ1BrY3BzZDhNeGNrcjZkSWs2bVUzVDNLdVR5TVE9IiwibWFjIjoiNTY2NjY1YjIyZGRkZDIwOTk5M2IxNDhlM2U4NDI2OGJhOTg3Nzc5MTk0ODFlMjcxZmFjOTM2OWIwNDQwZmZmNiJ9', 'industri', '2017-03-22 00:54:40', '2017-03-22 00:54:40'),
+(11, 'tesusername', 'eyJpdiI6ImlTOXRnWUE1Yk9jXC9uMzg1NTJSYlV3PT0iLCJ2YWx1ZSI6IjN1YlwvcjRIZ21sNXRNM1ZkRXIrUWFPMG81V0cwV2lYb2JuckxKeW1OVDFJPSIsIm1hYyI6IjVmYTVmMjY5YmEzMjA1MDRkYjRlOTgyMDQ0ZTgzZWYzZmM0YjkxOWQwOGUzNTdhYTlhNjc1OWY2MTU1ZGU0OWUifQ==', 'industri', '2017-03-22 01:23:10', '2017-03-22 01:23:10'),
+(12, 'monica', 'eyJpdiI6IkVZdUpnNGJkdUNYc1NObDlVYnZPUHc9PSIsInZhbHVlIjoidEl3NWNFcmxvUjI1ajUzSmhyUnVoeFwvQytYemxtbFFxaUlLdVQ5XC9HMElNPSIsIm1hYyI6ImY1NDc5MmU0ZTdhMjkwYWMyYmMzMTI0ZWNhZmMyYTU1YWRlODQ5M2U2MDdmYjRlYjc2ODIwOTU0MzExZGU1ZmYifQ==', 'industri', '2017-03-22 01:29:54', '2017-03-22 01:29:54');
 
 --
 -- Indexes for dumped tables
@@ -484,7 +509,7 @@ ALTER TABLE `hasil_ta`
 -- AUTO_INCREMENT for table `industri`
 --
 ALTER TABLE `industri`
-  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `jenis_ta`
 --
@@ -519,12 +544,12 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -534,7 +559,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --
