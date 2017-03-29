@@ -6,7 +6,8 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
-	
+	@if(isset($dosenpembimbing))
+
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
 
@@ -37,32 +38,48 @@
 		  </div>
 
 		  <br/>
-<table class="table table-striped">
-		    <thead>
-		      <tr>
-		        <th>Topik</th>
-		        <th>Pengaju</th>
-		        <th>Pembimbing</th>
-		        <th></th>
-		      </tr>
-		    </thead>
-		    <tbody>
+			<form>
+				<table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>Nama Dosen</th>
+				        <th>Minat</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+
+				@foreach ($dosenpembimbing as $dosenpembimbing)
+
+				<tr>
+					<td>
+
+						{{$dosenpembimbing->nama_dosen}}
+
+					</td>
+
+					<td>
+						{{$dosenpembimbing->interest}}
+					</td>
+				</tr>
 
 
+				@endforeach
 
-
-		    </tbody>
-
-
-
-
-  		</table>
-
-
+			</tbody>
+		</table>
   		<p><i>*Pilih salah satu</i></p>
 
-		  <center><button class="btn btn-primary">Ajukan TA</button></center>
-	</form>
+			<center>
+				<button class="btn btn-primary">Ajukan Dosen Pembimbing</button></center>
+		</form>
+
+
+		@else
+				<section class="content">
+				<h3> belom dibuat</h3>
+			</section>
+
+		@endif
 
 </div>
 <div class="col-md-1">
