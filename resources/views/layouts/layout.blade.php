@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
+    <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
 
     <script>
             window.Laravel = <?php echo json_encode([
