@@ -114,3 +114,11 @@ Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainControl
 
 
 
+//CONTOH UPLOAD JANGAN DIHAPUS SELAIN ANEIRA
+
+Route::get('/image-upload','UploadFileController@imageUpload');
+
+Route::post('/image-upload','UploadFileController@imageUploadPost');
+
+/////////
+
