@@ -266,7 +266,7 @@ class MahasiswaController extends Controller
 
             'file' => 'required|mimes:pdf|max:10000',
 
-        ]);
+        ]); 
 
 
         $fileName = time().'.'.$request->file->getClientOriginalExtension();
