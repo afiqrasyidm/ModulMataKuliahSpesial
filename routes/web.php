@@ -114,11 +114,8 @@ Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainControl
 
 
 
-//CONTOH UPLOAD JANGAN DIHAPUS SELAIN ANEIRA
+//upload hasil ta
+Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
+Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
 
-Route::get('/image-upload','UploadFileController@imageUpload');
-
-Route::post('/image-upload','UploadFileController@imageUploadPost');
-
-/////////
 

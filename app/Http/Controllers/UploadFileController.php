@@ -33,7 +33,7 @@ class UploadFileController extends Controller {
 
     	$this->validate($request, [
 
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|mimes:pdf|max:2048',
 
         ]);
 

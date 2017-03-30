@@ -18,6 +18,8 @@ use App\Fakultas;
 use App\Topik;
 use App\Tugas_akhir;
 use App\Dosen;
+use App\Hasil_ta;
+
 class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
@@ -238,4 +240,54 @@ class MahasiswaController extends Controller
 
 	}
 
+
+
+  function upload_hasil_ta() {
+    	session_start();
+    	return view("mahasiswa/upload_hasil_ta");
+    }
+
+
+  function upload_hasil_taPost(Request $request)
+
+    {	session_start();
+
+    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+     
+
+        if($hasil_ta==NULL){
+
+        	$hasil_ta = new Hasil_ta;
+
+    	$this->validate($request, [
+
+            'file' => 'required|mimes:pdf|max:10000',
+
+        ]);
+
+
+        $fileName = time().'.'.$request->file->getClientOriginalExtension();
+
+        $request->file->move(public_path('files'), $fileName);
+
+        $hasil_ta->dokumen = $fileName;
+        $hasil_ta->id_tugas_akhir = $id_tugas_akhir;
+       
+        $hasil_ta->save();
+		
+    	return back()
+
+    		->with('success','File Uploaded successfully.')
+
+    		->with('path',$fileName);
+    	} 
+
+    	// else{
+
+    	// }
+
+    }
 }
