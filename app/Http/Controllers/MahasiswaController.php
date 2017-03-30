@@ -269,7 +269,7 @@ class MahasiswaController extends Controller
         ]); 
 
 
-        $fileName = time().'.'.$request->file->getClientOriginalExtension();
+        $fileName = time().'.'.$request->file->getClientOriginalExtension(); 
 
         $request->file->move(public_path('files'), $fileName);
 
