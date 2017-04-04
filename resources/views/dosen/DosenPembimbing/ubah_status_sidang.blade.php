@@ -1,74 +1,44 @@
-@extends('layouts.layout_mahasiswa')
 
-@section('title','Pengajuan Topik TA')
+
+@extends('layouts.layout_dosen_pembimbing')
+
+@section('title','Ubah Status Persidangan')
+
 
 @section('mainContent')
-<div class="col-md-1">
-</div>
-<div class="col-md-10">
 
 
-	<h1>Daftar Topik TA</h1>
-	</br>
+<script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+    </script>
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
 
 
-	<form>
-		<table class="table table-striped">
-		    <thead>
-		      <tr>
-		        <th>Mahasiswa</th>
-		  
-		        <th>Judul TA</th>
-		        <th></th>
-		      </tr>
-		    </thead>
-		   <!--  <tbody>
+<br><br>
+              <!-- general form elements disabled -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <center><h1 class="header-title">Ubah Status Persidangan</h1><br></center>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  
+<!-- test -->
 
 
-		      @foreach ($topik as $topik)
+   
 
-			     <tr>
-					<td>
-						<a href="/mahasiswa/pengajuan-topik/detail/{{$topik->id_topik}}">
-							{{$topik->topik_ta}}
-						</a>
-					</td>
-					<td>
-						@if(is_null($topik->nama_dosen))
-							{{$topik->nama_industri}}
+<!--   end -->
 
-						@else
-							{{$topik->nama_dosen}}
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              </div>
+            </div><!--/.col (right) -->
 
-						@endif
-					</td>
+</section>
 
-					<td>
-						@if(is_null($topik->nama_dosen))
-
-						@else
-							{{$topik->nama_dosen}}
-
-						@endif
-
-						</td>
-				</tr>
-
-			   @endforeach
-
-
-		    </tbody>
-
-
-
-
-  		</table> -->
-		<br/>
-
-	</form>
-
-
-</div>
-<div class="col-md-1">
-</div>
 @endsection
+
