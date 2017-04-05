@@ -13,10 +13,10 @@ class DosenPembimbingController extends Controller
         return view("dosen/DosenPembimbing/home_dosen_pembimbing");
     }
     
-   //  function atur_jadwal_sidang_dosen_penguji() {
-   //  	session_start();
-   //  	return view("dosen/DosenPenguji/atur_jadwal_sidang_dosen_penguji");
-   //  }
+    function ubah_status_sidang() {
+    	session_start();
+    	return view("dosen/DosenPembimbing/ubah_status_sidang");
+    }
 
    //  function feedback_sidang_dosen_penguji() {
    //  	session_start();

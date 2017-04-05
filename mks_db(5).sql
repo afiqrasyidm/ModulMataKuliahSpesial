@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2017 at 10:11 AM
+-- Generation Time: Apr 03, 2017 at 12:06 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -34,7 +34,7 @@ CREATE TABLE `dosen` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `interest` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `dosen`
@@ -55,7 +55,7 @@ CREATE TABLE `dosen_pembimbing_ta` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `id_dosen` int(10) UNSIGNED NOT NULL,
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE `fakultas` (
   `id_universitas` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `fakultas`
@@ -87,14 +87,14 @@ INSERT INTO `fakultas` (`id_fakultas`, `nama_fakultas`, `id_universitas`, `creat
 
 CREATE TABLE `hasil_ta` (
   `id_hasil_ta` int(10) UNSIGNED NOT NULL,
-  `tgl_submit` date NOT NULL,
+  `tgl_submit` date DEFAULT NULL,
   `dokumen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dokumen_revisi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nilai_ta` double NOT NULL,
+  `dokumen_revisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nilai_ta` double DEFAULT NULL,
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `industri` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `industri`
@@ -133,7 +133,7 @@ CREATE TABLE `jenis_ta` (
   `nama_ta` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,7 @@ CREATE TABLE `log_bimbingan` (
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,7 @@ CREATE TABLE `mahasiswa` (
   `id_prodi` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `mahasiswa`
@@ -189,7 +189,7 @@ CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -225,9 +225,11 @@ CREATE TABLE `pengajuan_sidang` (
   `id_pengajuan` int(10) UNSIGNED NOT NULL,
   `tgl_pengajuan` date NOT NULL,
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_mahasiswa` int(10) NOT NULL,
+  `id_tugas_akhir` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -241,7 +243,7 @@ CREATE TABLE `prodi` (
   `id_fakultas` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `prodi`
@@ -266,18 +268,18 @@ CREATE TABLE `topik` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `sudah_diambil` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `topik`
 --
 
 INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
-(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 0),
+(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
 (23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
 (24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
 (25, 'Survey Leptop Asus', 'Lorem', NULL, 3, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
-(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 0);
+(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1);
 
 -- --------------------------------------------------------
 
@@ -295,7 +297,7 @@ CREATE TABLE `tugas_akhir` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `judul_ta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_topik` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -308,7 +310,7 @@ CREATE TABLE `universitas` (
   `nama_universitas` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `universitas`
@@ -330,7 +332,7 @@ CREATE TABLE `user` (
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
@@ -479,7 +481,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `hasil_ta`
 --
 ALTER TABLE `hasil_ta`
-  MODIFY `id_hasil_ta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil_ta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `industri`
 --
@@ -519,12 +521,12 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -535,74 +537,6 @@ ALTER TABLE `universitas`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `dosen`
---
-ALTER TABLE `dosen`
-  ADD CONSTRAINT `dosen_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
-
---
--- Constraints for table `dosen_pembimbing_ta`
---
-ALTER TABLE `dosen_pembimbing_ta`
-  ADD CONSTRAINT `dosen_pembimbing_ta_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`),
-  ADD CONSTRAINT `dosen_pembimbing_ta_ibfk_2` FOREIGN KEY (`id_tugas_akhir`) REFERENCES `tugas_akhir` (`id_tugas_akhir`);
-
---
--- Constraints for table `fakultas`
---
-ALTER TABLE `fakultas`
-  ADD CONSTRAINT `fakultas_id_universitas_foreign` FOREIGN KEY (`id_universitas`) REFERENCES `universitas` (`id_universitas`) ON DELETE CASCADE;
-
---
--- Constraints for table `hasil_ta`
---
-ALTER TABLE `hasil_ta`
-  ADD CONSTRAINT `hasil_ta_id_tugas_akhir_foreign` FOREIGN KEY (`id_tugas_akhir`) REFERENCES `tugas_akhir` (`id_tugas_akhir`) ON DELETE CASCADE;
-
---
--- Constraints for table `industri`
---
-ALTER TABLE `industri`
-  ADD CONSTRAINT `industri_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
-
---
--- Constraints for table `log_bimbingan`
---
-ALTER TABLE `log_bimbingan`
-  ADD CONSTRAINT `log_bimbingan_id_tugas_akhir_foreign` FOREIGN KEY (`id_tugas_akhir`) REFERENCES `tugas_akhir` (`id_tugas_akhir`) ON DELETE CASCADE;
-
---
--- Constraints for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  ADD CONSTRAINT `mahasiswa_id_prodi_foreign` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`) ON DELETE CASCADE,
-  ADD CONSTRAINT `mahasiswa_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
-
---
--- Constraints for table `prodi`
---
-ALTER TABLE `prodi`
-  ADD CONSTRAINT `prodi_id_fakultas_foreign` FOREIGN KEY (`id_fakultas`) REFERENCES `fakultas` (`id_fakultas`) ON DELETE CASCADE;
-
---
--- Constraints for table `topik`
---
-ALTER TABLE `topik`
-  ADD CONSTRAINT `topik_id_dosen_foreign` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE CASCADE,
-  ADD CONSTRAINT `topik_id_industri_foreign` FOREIGN KEY (`id_industri`) REFERENCES `industri` (`id_industri`) ON DELETE CASCADE;
-
---
--- Constraints for table `tugas_akhir`
---
-ALTER TABLE `tugas_akhir`
-  ADD CONSTRAINT `tugas_akhir_id_jenis_ta_foreign` FOREIGN KEY (`id_jenis_ta`) REFERENCES `jenis_ta` (`id_jenis_ta`) ON DELETE CASCADE,
-  ADD CONSTRAINT `tugas_akhir_id_mahasiswa_foreign` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id_mahasiswa`) ON DELETE CASCADE;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

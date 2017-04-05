@@ -52,6 +52,7 @@ class DosenController extends Controller
 			$topik = new Topik;
 			$topik->topik_ta = Input::get ('topik_ta');
 			$topik->deskripsi = Input::get ('latar_belakang_ta');
+			$topik->maksimal_pendaftar = Input::get ('maksimal_pendaftar');
 			
 			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
 			
