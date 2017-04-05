@@ -119,5 +119,12 @@ Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainCon
 
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 
-
+ 
+//upload hasil ta
+Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
+Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
+//ubah dokumen ta
+Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta', 'uses' => 'MahasiswaController@ubah_dokumen_ta']);
+//ubah status siap sidang
+Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
 
