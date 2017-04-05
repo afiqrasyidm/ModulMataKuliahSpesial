@@ -39,20 +39,19 @@
 		  <br/>
 
 		  <div class="form-group">
-		     <label class="control-label col-sm-3">Mata Kuliah</label>
+		    <label class="control-label col-sm-3">Mata Kuliah</label>
 		    <div class="col-sm-6">
-		       <select class="form-control">
-				  <option value="1">Skripsi</option>
-				  <option value="2">Tesis</option>
-				  <option value="3">Disertasi</option>
-				</select>
-		    </div>
-		  </div>
-
-		  <div class="form-group">
-		     <label class="control-label col-sm-3">Jenis Bimbingan:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Jenis Bimbingan">
+		      	<input class="form-control" value="<?php
+		      		$jenjang = $_SESSION["mahasiswa"]->jenjang;
+		      		if($jenjang=='S1') {
+		      			echo 'Skripsi';
+		      		} else if ($jenjang=='S2') {
+		      			echo 'Tesis';
+		      		} else if($jenjang=='S1') {
+		      			echo 'Disertasi';
+		      		}
+	              
+	            ?>" disabled>
 		    </div>
 		  </div>
 

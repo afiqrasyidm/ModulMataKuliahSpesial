@@ -25,11 +25,9 @@ class MahasiswaController extends Controller
     function pengajuan_topik() {
     	session_start();
 
-			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-
+		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
 		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-
 
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
@@ -53,8 +51,6 @@ class MahasiswaController extends Controller
 
 				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
 
-
-
 				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'industri' => $industri, 'tugas_akhir' => $tugas_akhir) );
 
 			}
@@ -74,7 +70,15 @@ class MahasiswaController extends Controller
 
     function pengajuan_permohonan_ta() {
     	session_start();
-    	return view("mahasiswa/pengajuan_permohonan_ta");
+
+   		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    	if ($tugas_akhir==null) {
+    		return view("mahasiswa/belum_mengajukan_topik");
+    	} else {
+    		return view("mahasiswa/pengajuan_permohonan_ta");
+    	}
     }
 
     function pengajuan_pembimbing_ta() {
@@ -250,10 +254,7 @@ class MahasiswaController extends Controller
     	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
         $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
 
-           if($hasil_ta!=NULL){
-
-    	
-    		
+        if($hasil_ta!=NULL){
 
     		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
 
