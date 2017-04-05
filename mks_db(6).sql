@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2017 at 12:06 PM
+-- Generation Time: Apr 05, 2017 at 11:05 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -120,7 +120,8 @@ CREATE TABLE `industri` (
 INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
 (2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
-(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27');
+(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
+(4, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 8, '2017-04-04 22:36:07', '2017-04-04 22:36:07');
 
 -- --------------------------------------------------------
 
@@ -223,13 +224,34 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `pengajuan_sidang` (
   `id_pengajuan` int(10) UNSIGNED NOT NULL,
-  `tgl_pengajuan` date NOT NULL,
+  `tgl_pengajuan` date DEFAULT NULL,
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_mahasiswa` int(10) NOT NULL,
   `id_tugas_akhir` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengambil_topik`
+--
+
+CREATE TABLE `pengambil_topik` (
+  `id_mahasiswa` int(10) NOT NULL,
+  `id_topik` int(10) NOT NULL,
+  `izin_ambil` int(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengambil_topik`
+--
+
+INSERT INTO `pengambil_topik` (`id_mahasiswa`, `id_topik`, `izin_ambil`, `created_at`, `updated_at`) VALUES
+(1, 27, 0, '2017-04-05 01:33:02', '2017-04-05 01:33:02');
 
 -- --------------------------------------------------------
 
@@ -265,6 +287,7 @@ CREATE TABLE `topik` (
   `deskripsi` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_dosen` int(10) UNSIGNED DEFAULT NULL,
   `id_industri` int(10) UNSIGNED DEFAULT NULL,
+  `maksimal_pendaftar` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `sudah_diambil` tinyint(1) NOT NULL
@@ -274,12 +297,16 @@ CREATE TABLE `topik` (
 -- Dumping data for table `topik`
 --
 
-INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
-(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
-(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
-(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
-(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
-(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1);
+INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `maksimal_pendaftar`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
+(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, NULL, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
+(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
+(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
+(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, NULL, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
+(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1),
+(27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 10, '2017-04-04 23:02:10', '2017-04-04 23:02:10', 0),
+(28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', '2017-04-04 23:35:57', 0),
+(30, 'MatDas-2', 'Lorem', NULL, 4, 10, '2017-04-05 00:25:37', '2017-04-05 00:25:37', 0),
+(32, 'Matdis', 'Lorem', NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -298,6 +325,13 @@ CREATE TABLE `tugas_akhir` (
   `judul_ta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_topik` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tugas_akhir`
+--
+
+INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `created_at`, `updated_at`, `judul_ta`, `id_topik`) VALUES
+(18, '000', NULL, NULL, 1, '2017-04-05 01:48:42', '2017-04-05 01:48:42', NULL, 32);
 
 -- --------------------------------------------------------
 
@@ -328,7 +362,7 @@ INSERT INTO `universitas` (`id_universitas`, `nama_universitas`, `created_at`, `
 CREATE TABLE `user` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `username` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -345,7 +379,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (4, 'monica.agustin', 'mon1c4', 'mahasiswa', NULL, NULL),
 (5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
 (6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
-(7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27');
+(7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
+(8, 'ojan', 'eyJpdiI6IlB6dW16S0hUXC9iTmQwZUQwcGdRTVdRPT0iLCJ2YWx1ZSI6InRzRllINnNwUUVDT3cycXladXFZSW00SjBWK3ZmRmxIOGhMZUFudkFieVU9IiwibWFjIjoiM2QyOWJhOWQwN2E3MjJmMWMxNGJmNjg5ZGUzZjYyNDNhYjdkZmM4NDM0ODViZWZiNTY1OTE4ZjI2NjBhODA5MyJ9', 'industri', '2017-04-04 22:36:07', '2017-04-04 22:36:07');
 
 --
 -- Indexes for dumped tables
@@ -486,7 +521,7 @@ ALTER TABLE `hasil_ta`
 -- AUTO_INCREMENT for table `industri`
 --
 ALTER TABLE `industri`
-  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `jenis_ta`
 --
@@ -521,12 +556,12 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -536,7 +571,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
