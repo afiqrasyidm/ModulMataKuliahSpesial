@@ -48,19 +48,24 @@ class MahasiswaController extends Controller
 		 	return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
 
 		}
-		//jika sudah
+		//jika sudah tampilkan detailnya
 		else {
-	
-	//		return "asd";
+
 			$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
 
+			//ambil jumlah mahasiswa yang telah mengambil topik itu
+			  
+			$jumlah_pengambil_topik = Pengambil_topik::where('id_topik',$tugas_akhir->id_topik )->get()->count();
+
+			
 			if($topik_yang_diambil->id_industri != NULL){
 
 				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
 
 
 
-				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'industri' => $industri, 'tugas_akhir' => $tugas_akhir) );
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'industri' => $industri, 'tugas_akhir' => $tugas_akhir
+				, 'jumlah_pengambil_topik' => $jumlah_pengambil_topik) );
 
 			}
 			//berarti diajukan oleh dosen
@@ -69,7 +74,10 @@ class MahasiswaController extends Controller
 			
 				$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
       //
-				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir) );
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir
+				,'jumlah_pengambil_topik' => $jumlah_pengambil_topik
+				
+				) );
       //
 			}
 
@@ -188,7 +196,7 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "000";
+			$tugas_akhir->status_tugas_akhir = "0";
 
 			$tugas_akhir->save();
 
@@ -205,21 +213,28 @@ class MahasiswaController extends Controller
     }
 
 	public function ubah_pengajuan_topik_ta($id_topik, $id_tugas_akhir){
+		
+		session_start();
+		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
 			$topik = Topik::where('id_topik', $id_topik )->get()->first();
+			//jika topik diajukan secara mandiri
 			if($topik->id_dosen == NULL && $topik->id_industri == NULL )
 			{
 
 					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 					DB::table('topik')->where('id_topik', '=', $id_topik)->delete();
-
+					
 
 			}
+			//jika topik diajukan dosen atau industri
 			else{
+					//menghapus tugas akhir
 					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
-					DB::table('topik')
-					->where('id_topik', $id_topik)
-					->update(['sudah_diambil' => 0]);
+					//menghapus row pengambil topik
+					DB::table('pengambil_topik')
+					->where('id_mahasiswa', $id_mahasiswa)
+					->delete();
 
 				}
 			return redirect()->route('mahasiswa/pengajuan-topik');
@@ -227,18 +242,23 @@ class MahasiswaController extends Controller
 	public function detail_topik_ta($id_topik){
 	 	session_start();
     		$topik = Topik::where('id_topik', $id_topik )->get()->first();
+			
+			$jumlah_pengambil_topik = Pengambil_topik::where('id_topik', $id_topik )->get()->count();
+			
+			
 			if($topik->id_industri != NULL ){
 
 				$industri = Industri::where('id_industri', $topik->id_industri )->get()->first();
-
-				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'industri' => $industri) );
+				
+				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'industri' => $industri, 'jumlah_pengambil_topik' => $jumlah_pengambil_topik) );
 
 			}
 			//berarti diajukan oleh dosen
 			else{
 				$dosen = Dosen::where('id_dosen', $topik->id_dosen )->get()->first();
+				
 
-				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'dosen' => $dosen) );
+				return view("mahasiswa/detail_topik_ta " , array('topik' => $topik, 'dosen' => $dosen, 'jumlah_pengambil_topik' => $jumlah_pengambil_topik) );
 
 			}
 
@@ -249,14 +269,11 @@ class MahasiswaController extends Controller
 			
 			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
-			DB::table('topik')
-            ->where('id_topik', $id_topik)
-            ->update(['sudah_diambil' => 1]);
+			
 
 			$pengambil_topik = new Pengambil_topik;
 			$pengambil_topik->id_topik = $id_topik;
 			$pengambil_topik->id_mahasiswa = $id_mahasiswa;
-			$pengambil_topik->izin_ambil= 0;
 			$pengambil_topik->save();
 
 			
@@ -271,7 +288,7 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "000";
+			$tugas_akhir->status_tugas_akhir = "-2";
 
 			$tugas_akhir->save();
 

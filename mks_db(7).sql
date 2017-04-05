@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2017 at 11:05 AM
+-- Generation Time: Apr 05, 2017 at 01:07 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -168,6 +168,7 @@ CREATE TABLE `mahasiswa` (
   `jenjang` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_prodi` int(10) UNSIGNED NOT NULL,
+  `IPK` varchar(24) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -176,9 +177,13 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `NPM`, `email`, `jumlah_sks`, `semester`, `jenjang`, `id_user`, `id_prodi`, `created_at`, `updated_at`) VALUES
-(1, 'Afiq Rasyid Muhammad', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 1, NULL, NULL),
-(2, 'Monica', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S3', 4, 2, NULL, NULL);
+INSERT INTO `mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `NPM`, `email`, `jumlah_sks`, `semester`, `jenjang`, `id_user`, `id_prodi`, `IPK`, `created_at`, `updated_at`) VALUES
+(1, 'Afiq Rasyid Muhammad', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 1, '4.0', NULL, NULL),
+(2, 'Monica', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S3', 4, 2, '4.0', NULL, NULL),
+(4, 'Anto', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 1, '3.0', NULL, NULL),
+(5, 'Ani', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 2, '3.5', NULL, NULL),
+(6, 'Anti', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 1, '3.2', NULL, NULL),
+(7, 'Ana', '1406544072', 'afiq.rasyid@ui.ac.id', 10, 4, 'S1', 1, 2, '3.4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -239,9 +244,9 @@ CREATE TABLE `pengajuan_sidang` (
 --
 
 CREATE TABLE `pengambil_topik` (
+  `id_pengambil_topik` int(10) NOT NULL,
   `id_mahasiswa` int(10) NOT NULL,
   `id_topik` int(10) NOT NULL,
-  `izin_ambil` int(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -250,8 +255,12 @@ CREATE TABLE `pengambil_topik` (
 -- Dumping data for table `pengambil_topik`
 --
 
-INSERT INTO `pengambil_topik` (`id_mahasiswa`, `id_topik`, `izin_ambil`, `created_at`, `updated_at`) VALUES
-(1, 27, 0, '2017-04-05 01:33:02', '2017-04-05 01:33:02');
+INSERT INTO `pengambil_topik` (`id_pengambil_topik`, `id_mahasiswa`, `id_topik`, `created_at`, `updated_at`) VALUES
+(16, 4, 28, '2017-04-05 10:40:59', '0000-00-00 00:00:00'),
+(17, 7, 28, '2017-04-05 10:50:00', '0000-00-00 00:00:00'),
+(20, 5, 25, '2017-04-05 10:42:44', '0000-00-00 00:00:00'),
+(21, 6, 25, '2017-04-05 10:42:45', '0000-00-00 00:00:00'),
+(24, 1, 25, '2017-04-05 04:06:21', '2017-04-05 04:06:21');
 
 -- --------------------------------------------------------
 
@@ -298,15 +307,14 @@ CREATE TABLE `topik` (
 --
 
 INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `maksimal_pendaftar`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
-(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, NULL, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
-(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, NULL, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
-(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, NULL, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
-(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, NULL, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
-(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, NULL, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1),
-(27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 10, '2017-04-04 23:02:10', '2017-04-04 23:02:10', 0),
+(17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, 5, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
+(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, 5, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
+(24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, 15, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
+(25, 'Survey Leptop Asus', 'Lorem', NULL, 3, 5, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
+(26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, 6, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1),
+(27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 7, '2017-04-04 23:02:10', '2017-04-04 23:02:10', 0),
 (28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', '2017-04-04 23:35:57', 0),
-(30, 'MatDas-2', 'Lorem', NULL, 4, 10, '2017-04-05 00:25:37', '2017-04-05 00:25:37', 0),
-(32, 'Matdis', 'Lorem', NULL, NULL, NULL, NULL, NULL, 1);
+(30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', '2017-04-05 00:25:37', 0);
 
 -- --------------------------------------------------------
 
@@ -331,7 +339,11 @@ CREATE TABLE `tugas_akhir` (
 --
 
 INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `created_at`, `updated_at`, `judul_ta`, `id_topik`) VALUES
-(18, '000', NULL, NULL, 1, '2017-04-05 01:48:42', '2017-04-05 01:48:42', NULL, 32);
+(23, '-2', NULL, NULL, 4, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28),
+(24, '-2', NULL, NULL, 5, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 25),
+(25, '-2', NULL, NULL, 6, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 25),
+(26, '-2', NULL, NULL, 7, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28),
+(31, '-2', NULL, NULL, 1, '2017-04-05 04:06:21', '2017-04-05 04:06:21', NULL, 25);
 
 -- --------------------------------------------------------
 
@@ -380,7 +392,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (5, 'anto', 'Password123', 'industri', '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
 (6, 'antolagi', 'Password123', 'industri', '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
 (7, 'aldi', 'Password123', 'industri', '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
-(8, 'ojan', 'eyJpdiI6IlB6dW16S0hUXC9iTmQwZUQwcGdRTVdRPT0iLCJ2YWx1ZSI6InRzRllINnNwUUVDT3cycXladXFZSW00SjBWK3ZmRmxIOGhMZUFudkFieVU9IiwibWFjIjoiM2QyOWJhOWQwN2E3MjJmMWMxNGJmNjg5ZGUzZjYyNDNhYjdkZmM4NDM0ODViZWZiNTY1OTE4ZjI2NjBhODA5MyJ9', 'industri', '2017-04-04 22:36:07', '2017-04-04 22:36:07');
+(8, 'ojan', 'eyJpdiI6IlB6dW16S0hUXC9iTmQwZUQwcGdRTVdRPT0iLCJ2YWx1ZSI6InRzRllINnNwUUVDT3cycXladXFZSW00SjBWK3ZmRmxIOGhMZUFudkFieVU9IiwibWFjIjoiM2QyOWJhOWQwN2E3MjJmMWMxNGJmNjg5ZGUzZjYyNDNhYjdkZmM4NDM0ODViZWZiNTY1OTE4ZjI2NjBhODA5MyJ9', 'industri', '2017-04-04 22:36:07', '2017-04-04 22:36:07'),
+(9, 'ab', 'ab', 'mahasiswa', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -455,6 +468,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `pengajuan_sidang`
   ADD PRIMARY KEY (`id_pengajuan`);
+
+--
+-- Indexes for table `pengambil_topik`
+--
+ALTER TABLE `pengambil_topik`
+  ADD PRIMARY KEY (`id_pengambil_topik`);
 
 --
 -- Indexes for table `prodi`
@@ -536,7 +555,7 @@ ALTER TABLE `log_bimbingan`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mahasiswa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_mahasiswa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -548,6 +567,11 @@ ALTER TABLE `migrations`
 ALTER TABLE `pengajuan_sidang`
   MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `pengambil_topik`
+--
+ALTER TABLE `pengambil_topik`
+  MODIFY `id_pengambil_topik` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
@@ -556,12 +580,12 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -571,7 +595,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

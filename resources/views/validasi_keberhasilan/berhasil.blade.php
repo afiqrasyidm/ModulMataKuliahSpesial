@@ -1,7 +1,7 @@
 <?php
 
 
-if($status_tugas_akhir!= null)
+if(!empty($status_tugas_akhir))
 {
 
 if($status_tugas_akhir==0){

@@ -35,9 +35,7 @@
 		        <th>Pengaju</th>
 		        <th>Pembimbing</th>
 				<th>Maksimal Pendaftar</th>
-				<th>Jumlah Pendaftar sampai saat ini</th>
-		        <th></th>
-		      </tr>
+				</tr>
 		    </thead>
 		    <tbody>
 
@@ -77,12 +75,7 @@
 
 
 			</td>
-			<td>
-						
-						{{$topik->maksimal_pendaftar}}
-
-
-			</td>
+			
 
 	</tr>
 
@@ -144,8 +137,11 @@
                 
 		        <tr>
 				
-					<th bgcolor="#86b7e3">Urutan ke</th>
-					<td bgcolor="#c0c5cc"> 9 orang</td>
+					<th bgcolor="#86b7e3">Jumlah pendaftar sampai saat ini</th>
+					<td bgcolor="#c0c5cc">
+						{{$jumlah_pengambil_topik}} orang
+						
+						</td>
 
                 </tr>
 				
