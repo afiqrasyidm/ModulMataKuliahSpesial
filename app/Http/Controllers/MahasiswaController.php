@@ -19,6 +19,7 @@ use App\Topik;
 use App\Tugas_akhir;
 use App\Dosen;
 use App\Hasil_ta;
+use App\Pengambil_topik;
 
 class MahasiswaController extends Controller
 {
@@ -220,13 +221,22 @@ class MahasiswaController extends Controller
 	}
 	public function pengajuan_topik_ta_dosen_industri($id_topik){
 			session_start();
+			
+			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
 			DB::table('topik')
             ->where('id_topik', $id_topik)
             ->update(['sudah_diambil' => 1]);
 
-			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+			$pengambil_topik = new Pengambil_topik;
+			$pengambil_topik->id_topik = $id_topik;
+			$pengambil_topik->id_mahasiswa = $id_mahasiswa;
+			$pengambil_topik->izin_ambil= 0;
+			$pengambil_topik->save();
 
+			
+
+			
 
 
 			$tugas_akhir = new Tugas_akhir;
