@@ -33,7 +33,8 @@ class MahasiswaController extends Controller
 
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
-
+	
+		
 			$topik = DB::table('topik')
 				->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
 				->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
@@ -46,7 +47,8 @@ class MahasiswaController extends Controller
 		}
 		//jika sudah
 		else {
-
+	
+	//		return "asd";
 			$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
 
 			if($topik_yang_diambil->id_industri != NULL){
@@ -59,12 +61,12 @@ class MahasiswaController extends Controller
 
 			}
 			//berarti diajukan oleh dosen
-			// else{
-			// 	$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
+				else{
+			 	$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
       //
-			// 	return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir) );
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir) );
       //
-			// }
+			}
 
 		}
 
