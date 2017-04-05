@@ -61,14 +61,16 @@ class MahasiswaController extends Controller
 
 			}
 			//berarti diajukan oleh dosen
+			
 				else{
-			 	$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
+			
+				$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
       //
 				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir) );
       //
 			}
 
-		}
+}
 
 
 

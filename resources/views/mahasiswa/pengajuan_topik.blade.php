@@ -71,20 +71,20 @@
 
 			</td>
 					
-					<td>
+			<td>
 						
 						{{$topik->maksimal_pendaftar}}
 
 
-					</td>
-					<td>
+			</td>
+			<td>
 						
 						{{$topik->maksimal_pendaftar}}
 
 
-					</td>
+			</td>
 
-				</tr>
+	</tr>
 
          @endforeach
 
@@ -120,29 +120,42 @@
               <tbody>
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Pengaju</th>
-                <td bgcolor="#c0c5cc">@if (isset($industri))
-                {{$industri->nama_industri}}
+                <td bgcolor="#c0c5cc">
+				@if (isset($industri))
+					Industri: {{$industri->nama_industri}}
 
-                @else
-                {{$dosen->nama_dosen}}
+                @elseif (isset($dosen))
+					Dosen: {{$dosen->nama_dosen}}
+				@else
+					Topik ini diajukan secara mandiri
+				@endif
 
-
-                @endif</td>
-
-                </tr>
-
-                <tr>
-                <th bgcolor="#86b7e3">Urutan ke</th>
-                <td bgcolor="#c0c5cc"> 9 orang</td>
+				
+				</td>
 
                 </tr>
+				@if (isset($industri) OR isset($dosen) )
+        
+				<tr>
+                <th bgcolor="#86b7e3">Maksimal Pendaftar</th>
+                <td bgcolor="#c0c5cc">{{$topik_yang_diambil->maksimal_pendaftar}} orang</td>
 
+                </tr>
+                
+		        <tr>
+				
+					<th bgcolor="#86b7e3">Urutan ke</th>
+					<td bgcolor="#c0c5cc"> 9 orang</td>
+
+                </tr>
+				
                 <tr>
                 <th bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#c0c5cc"> Menunggu persetujuan</td>
 
                 </tr>
-
+				@endif
+				
                 <tr>
                 <th bgcolor="#86b7e3">Deskripsi</th>
                 <td bgcolor="#c0c5cc"> {{$topik_yang_diambil->deskripsi}}</td>
