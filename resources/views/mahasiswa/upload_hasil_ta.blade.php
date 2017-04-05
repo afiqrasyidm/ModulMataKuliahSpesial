@@ -28,7 +28,43 @@
                   
 <!-- test -->
 
+@if(isset($hasil_ta))
 
+
+          <section class="content">
+
+              <h3><center>Dokumen telah di upload</h4>
+
+              <table class="table table-bordered">
+
+              <tbody>
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Dokumen</th>
+                <td bgcolor="#c0c5cc">
+                {{$hasil_ta->dokumen}} </td>
+
+                </tr>
+
+                <tr>
+                <th bgcolor="#86b7e3">Di upload pada </th>
+                <td bgcolor="#c0c5cc">{{$hasil_ta->created_at}}</td>
+
+                </tr>
+
+              </tbody>
+              </table>
+    <center>
+       
+       <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
+          <button  class="btn btn-primary">Ubah dokumen</button>
+        </a>
+      </div>
+
+
+        </section><!-- /.content -->
+
+
+@else
     
       @if (count($errors) > 0)
 
@@ -83,7 +119,7 @@
           <button type="submit" class="btn btn-primary">Upload</button>
 
         </center>
-
+ 
     
 
     </form>
@@ -92,7 +128,7 @@
    
 
 <!--   end -->
-
+@endif
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>
