@@ -2,14 +2,9 @@
 
 
 if(!empty($status_tugas_akhir))
-{
 
-if($status_tugas_akhir==0){
-	echo 'Tidak dapat mengajukan sidang karena belum menyelesaikan bimbingan';
-}
-else{
+{
 	echo 'Pengjuan Sidang berhasil';
-}
 
 }
 else{
