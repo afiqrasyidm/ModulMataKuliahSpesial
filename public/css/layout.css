@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+.header-title{
+	font-family: 'Bitter', serif;
+	font-size: 24px;
+}
+
+.center-form{
+	margin-left: 50px;
+	margin-right:  50px;
+}
+
+.center-button{
+	margin-left: 40%;
+}
+
+.text-resize{
+	font-size: 14px;
+	/*font-family: 'Fjalla One', sans-serif;*/
+}
