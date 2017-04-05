@@ -93,6 +93,13 @@ Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'us
 Route::get('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta']);
 Route::post('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta_submit']);
 
+//PENGAJUAN Sidang MAHASISWA
+Route::get('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidang-ta', 'uses' => 'MahasiswaController@pengajuan_sidang_ta']);
+Route::post('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidang-ta', 'uses' => 'MahasiswaController@pengajuan_sidang_ta_submit']);
+
+//Tidak bisa sidang
+Route::get('mahasiswa/failed-pengajuan-sidang-ta', ['as' => 'mahasiswa/failed-pengajuan-sidang-ta', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_ta']);
+
 //Mengambil topik dari industri dan dosen
 Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
 

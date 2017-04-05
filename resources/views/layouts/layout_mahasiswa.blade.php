@@ -48,15 +48,17 @@
               echo '</a></li>';
             }
           ?>
-      </a></li>
 
-      <li><a href=""><i class="fa fa-angle-right"></i>
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!=null){
+              echo "<li><a href='";
+              echo route('mahasiswa/pengajuan-sidang-ta');
+              echo "'/>";
+              echo "<i class='fa fa-angle-right'></i>";
               echo "Pengajuan Permohonan Sidang";
+              echo "</a></li>";
             }
           ?>
-      </a></li>
 
       <li><a href=""><i class="fa fa-angle-right"></i>
         <?php 

@@ -18,12 +18,14 @@ use App\Fakultas;
 use App\Topik;
 use App\Tugas_akhir;
 use App\Dosen;
+
+use App\Pengajuan_sidang;
 class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
     	session_start();
 		
-			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 					 
 		 
 		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
@@ -31,8 +33,8 @@ class MahasiswaController extends Controller
 	
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
-					 
-			$topik = DB::table('topik')
+				$topik = DB::table('topik')
+
 				->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
 				->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
 				->where('topik.sudah_diambil', '=', 0)
@@ -87,6 +89,33 @@ class MahasiswaController extends Controller
 		session_start();
     	return view("mahasiswa/pengajuan_topik_mandiri");
 	}
+	public function failed_pengajuan_sidang_ta(){
+		session_start();
+    	return view("mahasiswa/failed_pengajuan_sidang_ta");
+	}
+	
+	public function pengajuan_sidang_ta(){
+		session_start();
+		
+		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+		 
+		$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+	
+		if($tugas_akhir!=NULL){
+			$informasi_ta = DB::table('tugas_akhir')
+					->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+					->where([
+						// ['tugas_akhir.status_tugas_akhir', '=', '9'],
+    					['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa],
+					])
+					->get()->first();
+  			return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta));
+		}
+		else{
+			 return view("mahasiswa/failed_pengajuan_sidang_ta");
+		}
+
+	}
 
 	
 	 public function pengajuan_topik_ta_submit() {
@@ -111,8 +140,6 @@ class MahasiswaController extends Controller
 	
 		  $id_topik = DB::table('topik')->insertGetId(
 			['topik_ta' => Input::get ('topik_ta') , 'deskripsi' => Input::get ('latar_belakang_ta'),'sudah_diambil'=>1 ]);
-		  
-		  
 		  
 			
 			$penandaRole = "mahasiswa";
@@ -207,5 +234,29 @@ class MahasiswaController extends Controller
 			return redirect()->route('mahasiswa/pengajuan-topik');
 
 	}
-	
+
+	public function pengajuan_sidang_ta_submit() {
+		session_start();
+		
+			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+			
+			$status_tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
+
+			//Validasi apakah bisa mengajukan sidang atau tidak
+			if($status_tugas_akhir!=9){
+				return view("validasi_keberhasilan/berhasil" , array('status_tugas_akhir' => $status_tugas_akhir) );
+			}
+
+			else{
+				$pengajuan_sidang = new Pengajuan_sidang;
+			
+				$pengajuan_sidang->id_mahasiswa = $id_mahasiswa;
+			
+				$pengajuan_sidang->status = "0"; 
+				
+				$pengajuan_sidang->save();
+			
+				return view("validasi_keberhasilan/berhasil" , array('status_tugas_akhir' => $status_tugas_akhir) );				
+			}
+    }
 }
