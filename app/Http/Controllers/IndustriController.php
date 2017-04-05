@@ -75,7 +75,7 @@ class IndustriController extends Controller
 			$topik = new Topik;
 			$topik->topik_ta = Input::get ('topik_ta');
 			$topik->deskripsi = Input::get ('latar_belakang_ta');
-			$topik->maksimal_pemilih = Input::get ('maksimal_pemilih');
+			$topik->maksimal_pendaftar = Input::get ('maksimal_pendaftar');
 			
 		
 			$topik->id_industri = 	$_SESSION["user_login_industri"]-> id_industri;

@@ -41,11 +41,11 @@
 	
 						<div class="form-group">
 						
-						  <label for="inputPassword3" class="col-sm-2 control-label">Maksimal Pemilih</label>
+						  <label for="inputPassword3" class="col-sm-2 control-label">Maksimal Pendaftar</label>
 						
 								<div class="col-sm-8">
 								
-									<input type="topik" class="form-control" id="inputPassword4" placeholder="Maksimal Pemilih" name="maksimal_pemilih">
+									<input type="topik" class="form-control" id="inputPassword4" placeholder="Maksimal Pendaftar" name="maksimal_pendaftar">
 								
 								</div>
 								 <div class='col-sm-3'>

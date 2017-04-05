@@ -26,6 +26,8 @@
 		        <th>Topik</th>
 		        <th>Pengaju</th>
 		        <th>Pembimbing</th>
+				<th>Maksimal Pendaftar</th>
+				<th>Jumlah Pendaftar sampai saat ini</th>
 		        <th></th>
 		      </tr>
 		    </thead>
@@ -58,7 +60,21 @@
 
 						@endif
 
-						</td>
+					</td>
+					
+					<td>
+						
+						{{$topik->maksimal_pendaftar}}
+
+
+					</td>
+					<td>
+						
+						{{$topik->maksimal_pendaftar}}
+
+
+					</td>
+
 				</tr>
 
 			   @endforeach
