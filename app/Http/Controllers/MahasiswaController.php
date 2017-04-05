@@ -148,7 +148,7 @@ class MahasiswaController extends Controller
   			return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta));
 		}
 		else{
-			 return view("mahasiswa/failed_pengajuan_sidang_ta");
+			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 		}
 
 	}
@@ -273,12 +273,13 @@ class MahasiswaController extends Controller
 		session_start();
 		
 			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-			
-			$status_tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
+			 
 
-			//Validasi apakah bisa mengajukan sidang atau tidak
-			if($status_tugas_akhir!=9){
-				return view("validasi_keberhasilan/berhasil" , array('status_tugas_akhir' => $status_tugas_akhir) );
+			$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
+
+			//Validasi: Tidak bisa mengajukan
+			if($tugas_akhir!=9){
+			 	return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
 
 			else{
@@ -290,7 +291,7 @@ class MahasiswaController extends Controller
 				
 				$pengajuan_sidang->save();
 			
-				return view("validasi_keberhasilan/berhasil" , array('status_tugas_akhir' => $status_tugas_akhir) );				
+				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir) );				
 			}
     }
 
@@ -306,7 +307,7 @@ class MahasiswaController extends Controller
            if($hasil_ta!=NULL){
 
     	
-    		
+
 
     		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
 
@@ -352,9 +353,7 @@ class MahasiswaController extends Controller
 	    		->with('success','File Uploaded successfully.')
 
 	    		->with('path',$fileName);
-    	} 
-
-  
+    	}
     }
 
 
@@ -364,8 +363,6 @@ class MahasiswaController extends Controller
 		
 
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
-
-
 			return redirect()->route('mahasiswa/upload-hasil-ta');
 	}
 }

@@ -1,15 +1,9 @@
 <?php
 
 
-if($status_tugas_akhir!= null)
+if($tugas_akhir!= null)
 {
-
-if($status_tugas_akhir==0){
-	echo 'Tidak dapat mengajukan sidang karena belum menyelesaikan bimbingan';
-}
-else{
 	echo 'Pengjuan Sidang berhasil';
-}
 
 }
 else{
