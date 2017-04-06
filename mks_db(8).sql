@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2017 at 01:07 PM
+-- Generation Time: Apr 06, 2017 at 02:09 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -287,6 +287,24 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`, `id_fakultas`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `staf`
+--
+
+CREATE TABLE `staf` (
+  `id_staff` int(10) NOT NULL,
+  `NIK` varchar(25) NOT NULL,
+  `role` varchar(25) NOT NULL,
+  `nama_staff` varchar(25) NOT NULL,
+  `id_fakultas` int(10) NOT NULL,
+  `id_universitas` int(10) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `topik`
 --
 
@@ -484,6 +502,12 @@ ALTER TABLE `prodi`
   ADD KEY `prodi_id_fakultas_foreign` (`id_fakultas`);
 
 --
+-- Indexes for table `staf`
+--
+ALTER TABLE `staf`
+  ADD PRIMARY KEY (`id_staff`);
+
+--
 -- Indexes for table `topik`
 --
 ALTER TABLE `topik`
@@ -576,6 +600,11 @@ ALTER TABLE `pengambil_topik`
 --
 ALTER TABLE `prodi`
   MODIFY `id_prodi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `staf`
+--
+ALTER TABLE `staf`
+  MODIFY `id_staff` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `topik`
 --
