@@ -72,32 +72,34 @@ class MahasiswaController extends Controller
 				,'jumlah_pengambil_topik' => $jumlah_pengambil_topik
 				
 				) );
-      //
 			}
+		}
+	}
 
-}
-
-
-
-    }
-
-    function pengajuan_permohonan_ta() {
+    public function pengajuan_permohonan_ta() {
     	session_start();
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-    	if ($tugas_akhir==null) {
+    	//Mahasiswa belum mengajukan ta || belum mengajukan topik
+    	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir<0) {
     		return view("mahasiswa/belum_mengajukan_topik");
     	}
 
+    	//Sudah mengajukan TA->otomatis topik udah
     	else {
     		$topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
-    		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta]);
+    		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir]);
     	}
     }
 
+    public function pengajuan_permohonan_ta_sukses() {
+    	return view("mahasiswa/pengajuan_permohonan_ta_sukses");
+    }
+
     public function pengajuan_permohonan_ta_submit() {
+    	session_start();
     	$validator = Validator::make(
         Input::all(),
         array(
@@ -107,15 +109,15 @@ class MahasiswaController extends Controller
 
     	if($validator->passes()) {
 	    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-	    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+	    	DB::table('tugas_akhir')
+            ->where('id_mahasiswa', $id_mahasiswa)
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1]);
 
-		    $tugas_akhir->judul_ta = Input::get('judul_ta');
-		    $tugas_akhir->judul_ta = '1';
-	        $tugas_akhir->save();
+            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
 	    }
 
 	    //Data error:
-	        return Redirect::to('pengajuan_permohonan_ta')
+	        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta')
 	            ->withErrors($validator)
 	            ->withInput();
     }

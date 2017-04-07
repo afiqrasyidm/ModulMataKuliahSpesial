@@ -7,9 +7,9 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
+	@if($tugas_akhir->status_tugas_akhir<1)
 	<center><h2>Pengajuan Permohonan TA</h2></center>
 	<br/>
-
 	<form class="form-horizontal" method="post" action="">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		  <div class="form-group">
@@ -75,6 +75,57 @@
 
 		  <center><button class="btn btn-primary" type="submit">Ajukan TA</button></center>
 	</form>
+
+	@else
+	<center><h2>Detail Pengajuan Permohonan TA</h2></center>
+	<br/>
+	<table class="table table-bordered">
+	    <tbody>
+			<tr>
+	          <th bgcolor="#86b7e3">Nama</th>
+	          <td bgcolor="#c0c5cc"><?php
+                  echo $_SESSION["user_login"]->name;
+                ?></td>
+	        </tr>
+	        <tr>
+	          <th bgcolor="#86b7e3">NPM</th>
+	          <td bgcolor="#c0c5cc"><?php
+                  echo $_SESSION["user_login"]->npm;
+                ?></td>
+	        </tr>
+	       	<tr>
+	          <th bgcolor="#86b7e3">NPM</th>
+	          <td bgcolor="#c0c5cc"><?php
+                  echo $_SESSION["user_login"]->study_program;
+                ?></td>
+	        </tr>
+	        <tr>
+	          <th bgcolor="#86b7e3">Matakuliah</th>
+	          <td bgcolor="#c0c5cc"><?php
+		      		$jenjang = $_SESSION["mahasiswa"]->jenjang;
+		      		if($jenjang=='S1') {
+		      			echo 'Skripsi';
+		      		} else if ($jenjang=='S2') {
+		      			echo 'Tesis';
+		      		} else if($jenjang=='S3') {
+		      			echo 'Disertasi';
+		      		}
+	            ?></td>
+	        </tr>
+	        <tr>
+	          <th bgcolor="#86b7e3">Topik</th>
+	          <td bgcolor="#c0c5cc">{{ $topik }}</td>
+	        </tr>
+	        <tr>
+	          <th bgcolor="#86b7e3">Judul</th>
+	          <td bgcolor="#c0c5cc">{{$tugas_akhir->judul_ta}}</td>
+	        </tr>
+	    </tbody>
+	</table>
+
+	<center><button class="btn btn-primary" type="submit">Ubah</button></center>
+
+	@endif
 	
 </div>
 <div class="col-md-1">
