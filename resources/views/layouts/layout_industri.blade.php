@@ -23,6 +23,7 @@
     </a>
     <ul class="treeview-menu">
       <li><a href="{{ route('industri/pengajuan-topik-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
+	  <li><a href="{{ route('industri/pengajuan-topik-ta') }}"><i class="fa fa-angle-right"></i>Verifikasi Pengambilan Topik</a></li>
       <li><a href="{{ route('industri/lihat-hasil-ta') }}"><i class="fa fa-angle-right"></i>Lihat Hasil TA</a></li>
     </ul>
   </li>
