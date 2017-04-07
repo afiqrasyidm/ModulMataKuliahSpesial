@@ -10,7 +10,8 @@
 	<center><h2>Pengajuan Permohonan TA</h2></center>
 	<br/>
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="post" action="">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		  <div class="form-group">
 		    <label class="control-label col-sm-3">Nama:</label>
 		    <div class="col-sm-6">
@@ -47,7 +48,7 @@
 		      			echo 'Skripsi';
 		      		} else if ($jenjang=='S2') {
 		      			echo 'Tesis';
-		      		} else if($jenjang=='S1') {
+		      		} else if($jenjang=='S3') {
 		      			echo 'Disertasi';
 		      		}
 	              
@@ -58,20 +59,21 @@
 		  <br/>
 
 		  <div class="form-group">
-		    <label class="control-label col-sm-3">Judul:</label>
+		    <label class="control-label col-sm-3">Topik:</label>
 		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Topik">
+		    	<?php echo $errors->first('username') ?>
+		      	<input class="form-control" value="{{ $topik }}" disabled>
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		    <label class="control-label col-sm-3">Topik:</label>
+		    <label class="control-label col-sm-3">Judul:</label>
 		    <div class="col-sm-6">
-		      <input class="form-control" placeholder="Masukan Judul">
+		      <input class="form-control" name="judul_ta" placeholder="Masukan Judul">
 		    </div>
 		  </div>
 
-		  <center><button class="btn btn-primary">Ajukan TA</button></center>
+		  <center><button class="btn btn-primary" type="submit">Ajukan TA</button></center>
 	</form>
 	
 </div>

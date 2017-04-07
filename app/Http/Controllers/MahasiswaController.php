@@ -76,9 +76,35 @@ class MahasiswaController extends Controller
 
     	if ($tugas_akhir==null) {
     		return view("mahasiswa/belum_mengajukan_topik");
-    	} else {
-    		return view("mahasiswa/pengajuan_permohonan_ta");
     	}
+
+    	else {
+    		$topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+    		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta]);
+    	}
+    }
+
+    public function pengajuan_permohonan_ta_submit() {
+    	$validator = Validator::make(
+        Input::all(),
+        array(
+           	"judul_ta" => "required",
+	        )
+	    );
+
+    	if($validator->passes()) {
+	    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+	    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+		    $tugas_akhir->judul_ta = Input::get('judul_ta');
+		    $tugas_akhir->judul_ta = '1';
+	        $tugas_akhir->save();
+	    }
+
+	    //Data error:
+	        return Redirect::to('pengajuan_permohonan_ta')
+	            ->withErrors($validator)
+	            ->withInput();
     }
 
     function pengajuan_pembimbing_ta() {
@@ -125,7 +151,7 @@ class MahasiswaController extends Controller
 	}
 
 
-	 public function pengajuan_topik_ta_submit() {
+	public function pengajuan_topik_ta_submit() {
 		session_start();
 		$validator = Validator::make(
         Input::all(),
@@ -227,10 +253,7 @@ class MahasiswaController extends Controller
 
 			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
-
-
 			$tugas_akhir = new Tugas_akhir;
-
 
 			$tugas_akhir->id_mahasiswa = $id_mahasiswa;
 
