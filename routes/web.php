@@ -130,3 +130,9 @@ Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/uba
 //ubah status siap sidang
 Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
 
+//verifikasi pengambilan topik
+Route::get('/industri/verifikasi-pengambilan-topik-ta', ['as' => 'industri/verifikasi-pengambilan-topik-ta', 'uses' => 'IndustriController@verifikasi_pengambilan_topik_ta']);
+
+//detail topik industri
+Route::get('/industri/pengajuan-topik/detail/{id_topik}', ['as' => '/industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+
