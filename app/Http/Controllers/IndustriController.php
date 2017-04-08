@@ -132,10 +132,11 @@ class IndustriController extends Controller
 				->leftJoin('Pengambil_topik', 'topik.id_topik', '=', 'topik.id_topik')
 				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
 				->leftJoin('industri', 'industri.id_industri', '=', 'topik.id_industri')
+				->leftJoin('tugas_akhir', 'tugas_akhir.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
 				->where([
 				 ['topik.id_topik', '=', $id_topik],
 				['Pengambil_topik.id_topik', '=', $id_topik],
-				
+				['tugas_akhir.id_topik', '=', $id_topik],
 				])
 				->get();
 

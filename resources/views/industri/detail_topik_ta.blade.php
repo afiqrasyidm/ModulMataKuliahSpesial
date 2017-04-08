@@ -25,7 +25,10 @@
 										<thead>
 										  <tr>
 											<th>Nama Mahasiswa</th>
+											
 											<th>IPK </th>
+											<th> </th>
+											<th  >Status </th>
 											</tr>
 										</thead>
 										<tbody>
@@ -37,18 +40,34 @@
 									  <td>
 										
 										  {{$topiks->nama_mahasiswa}}
-										</a>
+										
 									  </td>
-									  
+									   
 
 									  <td>
 									  {{$topiks->IPK}}
 
 
 										</td>
-												
+										<td>
+										
+										 
+									  </td>
 									
-
+									<td> 
+										@if($topiks->status_tugas_akhir == -2)
+										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}">
+											<button  class="btn btn-primary">Setuju</button>
+										</a>
+										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}">
+											<button  class="btn btn-danger">Tidak Setuju</button>
+										</a>
+										@elseif($topiks->status_tugas_akhir == -1)
+											<p style="color:red;"><b>Tidak Setujui</b></p>
+										@else
+											<p><b>Disetujui</b></p>
+										@endif
+									</td>
 								</tr>
 										
 									 @endforeach
@@ -68,7 +87,9 @@
 									
 																
 							
-								<p>Latar Belakang Topik :{{$topik->first()->deskripsi}}</p>
+								<p>Latar Belakang Topik :</p>
+								
+								<p>{{$topik->first()->deskripsi}}</p>
 
 
 								
