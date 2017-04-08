@@ -94,7 +94,7 @@
                 ?></td>
 	        </tr>
 	       	<tr>
-	          <th bgcolor="#86b7e3">NPM</th>
+	          <th bgcolor="#86b7e3">Jurusan</th>
 	          <td bgcolor="#c0c5cc"><?php
                   echo $_SESSION["user_login"]->study_program;
                 ?></td>
@@ -119,6 +119,10 @@
 	        <tr>
 	          <th bgcolor="#86b7e3">Judul</th>
 	          <td bgcolor="#c0c5cc">{{$tugas_akhir->judul_ta}}</td>
+	        </tr>
+	        <tr>
+	          <th bgcolor="#86b7e3">Status</th>
+	          <td bgcolor="#c0c5cc">{{$tugas_akhir->status_tugas_akhir}}</td>
 	        </tr>
 	    </tbody>
 	</table>

@@ -23,6 +23,8 @@ use App\Pengajuan_sidang;
 use App\Hasil_ta;
 use App\Pengambil_topik;
 
+use Carbon\Carbon;
+
 class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
@@ -117,9 +119,20 @@ class MahasiswaController extends Controller
 
     	if($validator->passes()) {
 	    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+	    	$id_jenis_ta = 0;
+
+	    	$jenjang = $_SESSION["mahasiswa"]->jenjang;
+		      		if($jenjang=='S1') {
+		      			$id_jenis_ta = 1;
+		      		} else if ($jenjang=='S2') {
+		      			$id_jenis_ta = 2;
+		      		} else if($jenjang=='S3') {
+		      			$id_jenis_ta = 3;
+		      		}
+
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
-            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1]);
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
             return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
 	    }
