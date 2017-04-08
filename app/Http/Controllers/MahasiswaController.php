@@ -27,7 +27,15 @@ class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
     	session_start();
-		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+		
+		$id_mahasiswa = $mahasiswa->id_mahasiswa;
+		if($mahasiswa->jumlah_sks < 115){
+			
+			 	return view("mahasiswa/mahasiswa_kurang_sks");
+		}
+		
+		
 		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
 		//jika belum milih topik

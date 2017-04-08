@@ -99,7 +99,12 @@ class IndustriController extends Controller
 	public function verifikasi_pengambilan_topik_ta(){
 			session_start();
 			
-			$topik= Topik::where('id_industri', $_SESSION["user_login_industri"]-> id_industri)->get();
+			$topik= Topik::where(
+			[
+			['id_industri', $_SESSION["user_login_industri"]-> id_industri],
+			
+			]
+			)->get();
 			//memasukkan masing-masing nilai jumlah pendaftar
 			$array[] = array();
 			
@@ -164,6 +169,18 @@ class IndustriController extends Controller
             ->where('id_tugas_akhir', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => -1]);
 		}
+		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
+		
+	}
+	
+	public function hentikan_topik($id_topik){
+		session_start();
+		
+		
+		DB::table('topik')
+            ->where('id_topik', $id_topik)
+            ->update(['sudah_diambil' => 1]);
+	
 		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
 		
 	}

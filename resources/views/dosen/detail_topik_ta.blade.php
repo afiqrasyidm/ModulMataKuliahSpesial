@@ -1,4 +1,4 @@
-@extends('layouts.layout_industri')
+@extends('layouts.layout_dosen')
 
 @section('title','Verifikasi Pengajuan Topik TA')
 
@@ -17,7 +17,7 @@
                   <center><h1 class="header-title">Daftar Pendaftar Topik {{$topik->first()->topik_ta}}</h1><br></center>
 				<br>
 				@if($topik->first()->sudah_diambil == 0)
-				<a href="/industri/hentikan-topik/{{$topik->first()->id_topik}}">
+				<a href="/dosen/hentikan-topik/{{$topik->first()->id_topik}}">
 						<button  class="btn btn-primary">Stop Penawaran Topik ini</button>
 				</a>
 				@else
@@ -72,10 +72,10 @@
 									
 									<td> 
 										@if($topiks->status_tugas_akhir == -2)
-										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
+										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
 											<button  class="btn btn-primary">Setuju</button>
 										</a>
-										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
+										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
 											<button  class="btn btn-danger">Tidak Setuju</button>
 										</a>
 										@elseif($topiks->status_tugas_akhir == -1)
