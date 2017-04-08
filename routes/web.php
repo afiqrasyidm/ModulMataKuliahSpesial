@@ -73,6 +73,8 @@ Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'Ind
 
 Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAController@homepage_dosen_PA']);
 
+Route::get('/dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
+
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
 
 Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' => 'DosenPembimbingController@home_dosen_pembimbing']);

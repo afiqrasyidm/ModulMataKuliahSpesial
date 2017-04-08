@@ -27,7 +27,8 @@
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href="#"><i class="fa fa-angle-right"></i>Lihat Permohonan TA</a></li>
+      <li><a href="{{ route('dosen/PA/verifikasi-permohonan-ta') }}"
+        ><i class="fa fa-angle-right"></i>Lihat Permohonan TA</a></li>
     </ul>
   </li>
   
