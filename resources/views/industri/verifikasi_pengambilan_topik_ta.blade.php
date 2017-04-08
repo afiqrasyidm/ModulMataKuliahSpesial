@@ -20,10 +20,8 @@
                   <center><h1 class="header-title">Daftar Ajuan Topik TA</h1><br></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                 
-              
 
-	<form>
+				
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -64,17 +62,10 @@
          @endforeach
 
 
-        </tbody>
-
-
-
-
-      </table>
-
 
     <br/>
 
-  </form>
+  
 
 
 

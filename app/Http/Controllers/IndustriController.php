@@ -152,6 +152,21 @@ class IndustriController extends Controller
 			
 
 	}
+	public function setuju_topik($id_tugas_akhir, $is_disetujui, $id_topik){
+		session_start();
+		
+		if($is_disetujui==1)
+		DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => 0]);
+		else{
+			DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => -1]);
+		}
+		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
+		
+	}
 	
 	
 	

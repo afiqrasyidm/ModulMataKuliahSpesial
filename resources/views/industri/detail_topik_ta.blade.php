@@ -20,7 +20,7 @@
                  
               
 
-						<form>
+					
 									<table class="table table-striped">
 										<thead>
 										  <tr>
@@ -56,10 +56,10 @@
 									
 									<td> 
 										@if($topiks->status_tugas_akhir == -2)
-										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}">
+										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
 											<button  class="btn btn-primary">Setuju</button>
 										</a>
-										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}">
+										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
 											<button  class="btn btn-danger">Tidak Setuju</button>
 										</a>
 										@elseif($topiks->status_tugas_akhir == -1)
@@ -96,7 +96,7 @@
 											
 					
 
-						  </form>
+					
 				</div><!-- /.box-body -->
               </div><!-- /.box -->
             
@@ -119,15 +119,6 @@
 
 
 
-
-
-
-
-
-	    </tbody>
-	</table>
-	
-	
     
 
         </section><!-- /.content -->
