@@ -136,5 +136,8 @@ Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ub
 Route::get('/industri/verifikasi-pengambilan-topik-ta', ['as' => 'industri/verifikasi-pengambilan-topik-ta', 'uses' => 'IndustriController@verifikasi_pengambilan_topik_ta']);
 
 //detail topik industri
-Route::get('/industri/pengajuan-topik/detail/{id_topik}', ['as' => '/industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+Route::get('/industri/pengajuan-topik/detail/{id_topik}', ['as' => 'industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+
+//Disetujui dan tidak disetuk topik oleh industri
+Route::get('/industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['as' => 'industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', 'uses' => 'IndustriController@setuju_topik']);
 
