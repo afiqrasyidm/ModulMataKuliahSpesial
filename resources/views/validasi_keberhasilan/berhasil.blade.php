@@ -4,7 +4,8 @@
 if($tugas_akhir!= null)
 {
 	echo 'Pengjuan Sidang berhasil';
-
+	//sleep for 3 seconds
+	header( "refresh:3;mahasiswa/pengajuan-sidang-ta" );
 }
 else{
 	echo 'Pengajuan Topik berhasil';
