@@ -196,38 +196,46 @@ class MahasiswaController extends Controller
 		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
 		$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-
 		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 	
+
 		if($tugas_akhir!= null){
 			//Jika belum mengajukan sidang
-			if($sidang==null){
-				if($tugas_akhir!=NULL){
-					$informasi_ta = DB::table('tugas_akhir')
-						->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-						->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
-						->get()->first();
-	  				return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta, 'sidang' => $sidang));
+			if($tugas_akhir->status_tugas_akhir==6){
+				if($sidang==null){
+					if($tugas_akhir!=NULL){
+						$informasi_ta = DB::table('tugas_akhir')
+							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get()->first();
+		  				return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta, 'sidang' => $sidang));
+					}
+					else{
+						 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
+					}
 				}
+
+				//Jika sudah mengajukan sidang
 				else{
-					 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
+					$informasi_ta = DB::table('tugas_akhir')
+							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get()->first();
+
+					$informasi_sidang = DB::table('pengajuan_sidang')
+						->get()->first();
+					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang));
 				}
 			}
 
-			//Jika sudah mengajukan sidang
 			else{
-				$informasi_ta = DB::table('tugas_akhir')
-						->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-						->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
-						->get()->first();
-
-				$informasi_sidang = DB::table('pengajuan_sidang')
-					->get()->first();
-				return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang));
+			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));		
 			}
-		}else{
-			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
-;		}
+		}
+
+		else{
+			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));		
+			}
 
 	}
 

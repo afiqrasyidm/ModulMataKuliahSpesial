@@ -72,54 +72,76 @@
 </div>
 
 @else
-<div class="col-md-12">
-	<center>
-	<h1>Bukti Pengajuan Sidang TA</h1>
-	</center>
-	<br/>
-        <form class="form-horizontal" method="post" action="" role="form">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
+<br>
 
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">ID Pengajuan Sidang:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" value="{{$informasi_sidang->id_pengajuan}}" disabled>
-		    </div>
-		  </div>
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
+          <section class="content">
 
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">ID Mahasiswa:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" value="{{$informasi_sidang->id_mahasiswa}}" disabled>
-		    </div>
-		  </div>
+              <h3><center>Bukti Pengajuan Sidang TA</h4>
 
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">Tanggal Pengajuan:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" value="{{$informasi_sidang->created_at}}" disabled>
-		    </div>
-		  </div>
-		
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">Judul:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" value="{{$informasi_ta->judul_ta}}" disabled>
-		    </div>
-		  </div>
+                <br>
 
-		  <div class="form-group">
-		    <label class="control-label col-sm-3">Topik:</label>
-		    <div class="col-sm-6">
-		      <input class="form-control" value="{{$informasi_ta->topik_ta}}" disabled>
-		    </div>
-		  </div>
-		
+              <table class="table table-bordered">
 
-	</form>        
-</div>
+              <tbody>
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Judul TA</th>
+                <td bgcolor="#c0c5cc">{{$informasi_ta->judul_ta}}</td>
+                </tr>
+
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Topik</th>
+                <td bgcolor="#c0c5cc">{{$informasi_ta->topik_ta}}
+				</td>
+                </tr>
 
 
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Dosen Pembimbing</th>
+                <td bgcolor="#c0c5cc">
+				Mischelle
+				</td>
+                </tr>
+
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
+                <td bgcolor="#c0c5cc">
+				Meilisa
+				</td>
+                </tr>
+
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
+                <td bgcolor="#c0c5cc">
+				Senin, 7 Maret 2017 - pk. 13.00 WIB
+				</td>
+                </tr>
+
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Status</th>
+                <td bgcolor="#c0c5cc">
+                	@if ($informasi_sidang->status ==0)
+						Menunggu persetujuan Dosen Pembimbing
+					@else 
+						Verified by Dosen Pembimbing
+					@endif
+				</td>
+                </tr>
+        
+				</tbody>
+			</table>
+
+
+        </section>
+
+         </div>
+              </div>
+              </div>
+            </div>
+
+</section>
 
 @endif
 
