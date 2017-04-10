@@ -1,7 +1,8 @@
 <?php
 
 
-if($tugas_akhir!= null)
+if(!empty($status_tugas_akhir))
+
 {
 	echo 'Pengjuan Sidang berhasil';
 	//sleep for 3 seconds

@@ -35,9 +35,7 @@
 		        <th>Pengaju</th>
 		        <th>Pembimbing</th>
 				<th>Maksimal Pendaftar</th>
-				<th>Jumlah Pendaftar sampai saat ini</th>
-		        <th></th>
-		      </tr>
+				</tr>
 		    </thead>
 		    <tbody>
 
@@ -77,12 +75,7 @@
 
 
 			</td>
-			<td>
-						
-						{{$topik->maksimal_pendaftar}}
-
-
-			</td>
+			
 
 	</tr>
 
@@ -144,14 +137,27 @@
                 
 		        <tr>
 				
-					<th bgcolor="#86b7e3">Urutan ke</th>
-					<td bgcolor="#c0c5cc"> 9 orang</td>
+					<th bgcolor="#86b7e3">Jumlah pendaftar sampai saat ini</th>
+					<td bgcolor="#c0c5cc">
+						{{$jumlah_pengambil_topik}} orang
+						
+						</td>
 
                 </tr>
 				
                 <tr>
                 <th bgcolor="#86b7e3">Status</th>
-                <td bgcolor="#c0c5cc"> Menunggu persetujuan</td>
+                <td bgcolor="#c0c5cc"> 
+					
+					
+						@if ($tugas_akhir->status_tugas_akhir ==-2 )
+							Menunggu persetujuan
+						@elseif ($tugas_akhir->status_tugas_akhir ==-1 )
+							Anda tidak diterima mengambil topik ini, silahkan ambil topik lain
+						@else 
+							Pengambilan topik anda telah disetujui
+						@endif
+					</td>
 
                 </tr>
 				@endif

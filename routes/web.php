@@ -32,6 +32,10 @@ Route::get('/mahasiswa/pengajuan-topik', ['as' => 'mahasiswa/pengajuan-topik', '
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
 
+Route::post('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit']);
+
+Route::get('mahasiswa/pengajuan-permohonan-ta-sukses', ['as' => '/mahasiswa/pengajuan-permohonan-ta-sukses', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_sukses']);
+
 Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta']);
 
 Route::get('/mahasiswa/pengumuman', ['as' => 'mahasiswa/pengumuman', 'uses' => 'MahasiswaController@pengumuman']);
@@ -68,6 +72,8 @@ Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses'
 Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'IndustriController@pengumuman']);
 
 Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAController@homepage_dosen_PA']);
+
+Route::get('/dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
 
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
 
@@ -128,3 +134,28 @@ Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/uba
 //ubah status siap sidang
 Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
 
+//verifikasi pengambilan topik industri
+Route::get('/industri/verifikasi-pengambilan-topik-ta', ['as' => 'industri/verifikasi-pengambilan-topik-ta', 'uses' => 'IndustriController@verifikasi_pengambilan_topik_ta']);
+
+//detail topik industri
+Route::get('/industri/pengajuan-topik/detail/{id_topik}', ['as' => 'industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+
+//Disetujui dan tidak disetuk topik oleh industri
+Route::get('/industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['as' => 'industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', 'uses' => 'IndustriController@setuju_topik']);
+
+//industri stop pengajuan topik
+Route::get('/industri/hentikan-topik/{id_topik}', ['as' => '/industri/hentikan-topik/{id_topik}', 'uses' => 'IndustriController@hentikan_topik']);
+
+//verifikasi pengambilan topik dosen
+Route::get('/dosen/verifikasi-pengambilan-topik-ta', ['as' => 'dosen/verifikasi-pengambilan-topik-ta', 'uses' => 'DosenController@verifikasi_pengambilan_topik_ta']);
+
+
+//detail topik dosen
+Route::get('/dosen/pengajuan-topik/detail/{id_topik}', ['as' => 'dosen/pengajuan-topik/detail/', 'uses' => 'DosenController@detail_topik_ta']);
+
+
+//Disetujui dan tidak disetuk topik oleh dosen
+Route::get('/dosen/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['as' => 'dosen/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', 'uses' => 'DosenController@setuju_topik']);
+
+//dosen stop pengajuan topik
+Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/{id_topik}', 'uses' => 'DosenController@hentikan_topik']);

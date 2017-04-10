@@ -42,7 +42,10 @@
                 </tr>
 				 <tr>
 					 <th bgcolor="#86b7e3">Jumlah Pendaftar Sampai Saat Ini</th>
-						 <td bgcolor="#c0c5cc"> 9 orang</td>
+						 <td bgcolor="#c0c5cc"> 
+													{{$jumlah_pengambil_topik}} orang
+											
+							 </td>
 
 				 </tr>
 
