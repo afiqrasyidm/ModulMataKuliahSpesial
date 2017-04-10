@@ -32,9 +32,9 @@ class MahasiswaController extends Controller
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 		
 		$id_mahasiswa = $mahasiswa->id_mahasiswa;
-		if($mahasiswa->jumlah_sks < 115){
+		if($mahasiswa->is_sudah_ambil_ta == 0){
 			
-			 	return view("mahasiswa/mahasiswa_kurang_sks");
+			 	return view("mahasiswa/mahasiswa_belum_ambil_ta");
 		}
 		
 		

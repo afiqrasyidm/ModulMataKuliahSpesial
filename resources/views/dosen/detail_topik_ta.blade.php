@@ -49,7 +49,7 @@
 										</thead>
 										<tbody>
 
-									
+								
 									  @foreach ($topik as $topiks)
 
 									   <tr>

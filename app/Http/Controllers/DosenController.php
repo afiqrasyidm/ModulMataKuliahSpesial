@@ -124,13 +124,25 @@ class DosenController extends Controller
 				['tugas_akhir.id_topik', '=', $id_topik],
 				])
 				->get();
-
 				
-		
+				
+				//return $topik;
 			
-			//return $topik->first()->topik_ta;
+			//jika belum ada pendaftar
+			if($topik->isEmpty()){
+				$topik = DB::table('topik')
+						->where([
+						 ['topik.id_topik', '=', $id_topik],
+						])
+						->get();
+					//	return "lol";
+				return view("dosen/detail_topik_ta_tidak_ada " , array('topik' => $topik ));
+				
+			}
+			//jika sudah
+			else{
 				return view("dosen/detail_topik_ta " , array('topik' => $topik ));
-
+			}
 			
 			
 

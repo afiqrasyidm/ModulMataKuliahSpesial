@@ -7,8 +7,8 @@
 	</div>
 	<div  class="col-md-9">
 		<div style="margin-top:225px;">
-			<h2 style="color:red;">SKS anda tidak mencukupi!</h2>
-			<p>Anda tidak diperkenankan melakukan mengambil tugas akhir dikarenakan jumlah sks anda <155 </p>
+			<h2 style="color:red;">Anda belum mengambil TA!</h2>
+			<p>Anda tidak diperkenankan melakukan mengambil tugas akhir dikarenakan belum ambil matkul TA pada SIAK  </p>
 			
 		</div>
 	</div>
