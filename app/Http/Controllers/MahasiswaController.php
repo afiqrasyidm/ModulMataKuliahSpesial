@@ -192,24 +192,50 @@ class MahasiswaController extends Controller
 	
 	public function pengajuan_sidang_ta(){
 		session_start();
-		
+
 		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-		 
+
 		$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 	
-		if($tugas_akhir!=NULL){
-			$informasi_ta = DB::table('tugas_akhir')
-					->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-					->where([
-						// ['tugas_akhir.status_tugas_akhir', '=', '9'],
-    					['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa],
-					])
-					->get()->first();
-  			return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta));
+
+		if($tugas_akhir!= null){
+			//Jika belum mengajukan sidang
+			if($tugas_akhir->status_tugas_akhir==6){
+				if($sidang==null){
+					if($tugas_akhir!=NULL){
+						$informasi_ta = DB::table('tugas_akhir')
+							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get()->first();
+		  				return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta, 'sidang' => $sidang));
+					}
+					else{
+						 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
+					}
+				}
+
+				//Jika sudah mengajukan sidang
+				else{
+					$informasi_ta = DB::table('tugas_akhir')
+							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get()->first();
+
+					$informasi_sidang = DB::table('pengajuan_sidang')
+						->get()->first();
+					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang));
+				}
+			}
+
+			else{
+			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));		
+			}
 		}
+
 		else{
-			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
-		}
+			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));		
+			}
 
 	}
 
@@ -251,8 +277,8 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->save();
 
-
 			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
+
 	    }
 
 	    //Data error or username taken:
@@ -350,7 +376,7 @@ class MahasiswaController extends Controller
 			$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
 
 			//Validasi: Tidak bisa mengajukan
-			if($tugas_akhir!=9){
+			if($tugas_akhir!=6){
 			 	return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
 
@@ -363,8 +389,9 @@ class MahasiswaController extends Controller
 				
 				$pengajuan_sidang->save();
 			
-				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir) );				
+				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));				
 			}
+
     }
 
 
@@ -375,6 +402,7 @@ class MahasiswaController extends Controller
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
     	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
         $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+        
         if($hasil_ta!=NULL){
     		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
 

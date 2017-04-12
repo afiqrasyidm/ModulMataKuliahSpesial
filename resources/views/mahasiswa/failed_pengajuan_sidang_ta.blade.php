@@ -21,7 +21,7 @@ if($tugas_akhir == null){
  	echo "</a></p>";
 }
 
-else if($tugas_akhir!=9){
+else if($tugas_akhir->status_tugas_akhir!=6){
 	echo "<div class='col-md-3'></div>";
 	echo "<div  class='col-md-9'>";
 	echo "<div style='margin-top:225px;''>";
