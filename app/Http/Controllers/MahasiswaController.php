@@ -400,22 +400,33 @@ class MahasiswaController extends Controller
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-    	if($tugas_akhir!= null){
+
+    	if($tugas_akhir!= null ){
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-    		if($pengajuan_sidang->status==2){
-		    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
-		        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
-		        
-		        if($hasil_ta!=NULL){
-		    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
+    		if($pengajuan_sidang!= null){
 
-		    	}
-		    	return view("mahasiswa/upload_hasil_ta");
-		    }
-		    else{
-		    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
-		    }
+	    		if($pengajuan_sidang->status==2 && $tugas_akhir->status_tugas_akhir==6){
+	    		
+			    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+			        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+			        
+			        if($hasil_ta!=NULL){
+			    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
+
+			    	}
+			    	return view("mahasiswa/upload_hasil_ta");
+			    }
+			    else
+			    {
+			    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
+			    }
+			} 
+			else
+			{
+			    return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
+			}
+
 	    }
 	    else{
 	    	return view("mahasiswa/failed_upload_hasil_ta", array('tugas_akhir' => $tugas_akhir));
