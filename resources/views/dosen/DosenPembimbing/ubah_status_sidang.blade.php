@@ -21,7 +21,7 @@
                 <div class="box-body">
                   
 <!-- test -->
-
+@if(isset($ta))
 
       <section class="content">
               <table class="table table-bordered">
@@ -77,7 +77,7 @@
         </section><!-- /.content -->
    
      
-    
+    @endif
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>
