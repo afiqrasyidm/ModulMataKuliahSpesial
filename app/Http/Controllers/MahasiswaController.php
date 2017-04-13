@@ -400,14 +400,26 @@ class MahasiswaController extends Controller
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
-        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
-        
-        if($hasil_ta!=NULL){
-    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
+    	if($tugas_akhir!= null){
+    		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-    	}
-    	return view("mahasiswa/upload_hasil_ta");
+    		if($pengajuan_sidang->status==2){
+		    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+		        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+		        
+		        if($hasil_ta!=NULL){
+		    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
+
+		    	}
+		    	return view("mahasiswa/upload_hasil_ta");
+		    }
+		    else{
+		    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
+		    }
+	    }
+	    else{
+	    	return view("mahasiswa/failed_upload_hasil_ta", array('tugas_akhir' => $tugas_akhir));
+	    }
     }
 
 
@@ -415,38 +427,44 @@ class MahasiswaController extends Controller
 
     {	session_start();
 
-    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$npm_mahasiswa = $mahasiswa->NPM;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
     	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+
+
         $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+
     
 
-        if($hasil_ta==NULL){
+	        if($hasil_ta==NULL){
 
-        	$hasil_ta = new Hasil_ta;
+	        	$hasil_ta = new Hasil_ta;
 
-    		$this->validate($request, [
+	    		$this->validate($request, [
 
-            	'file' => 'required|mimes:pdf|max:10000',
+	            	'file' => 'required|mimes:pdf|max:10000',
 
-       		 ]); 
+	       		 ]); 
 
 
-        	$fileName = time().'.'.$request->file->getClientOriginalExtension(); 
+	        	$fileName = $npm_mahasiswa.'.'.$request->file->getClientOriginalExtension(); 
 
-        	$request->file->move(public_path('files'), $fileName);
+	        	$request->file->move(public_path('files'), $fileName);
 
-       		$hasil_ta->dokumen = $fileName;
-	        $hasil_ta->id_tugas_akhir = $id_tugas_akhir;
-	       
-	        $hasil_ta->save();
-			
-	    	return back()
+	       		$hasil_ta->dokumen = $fileName;
+		        $hasil_ta->id_tugas_akhir = $id_tugas_akhir;
+		       
+		        $hasil_ta->save();
+				
+		    	return back()
 
-	    		->with('success','File Uploaded successfully.')
+		    		->with('success','File Uploaded successfully.')
 
-	    		->with('path',$fileName);
-    	}
+		    		->with('path',$fileName);
+	    	}
+	    
     }
 
 
@@ -458,4 +476,13 @@ class MahasiswaController extends Controller
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 			return redirect()->route('mahasiswa/upload-hasil-ta');
 	}
+
+
+	 	public function failed_upload_hasil_ta(){
+
+		session_start();
+
+    	return view("mahasiswa/failed_upload_hasil_ta");
+	}
+
 }
