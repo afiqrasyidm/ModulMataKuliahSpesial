@@ -1,8 +1,15 @@
-@extends('layouts.layout_mahasiswa')
+@extends('layouts.layout_failed')
 
 @section('title','Pengajuan Sidang TA')
 
-@section('mainContent')
+@section('titleMainContent')
+Anda Belum Dapat Melakukan Pengajuan Sidang TA
+
+@endsection
+
+@section('contentMainContent')
+
+
 
 <?php
 

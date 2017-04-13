@@ -1,9 +1,16 @@
-@extends('layouts.layout_mahasiswa')
+@extends('layouts.layout_failed')
 
 @section('title','Upload Dokumen TA')
 
-@section('mainContent')
+@section('titleMainContent')
+Anda Belum Dapat Mengupload Dokumen TA
 
+@endsection
+
+@section('contentMainContent')
+
+
+          
 <?php
 
 
@@ -31,10 +38,7 @@ else if($tugas_akhir->status_tugas_akhir!=6){
 }
 
 else if($pengajuan_sidang == null){
-	echo "<div class='col-md-3'></div>";
-	echo "<div  class='col-md-9'>";
-	echo "<div style='margin-top:225px;''>";
-	echo "<h2 style='color:red;'>Harap melakukan pengajuan sidang terlebih dahulu!</h2>";
+	echo "<b>Harap melakukan pengajuan sidang terlebih dahulu!</b>";
 	echo "<p>Anda tidak dapat melakukan upload dokumen sebelum melakukan pengajuan sidang tugas akhir</p>";
  	echo "<p>Silahkan makelukan pengajuan sidang tugas akhir";
  	echo "<a href='";
@@ -46,12 +50,14 @@ else if($pengajuan_sidang == null){
 
 
 else if($pengajuan_sidang->status!=2){
-	echo "<div class='col-md-3'></div>";
-	echo "<div  class='col-md-9'>";
-	echo "<div style='margin-top:225px;''>";
-	echo "<h2 style='color:red;'>Harap menunggu persetujuan sidang!</h2>";
-	echo "<p>Anda tidak diperkenankan melakukan upload dokumen sebelum diizinkan sidang oleh dosen pembimbing</p>";
+	echo "<b>Harap menunggu persetujuan sidang! </b>";
+	echo "Anda tidak diperkenankan melakukan upload dokumen sebelum diizinkan sidang oleh dosen pembimbing";
 }
 ?>
+
+
+
+
+
 
 @endsection
