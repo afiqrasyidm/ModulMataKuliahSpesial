@@ -401,8 +401,9 @@ class MahasiswaController extends Controller
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-    	if($tugas_akhir!= null ){
+    	if($tugas_akhir!= null){
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    		
 
     		if($pengajuan_sidang!= null){
 
@@ -429,7 +430,7 @@ class MahasiswaController extends Controller
 
 	    }
 	    else{
-	    	return view("mahasiswa/failed_upload_hasil_ta", array('tugas_akhir' => $tugas_akhir));
+	    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir));
 	    }
     }
 

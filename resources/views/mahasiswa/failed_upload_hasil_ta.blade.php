@@ -30,7 +30,7 @@ else if($tugas_akhir->status_tugas_akhir!=6){
 	echo "<p>Anda tidak diperkenankan melakukan upload dokumen sebelum menyelesaikan bimbingan tugas akhir dan diizinkan sidang oleh dosen pembimbing </p>";
 }
 
-if($pengajuan_sidang== null){
+else if($pengajuan_sidang == null){
 	echo "<div class='col-md-3'></div>";
 	echo "<div  class='col-md-9'>";
 	echo "<div style='margin-top:225px;''>";
