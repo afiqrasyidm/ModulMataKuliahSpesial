@@ -21,12 +21,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  
-              <div align="right">
-                  <a href="{{ route('mahasiswa/pengajuan-topik-ta') }}">
-                    <button  class="btn btn-primary">Ajukan Topik Baru</button>
-                  </a><br><br>
-              </div>
-
+          
 	<form>
 		<table class="table table-striped">
 		    <thead>
@@ -96,6 +91,13 @@
 
   </form>
 
+<!-- ajukan topik mandiri -->
+    <div align="right">
+                  <a href="{{ route('mahasiswa/pengajuan-topik-ta') }}">
+                    <button  class="btn btn-primary">Ajukan Topik Baru</button>
+                  </a><br><br>
+              </div>
+<!-- end -->
 
 @else
   <br>
