@@ -11,6 +11,7 @@
 <br><br>
 
 
+@if(!isset($topik_belum_diambil))
  <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
@@ -119,6 +120,64 @@
 
 		
 
+@else
+	
+
+
+<div class="box box-primary">
+                <div class="box-header with-border">
+
+                  <center><h1 class="header-title">Daftar Pendaftar Topik {{$topik_belum_diambil->first()->topik_ta}}</h1><br></center>
+				<br>
+				@if($topik_belum_diambil->first()->sudah_diambil == 0)
+				<a href="/industri/hentikan-topik/{{$topik_belum_diambil->first()->id_topik}}">
+						<button  class="btn btn-primary">Stop Penawaran Topik ini</button>
+				</a>
+				@else
+					<b>
+					Penawaran Topik ini telah 
+					
+					<span style="color:red;">diberhentikan</span>
+					</b>
+				@endif
+				<br>
+				<br>
+				
+			   </div><!-- /.box-header -->
+				
+                <div class="box-body">
+                 
+              
+
+					
+								<p>Maksimal Pendaftar : {{$topik_belum_diambil->first()->maksimal_pendaftar}} orang</p>
+								<p>Jumlah Pendaftar Sampai Saat Ini : 0 orang</p>
+									
+																
+							
+								<p>Latar Belakang Topik :</p>
+								
+								<p>{{$topik_belum_diambil->first()->deskripsi}}</p>
+
+
+								
+											
+					
+
+					
+				</div><!-- /.box-body -->
+              </div><!-- /.box -->
+            
+
+			
+
+
+
+
+			
+			
+			
+			
 			
 
 
@@ -129,12 +188,7 @@
 
 
 
-
-
-
-
-
-
+@endif
     
 
         </section><!-- /.content -->

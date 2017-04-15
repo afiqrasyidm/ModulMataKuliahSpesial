@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2017 at 09:11 AM
+-- Generation Time: Apr 15, 2017 at 03:08 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dosen` (
-  `id_dosen` int(10) UNSIGNED NOT NULL,
   `nama_dosen` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `NIP` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `id_dosen` int(10) UNSIGNED NOT NULL,
   `interest` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -40,8 +40,8 @@ CREATE TABLE `dosen` (
 -- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`id_dosen`, `nama_dosen`, `NIP`, `id_user`, `created_at`, `updated_at`, `interest`) VALUES
-(1, 'mischelle', '123', 2, NULL, NULL, '');
+INSERT INTO `dosen` (`nama_dosen`, `NIP`, `id_user`, `created_at`, `updated_at`, `id_dosen`, `interest`) VALUES
+('mischelle', '123', 2, NULL, NULL, 1, '');
 
 -- --------------------------------------------------------
 
@@ -51,11 +51,12 @@ INSERT INTO `dosen` (`id_dosen`, `nama_dosen`, `NIP`, `id_user`, `created_at`, `
 
 CREATE TABLE `dosen_pa` (
   `id` int(10) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL, 
   `update_at` timestamp NULL DEFAULT NULL,
   `id_dosen` int(10) NOT NULL,
+  `id_maker` int(10) NULL DEFAULT NULL,
   `id_mahasiswa` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,10 @@ CREATE TABLE `dosen_pa` (
 
 CREATE TABLE `dosen_pembimbing_ta` (
   `id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL, 
   `updated_at` timestamp NULL DEFAULT NULL,
   `id_dosen` int(10) UNSIGNED NOT NULL,
+  `id_maker` int(10) NULL DEFAULT NULL,
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -82,8 +84,9 @@ CREATE TABLE `dosen_penguji_ta` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `id_dosen` int(10) NOT NULL,
+  `id_maker` int(10) NULL DEFAULT NULL,
   `id_tugas_akhir` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -96,6 +99,7 @@ CREATE TABLE `fakultas` (
   `nama_fakultas` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_universitas` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
+  `id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -115,12 +119,12 @@ INSERT INTO `fakultas` (`id_fakultas`, `nama_fakultas`, `id_universitas`, `creat
 
 CREATE TABLE `feedback_tugas_akhir` (
   `id_feedback_tugas_akhir` int(10) NOT NULL,
-  `feedback_dosen_pa` varchar(255) NOT NULL,
-  `feedback_dosen_pembimbing_ta` varchar(255) NOT NULL,
+  `feedback_dosen_pa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feedback_dosen_pembimbing_ta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',`id_maker` int(10) NULL DEFAULT NULL,
   `id_tugas_akhir` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -135,7 +139,7 @@ CREATE TABLE `hasil_ta` (
   `dokumen_revisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nilai_ta` double DEFAULT NULL,
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -160,19 +164,20 @@ CREATE TABLE `industri` (
   `jabatan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_maker` int(10) NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `industri`
 --
 
-INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33'),
-(2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11'),
-(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27'),
-(4, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 8, '2017-04-04 22:36:07', '2017-04-04 22:36:07'),
-(5, 'akbar@akbar.com', 'akbar', 'akbar', 'akbar', 10, '2017-04-07 08:54:21', '2017-04-07 08:54:21');
+INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`, `jabatan`, `id_user`, `created_at`, `updated_at`, `id_maker`) VALUES
+(1, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq', 'afiq', 5, '2017-03-15 07:02:33', '2017-03-15 07:02:33', 0),
+(2, 'afiqrasyidm@gmail.com', 'Perusahaan afiq', 'afiq Lagi', 'afiq', 6, '2017-03-18 05:51:11', '2017-03-18 05:51:11', 0),
+(3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27', 0),
+(4, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 8, '2017-04-04 22:36:07', '2017-04-04 22:36:07', 0),
+(5, 'akbar@akbar.com', 'akbar', 'akbar', 'akbar', 10, '2017-04-07 08:54:21', '2017-04-07 08:54:21', 0);
 
 -- --------------------------------------------------------
 
@@ -183,7 +188,7 @@ INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`,
 CREATE TABLE `jenis_ta` (
   `id_jenis_ta` int(10) UNSIGNED NOT NULL,
   `nama_ta` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -199,7 +204,7 @@ CREATE TABLE `log_bimbingan` (
   `waktu_akhir` datetime NOT NULL,
   `keterangan` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -221,7 +226,7 @@ CREATE TABLE `mahasiswa` (
   `id_prodi` int(10) UNSIGNED NOT NULL,
   `IPK` varchar(24) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_sudah_ambil_ta` int(2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -286,33 +291,9 @@ CREATE TABLE `pengajuan_sidang` (
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_mahasiswa` int(10) NOT NULL,
   `id_tugas_akhir` int(10) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pengambil_topik`
---
-
-CREATE TABLE `pengambil_topik` (
-  `id_pengambil_topik` int(10) NOT NULL,
-  `id_mahasiswa` int(10) NOT NULL,
-  `id_topik` int(10) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pengambil_topik`
---
-
-INSERT INTO `pengambil_topik` (`id_pengambil_topik`, `id_mahasiswa`, `id_topik`, `created_at`, `updated_at`) VALUES
-(16, 4, 28, '2017-04-05 10:40:59', '0000-00-00 00:00:00'),
-(17, 7, 28, '2017-04-05 10:50:00', '0000-00-00 00:00:00'),
-(20, 5, 25, '2017-04-05 10:42:44', '0000-00-00 00:00:00'),
-(21, 6, 25, '2017-04-05 10:42:45', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -324,7 +305,7 @@ CREATE TABLE `prodi` (
   `id_prodi` int(10) UNSIGNED NOT NULL,
   `nama_prodi` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_fakultas` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -339,18 +320,30 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`, `id_fakultas`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `refrensi_status_ta`
+--
+
+CREATE TABLE `refrensi_status_ta` (
+  `id_refrensi_status_ta` int(10) UNSIGNED NOT NULL,
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staf`
 --
 
 CREATE TABLE `staf` (
   `id_staff` int(10) NOT NULL,
   `NIK` varchar(25) NOT NULL,
-  `role` varchar(25) NOT NULL,
   `nama_staff` varchar(25) NOT NULL,
   `id_fakultas` int(10) NOT NULL,
   `id_universitas` int(10) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,`id_maker` int(10) NULL DEFAULT NULL,
   `update_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -367,7 +360,7 @@ CREATE TABLE `topik` (
   `id_dosen` int(10) UNSIGNED DEFAULT NULL,
   `id_industri` int(10) UNSIGNED DEFAULT NULL,
   `maksimal_pendaftar` int(10) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `sudah_diambil` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -378,13 +371,14 @@ CREATE TABLE `topik` (
 
 INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_industri`, `maksimal_pendaftar`, `created_at`, `updated_at`, `sudah_diambil`) VALUES
 (17, 'Sentiment Analisis untuk BukaKaoak', 'Lorem', NULL, 1, 5, '2017-03-18 08:06:14', '2017-03-18 08:06:14', 1),
-(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, 5, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 0),
+(23, 'Sentiment Analisis untuk Fasilkom', 'Ini merupakan sentiment analisis', 1, NULL, 5, '2017-03-18 18:24:20', '2017-03-18 18:24:20', 1),
 (24, 'Sentiment Analisis untuk FH', 'Lorem', 1, NULL, 15, '2017-03-18 22:46:15', '2017-03-18 22:46:15', 0),
 (25, 'Survey Leptop Asus', 'Lorem', NULL, 3, 5, '2017-03-19 00:20:05', '2017-03-19 00:20:05', 0),
 (26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, 6, '2017-03-19 00:23:04', '2017-03-19 00:23:04', 1),
 (27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 7, '2017-04-04 23:02:10', '2017-04-04 23:02:10', 0),
 (28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', '2017-04-04 23:35:57', 0),
-(30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', '2017-04-05 00:25:37', 0);
+(30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', '2017-04-05 00:25:37', 0),
+(40, 'Matematika Diskrit 3', 'LOLOL', NULL, 3, 10, '2017-04-12 00:33:22', '2017-04-12 00:33:22', 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +392,7 @@ CREATE TABLE `tugas_akhir` (
   `tgl_pengajuan` date DEFAULT NULL,
   `id_jenis_ta` int(10) UNSIGNED DEFAULT NULL,
   `id_mahasiswa` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `judul_ta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_topik` int(10) UNSIGNED NOT NULL
@@ -409,10 +403,10 @@ CREATE TABLE `tugas_akhir` (
 --
 
 INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `created_at`, `updated_at`, `judul_ta`, `id_topik`) VALUES
-(23, '-2', NULL, NULL, 4, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28),
+(23, '0', NULL, NULL, 4, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28),
 (24, '-2', NULL, NULL, 5, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 25),
-(25, '-2', NULL, NULL, 6, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 25),
-(26, '-2', NULL, NULL, 7, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28);
+(25, '0', NULL, NULL, 6, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 25),
+(26, '-1', NULL, NULL, 7, '2017-04-04 18:48:42', '2017-04-04 18:48:42', NULL, 28);
 
 -- --------------------------------------------------------
 
@@ -423,7 +417,7 @@ INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajua
 CREATE TABLE `universitas` (
   `id_universitas` int(10) UNSIGNED NOT NULL,
   `nama_universitas` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -445,7 +439,7 @@ CREATE TABLE `user` (
   `username` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -464,6 +458,20 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `created_at`, `up
 (7, 'ojan', 'eyJpdiI6IlB6dW16S0hUXC9iTmQwZUQwcGdRTVdRPT0iLCJ2YWx1ZSI6InRzRllINnNwUUVDT3cycXladXFZSW00SjBWK3ZmRmxIOGhMZUFudkFieVU9IiwibWFjIjoiM2QyOWJhOWQwN2E3MjJmMWMxNGJmNjg5ZGUzZjYyNDNhYjdkZmM4NDM0ODViZWZiNTY1OTE4ZjI2NjBhODA5MyJ9', 'industri', '2017-04-04 22:36:07', '2017-04-04 22:36:07'),
 (9, 'ab', 'ab', 'mahasiswa', NULL, NULL),
 (11, 'fauzandi.muhammad', 'ozan15', 'mahasiswa', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id_user_role` int(10) UNSIGNED NOT NULL,
+  `id_user` int(10) UNSIGNED NOT NULL,
+  `role` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,`id_maker` int(10) NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -552,18 +560,18 @@ ALTER TABLE `pengajuan_sidang`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
--- Indexes for table `pengambil_topik`
---
-ALTER TABLE `pengambil_topik`
-  ADD PRIMARY KEY (`id_pengambil_topik`);
-
---
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id_prodi`),
   ADD UNIQUE KEY `prodi_nama_prodi_unique` (`nama_prodi`),
   ADD KEY `prodi_id_fakultas_foreign` (`id_fakultas`);
+
+--
+-- Indexes for table `refrensi_status_ta`
+--
+ALTER TABLE `refrensi_status_ta`
+  ADD PRIMARY KEY (`id_refrensi_status_ta`);
 
 --
 -- Indexes for table `staf`
@@ -599,6 +607,12 @@ ALTER TABLE `universitas`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id_user_role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -665,11 +679,6 @@ ALTER TABLE `migrations`
 ALTER TABLE `pengajuan_sidang`
   MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pengambil_topik`
---
-ALTER TABLE `pengambil_topik`
-  MODIFY `id_pengambil_topik` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
---
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
@@ -683,7 +692,7 @@ ALTER TABLE `staf`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --

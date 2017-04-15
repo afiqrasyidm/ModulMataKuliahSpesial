@@ -20,9 +20,7 @@ use App\Mahasiswa;
 use App\Prodi;
 use App\Fakultas;
 use App\Topik;
-
-
-use App\Pengambil_topik;
+use App\Tugas_akhir;
 
 class DosenController extends Controller
 {
@@ -91,7 +89,7 @@ class DosenController extends Controller
 			$i = 0;
 			foreach($topik as $t){
 				
-				$jumlah_pengambil_topik = Pengambil_topik::where('id_topik', $t ->id_topik )->get()->count();
+				$jumlah_pengambil_topik = Tugas_akhir::where('id_topik', $t ->id_topik )->get()->count();
 				$array[$i] = $jumlah_pengambil_topik;
 				
 				$i++;
@@ -115,12 +113,11 @@ class DosenController extends Controller
 			
 		
     		$topik = DB::table('topik')
-				->leftJoin('Pengambil_topik', 'topik.id_topik', '=', 'topik.id_topik')
-				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
-				->leftJoin('tugas_akhir', 'tugas_akhir.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
+				->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', '=', 'topik.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				
 				->where([
 				 ['topik.id_topik', '=', $id_topik],
-				['Pengambil_topik.id_topik', '=', $id_topik],
 				['tugas_akhir.id_topik', '=', $id_topik],
 				])
 				->get();
@@ -130,19 +127,17 @@ class DosenController extends Controller
 			
 			//jika belum ada pendaftar
 			if($topik->isEmpty()){
-				$topik = DB::table('topik')
+				$topik_belum_diambil = DB::table('topik')
 						->where([
 						 ['topik.id_topik', '=', $id_topik],
 						])
 						->get();
 					//	return "lol";
-				return view("dosen/detail_topik_ta_tidak_ada " , array('topik' => $topik ));
-				
+				return view("dosen/detail_topik_ta " , array( 'topik_belum_diambil'=>$topik_belum_diambil));
+			
 			}
 			//jika sudah
-			else{
-				return view("dosen/detail_topik_ta " , array('topik' => $topik ));
-			}
+				return view("dosen/detail_topik_ta " , array('topik' => $topik));
 			
 			
 

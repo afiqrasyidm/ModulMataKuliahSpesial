@@ -17,8 +17,7 @@ use App\Mahasiswa;
 use App\Prodi;
 use App\Fakultas;
 use App\Topik;
-
-use App\Pengambil_topik;
+use App\Tugas_akhir;
 
 class IndustriController extends Controller
 {
@@ -46,6 +45,19 @@ class IndustriController extends Controller
 
 	function lihat_hasil_ta () {
 		session_start();
+		
+			$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				->leftJoin('industri', 'industri.id_industri', '=', 'topik.id_industri')
+				->where([
+				 ['topik.id_industri', '=',$_SESSION["user_login_industri"]-> id_industri],
+				])
+				->get();
+		
+		return $tugas_akhir;
+		
+		
 		return view("industri/lihat_hasil_ta");
 	}
 
@@ -111,7 +123,7 @@ class IndustriController extends Controller
 			$i = 0;
 			foreach($topik as $t){
 				
-				$jumlah_pengambil_topik = Pengambil_topik::where('id_topik', $t ->id_topik )->get()->count();
+				$jumlah_pengambil_topik = Tugas_akhir::where('id_topik', $t ->id_topik )->get()->count();
 				$array[$i] = $jumlah_pengambil_topik;
 				
 				$i++;
@@ -134,13 +146,11 @@ class IndustriController extends Controller
 			
 		
     		$topik = DB::table('topik')
-				->leftJoin('Pengambil_topik', 'topik.id_topik', '=', 'topik.id_topik')
-				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
-				->leftJoin('industri', 'industri.id_industri', '=', 'topik.id_industri')
-				->leftJoin('tugas_akhir', 'tugas_akhir.id_mahasiswa', '=', 'Pengambil_topik.id_mahasiswa')
+				->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', '=', 'topik.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				
 				->where([
 				 ['topik.id_topik', '=', $id_topik],
-				['Pengambil_topik.id_topik', '=', $id_topik],
 				['tugas_akhir.id_topik', '=', $id_topik],
 				])
 				->get();
@@ -148,12 +158,18 @@ class IndustriController extends Controller
 				
 			//return $topik;
 			
-			if($topik->first()->id_industri != NULL ){
-
-			//return $topik->first()->topik_ta;
-				return view("industri/detail_topik_ta " , array('topik' => $topik ));
-
+			if($topik->isEmpty()){
+				$topik_belum_diambil = DB::table('topik')
+						->where([
+						 ['topik.id_topik', '=', $id_topik],
+						])
+						->get();
+					//	return "lol";
+				return view("industri/detail_topik_ta " , array( 'topik_belum_diambil'=>$topik_belum_diambil));
+			
 			}
+			//jika sudah
+				return view("industri/detail_topik_ta " , array('topik' => $topik));
 			
 
 	}

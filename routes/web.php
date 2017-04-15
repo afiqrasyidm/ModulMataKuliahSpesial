@@ -66,7 +66,6 @@ Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainCo
 
 
 
-Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
 
 
 Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'IndustriController@pengumuman']);
@@ -159,3 +158,6 @@ Route::get('/dosen/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['a
 
 //dosen stop pengajuan topik
 Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/{id_topik}', 'uses' => 'DosenController@hentikan_topik']);
+
+//industri lihat hasil ta
+Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);

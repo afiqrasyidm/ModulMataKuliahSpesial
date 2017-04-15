@@ -21,7 +21,7 @@ use App\Dosen;
 
 use App\Pengajuan_sidang;
 use App\Hasil_ta;
-use App\Pengambil_topik;
+
 
 use Carbon\Carbon;
 
@@ -61,7 +61,7 @@ class MahasiswaController extends Controller
 
 			//ambil jumlah mahasiswa yang telah mengambil topik itu
 			  
-			$jumlah_pengambil_topik = Pengambil_topik::where('id_topik',$tugas_akhir->id_topik )->get()->count();
+			$jumlah_pengambil_topik = Tugas_akhir::where('id_topik',$tugas_akhir->id_topik )->get()->count();
 
 			
 			if($topik_yang_diambil->id_industri != NULL){
@@ -309,9 +309,7 @@ class MahasiswaController extends Controller
 					//menghapus tugas akhir
 					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 					//menghapus row pengambil topik
-					DB::table('pengambil_topik')
-					->where('id_mahasiswa', $id_mahasiswa)
-					->delete();
+					
 
 				}
 			return redirect()->route('mahasiswa/pengajuan-topik');
@@ -320,7 +318,7 @@ class MahasiswaController extends Controller
 	 	session_start();
     		$topik = Topik::where('id_topik', $id_topik )->get()->first();
 			
-			$jumlah_pengambil_topik = Pengambil_topik::where('id_topik', $id_topik )->get()->count();
+			$jumlah_pengambil_topik = Tugas_akhir::where('id_topik', $id_topik )->get()->count();
 			
 			
 			if($topik->id_industri != NULL ){
@@ -348,10 +346,7 @@ class MahasiswaController extends Controller
 
 			
 
-			$pengambil_topik = new Pengambil_topik;
-			$pengambil_topik->id_topik = $id_topik;
-			$pengambil_topik->id_mahasiswa = $id_mahasiswa;
-			$pengambil_topik->save();
+		
 
 			$tugas_akhir = new Tugas_akhir;
 
