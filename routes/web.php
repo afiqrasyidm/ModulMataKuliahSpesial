@@ -136,7 +136,7 @@ Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainControl
 
 //ajukan pembimbing
 
-Route::get('mahasiswa/pengajuan-dosenpembimbing-ta/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosenpembimbing-ta', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
+Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
 
 
 
@@ -144,7 +144,7 @@ Route::get('mahasiswa/pengajuan-dosenpembimbing-ta/{id_dosen}', ['as' => 'mahasi
 Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
 Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
 
-//upload dokumen gagal 
+//upload dokumen gagal
 Route::get('mahasiswa/failed-upload-hasil-ta', ['as' => 'mahasiswa/failed-upload-hasil-ta', 'uses' => 'MahasiswaController@failed_upload_hasil_ta']);
 
 //ubah dokumen ta
@@ -185,6 +185,7 @@ Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/{
 
 //industri lihat hasil ta
 Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
+
 
 //dosen lihat hasil ta
 Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'DosenController@lihat_hasil_ta']);
