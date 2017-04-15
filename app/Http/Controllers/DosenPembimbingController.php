@@ -13,11 +13,38 @@ class DosenPembimbingController extends Controller
         return view("dosen/DosenPembimbing/home_dosen_pembimbing");
     }
     
-    function ubah_status_sidang() {
-    	session_start();
-    	return view("dosen/DosenPembimbing/ubah_status_sidang");
+   function ubah_status_sidang() {
+      session_start();
+
+      $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+      
+
+      $ta = DB::table('dosen_pembimbing_ta')
+        ->leftJoin('tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+        ->where('tugas_akhir.status_tugas_akhir','>', '4')->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+        ->get();
+
+      
+
+    return view("dosen/DosenPembimbing/ubah_status_sidang", array('ta' => $ta));
+
     }
 
+function ubah_status_sidangPost($id_tugas_akhir)
+{ 
+  session_start();
+
+  
+
+    DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => 6]);
+   
+    return redirect()->route('dosen/pembimbing/ubah-status-sidang');
+    
+  
+}
    //  function feedback_sidang_dosen_penguji() {
    //  	session_start();
    //  	return view("dosen/DosenPenguji/feedback_sidang_dosen_penguji");

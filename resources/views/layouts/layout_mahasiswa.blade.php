@@ -49,14 +49,10 @@
             }
           ?>
 
+        <li><a href="{{ route('mahasiswa/pengajuan-sidang-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!=null){
-              echo "<li><a href='";
-              echo route('mahasiswa/pengajuan-sidang-ta');
-              echo "'/>";
-              echo "<i class='fa fa-angle-right'></i>";
               echo "Pengajuan Permohonan Sidang";
-              echo "</a></li>";
             }
           ?>
 
@@ -71,7 +67,7 @@
       <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!= null){
-              echo "Hasil Sidang";
+              echo "Dokumen TA";
             }
           ?>
         

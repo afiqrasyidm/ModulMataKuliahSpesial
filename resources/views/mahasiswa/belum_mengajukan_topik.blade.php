@@ -1,15 +1,19 @@
-@extends('layouts.layout_mahasiswa')
+@extends('layouts.layout_failed')
 
-@section('title','Pengumuman')
+@section('title','Pengajuan Topik')
 
-@section('mainContent')
-	<div class="col-md-3">
-	</div>
-	<div  class="col-md-9">
-		<div style="margin-top:225px;">
-			<h2 style="color:red;">Harap memilih topik terlebih dahulu!</h2>
-			<p>Anda tidak diperkenankan melakukan pengisian formulir pengajuan tugas akhir sebelum memilih topik</p>
+@section('titleMainContent')
+Anda Belum Dapat Melakukan Pengajuan TA
+
+@endsection
+
+@section('contentMainContent')
+
+
+
+			<b>Harap memilih topik terlebih dahulu!</b>
+			Anda tidak diperkenankan melakukan pengisian formulir pengajuan tugas akhir sebelum memilih topik
+			<br><br>
 			<p>Topik tugas akhir dapat dipilih <a href="{{route('mahasiswa/pengajuan-topik')}}">disini</a></p>
-		</div>
-	</div>
+	
 @endsection
