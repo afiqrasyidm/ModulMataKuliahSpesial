@@ -150,15 +150,23 @@ class MahasiswaController extends Controller
     	session_start();
         $id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
         $tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+        $topik = DB::table('topik')
+          ->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
+          ->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
+          ->where('topik.sudah_diambil', '=', 0)
+          ->get();
+
+
+          $dosenpembimbing = DB::table('dosen_pembimbing_ta')
+            ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
+
+            ->where('dosen_pembimbing_ta.id_tugas_akhir', '=', $tugas_akhir->id_tugas_akhir)
+            ->get()->first();
+// return $dosenpembimbing;
 
         //jika belum milih topik
     		if($tugas_akhir==NULL){
 
-    			$topik = DB::table('topik')
-    				->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
-    				->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
-    				->where('topik.sudah_diambil', '=', 0)
-    				->get();
 
     		 	return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
 
@@ -173,7 +181,7 @@ class MahasiswaController extends Controller
             return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbing' => $dosenpembimbing));
           }
           else {
-            return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
+            return view("mahasiswa/dosen_pembimbing", array('dosenpembimbing' => $dosenpembimbing));
           }
         }
 

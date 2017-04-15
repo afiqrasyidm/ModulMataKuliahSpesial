@@ -1,6 +1,6 @@
 @extends('layouts.layout_mahasiswa')
 
-@section('title','Pengajuan Pembimbing TA')
+@section('title','Dosen Pembimbing TA')
 
 @section('mainContent')
 <div class="col-md-1">
@@ -21,7 +21,7 @@
 
 	          <th width ="20%" bgcolor="#86b7e3">Nama Dosen</th>
 	            <td bgcolor="#c0c5cc">
-
+								
 							{{$dosenpembimbing->nama_dosen}} </td>
 
 	        </tr>
