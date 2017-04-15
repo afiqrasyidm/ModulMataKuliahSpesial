@@ -14,7 +14,9 @@
     <ul class="treeview-menu">
       <li><a href="{{ route('dosen/pengajuan-topik-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
 	  <li><a href="{{ route('dosen/verifikasi-pengambilan-topik-ta') }}"><i class="fa fa-angle-right"></i>Verifikasi Pengambilan Topik</a></li>
-    </ul>
+		<li><a href="{{ route('dosen/lihat-hasil-ta') }}"><i class="fa fa-angle-right"></i>Lihat Hasil TA</a></li>
+
+   </ul>
   </li>
   
   <li class="treeview">

@@ -172,6 +172,25 @@ class DosenController extends Controller
 	}
 	
 	
+	function lihat_hasil_ta () {
+		session_start();
+			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+		
+			$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				->leftJoin('Pengajuan_sidang', 'Pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+				->leftJoin('Hasil_ta', 'Hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+			
+				->where([
+				 ['topik.id_dosen', '=',$id_dosen],
+				 ['tugas_akhir.status_tugas_akhir', '>=',0],
+				])
+				->get();
+		
+		
+		return view("dosen/lihat_hasil_ta" , array('tugas_akhir' => $tugas_akhir) );
+	}
 
 
 }

@@ -18,6 +18,7 @@ use App\Prodi;
 use App\Fakultas;
 use App\Topik;
 use App\Tugas_akhir;
+use App\Pengajuan_sidang;
 
 class IndustriController extends Controller
 {
@@ -49,16 +50,21 @@ class IndustriController extends Controller
 			$tugas_akhir = DB::table('tugas_akhir')
 				->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
 				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-				->leftJoin('industri', 'industri.id_industri', '=', 'topik.id_industri')
+				->leftJoin('Pengajuan_sidang', 'Pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+				->leftJoin('Hasil_ta', 'Hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+			
 				->where([
 				 ['topik.id_industri', '=',$_SESSION["user_login_industri"]-> id_industri],
+				 ['tugas_akhir.status_tugas_akhir', '>=',0],
 				])
 				->get();
 		
-		return $tugas_akhir;
+	//	return $tugas_akhir;
 		
+	
+		//return view("industri/verifikasi_pengambilan_topik_ta" , array('topik' => $topik, 'array' => $array) );
 		
-		return view("industri/lihat_hasil_ta");
+		return view("industri/lihat_hasil_ta" , array('tugas_akhir' => $tugas_akhir) );
 	}
 
 	function pengumuman () {
