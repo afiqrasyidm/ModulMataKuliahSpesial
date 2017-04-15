@@ -29,6 +29,7 @@ class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
     	session_start();
+
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 		
 		$id_mahasiswa = $mahasiswa->id_mahasiswa;
@@ -38,12 +39,13 @@ class MahasiswaController extends Controller
 		}
 		
 		
+
 		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
-	
-		
+
+
 			$topik = DB::table('topik')
 				->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
 				->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
@@ -56,6 +58,7 @@ class MahasiswaController extends Controller
 		}
 		//jika sudah tampilkan detailnya
 		else {
+
 
 			$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
 
@@ -73,9 +76,9 @@ class MahasiswaController extends Controller
 				, 'jumlah_pengambil_topik' => $jumlah_pengambil_topik) );
 			}
 			//berarti diajukan oleh dosen
-			
+
 				else{
-			
+
 				$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
       //
 				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir
@@ -176,6 +179,46 @@ class MahasiswaController extends Controller
 
     }
 
+    public function detail_dosen($id_dosen){
+      session_start();
+
+        $dosenpembimbing = Dosen::where('id_dosen', $id_dosen)->get()->first();
+
+          return view("mahasiswa/detail_dosen " , array('dosenpembimbing' => $dosenpembimbing) );
+
+
+    }
+
+    public function pengajuan_dosbing($id_dosen){
+        session_start();
+
+        $id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+
+        DB::table('dosen')
+              ->where('id_dosen', $id_dosen)
+
+
+        $pengaju_dosbing = new Pengaju_dosbing;
+        $pengaju_dosbing->id_dosen = $id_dosen;
+        $pengaju_dosbing->id_mahasiswa = $id_mahasiswa;
+        $pengaju_dosbing->izin_ambil= 0;
+        $pengaju_dosbing->save();
+
+        $dosen_pembimbing_ta = new Dosen_pembimbing_ta;
+
+
+        $tugas_akhir->id_mahasiswa = $id_mahasiswa;
+
+        $tugas_akhir->id_topik = $id_topik;
+
+        $tugas_akhir->status_tugas_akhir = "000";
+
+        $tugas_akhir->save();
+
+        return redirect()->route('mahasiswa/pengajuan-topik');
+
+    }
+
     function pengumuman() {
         session_start();
         return view("mahasiswa/pengumuman");
@@ -189,13 +232,14 @@ class MahasiswaController extends Controller
 		session_start();
     	return view("mahasiswa/failed_pengajuan_sidang_ta");
 	}
-	
+
 	public function pengajuan_sidang_ta(){
 		session_start();
 
 		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
 		$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
 		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 	
 
@@ -231,6 +275,7 @@ class MahasiswaController extends Controller
 			else{
 			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));		
 			}
+
 		}
 
 		else{
@@ -341,12 +386,10 @@ class MahasiswaController extends Controller
 	}
 	public function pengajuan_topik_ta_dosen_industri($id_topik){
 			session_start();
-			
+
 			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
 
-			
 
-		
 
 			$tugas_akhir = new Tugas_akhir;
 
@@ -364,11 +407,12 @@ class MahasiswaController extends Controller
 
 	public function pengajuan_sidang_ta_submit() {
 		session_start();
-		
+
 			$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-			 
+
 
 			$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
+
 
 			//Validasi: Tidak bisa mengajukan
 			if($tugas_akhir!=6){
@@ -377,14 +421,16 @@ class MahasiswaController extends Controller
 
 			else{
 				$pengajuan_sidang = new Pengajuan_sidang;
-			
+
 				$pengajuan_sidang->id_mahasiswa = $id_mahasiswa;
-			
-				$pengajuan_sidang->status = "0"; 
-				
+
+				$pengajuan_sidang->status = "0";
+
 				$pengajuan_sidang->save();
+
 			
 				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));				
+
 			}
 
     }
@@ -399,6 +445,7 @@ class MahasiswaController extends Controller
     	if($tugas_akhir!= null){
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
     		
+
 
     		if($pengajuan_sidang!= null){
 
@@ -443,6 +490,7 @@ class MahasiswaController extends Controller
 
         $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
 
+
     
 
 	        if($hasil_ta==NULL){
@@ -451,14 +499,21 @@ class MahasiswaController extends Controller
 
 	    		$this->validate($request, [
 
+
 	            	'file' => 'required|mimes:pdf|max:10000',
+
 
 	       		 ]); 
 
 
+        	$fileName = time().'.'.$request->file->getClientOriginalExtension();
+
+
 	        	$fileName = $npm_mahasiswa.'.'.$request->file->getClientOriginalExtension(); 
 
+
 	        	$request->file->move(public_path('files'), $fileName);
+
 
 	       		$hasil_ta->dokumen = $fileName;
 		        $hasil_ta->id_tugas_akhir = $id_tugas_akhir;
@@ -467,18 +522,19 @@ class MahasiswaController extends Controller
 				
 		    	return back()
 
+
 		    		->with('success','File Uploaded successfully.')
 
 		    		->with('path',$fileName);
 	    	}
-	    
+
     }
 
 
     	public function ubah_dokumen_ta($id_tugas_akhir){
 
 			$hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir )->get()->first();
-		
+
 
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 			return redirect()->route('mahasiswa/upload-hasil-ta');

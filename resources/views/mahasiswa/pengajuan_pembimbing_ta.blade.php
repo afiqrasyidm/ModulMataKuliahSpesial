@@ -52,8 +52,9 @@
 
 				<tr>
 					<td>
-
-						{{$dosenpembimbing->nama_dosen}}
+						<a href="/mahasiswa/pengajuan-pembimbing-ta/detail/{{$dosenpembimbing->id_dosen}}">
+							{{$dosenpembimbing->nama_dosen}}
+						</a>
 
 					</td>
 

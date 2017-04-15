@@ -1,6 +1,6 @@
 @extends('layouts.layout_mahasiswa')
 
-@section('title','Pengajuan Topik TA')
+@section('title','Pengajuan Pembimbing TA')
 
 @section('mainContent')
 <div class="col-md-1">
@@ -11,7 +11,7 @@
 <br><br>
         <section class="content">
 
-						<h4><b>{{$topik->topik_ta}}</b></h4>
+						<h4><b>{{$dosenpembimbing->nama_dosen}}</b></h4>
 
           <!-- Default box -->
 					      <table class="table table-bordered">
@@ -19,40 +19,23 @@
 	    <tbody>
 
 
-	          <th width ="20%" bgcolor="#86b7e3">Pengaju</th>
-	            <td bgcolor="#c0c5cc">@if (isset($industri))
-						{{$industri->nama_industri}}
+	          <th width ="20%" bgcolor="#86b7e3">Nama Dosen</th>
+	            <td bgcolor="#c0c5cc">
 
-							@else
-							{{$dosen->nama_dosen}}
-
-
-							@endif</td>
+							{{$dosenpembimbing->nama_dosen}} </td>
 
 	        </tr>
 					<tr>
-					 <th bgcolor="#86b7e3">Diajukan Pada</th>
-						 <td bgcolor="#c0c5cc"> {{$topik->created_at}}</td>
+					 <th bgcolor="#86b7e3">Bidang Keahlian</th>
+						 <td bgcolor="#c0c5cc"> {{$dosenpembimbing->interest}}
+						 </td>
 
 				 </tr>
 				 <tr>
-					<th bgcolor="#86b7e3">Lowongan</th>
-						<td bgcolor="#c0c5cc"> 10 orang</td>
+					<th bgcolor="#86b7e3">Pengalaman</th>
+						<td bgcolor="#c0c5cc"> Lorem</td>
 
 				</tr>
-				 <tr>
-					 <th bgcolor="#86b7e3">Pendaftar</th>
-						 <td bgcolor="#c0c5cc"> 9 orang</td>
-
-				 </tr>
-
-
-	        <tr>
-	          <th bgcolor="#86b7e3">Deskripsi</th>
-	            <td bgcolor="#c0c5cc"> {{$topik->deskripsi}}</td>
-
-	        </tr>
-
 
 
 
@@ -60,9 +43,9 @@
 	</table>
 
 		<center>
-			<a href="/mahasiswa/pengajuan-topik-ta-dosen-industri/{{$topik->id_topik}}">
-				<button class="btn btn-primary">Ambil Topik Ini</button>
-			</a>
+			<a href="/mahasiswa/pengajuan-dosbing/{{$dosenpembimbing->id_dosen}}">
+			<button class="btn btn-primary">Pilih Sebagai Pembimbing</button>
+		</a>
 		</center>
 
         </section><!-- /.content -->

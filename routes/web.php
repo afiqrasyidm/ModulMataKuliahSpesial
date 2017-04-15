@@ -124,7 +124,22 @@ Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainCon
 
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 
- 
+
+//detail pembimbing TA
+
+
+Route::get('/mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => '/mahasiswa/pengajuan-pembimbing-ta/detail/', 'uses' => 'MahasiswaController@detail_dosen']);
+
+Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
+
+Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
+
+//ajukan pembimbing
+
+Route::get('mahasiswa/pengajuan-dosenpembimbing-ta/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosenpembimbing-ta', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
+
+
+
 //upload hasil ta
 Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
 Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
@@ -137,6 +152,7 @@ Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/uba
 
 //ubah status siap sidang
 Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
+
 
 Route::get('/dosen/pembimbing/status-sidang/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidangPost']);
 
