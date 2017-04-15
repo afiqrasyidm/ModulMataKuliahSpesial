@@ -150,6 +150,29 @@ class DosenController extends Controller
 		DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => 0]);
+		
+		
+		
+			$topik = new Topik;
+			$topik->topik_ta = Input::get ('topik_ta');
+			$topik->deskripsi = Input::get ('latar_belakang_ta');
+			$topik->maksimal_pendaftar = Input::get ('maksimal_pendaftar');
+			
+			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+			
+			$topik->id_industri = 	NULL;
+			$topik->id_dosen = $id_dosen;
+			$topik->sudah_diambil = 0;
+			
+	       	$topik->save();
+	        
+		
+		
+		
+		
+		
+		
+		
 		else{
 			DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
