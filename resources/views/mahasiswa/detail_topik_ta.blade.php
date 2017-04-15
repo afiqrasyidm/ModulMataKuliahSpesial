@@ -20,7 +20,7 @@
 
 
 	          <th width ="20%" bgcolor="#86b7e3">Pengaju</th>
-	            <td bgcolor="#c0c5cc">@if (isset($industri))
+	            <td bgcolor="#dddddd">@if (isset($industri))
 						Industri :{{$industri->nama_industri}}
 
 							@else
@@ -32,24 +32,27 @@
 	        </tr>
 					<tr>
 					 <th bgcolor="#86b7e3">Diajukan Pada</th>
-						 <td bgcolor="#c0c5cc"> {{$topik->created_at}}</td>
+						 <td bgcolor="#dddddd"> {{$topik->created_at}}</td>
 
 				 </tr>
 				<tr>
 					<th bgcolor="#86b7e3">Maksimal Pendaftar</th>
-					<td bgcolor="#c0c5cc">{{$topik->maksimal_pendaftar}} orang</td>
+					<td bgcolor="#dddddd">{{$topik->maksimal_pendaftar}} orang</td>
 
                 </tr>
 				 <tr>
 					 <th bgcolor="#86b7e3">Jumlah Pendaftar Sampai Saat Ini</th>
-						 <td bgcolor="#c0c5cc"> 9 orang</td>
+						 <td bgcolor="#dddddd"> 
+													{{$jumlah_pengambil_topik}} orang
+											
+							 </td>
 
 				 </tr>
 
 
 	        <tr>
 	          <th bgcolor="#86b7e3">Deskripsi</th>
-	            <td bgcolor="#c0c5cc"> {{$topik->deskripsi}}</td>
+	            <td bgcolor="#dddddd"> {{$topik->deskripsi}}</td>
 
 	        </tr>
 

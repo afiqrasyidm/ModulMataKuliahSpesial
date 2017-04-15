@@ -48,11 +48,11 @@
       <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang') }}"><i class="fa fa-angle-right"></i>Ubah Status Persidang</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Atur Jadwal Sidang</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Hasil Sidang</a>
-		<ul class="treeview-menu
-		  <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
-		  <li><a href=""><i class="fa fa-angle-right"></i>Download Hasil TA</a></li>
-		</ul>  
-	  </li>
+        <ul class="treeview-menu">
+          <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
+          <li><a href=""><i class="fa fa-angle-right"></i>Download Hasil TA</a></li>
+        </ul>  
+      </li>
     </ul>
   </li>
 </ul>

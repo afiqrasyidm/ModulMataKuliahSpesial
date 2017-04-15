@@ -1,16 +1,37 @@
-@extends('layouts.layout_mahasiswa')
+@extends('layouts.layout_failed')
 
 @section('title','Pengajuan Sidang TA')
 
-@section('mainContent')
+@section('titleMainContent')
+Anda Belum Dapat Melakukan Pengajuan Sidang
 
- <div class="col-md-3"></div>
- <div  class="col-md-9">
-  <div style="margin-top:225px;">
-   <h2 style="color:red;">Harap mengambil Tugas Akhir terlebih dahulu!</h2>
-   <p>Anda tidak diperkenankan melakukan melakukan pengajuan permohonan sidang tugas akhir sebelum mengambil tugas akhir</p>
-   <p>Silahkan mengambil tugas akhir <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>
-  </div>
- </div>
+@endsection
+
+@section('contentMainContent')
+
+
+
+<?php
+
+
+if($tugas_akhir == null){
+	
+	echo "<b>Harap mengambil Tugas Akhir terlebih dahulu!</b>";
+	echo " Anda tidak dapat melakukan pengajuan permohonan sidang tugas akhir sebelum mengambil tugas akhir";
+	echo "<br><br>";
+ 	echo "<p>Silahkan mengambil tugas akhir";
+ 	echo "<a href='";
+ 	echo route('mahasiswa/pengajuan-permohonan-ta');
+ 	echo "'/>";
+ 	echo " disini";
+ 	echo "</a></p>";
+}
+
+else if($tugas_akhir->status_tugas_akhir!=6){
+	echo "<b>Harap menyelesaikan Bimbingan Tugas Akhir terlebih dahulu!</b>";
+	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang tugas akhir sebelum menyelesaikan bimbingan tugas akhir";
+ 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
+}
+?>
 
 @endsection

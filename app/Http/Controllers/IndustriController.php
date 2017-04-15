@@ -17,6 +17,7 @@ use App\Mahasiswa;
 use App\Prodi;
 use App\Fakultas;
 use App\Topik;
+use App\Tugas_akhir;
 
 class IndustriController extends Controller
 {
@@ -44,6 +45,19 @@ class IndustriController extends Controller
 
 	function lihat_hasil_ta () {
 		session_start();
+		
+			$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				->leftJoin('industri', 'industri.id_industri', '=', 'topik.id_industri')
+				->where([
+				 ['topik.id_industri', '=',$_SESSION["user_login_industri"]-> id_industri],
+				])
+				->get();
+		
+		return $tugas_akhir;
+		
+		
 		return view("industri/lihat_hasil_ta");
 	}
 
@@ -93,6 +107,99 @@ class IndustriController extends Controller
 			->withErrors($validator)
 			->withInput();	
     }
+	
+	public function verifikasi_pengambilan_topik_ta(){
+			session_start();
+			
+			$topik= Topik::where(
+			[
+			['id_industri', $_SESSION["user_login_industri"]-> id_industri],
+			
+			]
+			)->get();
+			//memasukkan masing-masing nilai jumlah pendaftar
+			$array[] = array();
+			
+			$i = 0;
+			foreach($topik as $t){
+				
+				$jumlah_pengambil_topik = Tugas_akhir::where('id_topik', $t ->id_topik )->get()->count();
+				$array[$i] = $jumlah_pengambil_topik;
+				
+				$i++;
+			}
+
+			return view("industri/verifikasi_pengambilan_topik_ta" , array('topik' => $topik, 'array' => $array) );
+			
+			 
+		
+		
+			
+	
+	
+	}
+	
+	
+	public function detail_topik_ta($id_topik){
+	 	session_start();
+			
+			
+		
+    		$topik = DB::table('topik')
+				->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', '=', 'topik.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				
+				->where([
+				 ['topik.id_topik', '=', $id_topik],
+				['tugas_akhir.id_topik', '=', $id_topik],
+				])
+				->get();
+
+				
+			//return $topik;
+			
+			if($topik->isEmpty()){
+				$topik_belum_diambil = DB::table('topik')
+						->where([
+						 ['topik.id_topik', '=', $id_topik],
+						])
+						->get();
+					//	return "lol";
+				return view("industri/detail_topik_ta " , array( 'topik_belum_diambil'=>$topik_belum_diambil));
+			
+			}
+			//jika sudah
+				return view("industri/detail_topik_ta " , array('topik' => $topik));
+			
+
+	}
+	public function setuju_topik($id_tugas_akhir, $is_disetujui, $id_topik){
+		session_start();
+		
+		if($is_disetujui==1)
+		DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => 0]);
+		else{
+			DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => -1]);
+		}
+		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
+		
+	}
+	
+	public function hentikan_topik($id_topik){
+		session_start();
+		
+		
+		DB::table('topik')
+            ->where('id_topik', $id_topik)
+            ->update(['sudah_diambil' => 1]);
+	
+		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
+		
+	}
 	
 	
 	

@@ -21,12 +21,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  
-              <div align="right">
-                  <a href="{{ route('mahasiswa/pengajuan-topik-ta') }}">
-                    <button  class="btn btn-primary">Ajukan Topik Baru</button>
-                  </a><br><br>
-              </div>
-
+          
 	<form>
 		<table class="table table-striped">
 		    <thead>
@@ -35,9 +30,7 @@
 		        <th>Pengaju</th>
 		        <th>Pembimbing</th>
 				<th>Maksimal Pendaftar</th>
-				<th>Jumlah Pendaftar sampai saat ini</th>
-		        <th></th>
-		      </tr>
+				</tr>
 		    </thead>
 		    <tbody>
 
@@ -77,12 +70,7 @@
 
 
 			</td>
-			<td>
-						
-						{{$topik->maksimal_pendaftar}}
-
-
-			</td>
+			
 
 	</tr>
 
@@ -103,6 +91,13 @@
 
   </form>
 
+<!-- ajukan topik mandiri -->
+    <div align="right">
+                  <a href="{{ route('mahasiswa/pengajuan-topik-ta') }}">
+                    <button  class="btn btn-primary">Ajukan Topik Baru</button>
+                  </a><br><br>
+              </div>
+<!-- end -->
 
 @else
   <br>
@@ -113,14 +108,21 @@
               <h3><center>Bukti Pengajuan Topik</h4>
 
                 <br>
-              <h4><b>{{$topik_yang_diambil->topik_ta}}</b></h4>
 
               <table class="table table-bordered">
 
               <tbody>
-                <tr>
+                
+				<tr>
+                <th width ="20%" bgcolor="#86b7e3">Topik yang diambil</th>
+                <td bgcolor="#dddddd">
+					{{$topik_yang_diambil->topik_ta}}
+				</td>
+				
+				
+				<tr>
                 <th width ="20%" bgcolor="#86b7e3">Pengaju</th>
-                <td bgcolor="#c0c5cc">
+                <td bgcolor="#dddddd">
 				@if (isset($industri))
 					Industri: {{$industri->nama_industri}}
 
@@ -138,27 +140,40 @@
         
 				<tr>
                 <th bgcolor="#86b7e3">Maksimal Pendaftar</th>
-                <td bgcolor="#c0c5cc">{{$topik_yang_diambil->maksimal_pendaftar}} orang</td>
+                <td bgcolor="#dddddd">{{$topik_yang_diambil->maksimal_pendaftar}} orang</td>
 
                 </tr>
                 
 		        <tr>
 				
-					<th bgcolor="#86b7e3">Urutan ke</th>
-					<td bgcolor="#c0c5cc"> 9 orang</td>
+					<th bgcolor="#86b7e3">Jumlah pendaftar sampai saat ini</th>
+					<td bgcolor="#dddddd">
+						{{$jumlah_pengambil_topik}} orang
+						
+						</td>
 
                 </tr>
 				
                 <tr>
                 <th bgcolor="#86b7e3">Status</th>
-                <td bgcolor="#c0c5cc"> Menunggu persetujuan</td>
+                <td bgcolor="#dddddd"> 
+					
+					
+						@if ($tugas_akhir->status_tugas_akhir ==-2 )
+							Menunggu persetujuan
+						@elseif ($tugas_akhir->status_tugas_akhir ==-1 )
+							Anda tidak diterima mengambil topik ini, silahkan ambil topik lain
+						@else 
+							Pengambilan topik anda telah disetujui
+						@endif
+					</td>
 
                 </tr>
 				@endif
 				
                 <tr>
                 <th bgcolor="#86b7e3">Deskripsi</th>
-                <td bgcolor="#c0c5cc"> {{$topik_yang_diambil->deskripsi}}</td>
+                <td bgcolor="#dddddd"> {{$topik_yang_diambil->deskripsi}}</td>
 
                 </tr>
 

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 .header-title{
 	font-family: 'Bitter', serif;
@@ -17,5 +18,13 @@
 
 .text-resize{
 	font-size: 14px;
-	/*font-family: 'Fjalla One', sans-serif;*/
 }
+
+.title-alert{
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.text-alert{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
