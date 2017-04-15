@@ -1,6 +1,6 @@
 
 
-@extends('layouts.layout_industri')
+@extends('layouts.layout_dosen')
 
 @section('title','Lihat Hasil TA')
 

@@ -169,3 +169,6 @@ Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/{
 
 //industri lihat hasil ta
 Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
+
+//dosen lihat hasil ta
+Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'DosenController@lihat_hasil_ta']);
