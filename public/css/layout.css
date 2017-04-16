@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Concert+One');
+@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
 
 .header-title{
-	font-family: 'Bitter', serif;
-	font-size: 24px;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 30px;
 }
 
 .center-form{
@@ -26,5 +29,9 @@
 
 .text-alert{
 	font-family: 'Josefin Sans', sans-serif;
+}
+
+.title-index{
+	font-family: 'Quicksand', sans-serif;
 }
 

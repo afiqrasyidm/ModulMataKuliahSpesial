@@ -468,7 +468,7 @@ class MahasiswaController extends Controller
 
 	    }
 	    else{
-	    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir));
+	    	return view("mahasiswa/failed_upload_hasil_ta", array( 'tugas_akhir' => $tugas_akhir));
 	    }
     }
 

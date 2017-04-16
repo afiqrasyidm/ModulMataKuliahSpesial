@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
+    <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
 
     <script>
             window.Laravel = <?php echo json_encode([
@@ -68,29 +69,29 @@
     </script>
   </head>
  
-  <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
-        <nav class="navbar navbar-default navbar-fixed-top"></nav>
-        </nav>
-
-        <div class='container' style="margin-top: 60px; min-height:550px">
+  <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5; ">
+        
+        <div class='container' style="margin-top: 20px; min-height:550px">
             <div class='col-md-2'></div>
             <div class='col-md-8'>
                 <div>
                     <center>
                         <br/>
-                        <br/>
+                    
                         
                         <img src="{{ asset  ('dist/img/logomks.png') }}" style="width: 15% ; height: 15%">
-                        <h2>Modul Mata Kuliah Spesial</h2><br>
-                        <h6>Silahkan Login</h6>
+                        <h2 class="title-index">Modul Mata Kuliah Spesial</h2><br>
+                        
                         <br><br>
                         <div class="col-xs-6">
-                        <img src="{{ asset  ('dist/img/ui.png') }}" style="width: 50% ; height: 30%"><br><br>
-                            <a href="{{ route('login-sso') }}"><button type="button" class="btn btn-default">Login SSO</button></a>
+                         <a href="{{ route('login-sso') }}">
+                            <img src="{{ asset  ('dist/img/ui.png') }}" style="width: 50% ; height: 30%"><br><br>
+                           <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61; ">Login SSO</button></a>
                         </div>
                         <div class="col-xs-6">
-                        <img src="{{ asset  ('dist/img/industri.png') }}" style="width: 50% ; height: 30%"><br><br>
-                            <a href="{{ route('login') }}"><button type="button" class="btn btn-default">Login Industri</button></a>
+                        <a href="{{ route('login') }}">
+                            <img src="{{ asset  ('dist/img/industri.png') }}" style="width: 50% ; height: 30%"><br><br>
+                            <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61">Login Industri</button></a>
                         </div>
                     </center>
                 </div>
@@ -101,6 +102,7 @@
         <footer class="footer">
             <center>
                 <div class="container">
+                <br><br>
                     <p class="text-muted">© 2017 copyright Propensi A3</p>
                 </div>      
             </center>

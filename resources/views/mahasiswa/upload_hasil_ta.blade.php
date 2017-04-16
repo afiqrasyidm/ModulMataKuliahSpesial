@@ -41,7 +41,7 @@
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dokumen</th>
                 <td bgcolor="#c0c5cc">
-                {{$hasil_ta->dokumen}} </td>
+                 <a href="/files/{{$hasil_ta->dokumen}}" >{{$hasil_ta->dokumen}}</a></td>
 
                 </tr>
 

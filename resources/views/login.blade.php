@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
-
+    <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
     <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
@@ -30,16 +30,13 @@
   </head>
  
   <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
-        <nav class="navbar navbar-default navbar-fixed-top"></nav>
-        </nav>
-
-        <div class='container' style="margin-top: 60px; min-height:550px">
+       
+        <div class='container' style=" min-height:550px">
             <div class='col-md-2'></div>
             <div class='col-md-8'>
-                <br/>
-                <br/>
-                <br/>
-                <center><h2>Login Industri</h2></center>
+                <br><br><br>
+                <br><br><br>
+                <center><h2 class="title-index">Login Industri</h2></center>
                 <br/>
 
                 <form class="form-horizontal"  method="post" action="">
@@ -69,12 +66,12 @@
 
                 <center><i><h6>belum punya akun? daftar <a href="{{ route('registrasi') }}">disini</a></h6></i></center>
             </div>
-            <div class='col-md-2'></div>
+           
         </div>
 
         <footer class="footer">
             <center>
-                <div class="container">
+                <div class="container"><br><br>
                     <p class="text-muted">© 2017 copyright Propensi A3</p>
                 </div>      
             </center>
