@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Staf;
+use App\Dosen;
+use App\Pengajuan_sidang;
 use SSO\SSO;
 
 class StafController extends Controller
@@ -31,7 +33,35 @@ class StafController extends Controller
 		// }
 	
   //   }
+	 function verifikasi_permohonan_sidang() {
+      session_start();
 
+
+      $ta = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->where('tugas_akhir.status_tugas_akhir','=', '6')
+        ->get();
+
+      
+
+    return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
+
+    }
+
+	function verifikasi_permohonan_sidangPost($id_pengajuan)
+	{ 
+	  session_start();
+
+
+	    DB::table('pengajuan_sidang')
+	            ->where('id_pengajuan', $id_pengajuan)
+	            ->update(['status' => 1]);
+	   
+	    return redirect()->route('staf/verifikasi-permohonan-sidang');
+	    
+	  
+	}
 
     function post_pengumuman() {
     	session_start();

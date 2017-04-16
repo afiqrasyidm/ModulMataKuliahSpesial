@@ -32,6 +32,7 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
+      <li><a href="{{ route('staf/verifikasi-permohonan-sidang') }}"><i class="fa fa-angle-right"></i>Verifikasi Permohonan Sidang</a></li>
       <li><a href="{{ route('mahasiswa/pengajuan-pembimbing-ta') }}"><i class="fa fa-angle-right"></i>Atur Jadwal Sidang</a></li>
     </ul>
   </li>

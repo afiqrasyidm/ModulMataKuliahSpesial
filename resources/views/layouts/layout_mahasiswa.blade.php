@@ -44,7 +44,7 @@
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!="S1"){
               echo '<li><a href=""><i class="fa fa-angle-right"></i>';
-              echo "Pengajuan Sidang Topik";
+              echo " Pengajuan Sidang Topik";
               echo '</a></li>';
             }
           ?>

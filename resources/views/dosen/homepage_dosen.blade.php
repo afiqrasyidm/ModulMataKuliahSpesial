@@ -45,16 +45,16 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
-
+<link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
+    
   
   </head>
  
   <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
-        <nav class="navbar navbar-default navbar-fixed-top"></nav>
-        </nav>
+        
 
         <div class='container' style="margin-top: 60px; min-height:550px">
-            <div class='col-md-2'></div>
+         
             <div class='col-md-8'>
                 <div>
                     <center>
@@ -62,7 +62,7 @@
                         <br/>
                         <br/>
                         <br/>
-                        <h2>Pilih Role Dosen</h2>
+                        <h2 class="title-index">Pilih Role Dosen</h2>
                      
                        <a href="{{ route('dosen/pembimbing/home') }}"><button type="button" class=" btn btn-default ">Dosen Pembimbing</button></a>
                        

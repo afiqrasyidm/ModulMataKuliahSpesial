@@ -189,3 +189,10 @@ Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses'
 
 //dosen lihat hasil ta
 Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'DosenController@lihat_hasil_ta']);
+
+//ubah status siap sidang
+Route::get('staf/verifikasi-permohonan-sidang', ['as' => 'staf/verifikasi-permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang']);
+
+
+Route::get('staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
+
