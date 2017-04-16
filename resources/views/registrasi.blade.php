@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
+    <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
 
     <script>
             window.Laravel = <?php echo json_encode([
@@ -30,14 +31,12 @@
   </head>
  
   <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
-        <nav class="navbar navbar-default navbar-fixed-top"></nav>
-        </nav>
-
+       
         <div class='container' style="margin-top: 60px; min-height:550px">
             <div class='col-md-2'></div>
             <div class='col-md-8'>
                 <br/>
-                <center><h2>Registrasi Akun Industri</h2></center>
+                <center><h2 class="title-index">Registrasi Akun Industri</h2></center>
                 <br/>
 
                 <form class="form-horizontal" method="post" action="">
@@ -48,7 +47,7 @@
                       <input class="form-control" name="username">
                     </div>
                     <div class='col-sm-3'>
-					
+          
                           <?php echo $errors->first('username') ?>
                           <?php echo $errors->first('duplicate_username') ?>
                     </div>

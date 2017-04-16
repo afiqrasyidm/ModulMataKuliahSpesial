@@ -80,7 +80,7 @@
                     
                         
                         <img src="{{ asset  ('dist/img/logomks.png') }}" style="width: 15% ; height: 15%">
-                        <h2 class="title-index">Modul Mata Kuliah Spesial</h2><br>
+                        <h2 class="title-index" style="color: #1e3c61">Modul Mata Kuliah Spesial</h2><br>
                         
                         <br><br>
                         <div class="col-xs-6">
