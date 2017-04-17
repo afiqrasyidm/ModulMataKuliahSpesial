@@ -14,7 +14,7 @@
             }
 ?>
 
-
+ 
 <ul class="sidebar-menu">
   <div class="col-md-2" style="text-indent: 50px">
     <a href="#"><i>Login as Dosen Pembimbing</i></a>
@@ -26,8 +26,8 @@
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href=""><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Pemohonan TA</a></li>
+      <li><a href="{{ route('dosen/pengajuan-topik-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
+      <li><a href="{{ route('dosen/verifikasi-pengambilan-topik-ta') }}"><i class="fa fa-angle-right"></i>Verifikasi Pemohonan TA</a></li>
     </ul>
   </li>
   <li class="treeview">
