@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php 
-			if(!isset($_SESSION["role_user"])){
-            	header( "refresh:0;/" );
-				return "";
+            if(!isset($_SESSION["role_user"])){
+                header( "refresh:0;/" );
+                return "";
             }
-			else if($_SESSION["role_user"]!= "dosen"){
-            	
-				header( "refresh:0;/forbidden_access" );
-				return "";
+            else if($_SESSION["role_user"]!= "dosen"){
+                
+                header( "refresh:0;/forbidden_access" );
+                return "";
             }
 ?>
 <html>
@@ -46,23 +46,21 @@
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
 <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
-    
+
   
   </head>
  
   <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
-        
-
+      
         <div class='container' style="margin-top: 60px; min-height:550px">
-         
+            <div class='col-md-2'></div>
             <div class='col-md-8'>
                 <div>
                     <center>
                         <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <h2 class="title-index">Pilih Role Dosen</h2>
+                        
+                        <h2 class="header-title">Pilih Role Dosen</h2>
+                        <br><br>
                      
                        <a href="{{ route('dosen/pembimbing/home') }}"><button type="button" class=" btn btn-default ">Dosen Pembimbing</button></a>
                        

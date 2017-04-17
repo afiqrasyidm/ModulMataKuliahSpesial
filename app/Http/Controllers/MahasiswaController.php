@@ -445,7 +445,7 @@ class MahasiswaController extends Controller
 
     		if($pengajuan_sidang!= null){
 
-	    		if($pengajuan_sidang->status==1 && $tugas_akhir->status_tugas_akhir==6){
+	    		if($pengajuan_sidang->status==2 && $tugas_akhir->status_tugas_akhir==11){
 
 			    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
 			        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();

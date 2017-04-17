@@ -11,8 +11,10 @@
 }
 
 .center-form{
-	margin-left: 50px;
-	margin-right:  50px;
+	margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 }
 
 .center-button{
