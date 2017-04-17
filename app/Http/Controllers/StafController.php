@@ -40,7 +40,7 @@ class StafController extends Controller
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
-        ->where('tugas_akhir.status_tugas_akhir','=', '6')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get();
 
       
@@ -56,7 +56,7 @@ class StafController extends Controller
 
 	    DB::table('pengajuan_sidang')
 	            ->where('id_pengajuan', $id_pengajuan)
-	            ->update(['status' => 1]);
+	            ->update(['status' => 2]);
 	   
 	    return redirect()->route('staf/verifikasi-permohonan-sidang');
 	    
