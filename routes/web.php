@@ -196,3 +196,14 @@ Route::get('staf/verifikasi-permohonan-sidang', ['as' => 'staf/verifikasi-permoh
 
 Route::get('staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 
+//list jadwal sidang Dosbem
+Route::get('/dosen/pembimbing/list-jadwal-sidang', ['as' => 'dosen/pembimbing/list-jadwal-sidang', 'uses' => 'DosenPembimbingController@list_jadwal_sidang']);
+
+//ubah status selesai sidang Dosbem
+
+Route::get('/dosen/pembimbing/sidang-selesai/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/sidang-selesai/', 'uses' => 'DosenPembimbingController@sidang_selesai']);
+
+
+
+//list jadwal sidang Dosen Penguji
+Route::get('/dosen/penguji/list-jadwal-sidang', ['as' => 'dosen/penguji/list-jadwal-sidang', 'uses' => 'DosenPengujiController@list_jadwal_sidang']);

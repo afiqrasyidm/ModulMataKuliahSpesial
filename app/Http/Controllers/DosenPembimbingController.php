@@ -66,5 +66,55 @@ function ubah_status_sidangPost($id_tugas_akhir)
     }
 
 
+	function list_jadwal_sidang(){
+		
+			session_start();
+			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+			//return $id_dosen;
+			
+			
+		$ta = DB::table('pengajuan_sidang')
+        ->leftJoin('dosen_pembimbing_ta', 'pengajuan_sidang.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	    ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+      
+		->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+		->where('pengajuan_sidang.status','=', 2)
+        
+		->get();
+
+      
+
+		return view("dosen/DosenPembimbing/list_jadwal_sidang", array('ta' => $ta));
+
+  
+	
+	}
+	function sidang_selesai($id_tugas_akhir){
+				session_start();
+	
+	
+			
+			DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(
+			
+			[
+			
+			'id_maker' =>  $_SESSION["id_user"],
+			
+			
+			'status_tugas_akhir' =>  12,
+			
+			]
+			
+			)
+			
+			;
+   
+    return redirect()->route('dosen/pembimbing/list-jadwal-sidang');
+     
+	}
 
 }

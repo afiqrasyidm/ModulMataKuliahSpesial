@@ -21,6 +21,8 @@ use App\Prodi;
 use App\Fakultas;
 use App\Topik;
 use App\Tugas_akhir;
+use App\Dosen_pembimbing;
+
 
 class DosenController extends Controller
 {
@@ -145,33 +147,28 @@ class DosenController extends Controller
 	
 	public function setuju_topik($id_tugas_akhir, $is_disetujui, $id_topik){
 		session_start();
-		
-		if($is_disetujui==1)
+		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+				
+		if($is_disetujui==1){
 		DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => 0]);
 		
 		
 		
-			$topik = new Topik;
-			$topik->topik_ta = Input::get ('topik_ta');
-			$topik->deskripsi = Input::get ('latar_belakang_ta');
-			$topik->maksimal_pendaftar = Input::get ('maksimal_pendaftar');
+			$dosen_pembimbing = new Dosen_pembimbing;
+			$dosen_pembimbing->id_dosen = $id_dosen;
+			$dosen_pembimbing->id_tugas_akhir = $id_tugas_akhir;
+			$dosen_pembimbing->status_dosen_pembimbing = 2;
 			
-			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
-			
-			$topik->id_industri = 	NULL;
-			$topik->id_dosen = $id_dosen;
-			$topik->sudah_diambil = 0;
-			
-	       	$topik->save();
+			$dosen_pembimbing->save();
 	        
 		
 		
 		
 		
 		
-		
+		}
 		
 		else{
 			DB::table('tugas_akhir')
@@ -214,6 +211,5 @@ class DosenController extends Controller
 		
 		return view("dosen/lihat_hasil_ta" , array('tugas_akhir' => $tugas_akhir) );
 	}
-
 
 }
