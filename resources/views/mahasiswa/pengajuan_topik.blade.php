@@ -103,12 +103,12 @@
   <br>
 <br>
 
-          <section class="content">
-
-              <h3><center>Bukti Pengajuan Topik</h4>
-
-                <br>
-
+         <div class="box box-primary">
+                <div class="box-header with-border">
+                  <center><h1 class="header-title">Detail Pengajuan Topik</h1></center>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                 <br>
               <table class="table table-bordered">
 
               <tbody>
@@ -179,7 +179,7 @@
 
               </tbody>
               </table>
-    <center>
+    <center><br><br>
         <a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
           <button  class="btn btn-primary">Ubah Topik</button>
         </a>

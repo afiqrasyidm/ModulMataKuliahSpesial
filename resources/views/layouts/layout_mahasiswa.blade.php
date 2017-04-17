@@ -16,7 +16,7 @@
 <ul class="sidebar-menu">
    
     <br>
-  <li class="header">MAIN NAVIGATION</li>
+  <li class="header-nav"><a href="{{ route('homepage/mahasiswa') }}">Mahasiswa</a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>

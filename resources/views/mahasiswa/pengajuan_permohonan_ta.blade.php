@@ -6,6 +6,7 @@
 @section('mainContent')
 
 <section class="content">
+<br><br>
 <div class="center-form">
 <div class=".col-md-11">
 	<div class="box box-primary">

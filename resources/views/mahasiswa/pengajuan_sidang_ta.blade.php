@@ -9,10 +9,18 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
 </script>
+
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
+
+
 @if(!isset($sidang))
-<div class="col-md-12">
-	<h1>Pengajuan Sidang TA</h1>
-	<br/>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <center><h1 class="header-title">Pengajuan Sidang TA</h1><br></center>
+     </div><!-- /.box-header -->
+     <div class="box-body">
         <form class="form-horizontal" method="post" action="" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -66,23 +74,20 @@
 		    </div>
 		  </div>
 		@endif
-
+<br>
 		  <center><button class="btn btn-primary">Ajukan TA</button></center>
-	</form>        
+	</form>     <br>   
 </div>
 
 @else
 <br>
 
-<section class="content">
-<div class="center-form">
-<div class=".col-md-11">
-          <section class="content">
-
-              <h3><center>Bukti Pengajuan Sidang TA</h4>
-
-                <br>
-
+ <div class="box box-primary">
+    <div class="box-header with-border">
+         <center><h1 class="header-title">Detail Pengajuan Sidang</h1></center>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+     <br>
               <table class="table table-bordered">
 
               <tbody>
@@ -132,18 +137,18 @@
         
 				</tbody>
 			</table>
+<br><br>
 
 
-        </section>
-
-         </div>
-              </div>
-              </div>
-            </div>
-
-</section>
 
 @endif
+
+         </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              </div>
+            </div><!--/.col (right) -->
+
+</section>
 
 @endsection
 
