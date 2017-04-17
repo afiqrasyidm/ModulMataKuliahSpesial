@@ -17,11 +17,8 @@
 
 
 <ul class="sidebar-menu">
-<div class="col-md-2" style="text-indent: 63px">
-      <a href="#"><i>Login as Dosen PA</i></a>
-    </div>
-    <br>
-  <li class="header">MAIN NAVIGATION</li>
+<br>
+  <li class="header-nav"><a href="{{ route('dosen/PA/home') }}">Dosen PA</a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>

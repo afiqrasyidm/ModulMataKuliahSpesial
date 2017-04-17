@@ -16,11 +16,9 @@
 ?>
 
 <ul class="sidebar-menu">
-<div class="col-md-2" style="text-indent: 50px">
-      <a href="#"><i>Login as Dosen Penguji</i></a>
-    </div>
+
     <br>
-  <li class="header">MAIN NAVIGATION</li>
+ <li class="header-nav"><a href="{{ route('dosen/penguji/home') }}">Dosen Penguji</a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>

@@ -16,11 +16,9 @@
 
  
 <ul class="sidebar-menu">
-  <div class="col-md-2" style="text-indent: 50px">
-    <a href="#"><i>Login as Dosen Pembimbing</i></a>
-  </div>
+ 
   <br>
-  <li class="header">MAIN NAVIGATION</li>
+  <li class="header-nav"><a href="{{ route('dosen/pembimbing/home') }}">Dosen Pembimbing</a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
