@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2017 at 07:15 AM
+-- Generation Time: Apr 17, 2017 at 11:02 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -82,9 +82,9 @@ CREATE TABLE `dosen_pembimbing_ta` (
 --
 
 CREATE TABLE `dosen_penguji_ta` (
-  `id_penguji_ta` int(11) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
+  `id_penguji_ta` int(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_dosen` int(10) NOT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `id_tugas_akhir` int(10) NOT NULL
@@ -302,6 +302,7 @@ CREATE TABLE `pengajuan_sidang` (
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_mahasiswa` int(10) NOT NULL,
   `id_tugas_akhir` int(10) DEFAULT NULL,
+  `waktu_sidang` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -311,9 +312,9 @@ CREATE TABLE `pengajuan_sidang` (
 -- Dumping data for table `pengajuan_sidang`
 --
 
-INSERT INTO `pengajuan_sidang` (`id_pengajuan`, `tgl_pengajuan`, `status`, `id_mahasiswa`, `id_tugas_akhir`, `created_at`, `id_maker`, `updated_at`) VALUES
-(1, NULL, '2', 1, 47, '2017-04-14 21:03:16', NULL, '2017-04-14 21:03:16'),
-(2, NULL, '2', 2, NULL, '2017-04-14 22:06:22', NULL, '2017-04-14 22:06:22');
+INSERT INTO `pengajuan_sidang` (`id_pengajuan`, `tgl_pengajuan`, `status`, `id_mahasiswa`, `id_tugas_akhir`, `waktu_sidang`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, NULL, '2', 1, 47, '2017-04-17 08:58:17', '2017-04-14 21:03:16', NULL, '2017-04-14 21:03:16'),
+(2, NULL, '2', 2, NULL, '2017-04-17 08:58:17', '2017-04-14 22:06:22', NULL, '2017-04-14 22:06:22');
 
 -- --------------------------------------------------------
 
@@ -341,16 +342,56 @@ INSERT INTO `prodi` (`id_prodi`, `nama_prodi`, `id_fakultas`, `created_at`, `id_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `refrensi_status_sidang`
+--
+
+CREATE TABLE `refrensi_status_sidang` (
+  `id_refrensi_status_sidang` int(10) UNSIGNED NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `id_maker` int(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `refrensi_status_sidang`
+--
+
+INSERT INTO `refrensi_status_sidang` (`id_refrensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 'Mahasiswa Mengajukan Pengajuan Sidang', NULL, NULL, NULL),
+(2, 'Pengajuan Sidang Telah Diverifikasi oleh SBA', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `refrensi_status_ta`
 --
 
 CREATE TABLE `refrensi_status_ta` (
   `id_refrensi_status_ta` int(10) UNSIGNED NOT NULL,
-  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `refrensi_status_ta`
+--
+
+INSERT INTO `refrensi_status_ta` (`id_refrensi_status_ta`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 'Permohonan TA Ditolak oleh Dosen Pembimbing', NULL, NULL, NULL),
+(2, 'Permohonan TA Ditolak oleh PA', NULL, NULL, NULL),
+(3, 'Menunggu Persetujuan Topik', NULL, NULL, NULL),
+(4, 'Pengambilan Topik Tidak Disetujui', NULL, NULL, NULL),
+(5, 'Pengambilan Topik Disetujui', NULL, NULL, NULL),
+(6, 'Permohonan TA Sedang Diverfikasi oleh PA', NULL, NULL, NULL),
+(7, 'Permohonan TA Sedang Diverifikasi oleh SBA', NULL, NULL, NULL),
+(8, 'Menunggu Pengambilan Dosen Pembimbing', NULL, NULL, NULL),
+(9, 'Menunggu Persetujuan Dosen Pembimbing', NULL, NULL, NULL),
+(10, 'Mahasiswa Melakukan Bimbingan TA', NULL, NULL, NULL),
+(11, 'Dosen Pembimbing Mengizinkan Sidang', NULL, NULL, NULL),
+(12, 'Sidang Telah Dilakukan', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -400,7 +441,7 @@ INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_indust
 (25, 'Survey Leptop Asus', 'Lorem', NULL, 3, 5, '2017-03-19 00:20:05', NULL, '2017-03-19 00:20:05', 0),
 (26, 'Struktur Database BukaPintu', 'Lorem', 1, NULL, 6, '2017-03-19 00:23:04', NULL, '2017-03-19 00:23:04', 1),
 (27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 7, '2017-04-04 23:02:10', NULL, '2017-04-04 23:02:10', 0),
-(28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', NULL, '2017-04-04 23:35:57', 0),
+(28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', NULL, '2017-04-04 23:35:57', 1),
 (30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', NULL, '2017-04-05 00:25:37', 0),
 (40, 'Matematika Diskrit 3', 'LOLOL', NULL, 3, 10, '2017-04-12 00:33:22', NULL, '2017-04-12 00:33:22', 1);
 
@@ -529,6 +570,12 @@ ALTER TABLE `dosen_pembimbing_ta`
   ADD KEY `id_tugas_akhir` (`id_tugas_akhir`);
 
 --
+-- Indexes for table `dosen_penguji_ta`
+--
+ALTER TABLE `dosen_penguji_ta`
+  ADD PRIMARY KEY (`id_penguji_ta`);
+
+--
 -- Indexes for table `fakultas`
 --
 ALTER TABLE `fakultas`
@@ -598,6 +645,12 @@ ALTER TABLE `prodi`
   ADD KEY `prodi_id_fakultas_foreign` (`id_fakultas`);
 
 --
+-- Indexes for table `refrensi_status_sidang`
+--
+ALTER TABLE `refrensi_status_sidang`
+  ADD PRIMARY KEY (`id_refrensi_status_sidang`);
+
+--
 -- Indexes for table `refrensi_status_ta`
 --
 ALTER TABLE `refrensi_status_ta`
@@ -663,6 +716,11 @@ ALTER TABLE `dosen_pa`
 --
 ALTER TABLE `dosen_pembimbing_ta`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dosen_penguji_ta`
+--
+ALTER TABLE `dosen_penguji_ta`
+  MODIFY `id_penguji_ta` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fakultas`
 --

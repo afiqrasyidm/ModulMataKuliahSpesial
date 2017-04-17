@@ -50,7 +50,8 @@
 				
 				 <td>
                 
-                      
+                    {{$ta->waktu_sidang}}
+                       
                 </td>
              
                 <td>
