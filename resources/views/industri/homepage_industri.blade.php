@@ -4,11 +4,27 @@
 
 @section('mainContent')
 
-<div class="col-md-12">
-	<center>
-		<h1>Alur Tugas Akhir</h1><br><br>
-		<img src="{{ asset('img/industri.png') }}" style="width: 30% ; height: 10%">
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
+
+
+ <div class="box box-primary">
+        <div class="box-header with-border">
+            <center><b><h2 class="title-index">Alur Pengerjaan Tugas Akhir</h2></b></center>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+          <center>
+		<img src="{{ asset('img/industri.png') }}" style="width: 70% ; height: 70%"><br><br>
 	</center>
-</div>
+ </div>
+
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              </div>
+            </div><!--/.col (right) -->
+
+</section>
         
 @endsection
