@@ -54,14 +54,14 @@
 									  </td>
 									
 									<td> 
-										@if($topiks->status_tugas_akhir == -2)
+										@if($topiks->status_tugas_akhir == 3)
 										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
 											<button  class="btn btn-primary">Setuju</button>
 										</a>
 										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
 											<button  class="btn btn-danger">Tidak Setuju</button>
 										</a>
-										@elseif($topiks->status_tugas_akhir == -1)
+										@elseif($topiks->status_tugas_akhir == 4)
 											<p style="color:red;"><b>Tidak Setujui</b></p>
 										@else
 											<p><b>Disetujui</b></p>

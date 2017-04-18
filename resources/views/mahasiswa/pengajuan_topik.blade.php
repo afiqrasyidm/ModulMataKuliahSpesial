@@ -159,13 +159,7 @@
                 <td bgcolor="#dddddd"> 
 					
 					
-						@if ($tugas_akhir->status_tugas_akhir ==-2 )
-							Menunggu persetujuan
-						@elseif ($tugas_akhir->status_tugas_akhir ==-1 )
-							Anda tidak diterima mengambil topik ini, silahkan ambil topik lain
-						@else 
-							Pengambilan topik anda telah disetujui
-						@endif
+						{{$tugas_akhir->status}}
 					</td>
 
                 </tr>

@@ -40,8 +40,18 @@ class MahasiswaController extends Controller
 
 
 
-		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-
+		
+		$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('refrensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'refrensi_status_ta.id_refrensi_status_ta')
+				
+				->where([
+				 ['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa],
+				
+				])
+				->get()
+				->first()
+				;
+	//	return $tugas_akhir;
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
 
@@ -66,7 +76,7 @@ class MahasiswaController extends Controller
 
 			$jumlah_pengambil_topik = Tugas_akhir::where('id_topik',$tugas_akhir->id_topik )->get()->count();
 
-
+			//diambil industri
 			if($topik_yang_diambil->id_industri != NULL){
 
 				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
@@ -314,7 +324,8 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "0";
+			$tugas_akhir->status_tugas_akhir = "5";
+			$tugas_akhir->id_maker = $_SESSION["id_user"];
 
 			$tugas_akhir->save();
 
@@ -393,7 +404,9 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "-2";
+			$tugas_akhir->status_tugas_akhir = "3";
+			$tugas_akhir->id_maker = $_SESSION["id_user"];
+
 
 			$tugas_akhir->save();
 
