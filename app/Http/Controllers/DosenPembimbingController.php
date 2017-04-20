@@ -22,7 +22,7 @@ class DosenPembimbingController extends Controller
       $ta = DB::table('dosen_pembimbing_ta')
         ->leftJoin('tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-        ->where('tugas_akhir.status_tugas_akhir','>', '9')->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+        ->where('tugas_akhir.status_tugas_akhir','>', 9)->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->get();
 
       
@@ -39,7 +39,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 
     DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
-            ->update(['status_tugas_akhir' => 11]);
+            ->update(['id_maker' =>  $_SESSION["id_user"],'status_tugas_akhir' => 11]);
    
     return redirect()->route('dosen/pembimbing/ubah-status-sidang');
     
