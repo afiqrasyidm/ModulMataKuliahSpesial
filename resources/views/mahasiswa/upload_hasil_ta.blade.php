@@ -33,8 +33,11 @@
 
           <section class="content">
 
-              <h3><center>Dokumen telah di upload</h4>
-
+             <div class="alert alert-success">
+                    
+                   <i class="icon fa fa-check"></i> Dokumen Telah Di Upload
+                   
+              </div>
               <table class="table table-bordered">
 
               <tbody>
@@ -46,7 +49,7 @@
                 </tr>
 
                 <tr>
-                <th bgcolor="#86b7e3">Di upload pada </th>
+                <th bgcolor="#86b7e3">Terakhir Diubah</th>
                 <td bgcolor="#c0c5cc">{{$hasil_ta->created_at}}</td>
 
                 </tr>
@@ -105,7 +108,7 @@
       {{ csrf_field() }}
 
       
-      <center>Upload a file in PDF</center><br>
+       <i><center>*Upload Dokumen dengan Format PDF</center><br></i>
         <div class="center-button text-resize">
 
            

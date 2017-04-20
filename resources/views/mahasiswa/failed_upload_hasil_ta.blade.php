@@ -9,12 +9,12 @@ Anda Belum Dapat Mengupload Dokumen TA
 
 @section('contentMainContent')
 
-
+ 
           
 <?php
 
 
-if($tugas_akhir == null){
+if($status_ta == null){
 	echo "<b>Harap ambil tugas akhir terlebih dahulu!</b>";
 	echo " Anda tidak dapat melakukan pengajuan permohonan sidang tugas akhir sebelum mengambil tugas akhir";
 	echo "<br><br>";
@@ -27,13 +27,15 @@ if($tugas_akhir == null){
 }
 
 
-else if($tugas_akhir->status_tugas_akhir!=6){
+else if($status_ta->id_referensi_status_ta!=11){
 	echo "<b>Harap menyelesaikan proses pembuatan tugas akhir terlebih dahulu!</b>";
-	echo " Anda tidak diperkenankan melakukan upload dokumen sebelum menyelesaikan bimbingan tugas akhir dan diizinkan sidang oleh dosen pembimbing";
+	echo " Anda tidak diperkenankan melakukan upload dokumen saat tugas akhir anda dalam status '";
+	echo $status_ta->status;
+	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir pada halaman utama.";
 }
 
-else if($pengajuan_sidang == null){
-	echo "<b>Harap melakukan pengajuan sidang terlebih dahulu!</b>";
+else if($status_sidang == null){
+	echo "<b>Harap Melakukan Pengajuan Sidang Terlebih Dahulu!</b>";
 	echo " Anda tidak dapat melakukan upload dokumen sebelum melakukan pengajuan sidang tugas akhir";
 	echo "<br><br>";
  	echo "<p>Silahkan melakukan pengajuan sidang tugas akhir";
@@ -45,9 +47,17 @@ else if($pengajuan_sidang == null){
 }
 
 
-else if($pengajuan_sidang->status!=2){
-	echo "<b>Harap menunggu persetujuan sidang! </b>";
-	echo " Anda tidak diperkenankan melakukan upload dokumen sebelum diizinkan sidang oleh dosen pembimbing";
+else if($status_sidang->id_referensi_status_sidang!=2){
+
+	echo "<b>Harap " ;
+	echo $status_sidang->status;
+	echo "!</b>";
+	echo " Anda tidak diperkenankan melakukan upload dokumen sebelum pengajuan sidang selesai diverifikasi. Sebagai panduan, lihat alur pengerjaan tugas akhir pada halaman utama.";
+}
+
+else{
+	echo $status_sidang;
+	echo $status_ta;
 }
 ?>
 
