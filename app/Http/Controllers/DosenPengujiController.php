@@ -28,11 +28,31 @@ class DosenPengujiController extends Controller
     	return view("dosen/DosenPenguji/feedback_sidang_mahasiswa_dosen_penguji");
     }
 
-   function hasil_ta() {
-        session_start();
-        return view("dosen/DosenPenguji/hasil_ta");
-    }
-
+	function dokumen_ta(){
+			session_start();
+			
+			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+		
+			$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+				->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+				->leftJoin('Pengajuan_sidang', 'Pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+				->leftJoin('Hasil_ta', 'Hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+				->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+			
+				->where([
+				 ['dosen_penguji_ta.id_dosen', '=',$id_dosen],
+				 ['tugas_akhir.status_tugas_akhir', '>=',5],
+				])
+				->get();
+		
+		
+		return view("dosen/DosenPenguji/dokumen_ta" , array('tugas_akhir' => $tugas_akhir) );
+		
+		
+		
+		
+	}
     function pengumuman() {
         session_start();
         return view("dosen/DosenPenguji/pengumuman");
