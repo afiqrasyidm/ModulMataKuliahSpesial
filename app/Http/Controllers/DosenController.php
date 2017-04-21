@@ -51,7 +51,7 @@ class DosenController extends Controller
 			$topik->id_industri = 	NULL;
 			$topik->id_dosen = $id_dosen;
 			$topik->sudah_diambil = 0;
-			
+			$topik->id_maker = $_SESSION["id_user"];
 	       	$topik->save();
 	        $penandaRole = "dosen";
 			
@@ -139,7 +139,11 @@ class DosenController extends Controller
 		if($is_disetujui==1){
 		DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
-            ->update(['status_tugas_akhir' => 0]);
+            ->update([
+			'status_tugas_akhir' => 5,
+			'id_maker' => $_SESSION["id_user"],
+			
+			]);
 		
 		
 		
@@ -147,7 +151,7 @@ class DosenController extends Controller
 			$dosen_pembimbing->id_dosen = $id_dosen;
 			$dosen_pembimbing->id_tugas_akhir = $id_tugas_akhir;
 			$dosen_pembimbing->status_dosen_pembimbing = 2;
-			
+			$dosen_pembimbing->id_maker=$_SESSION["id_user"];
 			$dosen_pembimbing->save();
 	        
 		
@@ -160,7 +164,11 @@ class DosenController extends Controller
 		else{
 			DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
-            ->update(['status_tugas_akhir' => -1]);
+            ->update([
+			'status_tugas_akhir' => 4,
+			'id_maker' => $_SESSION["id_user"],
+			
+			]);
 		}
 		return redirect()->route('dosen/pengajuan-topik/detail/',$id_topik);
 		
@@ -172,7 +180,13 @@ class DosenController extends Controller
 		
 		DB::table('topik')
             ->where('id_topik', $id_topik)
-            ->update(['sudah_diambil' => 1]);
+            ->update([
+			
+			'sudah_diambil' => 1,
+			'id_maker' => $_SESSION["id_user"],
+			
+			
+			]);
 	
 		return redirect()->route('dosen/pengajuan-topik/detail/',$id_topik);
 		
@@ -191,7 +205,7 @@ class DosenController extends Controller
 			
 				->where([
 				 ['topik.id_dosen', '=',$id_dosen],
-				 ['tugas_akhir.status_tugas_akhir', '>=',0],
+				 ['tugas_akhir.status_tugas_akhir', '>=',5],
 				])
 				->get();
 		

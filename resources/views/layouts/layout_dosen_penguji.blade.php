@@ -25,10 +25,10 @@
     </a>
     <ul class="treeview-menu">
       <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang</a></li>
-      <li><a href="#"><i class="fa fa-angle-right"></i>Hasil Sidang </a>
+      <li><a href="#"><i class="fa fa-angle-right"></i>Dokumen Sidang </a>
           <ul class="treeview-menu">
               <li><a href="{{ route('dosen/penguji/feedback-sidang') }}"><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
-               <li><a href="{{ route('dosen/penguji/hasil-ta') }}"><i class="fa fa-angle-right"></i>Download Hasil TA</a></li>
+               <li><a href="{{ route('dosen/penguji/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA</a></li>
           </ul>
       </li>
       

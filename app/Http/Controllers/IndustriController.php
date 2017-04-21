@@ -55,7 +55,7 @@ class IndustriController extends Controller
 			
 				->where([
 				 ['topik.id_industri', '=',$_SESSION["user_login_industri"]-> id_industri],
-				 ['tugas_akhir.status_tugas_akhir', '>=',0],
+				 ['tugas_akhir.status_tugas_akhir', '>=',5],
 				])
 				->get();
 		
@@ -101,6 +101,9 @@ class IndustriController extends Controller
 			$topik->id_industri = 	$_SESSION["user_login_industri"]-> id_industri;
 			$topik->id_dosen = NULL;
 			$topik->sudah_diambil = 0;
+			$topik->sudah_diambil = 0;
+			
+			$topik->id_maker=$_SESSION["user_login_industri"]->id_user;
 			
 	       	$topik->save();
 	        $penandaRole = "industri";
@@ -185,11 +188,23 @@ class IndustriController extends Controller
 		if($is_disetujui==1)
 		DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
-            ->update(['status_tugas_akhir' => 0]);
+            ->update([
+			
+			'status_tugas_akhir' => 5,
+			'id_maker' => $_SESSION["user_login_industri"]->id_user,
+			
+			
+			]);
 		else{
 			DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
-            ->update(['status_tugas_akhir' => -1]);
+            ->update([
+			
+			'status_tugas_akhir' => 4,
+			
+			'id_maker' => $_SESSION["user_login_industri"]->id_user,
+			
+			]);
 		}
 		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
 		
@@ -201,7 +216,13 @@ class IndustriController extends Controller
 		
 		DB::table('topik')
             ->where('id_topik', $id_topik)
-            ->update(['sudah_diambil' => 1]);
+            ->update([
+			
+			'sudah_diambil' => 1,
+			'id_maker' => $_SESSION["user_login_industri"]->id_user,
+			
+			
+			]);
 	
 		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
 		

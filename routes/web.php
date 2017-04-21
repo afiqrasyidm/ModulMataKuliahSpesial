@@ -209,3 +209,10 @@ Route::get('/dosen/pembimbing/sidang-selesai/{id_tugas_akhir}', ['as' => '/dosen
 
 //list jadwal sidang Dosen Penguji
 Route::get('/dosen/penguji/list-jadwal-sidang', ['as' => 'dosen/penguji/list-jadwal-sidang', 'uses' => 'DosenPengujiController@list_jadwal_sidang']);
+
+
+//dokumen TA dosbem
+Route::get('/dosen/pembimbing/dokumen-ta', ['as' => 'dosen/pembimbing/dokumen-ta', 'uses' => 'DosenPembimbingController@dokumen_ta']);
+
+//dokumen TA dosenPenguji
+Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'uses' => 'DosenPengujiController@dokumen_ta']);

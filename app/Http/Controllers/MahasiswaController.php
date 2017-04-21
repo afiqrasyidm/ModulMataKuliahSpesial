@@ -23,6 +23,9 @@ use App\Pengajuan_sidang;
 use App\Hasil_ta;
 use App\Dosen_pembimbing;
 
+use App\Status_ta;
+use App\Status_sidang;
+
 use Carbon\Carbon;
 
 class MahasiswaController extends Controller
@@ -40,8 +43,18 @@ class MahasiswaController extends Controller
 
 
 
-		$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-
+		
+		$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+				
+				->where([
+				 ['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa],
+				
+				])
+				->get()
+				->first()
+				;
+	//	return $tugas_akhir;
 		//jika belum milih topik
 		if($tugas_akhir==NULL){
 
@@ -66,7 +79,7 @@ class MahasiswaController extends Controller
 
 			$jumlah_pengambil_topik = Tugas_akhir::where('id_topik',$tugas_akhir->id_topik )->get()->count();
 
-
+			//diambil industri
 			if($topik_yang_diambil->id_industri != NULL){
 
 				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
@@ -317,7 +330,8 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "0";
+			$tugas_akhir->status_tugas_akhir = "5";
+			$tugas_akhir->id_maker = $_SESSION["id_user"];
 
 			$tugas_akhir->save();
 
@@ -396,7 +410,9 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->id_topik = $id_topik;
 
-			$tugas_akhir->status_tugas_akhir = "-2";
+			$tugas_akhir->status_tugas_akhir = "3";
+			$tugas_akhir->id_maker = $_SESSION["id_user"];
+
 
 			$tugas_akhir->save();
 
@@ -440,13 +456,18 @@ class MahasiswaController extends Controller
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$status_ta;
 
     	if($tugas_akhir!= null){
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-
-
+    		$status_ta= Status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
+    	
+    		// return $status_ta;
     		if($pengajuan_sidang!= null){
+
+    			$status_sidang= Status_sidang::where('id_referensi_status_sidang', $pengajuan_sidang->status)->get()->first();
+    			//return $status_sidang;
 
 	    		if($pengajuan_sidang->status==2 && $tugas_akhir->status_tugas_akhir==11){
 
@@ -461,17 +482,18 @@ class MahasiswaController extends Controller
 			    }
 			    else
 			    {
-			    	return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
+			    	return view("mahasiswa/failed_upload_hasil_ta", array('status_sidang' => $status_sidang, 'status_ta' => $status_ta ));
 			    }
 			}
 			else
 			{
-			    return view("mahasiswa/failed_upload_hasil_ta", array('pengajuan_sidang' => $pengajuan_sidang, 'tugas_akhir' => $tugas_akhir  ));
+			    return view("mahasiswa/failed_upload_hasil_ta", array('status_sidang' => $status_sidang, 'status_ta' => $status_ta  ));
 			}
 
 	    }
 	    else{
-	    	return view("mahasiswa/failed_upload_hasil_ta", array( 'tugas_akhir' => $tugas_akhir));
+
+	    	return view("mahasiswa/failed_upload_hasil_ta", array( 'status_ta' => $status_ta));
 	    }
     }
 
@@ -493,40 +515,25 @@ class MahasiswaController extends Controller
 
 
 	        if($hasil_ta==NULL){
-
 	        	$hasil_ta = new Hasil_ta;
-
 	    		$this->validate($request, [
-
-
 	            	'file' => 'required|mimes:pdf|max:10000',
-
-
 	       		 ]);
 
 
-        	$fileName = time().'.'.$request->file->getClientOriginalExtension();
-
-
-	        	$fileName = $npm_mahasiswa.'.'.$request->file->getClientOriginalExtension();
+          		$fileName = $npm_mahasiswa.'.'.$request->file->getClientOriginalExtension();
 
 
 	        	$request->file->move(public_path('files'), $fileName);
 
-
 	       		$hasil_ta->dokumen = $fileName;
 		        $hasil_ta->id_tugas_akhir = $id_tugas_akhir;
-
+		        $hasil_ta->id_maker = $_SESSION["id_user"];
 		        $hasil_ta->save();
 
 		    	return back()
-
-
-		    		->with('success','File Uploaded successfully.')
-
 		    		->with('path',$fileName);
 	    	}
-
     }
 
 
