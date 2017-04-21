@@ -46,6 +46,8 @@ Route::get('/staf/post-pengumuman', ['as' => 'staf/post-pengumuman', 'uses' => '
 
 Route::get('/staf/verifikasi-permohonan-ta', ['as' => 'staf/verifikasi-permohonan-ta', 'uses' => 'StafController@verifikasi_permohonan_ta']);
 
+Route::get('/staf/verifikasi-ta/{id_tugas_akhir}', ['as' => 'staf/verifikasi-ta/{id_tugas_akhir}', 'uses' => 'StafController@verifikasi_ta']);
+
 Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
 
 Route::get('/dosen/penguji/home', ['as' => 'dosen/penguji/home', 'uses' => 'DosenPengujiController@home_dosen_penguji']);

@@ -9,17 +9,19 @@
 		<!-- Modal content-->
 		<div class="modal-content">
 	  		<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<center><h4>PERSETUJUAN</h4></center>
 	  		</div>
-	  		<div class="modal-body">
-				<label class="col-sm-2 control-label">Komentar</label>
-				<textarea class="textarea" style="width:100%; height: 200px; line-height: 18px; border: 2px solid #dddddd;"></textarea>
-			</div>
-	  		<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Setujui</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Tolak</button>
-	  		</div>
+	  		<form method="post" action="">
+	  			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		  		<div class="modal-body">
+					<label class="col-sm-2 control-label">Komentar</label>
+					<textarea class="textarea" style="width:100%; height: 200px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+				</div>
+		  		<div class="modal-footer">
+					<button class="btn btn-primary" type="submit" name="action" value="Setujui">Setujui</button>
+					<button class="btn btn-danger" type="submit" name="action" value="Tolak">Tolak</button>
+		  		</div>
+		  	</form>
 		</div>
 	</div>
 </div>
@@ -63,9 +65,9 @@
 		 		<td>{{$ta->topik_ta}}</td>
 		 		<td>{{$ta->judul_ta}}</td>
 				<td> 
-					@if($ta->status_tugas_akhir == 1)
+					@if($ta->status_tugas_akhir == 6)
 						<a data-toggle="modal" data-target="#myModal"><button  class="btn btn-primary">Persetujuan</button></a>
-					@elseif($ta->status_tugas_akhir == -3)
+					@elseif($ta->status_tugas_akhir == 2)
 						<p style="color:red;"><b>Topik Tidak Setujui</b></p>
 					@else
 						<p><b>Topik Disetujui</b></p>
@@ -77,4 +79,5 @@
 	</table>
 	<br/>
 </div>
+
 @endsection

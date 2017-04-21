@@ -93,7 +93,10 @@ class MahasiswaController extends Controller
     	session_start();
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$tugas_akhir = DB::table('tugas_akhir')
+          ->leftJoin('refrensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'refrensi_status_ta.id_refrensi_status_ta')
+          ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
+          ->get()->first();
 
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
     	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir<0) {
@@ -135,7 +138,7 @@ class MahasiswaController extends Controller
 
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
-            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
             return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
 	    }
