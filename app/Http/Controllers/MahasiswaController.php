@@ -170,11 +170,11 @@ class MahasiswaController extends Controller
           ->get();
 
 
-          $dosenpembimbing = DB::table('dosen_pembimbing_ta')
+          $dosenpembimbings = DB::table('dosen_pembimbing_ta')
             ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
 
             ->where('dosen_pembimbing_ta.id_tugas_akhir', '=', $tugas_akhir->id_tugas_akhir)
-            ->get()->first();
+            ->get();
 // return $dosenpembimbing;
 
         //jika belum milih topik
@@ -185,16 +185,27 @@ class MahasiswaController extends Controller
 
     		}
 
+          $dosenpembimbing = DB::table('dosen')->get();
+
+        $data[""] = "TEST";
+    	$data['dosenpembimbings'] = $dosenpembimbings;
+    	$data['dosenpembimbing'] = $dosenpembimbing;
+
+    	if(count($dosenpembimbings) > 0)
+    		$dosen_pembimbing = $dosenpembimbings[0];
+
         //sudah memilih topik
         if ($tugas_akhir!=NULL) {
           $topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
           if($topik_yang_diambil->id_industri != NULL ){
             $dosenpembimbing = DB::table('dosen')
             ->get();
-            return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbing' => $dosenpembimbing));
+            return view("mahasiswa/pengajuan_pembimbing_ta")->with('data', $data);
           }
           else {
-            return view("mahasiswa/dosen_pembimbing", array('dosenpembimbing' => $dosenpembimbing));
+          	$id_dosen = DB::table('topik')->where('id_topik', '=', $tugas_akhir->id_topik)->get()[0]->id_dosen;
+          	$data['dosenpembimbings'] = DB::table('dosen')->where('id_dosen', '=', $id_dosen)->get();
+            return view("mahasiswa/pengajuan_pembimbing_ta", array('data' => $data));
           }
         }
 
@@ -222,9 +233,10 @@ class MahasiswaController extends Controller
         $dosen_pembimbing = new dosen_pembimbing;
         $dosen_pembimbing->id_dosen = $id_dosen;
         $dosen_pembimbing->id_tugas_akhir = $id_tugas_akhir->first()->id_tugas_akhir;
+        $dosen_pembimbing->status_dosen_pembimbing = 1;
         $dosen_pembimbing->save();
 
-        return redirect()->route('mahasiswa/pengajuan_dosenpembimbing');
+        return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
 
     }
 

@@ -138,6 +138,7 @@ Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainControl
 
 Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
 
+Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-bimbingan', 'uses'=> 'MahasiswaController@verifikasi-bimbingan']);
 
 
 //upload hasil ta
