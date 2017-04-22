@@ -108,7 +108,14 @@
 						        
 						<tr>
 		                <th bgcolor="#86b7e3">Pengalaman</th>
-		                <td bgcolor="#dddddd"> hard</td>
+		                <td bgcolor="#dddddd"> Publikasi: <br>
+		                	Computer Networks, co-authored with David J. Wetherall (1st ed. 1981, 2nd ed. 1994, 3rd ed. 1996, 4th ed. 2002, 5th ed. 2010)
+							<br>Operating Systems: Design and Implementation, co-authored with Albert Woodhull
+							<br>Modern Operating Systems
+							<br>Distributed Operating Systems
+							<br>Structured Computer Organization
+							<br>Distributed Systems: Principles and Paradigms, co-authored with Maarten van Steen
+		                </td>
 
 		                </tr>
 		                

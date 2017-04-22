@@ -171,21 +171,22 @@ class MahasiswaController extends Controller
           ->where('topik.sudah_diambil', '=', 0)
           ->get();
 
+			
+			if($tugas_akhir==NULL){
+
+				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
+    		 	// return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
+
+    		}
 
           $dosenpembimbings = DB::table('dosen_pembimbing_ta')
             ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
-
             ->where('dosen_pembimbing_ta.id_tugas_akhir', '=', $tugas_akhir->id_tugas_akhir)
             ->get();
 // return $dosenpembimbing;
 
         //jika belum milih topik
-    		if($tugas_akhir==NULL){
-
-
-    		 	return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
-
-    		}
+    	
 
           $dosenpembimbing = DB::table('dosen')->get();
 
@@ -236,6 +237,7 @@ class MahasiswaController extends Controller
         $dosen_pembimbing->id_dosen = $id_dosen;
         $dosen_pembimbing->id_tugas_akhir = $id_tugas_akhir->first()->id_tugas_akhir;
         $dosen_pembimbing->status_dosen_pembimbing = 1;
+        $dosen_pembimbing->id_maker = $_SESSION["id_user"];
         $dosen_pembimbing->save();
 
         return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
