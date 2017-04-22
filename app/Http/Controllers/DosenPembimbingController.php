@@ -83,6 +83,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
       
 		->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
 		->where('pengajuan_sidang.status','=', 2)
+        ->where('pengajuan_sidang.status','!=', 12)
         
 		->get();
 
@@ -176,4 +177,50 @@ function ubah_status_sidangPost($id_tugas_akhir)
 
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
 	}
+	
+	function detail_sidang($id_tugas_akhir){
+		session_start();
+			//return "lol";
+					
+		$ta = DB::table('pengajuan_sidang')
+        ->leftJoin('dosen_pembimbing_ta', 'pengajuan_sidang.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	    ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+      
+		->where('pengajuan_sidang.id_tugas_akhir','=', $id_tugas_akhir)
+	
+        
+		->get()
+		->first();
+		
+			return view('dosen/DosenPembimbing/detail_sidang', array('ta' => $ta));;
+    	
+	}
+	function detail_sidang_submit(){
+		session_start();
+			//return "lol";
+					
+		    DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
+            ->update(
+			
+			[
+			
+			'id_maker' =>  $_SESSION["id_user"],
+			
+			
+			'status_tugas_akhir' =>  12,
+			
+			]
+			
+			)
+			
+			;
+   
+		
+			return view('dosen/DosenPembimbing/detail_sidang', array('ta' => $ta));;
+    	
+	}
+
 }

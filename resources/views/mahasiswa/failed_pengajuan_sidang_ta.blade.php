@@ -27,7 +27,7 @@ if($tugas_akhir == null){
  	echo "</a></p>";
 }
 
-else if($tugas_akhir->status_tugas_akhir!=6){
+else if($tugas_akhir->status_tugas_akhir!=11){
 	echo "<b>Harap menyelesaikan Bimbingan Tugas Akhir terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang tugas akhir sebelum menyelesaikan bimbingan tugas akhir";
  	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
