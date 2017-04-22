@@ -44,7 +44,7 @@ class StafController extends Controller
         ->get();
 
       
-
+        
     return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
 
     }
