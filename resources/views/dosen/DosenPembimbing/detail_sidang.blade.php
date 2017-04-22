@@ -16,7 +16,7 @@
 <br>
 
          <div class="box box-primary">
-		  <form class="form-horizontal" method="post" action="">
+		  <form class="form-horizontal" method="post" action="/dosen/pembimbing/detail-sidang/">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 						
@@ -96,6 +96,7 @@
     <center><br><br>
       </div>
 
+				<input type="text" name="id_tugas_akhir" value ="{{$ta->id_tugas_akhir}}" hidden  >
 	</form>
 				
         </section><!-- /.content -->
@@ -111,6 +112,5 @@
 </section>
 
 
-				<input type="text" name="id_tugas_akhir" value ="{{$ta->id_tugas_akhir}}"  >
 @endsection
 

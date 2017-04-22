@@ -6,7 +6,7 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
-	@if(count($data['dosenpembimbings']) == 0)
+	@if(isset($dosenpembimbing))
 
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
@@ -49,7 +49,7 @@
 				    </thead>
 				    <tbody>
 
-				@foreach ($data['dosenpembimbing'] as $dosenpembimbing)
+				@foreach ($dosenpembimbing as $dosenpembimbing)
 
 				<tr>
 					<td>
@@ -76,7 +76,7 @@
 		</form>
 
 
-		@elseif(isset($data['dosenpembimbings'][0]->status_dosen_pembimbing))
+		@elseif($dosenpembimbings->status_dosen_pembimbing == 1))
 			<section class="content">
 				<div class="box box-primary">
 		                <div class="box-header with-border">
@@ -91,14 +91,14 @@
 						<tr>
 		                <th width="20%" bgcolor="#86b7e3">Nama Dosen</th>
 		                <td bgcolor="#dddddd">
-							{{ $data['dosenpembimbings'][0]->nama_dosen }}
+							{{ $dosenpembimbings->nama_dosen }}
 						</td>
 						
 						
 						</tr><tr>
 		                <th width="20%" bgcolor="#86b7e3">Interest</th>
 		                <td bgcolor="#dddddd">
-											{{ $data['dosenpembimbings'][0]->interest }}
+											{{ $dosenpembimbings->interest }}
 
 		                
 						
@@ -123,9 +123,9 @@
 						
 							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
 							<td bgcolor="#dddddd">
-								@if($data['dosenpembimbings'][0]->status_dosen_pembimbing == 1)
+								@if($dosenpembimbings->status_dosen_pembimbing == 1)
 									Menunggu Persetujuan
-								@elseif($data['dosenpembimbings'][0]->status_dosen_pembimbing == 2)
+								@elseif($dosenpembimbings->status_dosen_pembimbing == 2)
 									Diterima
 								@else
 								    Ditolak
@@ -158,14 +158,14 @@
 						<tr>
 		                <th width="20%" bgcolor="#86b7e3">Nama Dosen</th>
 		                <td bgcolor="#dddddd">
-							{{ $data['dosenpembimbings'][0]->nama_dosen }}
+							{{ $dosenpembimbings->nama_dosen }}
 						</td>
 						
 						
 						</tr><tr>
 		                <th width="20%" bgcolor="#86b7e3">Interest</th>
 		                <td bgcolor="#dddddd">
-											{{ $data['dosenpembimbings'][0]->interest }}
+											{{ $dosenpembimbings->interest }}
 
 		                
 						

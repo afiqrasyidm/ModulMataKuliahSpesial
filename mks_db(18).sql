@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2017 at 01:00 AM
+-- Generation Time: Apr 22, 2017 at 10:08 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -80,10 +80,8 @@ CREATE TABLE `dosen_pembimbing_ta` (
 --
 
 INSERT INTO `dosen_pembimbing_ta` (`id`, `created_at`, `updated_at`, `id_dosen`, `id_maker`, `status_dosen_pembimbing`, `id_tugas_akhir`) VALUES
-(1, '2017-04-17 17:00:00', '2017-04-17 17:00:00', 1, NULL, 1, 47),
-(2, '2017-04-17 17:00:00', '2017-04-17 17:00:00', 1, NULL, 1, 48),
-(3, '2017-04-20 15:45:47', '2017-04-20 15:45:47', 1, 2, 2, 52),
-(4, '2017-04-20 15:46:11', '2017-04-20 15:46:11', 1, 2, 2, 53);
+(7, '2017-04-22 01:04:33', '2017-04-22 01:04:33', 1, 2, 2, 56),
+(6, '2017-04-22 00:56:45', '2017-04-22 01:01:53', 1, NULL, 2, 55);
 
 -- --------------------------------------------------------
 
@@ -131,8 +129,7 @@ INSERT INTO `fakultas` (`id_fakultas`, `nama_fakultas`, `id_universitas`, `creat
 
 CREATE TABLE `feedback_tugas_akhir` (
   `id_feedback_tugas_akhir` int(10) NOT NULL,
-  `feedback_dosen_pa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `feedback_dosen_pembimbing_ta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `komentar_dosen_pa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `id_maker` int(10) DEFAULT NULL,
@@ -466,6 +463,7 @@ CREATE TABLE `tugas_akhir` (
   `tgl_pengajuan` date DEFAULT NULL,
   `id_jenis_ta` int(10) UNSIGNED DEFAULT NULL,
   `id_mahasiswa` int(10) UNSIGNED NOT NULL,
+  `nilai_ta` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -477,11 +475,11 @@ CREATE TABLE `tugas_akhir` (
 -- Dumping data for table `tugas_akhir`
 --
 
-INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `created_at`, `id_maker`, `updated_at`, `judul_ta`, `id_topik`) VALUES
-(23, '0', NULL, NULL, 4, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
-(25, '0', NULL, NULL, 6, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 25),
-(26, '-1', NULL, NULL, 7, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
-(53, '11', NULL, NULL, 1, '2017-04-20 15:46:05', 2, '2017-04-20 15:46:05', NULL, 24);
+INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `nilai_ta`, `created_at`, `id_maker`, `updated_at`, `judul_ta`, `id_topik`) VALUES
+(23, '0', NULL, NULL, 4, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
+(25, '0', NULL, NULL, 6, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 25),
+(26, '-1', NULL, NULL, 7, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
+(56, '5', NULL, NULL, 1, NULL, '2017-04-22 01:04:19', 2, '2017-04-22 01:04:19', NULL, 24);
 
 -- --------------------------------------------------------
 
@@ -716,7 +714,7 @@ ALTER TABLE `dosen_pa`
 -- AUTO_INCREMENT for table `dosen_pembimbing_ta`
 --
 ALTER TABLE `dosen_pembimbing_ta`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `fakultas`
 --
@@ -781,7 +779,7 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -791,7 +789,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

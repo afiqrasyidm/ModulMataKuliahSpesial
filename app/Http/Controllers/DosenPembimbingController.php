@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Dosen;
 use App\Dosen_pembimbing;
 use App\Tugas_akhir;
+use Illuminate\Support\Facades\Input;
+
 
 class DosenPembimbingController extends Controller
 {
@@ -172,12 +174,17 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	 	// $dosen_pembimbing->id_maker = $_SESSION["id_user"];
 	 	$pembimbing->save();
 
-	 	$tugas_akhir = Tugas_akhir::where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)->firstOrFail();
 	 	if($status == 2) {
-	 		$tugas_akhir->status_tugas_akhir = 10;
-	 	} else
-	 		$tugas_akhir->status_tugas_akhir = 9;
+	 		DB::table('tugas_akhir')
+	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
+	 			->update(['status_tugas_akhir' => 10]);
 
+	 	} else {
+	 		DB::table('tugas_akhir')
+	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
+	 			->update(['status_tugas_akhir' => 9]);
+	 	}
+	 	
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
 	}
 	
@@ -202,8 +209,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	}
 	function detail_sidang_submit(){
 		session_start();
-			//return "lol";
-					
+
 		    DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
             ->update(
@@ -213,7 +219,9 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			'id_maker' =>  $_SESSION["id_user"],
 			
 			
-			'status_tugas_akhir' =>  12,
+			'nilai_ta' => Input::get('nilai_ta') ,
+						'status_tugas_akhir' =>  12,
+			
 			
 			]
 			
@@ -222,7 +230,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			;
    
 		
-			return view('dosen/DosenPembimbing/detail_sidang', array('ta' => $ta));;
+			return redirect()->route('dosen/pembimbing/list-jadwal-sidang');
     	
 	}
 

@@ -30,7 +30,6 @@
 		        <th>Judul </th>
 				<th>Topik</th>
 				<th>Status</th>
-				<th>Verifikasi Status</th>
 				
 				
 				</tr>
@@ -52,19 +51,23 @@
 											{{$data->topik_ta}}
 
 											</td>
-											<td>
-												@if($data->status_dosen_pembimbing == 1)
-													Belum diverifikasi
-												@elseif($data->status_dosen_pembimbing == 2)
-													Sudah diterima
-												@else
-													Sudah ditolak
-												@endif
-											</td>
+									
 										
 										<td>
-										 <a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/3/'.$data->id) }}" type="button" class="btn btn-danger">Tolak</a>
-										 <a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/2/'.$data->id) }}"type="button" class="btn btn-primary">Terima</a>
+
+										 
+											@if($data->status_dosen_pembimbing == 1)
+											 <a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/2/'.$data->id) }}"type="button" class="btn btn-primary">Terima</a>
+												
+											</a>
+											<a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/3/'.$data->id) }}" type="button" class="btn btn-danger">Tolak</a>
+											
+											</a>
+											@elseif($data->status_dosen_pembimbing == 2)
+												<p style="color:green;"><b>Diterima</b></p>
+											@else
+												<p style="color:red;"><b>Ditolak</b></p>
+											@endif
 										</td>
 									</tr>
 											

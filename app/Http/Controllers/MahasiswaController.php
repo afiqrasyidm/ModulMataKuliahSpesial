@@ -108,10 +108,13 @@ class MahasiswaController extends Controller
     	session_start();
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$tugas_akhir = DB::table('tugas_akhir')
+          ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+          ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
+          ->get()->first();
 
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
-    	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir<0) {
+    	if ($tugas_akhir==null) {
     		return view("mahasiswa/belum_mengajukan_topik");
     	}
 
@@ -150,7 +153,7 @@ class MahasiswaController extends Controller
 
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
-            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
             return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
 	    }
@@ -171,8 +174,11 @@ class MahasiswaController extends Controller
           ->where('topik.sudah_diambil', '=', 0)
           ->get();
 
-			
-			if($tugas_akhir==NULL){
+
+			if ($tugas_akhir == NULL){
+				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
+			}
+			else if($tugas_akhir->status_tugas_akhir < 8){
 
 				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
     		 	// return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
@@ -182,34 +188,39 @@ class MahasiswaController extends Controller
           $dosenpembimbings = DB::table('dosen_pembimbing_ta')
             ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
             ->where('dosen_pembimbing_ta.id_tugas_akhir', '=', $tugas_akhir->id_tugas_akhir)
-            ->get();
+            ->get()->first();
 // return $dosenpembimbing;
 
-        //jika belum milih topik
     	
 
           $dosenpembimbing = DB::table('dosen')->get();
 
-        $data[""] = "TEST";
-    	$data['dosenpembimbings'] = $dosenpembimbings;
-    	$data['dosenpembimbing'] = $dosenpembimbing;
+     //    $data[""] = "TEST";
+    	// $data['dosenpembimbings'] = $dosenpembimbings;
+    	// $data['dosenpembimbing'] = $dosenpembimbing;
 
-    	if(count($dosenpembimbings) > 0)
-    		$dosen_pembimbing = $dosenpembimbings[0];
+    	// if(count($dosenpembimbings) > 0)
+    	// 	$dosen_pembimbing = $dosenpembimbings;
 
         //sudah memilih topik
         if ($tugas_akhir!=NULL) {
+
           $topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
-          if($topik_yang_diambil->id_industri != NULL ){
+          if($dosenpembimbings == NULL ){
+          	// return 'test';
             $dosenpembimbing = DB::table('dosen')
             ->get();
-            return view("mahasiswa/pengajuan_pembimbing_ta")->with('data', $data);
+            return view("mahasiswa/pengajuan_pembimbing_ta")->with('dosenpembimbing', $dosenpembimbing);
           }
+
           else {
+          	// return 'test1';
           	$id_dosen = DB::table('topik')->where('id_topik', '=', $tugas_akhir->id_topik)->get()[0]->id_dosen;
-          	$data['dosenpembimbings'] = DB::table('dosen')->where('id_dosen', '=', $id_dosen)->get();
-            return view("mahasiswa/pengajuan_pembimbing_ta", array('data' => $data));
+          
+         	
+            return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
           }
+
         }
 
     }
@@ -482,10 +493,10 @@ class MahasiswaController extends Controller
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
     		$status_ta= Status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
-    	
+    		$status_sidang = 0;
     		// return $status_ta;
     		if($pengajuan_sidang!= null){
-
+ 			
     			$status_sidang= Status_sidang::where('id_referensi_status_sidang', $pengajuan_sidang->status)->get()->first();
     			//return $status_sidang;
 

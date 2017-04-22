@@ -44,7 +44,7 @@ class StafController extends Controller
         ->get();
 
       
-
+        
     return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
 
     }
@@ -82,15 +82,50 @@ class StafController extends Controller
     }
 	
 	function verifikasi_permohonan_ta() {
-    	session_start();
-    	return view("staf/verifikasi_permohonan_ta");
+        session_start();
+
+        $tugas_akhir = DB::table('tugas_akhir')
+                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
+                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+                ->where('tugas_akhir.status_tugas_akhir','>=','7')
+                ->get();
+
+        //return $tugas_akhir;
+
+        return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 	
+<<<<<<< HEAD
 	public function form_verifikasi_sidang_ta(){
 
 		session_start();
 
     	return view("staf/form_verifikasi_sidang_ta");
 	}
+=======
+    function verifikasi_ta($id_tugas_akhir){
+    	session_start();
 
+    	DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', $id_tugas_akhir)
+            ->update(['status_tugas_akhir' => 8]);
+	
+		$tugas_akhir = DB::table('tugas_akhir')
+                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
+                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+                ->where('tugas_akhir.status_tugas_akhir','>=','7')
+                ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
+                ->get();
+>>>>>>> aef5892ba34077205050db2731fea1e7e8221a05
+
+        //return $tugas_akhir;
+
+        return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
+    }
 }
