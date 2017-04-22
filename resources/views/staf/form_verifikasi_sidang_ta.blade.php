@@ -59,11 +59,48 @@
                 </tr>
 
                 <tr>
-                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
+                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji 1</th>
                 <td>
+						<select name="dosen_penguji_1">
+							<option value="0">Pilih Nama Dosen</option>
+							  @foreach ($dosen as $dosen)
+						
+									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+							
+							 @endforeach
+						</select>
 				</td>
                 </tr>
 
+				 <tr>
+                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji 2</th>
+                <td>
+						<select name="dosen_penguji_2">
+							<option value="0">Pilih Nama Dosen</option>
+							  @foreach ($dosen2 as $dosen)
+						
+									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+							
+							 @endforeach
+						</select>
+				</td>
+                </tr>
+				
+				 <tr>
+                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji 3</th>
+                <td>
+						<select name="dosen_penguji_3">
+							<option value="0">Pilih Nama Dosen</option>
+							  @foreach ($dosen3 as $dosen)
+						
+									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+							
+							 @endforeach
+						</select>
+				
+				</td>
+                </tr>
+				
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
                 <td><input name="waktu_sidang" type="date" id="datepicker" value="<?php echo date ("Y-m-d");?> ">

@@ -77,20 +77,19 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			//return $id_dosen;
 			
 			
-		$ta = DB::table('pengajuan_sidang')
-        ->leftJoin('dosen_pembimbing_ta', 'pengajuan_sidang.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
-        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+		$ta = DB::table('tugas_akhir')
+		  ->leftJoin('hasil_ta', 'tugas_akhir.id_tugas_akhir', '=', 'hasil_ta.id_tugas_akhir')
+        ->leftJoin('dosen_pembimbing_ta', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
+        ->leftJoin('pengajuan_sidang', 'tugas_akhir.id_tugas_akhir', '=', 'pengajuan_sidang.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
-	    ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-      
+	  
 		->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
 		->where('pengajuan_sidang.status','=', 2)
-        ->where('pengajuan_sidang.status','!=', 12)
+        ->where('tugas_akhir.status_tugas_akhir','!=', 12)
         
 		->get();
 
-      
-		//return "lol";
+		//return $ta;
 		return view("dosen/DosenPembimbing/list_jadwal_sidang", array('ta' => $ta));
 
   

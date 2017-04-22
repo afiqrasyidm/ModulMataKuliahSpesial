@@ -14,9 +14,9 @@
 
   <br>
 <br>
-
+		 <div class="box-body">
          <div class="box box-primary">
-		  <form class="form-horizontal" method="post" action="/dosen/pembimbing/detail-sidang/">
+		  <form class="form-horizontal" method="post" action="">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 						
@@ -73,7 +73,20 @@
 				<tr>
                 <th bgcolor="#86b7e3">Input Nilai</th>
 				
-                <td bgcolor="#dddddd"> <input type="text" name="nilai_ta"></td>
+                <td bgcolor="#dddddd"> 
+					<select name="nilai_ta">
+							<option value="A">A</option>
+							<option value="A-">A-</option>
+							<option value="B+">B+</option>
+							<option value="B">B</option>
+							<option value="B-">B-</option>
+							<option value="C+">C+</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+							
+						</select>
+					
+					</td>
 
                 </tr>
 				

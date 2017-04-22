@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Staf;
 use App\Dosen;
 use App\Pengajuan_sidang;
+use App\Dosen_penguji;
 use SSO\SSO;
 
 class StafController extends Controller
@@ -36,14 +37,14 @@ class StafController extends Controller
 	 function verifikasi_permohonan_sidang() {
       session_start();
 
-
+	
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get();
 
-      
+     // return $ta;
         
     return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
 
@@ -59,19 +60,55 @@ class StafController extends Controller
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get()->first();
-
-        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta));
+		
+		
+		$dosen =  DB::table('dosen')->get();
+		//return $dosen;
+        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen));
 
        
 	}
 
 	function verifikasi_permohonan_sidang_submit(){
 		session_start();
+		
+	//	return Input::get('dosen_penguji_1');
 		DB::table('pengajuan_sidang')
         	->where('id_pengajuan','=', Input::get('id_pengajuan'))
-            ->update(['waktu_sidang' => Input::get('waktu_sidang')]);
+            ->update([
+			'waktu_sidang' => Input::get('waktu_sidang'),
+			'id_maker' =>  $_SESSION["id_user"],
+			'status' => 2,
+			]);
+		$id_tugas_akhir =DB::table('pengajuan_sidang')  
+				->where('pengajuan_sidang.id_pengajuan','=', Input::get('id_pengajuan'))
+				->get()->first()->id_tugas_akhir;
+				
+		//return $id_tugas_akhir;
+		
+		 $dosen_penguji1 = new dosen_penguji;
+		 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
+		 $dosen_penguji1->id_tugas_akhir = $id_tugas_akhir;
+		 $dosen_penguji1->id_maker = $_SESSION["id_user"];
+		 $dosen_penguji1->save();
+		 
+		 $dosen_penguji2 = new dosen_penguji;
+		 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
+		 $dosen_penguji2->id_tugas_akhir = $id_tugas_akhir;
+		 $dosen_penguji2->id_maker = $_SESSION["id_user"];
+		  $dosen_penguji2->save();
+		 
+		 
+		 $dosen_penguji3 = new dosen_penguji;
+		 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
+		 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
+		 $dosen_penguji3->id_maker = $_SESSION["id_user"];
+		  $dosen_penguji3->save();
+		 
+		 
 
-    	return view("staf/verifikasi_permohonan_ta");
+		return redirect()->route('staf/verifikasi-permohonan-sidang');
+    	//return view("staf/verifikasi_permohonan_ta");
 
 	}
 
@@ -98,14 +135,7 @@ class StafController extends Controller
         return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 	
-<<<<<<< HEAD
-	public function form_verifikasi_sidang_ta(){
 
-		session_start();
-
-    	return view("staf/form_verifikasi_sidang_ta");
-	}
-=======
     function verifikasi_ta($id_tugas_akhir){
     	session_start();
 
@@ -122,7 +152,6 @@ class StafController extends Controller
                 ->where('tugas_akhir.status_tugas_akhir','>=','7')
                 ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
                 ->get();
->>>>>>> aef5892ba34077205050db2731fea1e7e8221a05
 
         //return $tugas_akhir;
 

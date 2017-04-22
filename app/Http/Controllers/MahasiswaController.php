@@ -203,16 +203,26 @@ class MahasiswaController extends Controller
     	// 	$dosen_pembimbing = $dosenpembimbings;
 
         //sudah memilih topik
-        if ($tugas_akhir!=NULL) {
+		$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+        
+		if ($tugas_akhir!=NULL) {
 
-          $topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
           if($dosenpembimbings == NULL ){
           	// return 'test';
             $dosenpembimbing = DB::table('dosen')
             ->get();
             return view("mahasiswa/pengajuan_pembimbing_ta")->with('dosenpembimbing', $dosenpembimbing);
           }
-
+		else if($topik_yang_diambil->id_dosen !=NULL){
+			if($tugas_akhir->status_tugas_akhir==8){
+			
+				DB::table('tugas_akhir')
+						->where('id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+						->update(['id_maker' =>  $_SESSION["id_user"],'status_tugas_akhir' => 10]);
+			}	
+			
+			  return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
+		}
           else {
           	// return 'test1';
           	$id_dosen = DB::table('topik')->where('id_topik', '=', $tugas_akhir->id_topik)->get()[0]->id_dosen;
