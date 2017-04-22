@@ -10,7 +10,7 @@
 <div class=".col-md-11">
 	<div class="box box-primary">
         
-			@if($tugas_akhir->status_tugas_akhir<1)
+			@if($tugas_akhir->status_tugas_akhir<6)
 		<div class="box-header with-border">
             <center><h1 class="header-title">Pengajuan Permohonan TA</h1></center>
 			

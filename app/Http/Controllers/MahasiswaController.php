@@ -109,12 +109,12 @@ class MahasiswaController extends Controller
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = DB::table('tugas_akhir')
-          ->leftJoin('refrensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'refrensi_status_ta.id_refrensi_status_ta')
+          ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
           ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
           ->get()->first();
 
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
-    	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir<0) {
+    	if ($tugas_akhir==null) {
     		return view("mahasiswa/belum_mengajukan_topik");
     	}
 
