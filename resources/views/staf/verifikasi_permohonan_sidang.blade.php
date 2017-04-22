@@ -21,7 +21,7 @@
                 <div class="box-body">
                   
 <!-- test -->
-@if(isset($ta))
+
 
       <section class="content">
               <table class="table table-bordered">
@@ -36,7 +36,7 @@
                       </tr>
                     </thead>
               <tbody>
-    
+  @if(isset($ta))  
                @foreach ($ta as $ta)
 
         
@@ -72,7 +72,7 @@
               </tr>
   @endforeach
               
-
+    @endif
               </tbody>
               </table>
     <center>
@@ -80,9 +80,10 @@
     
 
         </section><!-- /.content -->
-   
+
+
      
-    @endif
+
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>

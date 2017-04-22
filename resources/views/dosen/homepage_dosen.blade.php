@@ -52,38 +52,51 @@
  
   <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
       
-        <div class='container' style="margin-top: 60px; min-height:550px">
-            <div class='col-md-2'></div>
-            <div class='col-md-8'>
-                <div>
-                    <center>
-                        <br/>
-                        
-                        <h2 class="header-title">Pilih Role Dosen</h2>
-                        <br><br>
-                     
-                       <a href="{{ route('dosen/pembimbing/home') }}"><button type="button" class=" btn btn-default ">Dosen Pembimbing</button></a>
-                       
-                        <br/><br>
-                        <a href="{{ route('dosen/penguji/home') }}"><button type="button" class=" btn btn-default ">Dosen Penguji</button></a>
-                        <br/><br>
-                         <a href="{{ route('dosen/PA/home') }}"><button type="button" class="btn btn-default ">PA</button></a>
-                        <br/><br>
-                        <br/>
-                        <i><h5>Ingin Ajukan Topik?<a href="{{ route('dosen/pengajuan-topik-ta') }}"> ajukan</a></h5></i>
-                   
-                    </center>
-                </div>
-            </div>
-            <div class='col-md-2'></div>
-        </div>
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
 
-        <footer class="footer">
-            <center>
-                <div class="container">
-                    <p class="text-muted">© 2017 copyright Propensi A3</p>
-                </div>      
+<br><br>
+
+              <!-- general form elements disabled -->
+              <div class="box box-warning">
+                <div class="box-header with-border">
+                  <center><b><h1 class="header-title">Pilih Role Dosen</h1></b></center>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+        
+      <section class="content">
+        <center>
+                       
+                    <div class="col-xs-4"> 
+        
+                       <a href="{{ route('dosen/pembimbing/home') }}"><img src="{{ asset('img/dospem.png') }}" style="width: 50% ; height: 50%"></a>
+                    </div>
+                        
+                    <div class="col-xs-4">
+                        <a href="{{ route('dosen/penguji/home') }}"><img src="{{ asset('img/dospeng.png') }}" style="width: 50% ; height: 50%"></a>
+                    </div>
+                    <div class="col-xs-4">
+                         <a href="{{ route('dosen/PA/home') }}"><img src="{{ asset('img/dosPA.png') }}" style="width: 50% ; height: 50%"></a>
+                    </div>
+                       
+                   
+
             </center>
-        </footer>
+        </section><!-- /.content -->
+
+
+     
+
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+            <center><i><h4>Ingin Ajukan Topik?<a href="{{ route('dosen/pengajuan-topik-ta') }}"> ajukan</a></h4></i></center>
+            </div>
+              </div><!-- /.box -->
+              </div>
+            </div><!--/.col (right) -->
+
+</section>
     </body>
 </html>
