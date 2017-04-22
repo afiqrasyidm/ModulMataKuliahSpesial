@@ -29,9 +29,7 @@
                       <tr>
                         <th>Nama Mahasiswa</th>
                         <th>Jadwal Sidang</th>
-                    	<th>Judul TA </th>
-						<th>Dokumen TA</th>
-						<th>Status Sidang</th>
+                		<th>Detail Sidang</th>
                        
                        
                       </tr>
@@ -54,25 +52,8 @@
                        
                 </td>
              
-                <td>
-                    {{$ta->judul_ta}}
-                      
-                </td>
              
 			 
-                <td>
-                    
-                    @if( !is_null($ta->dokumen))
-						<a href="/files/{{$ta->dokumen}}" >	Download </a>
-													
-													
-													
-											
-					@else
-							Dokumen belom diunggah
-					@endif  
-                </td>
-             
                 <td>
 		            @if( $ta->status_tugas_akhir == 12)
 					
@@ -81,8 +62,8 @@
 													
 											
 					@else
-						<a href="/dosen/pembimbing/sidang-selesai/{{$ta->id_tugas_akhir}}">
-						  <button  class="btn btn-primary" type="submit"> Sidang Selesai</button>
+						<a href="/dosen/pembimbing/detail-sidang/{{$ta->id_tugas_akhir}}">
+						  <button  class="btn btn-primary" type="submit"> Detail</button>
 						</a>
 					@endif  
         			

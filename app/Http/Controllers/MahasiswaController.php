@@ -22,6 +22,8 @@ use App\Dosen;
 use App\Pengajuan_sidang;
 use App\Hasil_ta;
 use App\Dosen_pembimbing;
+use App\Referensi_status_ta;
+
 
 use App\Status_ta;
 use App\Status_sidang;
@@ -106,7 +108,10 @@ class MahasiswaController extends Controller
     	session_start();
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
-    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$tugas_akhir = DB::table('tugas_akhir')
+          ->leftJoin('refrensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'refrensi_status_ta.id_refrensi_status_ta')
+          ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
+          ->get()->first();
 
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
     	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir<0) {
@@ -148,7 +153,7 @@ class MahasiswaController extends Controller
 
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
-            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 1, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
             return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
 	    }
@@ -266,10 +271,11 @@ class MahasiswaController extends Controller
 
 		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 
+		$status = Referensi_status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
 
 		if($tugas_akhir!= null){
 			//Jika belum mengajukan sidang
-			if($tugas_akhir->status_tugas_akhir==6){
+			if($tugas_akhir->status_tugas_akhir==11){
 				if($sidang==null){
 					if($tugas_akhir!=NULL){
 						$informasi_ta = DB::table('tugas_akhir')
@@ -292,7 +298,7 @@ class MahasiswaController extends Controller
 
 					$informasi_sidang = DB::table('pengajuan_sidang')
 						->get()->first();
-					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang));
+					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status));
 				}
 			}
 
@@ -441,8 +447,10 @@ class MahasiswaController extends Controller
 			$tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->status_tugas_akhir;
 
 
+			$id_tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->id_tugas_akhir;
+
 			//Validasi: Tidak bisa mengajukan
-			if($tugas_akhir!=6){
+			if($tugas_akhir!=11){
 			 	return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
 
@@ -451,7 +459,11 @@ class MahasiswaController extends Controller
 
 				$pengajuan_sidang->id_mahasiswa = $id_mahasiswa;
 
-				$pengajuan_sidang->status = "0";
+				$pengajuan_sidang->id_maker =  $_SESSION["id_user"];
+
+				$pengajuan_sidang->id_tugas_akhir = $id_tugas_akhir;
+
+				$pengajuan_sidang->status = "1";
 
 				$pengajuan_sidang->save();
 

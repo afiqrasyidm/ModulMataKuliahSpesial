@@ -1,6 +1,5 @@
 @extends('layouts.layout_mahasiswa')
 
-
 @section('title','Pengajuan Permohonan TA')
 
 @section('mainContent')
@@ -143,14 +142,14 @@
 			        </tr>
 			        <tr>
 			          <th bgcolor="#86b7e3">Status</th>
-			          <td bgcolor="#c0c5cc">{{$tugas_akhir->status_tugas_akhir}}</td>
+			          <td bgcolor="#c0c5cc">{{$tugas_akhir->status}}</td>
 			        </tr>
 			    </tbody>
 			</table>
 
 			<div class="box-footer">
 			<br>
-				<center><button class="btn btn-primary" type="submit">Ubah</button></center>
+				<center><button class="btn btn-primary">Ubah</button></center>
 				<br>
 			</div>
 			@endif
