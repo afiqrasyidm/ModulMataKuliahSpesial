@@ -174,12 +174,17 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	 	// $dosen_pembimbing->id_maker = $_SESSION["id_user"];
 	 	$pembimbing->save();
 
-	 	$tugas_akhir = Tugas_akhir::where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)->firstOrFail();
 	 	if($status == 2) {
-	 		$tugas_akhir->status_tugas_akhir = 10;
-	 	} else
-	 		$tugas_akhir->status_tugas_akhir = 9;
+	 		DB::table('tugas_akhir')
+	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
+	 			->update(['status_tugas_akhir' => 10]);
 
+	 	} else {
+	 		DB::table('tugas_akhir')
+	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
+	 			->update(['status_tugas_akhir' => 9]);
+	 	}
+	 	
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
 	}
 	

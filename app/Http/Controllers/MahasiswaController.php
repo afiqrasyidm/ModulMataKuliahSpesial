@@ -175,8 +175,10 @@ class MahasiswaController extends Controller
           ->get();
 
 
-			
-			if($tugas_akhir->status_tugas_akhir < 8){
+			if ($tugas_akhir == NULL){
+				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
+			}
+			else if($tugas_akhir->status_tugas_akhir < 8){
 
 				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
     		 	// return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
@@ -186,34 +188,39 @@ class MahasiswaController extends Controller
           $dosenpembimbings = DB::table('dosen_pembimbing_ta')
             ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
             ->where('dosen_pembimbing_ta.id_tugas_akhir', '=', $tugas_akhir->id_tugas_akhir)
-            ->get();
+            ->get()->first();
 // return $dosenpembimbing;
 
-        //jika belum milih topik
     	
 
           $dosenpembimbing = DB::table('dosen')->get();
 
-        $data[""] = "TEST";
-    	$data['dosenpembimbings'] = $dosenpembimbings;
-    	$data['dosenpembimbing'] = $dosenpembimbing;
+     //    $data[""] = "TEST";
+    	// $data['dosenpembimbings'] = $dosenpembimbings;
+    	// $data['dosenpembimbing'] = $dosenpembimbing;
 
-    	if(count($dosenpembimbings) > 0)
-    		$dosen_pembimbing = $dosenpembimbings[0];
+    	// if(count($dosenpembimbings) > 0)
+    	// 	$dosen_pembimbing = $dosenpembimbings;
 
         //sudah memilih topik
         if ($tugas_akhir!=NULL) {
+
           $topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
-          if($topik_yang_diambil->id_industri != NULL ){
+          if($dosenpembimbings == NULL ){
+          	// return 'test';
             $dosenpembimbing = DB::table('dosen')
             ->get();
-            return view("mahasiswa/pengajuan_pembimbing_ta")->with('data', $data);
+            return view("mahasiswa/pengajuan_pembimbing_ta")->with('dosenpembimbing', $dosenpembimbing);
           }
+
           else {
+          	// return 'test1';
           	$id_dosen = DB::table('topik')->where('id_topik', '=', $tugas_akhir->id_topik)->get()[0]->id_dosen;
-          	$data['dosenpembimbings'] = DB::table('dosen')->where('id_dosen', '=', $id_dosen)->get();
-            return view("mahasiswa/pengajuan_pembimbing_ta", array('data' => $data));
+          
+         	
+            return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
           }
+
         }
 
     }
