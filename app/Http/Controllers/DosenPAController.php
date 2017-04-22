@@ -97,7 +97,7 @@ class DosenPAController extends Controller
             ->update(['status_tugas_akhir' => 7]);
         }
 
-    function tolak_permohonan_ta() {
+    function tolak_permohonan_ta($id_tugas_akhir) {
 
         DB::table('feedback_tugas_akhir')
             ->insert(['feedback_dosen_pa'=> Input::get('feedback'), "id_tugas_akhir"=> $id_tugas_akhir]);

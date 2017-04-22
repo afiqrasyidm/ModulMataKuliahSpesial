@@ -486,10 +486,10 @@ class MahasiswaController extends Controller
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
     		$status_ta= Status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
-    	
+    		$status_sidang = 0;
     		// return $status_ta;
     		if($pengajuan_sidang!= null){
-
+ 			
     			$status_sidang= Status_sidang::where('id_referensi_status_sidang', $pengajuan_sidang->status)->get()->first();
     			//return $status_sidang;
 
