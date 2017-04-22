@@ -6,10 +6,11 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
-	@if(isset($dosenpembimbing))
+	@if(count($data['dosenpembimbings']) == 0)
 
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
+	<br>
 
 	<form class="form-horizontal">
 		  <div class="form-group">
@@ -48,7 +49,7 @@
 				    </thead>
 				    <tbody>
 
-				@foreach ($dosenpembimbing as $dosenpembimbing)
+				@foreach ($data['dosenpembimbing'] as $dosenpembimbing)
 
 				<tr>
 					<td>
@@ -75,11 +76,119 @@
 		</form>
 
 
-		@else
-				<section class="content">
-				<h3> belom dibuat</h3>
+		@elseif(isset($data['dosenpembimbings'][0]->status_dosen_pembimbing))
+			<section class="content">
+				<div class="box box-primary">
+		                <div class="box-header with-border">
+		                  <center><h1 class="header-title">Detail Pengajuan Dosen Pembimbing</h1></center>
+		                </div><!-- /.box-header -->
+		                <div class="box-body">
+		                 <br>
+		              <table class="table table-bordered">
+
+		              <tbody>
+		                
+						<tr>
+		                <th width="20%" bgcolor="#86b7e3">Nama Dosen</th>
+		                <td bgcolor="#dddddd">
+							{{ $data['dosenpembimbings'][0]->nama_dosen }}
+						</td>
+						
+						
+						</tr><tr>
+		                <th width="20%" bgcolor="#86b7e3">Interest</th>
+		                <td bgcolor="#dddddd">
+											{{ $data['dosenpembimbings'][0]->interest }}
+
+		                
+						
+						</td>
+
+		                </tr>
+						        
+						<tr>
+		                <th bgcolor="#86b7e3">Pengalaman</th>
+		                <td bgcolor="#dddddd"> hard</td>
+
+		                </tr>
+		                
+				        <tr>
+						
+							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
+							<td bgcolor="#dddddd">
+								@if($data['dosenpembimbings'][0]->status_dosen_pembimbing == 1)
+									Menunggu Persetujuan
+								@elseif($data['dosenpembimbings'][0]->status_dosen_pembimbing == 2)
+									Diterima
+								@else
+								    Ditolak
+								@endif
+								</td>
+
+		                </tr>
+
+		              </tbody>
+		              </table>
+		    <center><br><br>
+		      </center></div>
+
+
+		        </div>
 			</section>
 
+		@else 
+<section class="content">
+				<div class="box box-primary">
+		                <div class="box-header with-border">
+		                  <center><h1 class="header-title">Detail Pengajuan Dosen Pembimbing</h1></center>
+		                </div><!-- /.box-header -->
+		                <div class="box-body">
+		                 <br>
+		              <table class="table table-bordered">
+
+		              <tbody>
+		                
+						<tr>
+		                <th width="20%" bgcolor="#86b7e3">Nama Dosen</th>
+		                <td bgcolor="#dddddd">
+							{{ $data['dosenpembimbings'][0]->nama_dosen }}
+						</td>
+						
+						
+						</tr><tr>
+		                <th width="20%" bgcolor="#86b7e3">Interest</th>
+		                <td bgcolor="#dddddd">
+											{{ $data['dosenpembimbings'][0]->interest }}
+
+		                
+						
+						</td>
+
+		                </tr>
+						        
+						<tr>
+		                <th bgcolor="#86b7e3">Pengalaman</th>
+		                <td bgcolor="#dddddd"> hard</td>
+
+		                </tr>
+		                
+				        <tr>
+						
+							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
+							<td bgcolor="#dddddd">
+								Diterima
+								</td>
+
+		                </tr>
+
+		              </tbody>
+		              </table>
+		    <center><br><br>
+		      </center></div>
+
+
+		        </div>
+			</section>
 		@endif
 
 </div>

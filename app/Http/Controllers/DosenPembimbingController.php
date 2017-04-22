@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Dosen;
+use App\Dosen_pembimbing;
+use App\Tugas_akhir;
 
 class DosenPembimbingController extends Controller
 {
@@ -137,8 +139,41 @@ function ubah_status_sidangPost($id_tugas_akhir)
 		
 		return view("dosen/DosenPembimbing/dokumen_ta" , array('tugas_akhir' => $tugas_akhir) );
 		
-		
-		
-		
+	}
+
+	function verifikasi_bimbingan() {
+		session_start();
+
+		$bimbingan = DB::table('dosen_pembimbing_ta')
+			->leftJoin('dosen', 'dosen_pembimbing_ta.id_dosen', 'dosen.id_dosen')
+			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir')
+			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
+			->leftJoin('topik', 'tugas_akhir.id_topik', 'topik.id_topik')
+			->where('dosen.id_user', '=',  $_SESSION["id_user"])->get();
+
+		$dari_dosen = DB::table('dosen')
+			->leftJoin('topik', 'topik.id_dosen', 'dosen.id_dosen')
+			->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', 'topik.id_topik')
+			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
+			->where([['dosen.id_user', '=' , $_SESSION["id_user"]], ['topik.sudah_diambil', '>', '0']])
+			->get();
+
+		return view("dosen/DosenPembimbing/verifikasi_bimbingan", array('bimbingan' => $bimbingan, 'dari_dosen' => $dari_dosen));
+			// return $bimbingan;
+		// return $_SESSION;
+	}
+
+	function set_verifikasi_bimbingan($status, $id_dpt) {
+	 	$pembimbing = Dosen_pembimbing::find($id_dpt);
+	 	$pembimbing->status_dosen_pembimbing = $status;
+	 	$pembimbing->save();
+
+	 	$tugas_akhir = Tugas_akhir::where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)->firstOrFail();
+	 	if($status == 2) {
+	 		$tugas_akhir->status_tugas_akhir = 10;
+	 	} else
+	 		$tugas_akhir->status_tugas_akhir = 9;
+
+	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
 	}
 }

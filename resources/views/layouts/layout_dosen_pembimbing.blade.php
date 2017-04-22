@@ -33,7 +33,7 @@
       <i class="fa fa-user"></i> <span>Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Bimbingan</a></li>
+      <li><a href="{{ route('dosen/pembimbing/verifikasi-bimbingan') }}"><i class="fa fa-angle-right"></i>Verifikasi Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Atur Jadwal Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Log Bimbingan</a></li>
     </ul>
