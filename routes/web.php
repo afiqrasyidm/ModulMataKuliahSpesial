@@ -76,6 +76,10 @@ Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAControl
 
 Route::get('/dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
 
+Route::get('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta']);
+
+Route::post('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta_submit']);
+
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
 
 Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' => 'DosenPembimbingController@home_dosen_pembimbing']);
