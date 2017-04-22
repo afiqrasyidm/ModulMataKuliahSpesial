@@ -169,8 +169,9 @@ class MahasiswaController extends Controller
           ->where('topik.sudah_diambil', '=', 0)
           ->get();
 
+
 			
-			if($tugas_akhir==NULL){
+			if($tugas_akhir->status_tugas_akhir < 8){
 
 				return view("mahasiswa/failed_pengajuan_pembimbing", array('tugas_akhir' => $tugas_akhir));
     		 	// return view("mahasiswa/pengajuan_topik", array('topik' => $topik));
