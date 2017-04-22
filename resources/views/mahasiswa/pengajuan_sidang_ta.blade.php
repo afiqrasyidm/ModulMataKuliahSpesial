@@ -127,11 +127,7 @@
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#c0c5cc">
-                	@if ($informasi_sidang->status ==0)
-						Menunggu persetujuan Dosen Pembimbing
-					@else 
-						Verified by Dosen Pembimbing
-					@endif
+                	{{$status->status}}
 				</td>
                 </tr>
         

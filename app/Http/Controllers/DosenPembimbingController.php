@@ -167,8 +167,11 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	}
 
 	function set_verifikasi_bimbingan($status, $id_dpt) {
+		session_start();
+
 	 	$pembimbing = Dosen_pembimbing::find($id_dpt);
 	 	$pembimbing->status_dosen_pembimbing = $status;
+	 	// $dosen_pembimbing->id_maker = $_SESSION["id_user"];
 	 	$pembimbing->save();
 
 	 	$tugas_akhir = Tugas_akhir::where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)->firstOrFail();
@@ -201,10 +204,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	}
 	function detail_sidang_submit(){
 		session_start();
-			//return Input::get('id_tugas_akhir');
-			//return Input::get('nilai_ta');
-			
-					
+
 		    DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
             ->update(
