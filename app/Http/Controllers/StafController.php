@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Staf;
@@ -53,15 +53,28 @@ class StafController extends Controller
 	{ 
 	  session_start();
 
+      $ta = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->get()->first();
 
-	    DB::table('pengajuan_sidang')
-	            ->where('id_pengajuan', $id_pengajuan)
-	            ->update(['id_maker' =>  $_SESSION["id_user"],'status' => 2]);
-	   
-	    return redirect()->route('staf/verifikasi-permohonan-sidang');
-	    
-	  
+        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta));
+
+       
 	}
+
+	function verifikasi_permohonan_sidang_submit(){
+		session_start();
+		DB::table('pengajuan_sidang')
+        	->where('id_pengajuan','=', Input::get('id_pengajuan'))
+            ->update(['waktu_sidang' => Input::get('waktu_sidang')]);
+
+    	return view("staf/verifikasi_permohonan_ta");
+
+	}
+
 
     function post_pengumuman() {
     	session_start();
@@ -85,6 +98,14 @@ class StafController extends Controller
         return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 	
+<<<<<<< HEAD
+	public function form_verifikasi_sidang_ta(){
+
+		session_start();
+
+    	return view("staf/form_verifikasi_sidang_ta");
+	}
+=======
     function verifikasi_ta($id_tugas_akhir){
     	session_start();
 
@@ -101,6 +122,7 @@ class StafController extends Controller
                 ->where('tugas_akhir.status_tugas_akhir','>=','7')
                 ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
                 ->get();
+>>>>>>> aef5892ba34077205050db2731fea1e7e8221a05
 
         //return $tugas_akhir;
 

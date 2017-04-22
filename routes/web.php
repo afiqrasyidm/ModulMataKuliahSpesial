@@ -111,6 +111,7 @@ Route::post('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidan
 //Tidak bisa sidang
 Route::get('mahasiswa/failed-pengajuan-sidang-ta', ['as' => 'mahasiswa/failed-pengajuan-sidang-ta', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_ta']);
 
+
 //Mengambil topik dari industri dan dosen
 Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
 
@@ -202,7 +203,12 @@ Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'D
 Route::get('staf/verifikasi-permohonan-sidang', ['as' => 'staf/verifikasi-permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang']);
 
 
-Route::get('staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
+Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
+Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
+
+
+//Verifikasi sidang SBA
+Route::get('staf/form-verifikasi-sidang-ta', ['as' => 'staf/form-verifikasi-sidang-ta', 'uses' => 'StafController@form_verifikasi_sidang_ta']);
 
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang', ['as' => 'dosen/pembimbing/list-jadwal-sidang', 'uses' => 'DosenPembimbingController@list_jadwal_sidang']);
@@ -226,4 +232,4 @@ Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'us
 
 //detail sidang dosbem
 Route::get('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
-Route::post('/dosen/pembimbing/detail-sidang', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);
+Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);

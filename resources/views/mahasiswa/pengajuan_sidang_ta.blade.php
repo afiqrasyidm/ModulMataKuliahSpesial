@@ -75,7 +75,7 @@
 		  </div>
 		@endif
 <br>
-		  <center><button class="btn btn-primary">Ajukan TA</button></center>
+		  <center><button class="btn btn-primary">Ajukan Sidang TA</button></center>
 	</form>     <br>   
 </div>
 
