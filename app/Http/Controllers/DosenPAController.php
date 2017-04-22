@@ -65,6 +65,8 @@ class DosenPAController extends Controller
         $feedback_tugas_akhir = new Feedback_tugas_akhir;
         $feedback_tugas_akhir->komentar = Input::get('feedback');
         $feedback_tugas_akhir->id_tugas_akhir = $id_tugas_akhir;
+        $feedback_tugas_akhir->id_maker =$_SESSION["id_user"];
+        $feedback_tugas_akhir->save();
 
         if (Input::get('action')=='Setujui') {
             $this->setujui_permohonan_ta($id_tugas_akhir);
@@ -73,47 +75,32 @@ class DosenPAController extends Controller
         } else {
             return 'Something Error!';
         }
+
+        $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+        $tugas_akhir = DB::table('tugas_akhir')
+                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
+                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+                ->where('dosen_pa.id_dosen', '=', $id_dosen)
+                ->where('tugas_akhir.status_tugas_akhir','>=','6')
+                ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
+                ->get();
+
+        return view("dosen/PA/verifikasi_pengajuan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 
     function setujui_permohonan_ta($id_tugas_akhir) {
         $tugas_akhir = DB::table('tugas_akhir')
             ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => 7]);
+        }
 
-        $tugas_akhir = DB::table('tugas_akhir')
-                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
-                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
-                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-                ->where('dosen_pa.id_dosen', '=', $id_dosen)
-                ->where('tugas_akhir.status_tugas_akhir','>=','6')
-                ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
-                ->get();
-
-        //return $tugas_akhir;
-
-        return view("dosen/PA/verifikasi_pengajuan_ta", ['tugas_akhir' => $tugas_akhir]);
-    }
-
-    function tolak_permohonan_ta() {
+    function tolak_permohonan_ta($id_tugas_akhir) {
 
         DB::table('feedback_tugas_akhir')
             ->insert(['feedback_dosen_pa'=> Input::get('feedback'), "id_tugas_akhir"=> $id_tugas_akhir]);
 
-        $tugas_akhir = DB::table('tugas_akhir')
-                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
-                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
-                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-                ->where('dosen_pa.id_dosen', '=', $id_dosen)
-                ->where('tugas_akhir.status_tugas_akhir','>=','6')
-                ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
-                ->get();
-
-        //return $tugas_akhir;
-
-        return view("dosen/PA/verifikasi_pengajuan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 }
