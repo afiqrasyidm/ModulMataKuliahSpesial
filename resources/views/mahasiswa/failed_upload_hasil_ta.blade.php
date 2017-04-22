@@ -22,7 +22,7 @@ if($status_ta == null){
  	echo "<a href='";
  	echo route('mahasiswa/pengajuan-permohonan-ta');
  	echo "'/>";
- 	echo " disini";
+ 	echo "<b> Disini</b>";
  	echo "</a></p>";
 }
 
@@ -42,7 +42,7 @@ else if($status_sidang == null){
  	echo "<a href='";
  	echo route('mahasiswa/pengajuan-sidang-ta');
  	echo "'/>";
- 	echo " disini";
+ 	echo "<b> Disini</b>";
  	echo "</a></p>";
 }
 
