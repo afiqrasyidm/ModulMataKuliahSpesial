@@ -56,7 +56,7 @@ class StafController extends Controller
 
 	    DB::table('pengajuan_sidang')
 	            ->where('id_pengajuan', $id_pengajuan)
-	            ->update(['status' => 2]);
+	            ->update(['id_maker' =>  $_SESSION["id_user"],'status' => 2]);
 	   
 	    return redirect()->route('staf/verifikasi-permohonan-sidang');
 	    

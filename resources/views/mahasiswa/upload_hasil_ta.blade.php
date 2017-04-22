@@ -73,7 +73,7 @@
 
       <div class="alert alert-danger">
 
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>Whoops!</strong> Ada Masalah Dengan Input yang Dimasukkan.<br><br>
 
         <ul>
 
