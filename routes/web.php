@@ -222,3 +222,8 @@ Route::get('/dosen/pembimbing/dokumen-ta', ['as' => 'dosen/pembimbing/dokumen-ta
 
 //dokumen TA dosenPenguji
 Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'uses' => 'DosenPengujiController@dokumen_ta']);
+
+
+//detail sidang dosbem
+Route::get('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
+Route::post('/dosen/pembimbing/detail-sidang', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);

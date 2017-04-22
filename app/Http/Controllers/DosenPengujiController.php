@@ -72,6 +72,7 @@ class DosenPengujiController extends Controller
       
 		->where('dosen_penguji_ta.id_dosen','=', $id_dosen)
 		->where('pengajuan_sidang.status','=', 2)
+        ->where('pengajuan_sidang.status','!=', 12)
         
 		->get();
 
