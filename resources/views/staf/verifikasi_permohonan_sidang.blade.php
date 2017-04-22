@@ -29,10 +29,8 @@
                       <tr>
                         <th>NPM</th>
                         <th>Nama Mahasiswa</th>
-                        <th>Judul TA</th>
-                        <th>Status Permohonan Sidang</th>
-                       
-                       
+                        <th>TA yang Disidangkan</th>
+
                       </tr>
                     </thead>
               <tbody>
@@ -50,16 +48,11 @@
                      {{$ta->nama_mahasiswa}}
                         
                 </td>
-                <td>
-                    {{$ta->judul_ta}}
-                      
-                </td>
              
                 <td>
                    @if($ta->status == 1)
-
                     <a href="/staf/permohonan-sidang/{{$ta->id_pengajuan}}">
-                      <button  class="btn btn-primary" type="submit">Verifikasi</button>
+                      <button  class="btn btn-primary" type="submit">Detail TA</button>
                     </a>
                     @elseif($ta->status == 2) 
                       <p><b>Terverifikasi</b></p>
