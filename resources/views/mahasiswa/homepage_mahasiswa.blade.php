@@ -20,14 +20,14 @@
 
               echo "<img src='";
               echo asset('img/s1.png');
-              echo "' style='width: 85% ; height: auto'/>";
+              echo "' style='width: 75% ; height: auto'/>";
             }
 
             else{
 
               echo "<img src='";
               echo asset('img/s2.png');
-              echo "' style='width: 85% ; height: auto'/>";
+              echo "' style='width: 75% ; height: auto'/>";
             }
           ?>
             </center>

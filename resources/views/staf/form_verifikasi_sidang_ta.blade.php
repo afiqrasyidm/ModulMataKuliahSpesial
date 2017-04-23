@@ -114,7 +114,7 @@
                         <i class="fa fa-calendar"></i>
                       </div>
                        
-                      <input class="form-control select2" style="width: 100%;" name="waktu_sidang" type="date" id="datepicker" value="<?php echo date ("Y-m-d");?> ">
+                      <input class="form-control select2" style="width: 100%;" name="waktu_sidang" type="datetime-local" id="datepicker" >
                     </div>
                 </div>
             </div>
