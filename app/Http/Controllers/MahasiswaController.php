@@ -411,6 +411,10 @@ class MahasiswaController extends Controller
 					//menghapus tugas akhir
 					DB::table('tugas_akhir')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 					//menghapus row pengambil topik
+					
+					if($topik->id_dosen != NULL){
+						DB::table('dosen_pembimbing_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
+					}
 
 
 				}
