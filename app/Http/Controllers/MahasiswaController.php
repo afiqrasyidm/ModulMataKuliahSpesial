@@ -22,8 +22,7 @@ use App\Dosen;
 use App\Pengajuan_sidang;
 use App\Hasil_ta;
 use App\Dosen_pembimbing;
-use App\Referensi_status_ta;
-
+use App\Referensi_status_sidang;
 
 use App\Status_ta;
 use App\Status_sidang;
@@ -288,8 +287,6 @@ class MahasiswaController extends Controller
 
 		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 
-		$status = Referensi_status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
-
 		if($tugas_akhir!= null){
 			//Jika belum mengajukan sidang
 			if($tugas_akhir->status_tugas_akhir==11){
@@ -308,14 +305,26 @@ class MahasiswaController extends Controller
 
 				//Jika sudah mengajukan sidang
 				else{
+
+					$status = Referensi_status_sidang::where('id_referensi_status_sidang', $sidang->status)->get()->first();
+
 					$informasi_ta = DB::table('tugas_akhir')
-							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')							
+							->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+							->leftJoin('dosen', 'dosen_pembimbing_ta.id_dosen', '=', 'dosen.id_dosen')
 							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 							->get()->first();
+					
+					$informasi_penguji = DB::table('tugas_akhir')
+							->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+							->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_ta.id_dosen')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get();
+					$i=1;
 
-					$informasi_sidang = DB::table('pengajuan_sidang')
-						->get()->first();
-					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status));
+					$informasi_sidang = DB::table('pengajuan_sidang')->get()->first();
+
+					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));
 				}
 			}
 
@@ -497,7 +506,7 @@ class MahasiswaController extends Controller
 
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-    	$status_ta;
+    	$status_ta =0;
 
     	if($tugas_akhir!= null){
     		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();

@@ -14,7 +14,7 @@
 <div class="center-form">
 <div class=".col-md-11">
 
-
+                      
 @if(!isset($sidang))
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -102,26 +102,36 @@
 				</td>
                 </tr>
 
-
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dosen Pembimbing</th>
                 <td bgcolor="#c0c5cc">
-				Mischelle
+				              {{$informasi_ta->nama_dosen}} 
 				</td>
                 </tr>
+               
 
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
-                <td bgcolor="#c0c5cc">
-				Meilisa
-				</td>
+               @if($sidang->status==2)  
+                  @foreach($informasi_penguji as $informasi_penguji)
+                    <tr>
+                    <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
+                    <td bgcolor="#c0c5cc">{{ $informasi_penguji->nama_dosen }}</td>
+                  </tr>
+                  @endforeach
+                @else
+                  <tr>
+                  <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
+                  <td bgcolor="#c91a22"> Dosen Penguji Belum Ditentukan </td>
                 </tr>
-
+                @endif
+                
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
-                <td bgcolor="#c0c5cc">
-				Senin, 7 Maret 2017 - pk. 13.00 WIB
-				</td>
+                    @if($sidang->waktu_sidang==0)
+                     <td bgcolor="#c91a22"> Jadwal Sidang Belum Ditentukan </td>
+                    @else
+                      <td bgcolor="#c0c5cc">{{$sidang->waktu_sidang}}</td>
+                    @endif
+				
                 </tr>
 
                 <tr>

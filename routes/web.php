@@ -199,9 +199,11 @@ Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses'
 //dosen lihat hasil ta
 Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'DosenController@lihat_hasil_ta']);
 
-//ubah status siap sidang
+//list pengajuan sidang (Verifikasi oleh SBA)
 Route::get('staf/verifikasi-permohonan-sidang', ['as' => 'staf/verifikasi-permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang']);
 
+//Tidak Verifikasi sidang SBA
+Route::get('staf/failed-verifikasi-permohonan-sidang', ['as' => 'staf/failed-verifikasi-permohonan-sidang', 'uses' => 'StafController@failed_verifikasi_permohonan_sidang']);
 
 Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
@@ -209,6 +211,7 @@ Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-
 
 //Verifikasi sidang SBA
 Route::get('staf/form-verifikasi-sidang-ta', ['as' => 'staf/form-verifikasi-sidang-ta', 'uses' => 'StafController@form_verifikasi_sidang_ta']);
+
 
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang', ['as' => 'dosen/pembimbing/list-jadwal-sidang', 'uses' => 'DosenPembimbingController@list_jadwal_sidang']);
