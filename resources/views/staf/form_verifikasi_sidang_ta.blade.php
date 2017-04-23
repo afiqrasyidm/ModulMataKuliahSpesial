@@ -64,7 +64,7 @@
             </div>
 
              <div class="form-group">
-                <label class="control-label col-sm-3">Dosen Penguji :</label>
+                <label class="control-label col-sm-3">Dosen Penguji 1:</label>
                 <div class="col-sm-6">
 					<select name="dosen_penguji_1" class="form-control select2" style="width: 100%;">
 						<option value="0">Pilih Nama Dosen</option>
