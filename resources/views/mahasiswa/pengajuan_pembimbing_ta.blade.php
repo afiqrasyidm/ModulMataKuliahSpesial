@@ -71,8 +71,7 @@
 		</table>
   		<p><i>*Pilih salah satu</i></p>
 
-			<center>
-				<button class="btn btn-primary">Ajukan Dosen Pembimbing</button></center>
+			
 		</form>
 
 
