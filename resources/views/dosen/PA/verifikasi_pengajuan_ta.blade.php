@@ -45,9 +45,9 @@
 					@if($ta->status_tugas_akhir == 6)
 						<a href="/dosen/PA/detail-permohonan-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Detail</button></a>
 					@elseif($ta->status_tugas_akhir == 2)
-						<p style="color:red;"><b>Topik Tidak Setujui</b></p>
-					@else
-						<p><b>Topik Disetujui</b></p>
+						<p style="color:red;"><b>TA Ditolak</b></p>
+					@elseif($ta->status_tugas_akhir > 6)
+						<p><b>TA Disetujui</b></p>
 					@endif
 				</td>
 			</tr>
