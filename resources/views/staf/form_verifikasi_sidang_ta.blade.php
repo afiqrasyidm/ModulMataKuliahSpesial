@@ -78,7 +78,7 @@
             </div>
 
 			 <div class="form-group">
-                <label class="control-label col-sm-3">Dosen Penguji 2</label>
+                <label class="control-label col-sm-3">Dosen Penguji 2 :</label>
                 <div class="col-sm-6">		
                     <select name="dosen_penguji_2" class="form-control select2" style="width: 100%;">
 							<option value="0">Pilih Nama Dosen</option>
@@ -92,7 +92,7 @@
             </div>
 				
 			 <div class="form-group">
-                <label class="control-label col-sm-3">Dosen Penguji 3</label>
+                <label class="control-label col-sm-3">Dosen Penguji 3 :</label>
                 <div class="col-sm-6">
 						<select name="dosen_penguji_3" class="form-control select2" style="width: 100%;">
 							<option value="0">Pilih Nama Dosen</option>
@@ -107,7 +107,7 @@
             </div>
 				
             <div class="form-group">
-                <label class="control-label col-sm-3">Waktu Sidang</label>
+                <label class="control-label col-sm-3">Waktu Sidang :</label>
                 <div class="col-sm-6">
                    <div class="input-group">
                       <div class="input-group-addon">
@@ -120,12 +120,15 @@
             </div>
 			
             <input name="id_pengajuan" type="text" id="datepicker" value="{{$ta->id_pengajuan}}" hidden>
-<br>
+
+        <div class="box-footer">
+        
             <center><button  class="btn btn-primary" type="submit">Verified</button></center>
+            <br>
+        </div>
             
  </form>
 
-<br><br>
 
 
 </section>
