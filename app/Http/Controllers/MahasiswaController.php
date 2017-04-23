@@ -314,14 +314,14 @@ class MahasiswaController extends Controller
 							->leftJoin('dosen', 'dosen_pembimbing_ta.id_dosen', '=', 'dosen.id_dosen')
 							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 							->get()->first();
-
+					
 					$informasi_penguji = DB::table('tugas_akhir')
 							->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
 							->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_ta.id_dosen')
 							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 							->get();
-					
 					$i=1;
+
 					$informasi_sidang = DB::table('pengajuan_sidang')->get()->first();
 
 					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));

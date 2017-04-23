@@ -102,21 +102,28 @@
 				</td>
                 </tr>
 
-
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dosen Pembimbing</th>
                 <td bgcolor="#c0c5cc">
 				              {{$informasi_ta->nama_dosen}} 
 				</td>
                 </tr>
-                
-                @foreach($informasi_penguji as $informasi_penguji)
-                  <tr>
-                  <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
-                  <td bgcolor="#c0c5cc">{{ $informasi_penguji->nama_dosen }}</td>
-                </tr>
-                @endforeach
+               
 
+               @if($sidang->status==2)  
+                  @foreach($informasi_penguji as $informasi_penguji)
+                    <tr>
+                    <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
+                    <td bgcolor="#c0c5cc">{{ $informasi_penguji->nama_dosen }}</td>
+                  </tr>
+                  @endforeach
+                @else
+                  <tr>
+                  <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
+                  <td bgcolor="#c91a22"> Dosen Penguji Belum Ditentukan </td>
+                </tr>
+                @endif
+                
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
                     @if($sidang->waktu_sidang==0)
