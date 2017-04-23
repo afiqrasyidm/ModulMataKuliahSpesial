@@ -106,22 +106,29 @@
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dosen Pembimbing</th>
                 <td bgcolor="#c0c5cc">
-				Mischelle
+				              {{$informasi_ta->nama_dosen}} 
 				</td>
                 </tr>
 
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
-                <td bgcolor="#c0c5cc">
-				Meilisa
-				</td>
+                    @if($informasi_penguji->nama_dosen==null)
+                    <td bgcolor="#c91a22"> Dosen Penguji Belum Ditentukan </td>
+                    @else
+                     <td bgcolor="#c0c5cc"> {{$informasi_penguji->nama_dosen}} </td>
+
+                    @endif
+				
                 </tr>
 
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
-                <td bgcolor="#c0c5cc">
-				Senin, 7 Maret 2017 - pk. 13.00 WIB
-				</td>
+                    @if($sidang->waktu_sidang==0)
+                     <td bgcolor="#c91a22"> Jadwal Sidang Belum Ditentukan </td>
+                    @else
+                      <td bgcolor="#c0c5cc">{{$sidang->waktu_sidang}}</td>
+                    @endif
+				
                 </tr>
 
                 <tr>
