@@ -29,12 +29,12 @@
                       <tr>
                         <th>NPM</th>
                         <th>Nama Mahasiswa</th>
-                        <th>TA yang Disidangkan</th>
+                        <th>Keterangan</th>
 
                       </tr>
                     </thead>
               <tbody>
-  @if(isset($ta))  
+                @if(isset($ta))  
                @foreach ($ta as $ta)
 
         

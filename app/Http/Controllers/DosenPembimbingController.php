@@ -88,7 +88,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
         ->where('tugas_akhir.status_tugas_akhir','!=', 12)
         
 		->get();
-
+		
 		//return $ta;
 		return view("dosen/DosenPembimbing/list_jadwal_sidang", array('ta' => $ta));
 
@@ -152,7 +152,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
 			->leftJoin('topik', 'tugas_akhir.id_topik', 'topik.id_topik')
 			->where('dosen.id_user', '=',  $_SESSION["id_user"])->get();
-
+	//	return $bimbingan;
 		$dari_dosen = DB::table('dosen')
 			->leftJoin('topik', 'topik.id_dosen', 'dosen.id_dosen')
 			->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', 'topik.id_topik')
@@ -191,12 +191,12 @@ function ubah_status_sidangPost($id_tugas_akhir)
 		session_start();
 			//return "lol";
 					
-		$ta = DB::table('pengajuan_sidang')
+		$ta = DB::table('tugas_akhir')
+        ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+		->leftJoin('pengajuan_sidang', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen_pembimbing_ta', 'pengajuan_sidang.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
-        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-        ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
-	    ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-      
+		->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	    
 		->where('pengajuan_sidang.id_tugas_akhir','=', $id_tugas_akhir)
 	
         
@@ -207,8 +207,9 @@ function ubah_status_sidangPost($id_tugas_akhir)
     	
 	}
 	function detail_sidang_submit(){
+	//return "lol";
 		session_start();
-
+		//return Input::get('id_tugas_akhir');
 		    DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
             ->update(
@@ -219,7 +220,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			
 			
 			'nilai_ta' => Input::get('nilai_ta') ,
-						'status_tugas_akhir' =>  12,
+			'status_tugas_akhir' =>  12,
 			
 			
 			]

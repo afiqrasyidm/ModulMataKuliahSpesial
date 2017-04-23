@@ -65,15 +65,17 @@ class DosenPengujiController extends Controller
 			
 			
 		$ta = DB::table('pengajuan_sidang')
-        ->leftJoin('dosen_penguji_ta', 'pengajuan_sidang.id_tugas_akhir', '=', 'dosen_penguji_ta.id_tugas_akhir')
-        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+		
+		->leftJoin('hasil_ta', 'tugas_akhir.id_tugas_akhir', '=', 'hasil_ta.id_tugas_akhir')
+        ->leftJoin('dosen_penguji_ta', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_penguji_ta.id_tugas_akhir')
+        ->leftJoin('pengajuan_sidang', 'tugas_akhir.id_tugas_akhir', '=', 'pengajuan_sidang.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
-	    ->leftJoin('hasil_ta', 'hasil_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-      
+	  
 		->where('dosen_penguji_ta.id_dosen','=', $id_dosen)
 		->where('pengajuan_sidang.status','=', 2)
-        ->where('pengajuan_sidang.status','!=', 12)
-        
+        ->where('tugas_akhir.status_tugas_akhir','!=', 12)
+		
+      
 		->get();
 
       

@@ -37,18 +37,28 @@ class StafController extends Controller
 	 function verifikasi_permohonan_sidang() {
       session_start();
 
-	
+	  $list_sidang =  DB::table('pengajuan_sidang')->get();
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get();
 
-     // return $ta;
-        
-    return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
+     if($list_sidang=='[]'){
+      	return view("staf/failed_verifikasi_permohonan_sidang");
+      }
+      else{
+      	return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
 
+      }
     }
+
+    	public function failed_verifikasi_permohonan_sidang(){
+
+		session_start();
+
+    	return view("staf/failed_verifikasi_permohonan_sidang");
+	}
 
 	function verifikasi_permohonan_sidangPost($id_pengajuan)
 	{ 

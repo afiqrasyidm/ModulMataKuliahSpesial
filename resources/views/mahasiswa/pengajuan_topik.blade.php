@@ -174,9 +174,14 @@
               </tbody>
               </table>
     <center><br><br>
-        <a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
-          <button  class="btn btn-primary">Ubah Topik</button>
+	@if ($tugas_akhir->status_tugas_akhir > 6  )
+        <p>Anda tidak bisa mengubah topik lagi, dikarenakan permohonan TA Anda telah disetujui oleh PA.</p>
+	@else
+		<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+          <button  class="btn btn-primary" >Ubah Topik</button>
         </a>
+		
+	@endif
       </div>
 
 

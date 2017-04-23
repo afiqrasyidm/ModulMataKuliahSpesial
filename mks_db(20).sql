@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 04:02 PM
+-- Generation Time: Apr 23, 2017 at 03:32 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -42,7 +42,7 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`nama_dosen`, `NIP`, `id_user`, `created_at`, `id_maker`, `updated_at`, `id_dosen`, `interest`) VALUES
-('mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis'),
+('Mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis'),
 ('Budi', '12311', 9, NULL, NULL, NULL, 2, 'Matdas'),
 ('Anto', '444', 9, NULL, NULL, NULL, 3, 'Matdis');
 
@@ -89,7 +89,7 @@ CREATE TABLE `dosen_pembimbing_ta` (
 --
 
 INSERT INTO `dosen_pembimbing_ta` (`id`, `created_at`, `updated_at`, `id_dosen`, `id_maker`, `status_dosen_pembimbing`, `id_tugas_akhir`) VALUES
-(13, '2017-04-22 05:42:10', '2017-04-22 05:42:10', 1, 2, 2, 59);
+(14, '2017-04-22 22:31:19', '2017-04-22 22:31:19', 1, 1, 2, 60);
 
 -- --------------------------------------------------------
 
@@ -113,7 +113,19 @@ CREATE TABLE `dosen_penguji_ta` (
 INSERT INTO `dosen_penguji_ta` (`id_penguji_ta`, `created_at`, `updated_at`, `id_dosen`, `id_maker`, `id_tugas_akhir`) VALUES
 (12, '2017-04-22 06:35:45.000000', '2017-04-22 06:35:45.000000', 3, 3, 59),
 (11, '2017-04-22 06:35:45.000000', '2017-04-22 06:35:45.000000', 1, 3, 59),
-(10, '2017-04-22 06:35:45.000000', '2017-04-22 06:35:45.000000', 2, 3, 59);
+(10, '2017-04-22 06:35:45.000000', '2017-04-22 06:35:45.000000', 2, 3, 59),
+(13, '2017-04-22 21:41:17.000000', '2017-04-22 21:41:17.000000', 1, 3, 59),
+(14, '2017-04-22 21:41:17.000000', '2017-04-22 21:41:17.000000', 2, 3, 59),
+(15, '2017-04-22 21:41:17.000000', '2017-04-22 21:41:17.000000', 3, 3, 59),
+(16, '2017-04-22 21:42:34.000000', '2017-04-22 21:42:34.000000', 1, 3, 59),
+(17, '2017-04-22 21:42:34.000000', '2017-04-22 21:42:34.000000', 2, 3, 59),
+(18, '2017-04-22 21:42:34.000000', '2017-04-22 21:42:34.000000', 3, 3, 59),
+(19, '2017-04-22 21:43:15.000000', '2017-04-22 21:43:15.000000', 1, 3, 59),
+(20, '2017-04-22 21:43:15.000000', '2017-04-22 21:43:15.000000', 2, 3, 59),
+(21, '2017-04-22 21:43:15.000000', '2017-04-22 21:43:15.000000', 3, 3, 59),
+(30, '2017-04-23 00:59:45.000000', '2017-04-23 00:59:45.000000', 1, 3, 60),
+(29, '2017-04-23 00:59:45.000000', '2017-04-23 00:59:45.000000', 2, 3, 60),
+(28, '2017-04-23 00:59:45.000000', '2017-04-23 00:59:45.000000', 3, 3, 60);
 
 -- --------------------------------------------------------
 
@@ -329,7 +341,7 @@ CREATE TABLE `pengajuan_sidang` (
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_mahasiswa` int(10) NOT NULL,
   `id_tugas_akhir` int(10) DEFAULT NULL,
-  `waktu_sidang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `waktu_sidang` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -340,7 +352,7 @@ CREATE TABLE `pengajuan_sidang` (
 --
 
 INSERT INTO `pengajuan_sidang` (`id_pengajuan`, `tgl_pengajuan`, `status`, `id_mahasiswa`, `id_tugas_akhir`, `waktu_sidang`, `created_at`, `id_maker`, `updated_at`) VALUES
-(7, NULL, '2', 1, 59, '2017-04-25 17:00:00', '2017-04-22 05:48:27', 3, '2017-04-22 05:48:27');
+(12, NULL, '2', 1, 60, '2017-04-28 00:00:00', '2017-04-23 01:06:32', 3, '2017-04-23 01:06:32');
 
 -- --------------------------------------------------------
 
@@ -384,7 +396,7 @@ CREATE TABLE `referensi_status_sidang` (
 --
 
 INSERT INTO `referensi_status_sidang` (`id_referensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
-(1, 'Mahasiswa Mengajukan Pengajuan Sidang', NULL, NULL, NULL),
+(1, 'Menunggu Persetujuan Sidang', NULL, NULL, NULL),
 (2, 'Pengajuan Sidang Telah Diverifikasi oleh SBA', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -469,7 +481,8 @@ INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_indust
 (27, 'Sentiment Analisis untuk FK', 'Lorem', NULL, 4, 7, '2017-04-04 23:02:10', NULL, '2017-04-04 23:02:10', 0),
 (28, 'Data Mining', 'Lorem', 1, NULL, 10, '2017-04-04 23:35:57', NULL, '2017-04-04 23:35:57', 1),
 (30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', NULL, '2017-04-05 00:25:37', 0),
-(40, 'Matematika Diskrit 3', 'LOLOL', NULL, 3, 10, '2017-04-12 00:33:22', NULL, '2017-04-12 00:33:22', 1);
+(40, 'Matematika Diskrit 3', 'LOLOL', NULL, 3, 10, '2017-04-12 00:33:22', NULL, '2017-04-12 00:33:22', 1),
+(43, 'Agile Software Development', 'Latar Belakang Agile Software Development', NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -496,10 +509,10 @@ CREATE TABLE `tugas_akhir` (
 --
 
 INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajuan`, `id_jenis_ta`, `id_mahasiswa`, `nilai_ta`, `created_at`, `id_maker`, `updated_at`, `judul_ta`, `id_topik`) VALUES
-(23, '0', NULL, NULL, 4, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
-(25, '0', NULL, NULL, 6, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 25),
-(26, '-1', NULL, NULL, 7, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
-(59, '11', '2017-04-22', 1, 1, 'B+', '2017-04-22 05:39:32', 2, '2017-04-22 05:39:32', 'LOL', 24);
+(23, '5', NULL, NULL, 4, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
+(25, '5', NULL, NULL, 6, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 25),
+(26, '5', NULL, NULL, 7, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
+(60, '12', NULL, NULL, 1, 'A', '2017-04-23 04:51:49', 2, '2017-04-23 04:51:49', NULL, 25);
 
 -- --------------------------------------------------------
 
@@ -740,12 +753,12 @@ ALTER TABLE `dosen_pa`
 -- AUTO_INCREMENT for table `dosen_pembimbing_ta`
 --
 ALTER TABLE `dosen_pembimbing_ta`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `dosen_penguji_ta`
 --
 ALTER TABLE `dosen_penguji_ta`
-  MODIFY `id_penguji_ta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_penguji_ta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `fakultas`
 --
@@ -790,7 +803,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pengajuan_sidang`
 --
 ALTER TABLE `pengajuan_sidang`
-  MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `prodi`
 --
@@ -805,12 +818,12 @@ ALTER TABLE `staf`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
