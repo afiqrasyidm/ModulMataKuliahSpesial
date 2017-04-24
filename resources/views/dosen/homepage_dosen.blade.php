@@ -94,7 +94,7 @@
 
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-            <center><i><h4>Ingin Ajukan Topik?<a href="{{ route('dosen/pengajuan-topik-ta') }}"> ajukan</a></h4></i></center>
+            <center><i><h5>Ingin Ajukan Topik?<a href="{{ route('dosen/pengajuan-topik-ta') }}"> Ajukan</a></h5></i></center>
             </div>
               </div><!-- /.box -->
               </div>
