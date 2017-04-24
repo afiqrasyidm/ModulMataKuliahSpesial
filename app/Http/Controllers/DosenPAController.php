@@ -53,6 +53,9 @@ class DosenPAController extends Controller
                 ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
                 ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
                 ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pa.id_dosen')
+                ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
                 ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
                 ->get()
                 ->first();
@@ -62,20 +65,21 @@ class DosenPAController extends Controller
 
     function detail_permohonan_ta_submit($id_tugas_akhir) {
         session_start();
-        $feedback_tugas_akhir = new Feedback_tugas_akhir;
-        $feedback_tugas_akhir->komentar = Input::get('feedback');
-        $feedback_tugas_akhir->id_tugas_akhir = $id_tugas_akhir;
-        $feedback_tugas_akhir->id_maker =$_SESSION["id_user"];
-        $feedback_tugas_akhir->save();
 
         if (Input::get('action')=='Setujui') {
             $this->setujui_permohonan_ta($id_tugas_akhir);
         } else if (Input::get('action')=='Tolak') {
             $this->tolak_permohonan_ta($id_tugas_akhir);
+        } else if(Input::get('action')=='Komentar') {
+            $feedback_tugas_akhir = new Feedback_tugas_akhir;
+            $feedback_tugas_akhir->komentar = Input::get('komentar');
+            $feedback_tugas_akhir->id_tugas_akhir = $id_tugas_akhir;
+            $feedback_tugas_akhir->id_maker =$_SESSION["id_user"];
+            $feedback_tugas_akhir->save();
         } else {
             return 'Something Error!';
         }
-        return redirect()->route('dosen/PA/verifikasi-permohonan-ta');
+        return redirect()->route('dosen/PA/detail-permohonan-ta', $id_tugas_akhir);
     }
 
     function setujui_permohonan_ta($id_tugas_akhir) {

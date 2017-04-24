@@ -67,16 +67,98 @@
 							<div class="box-footer">
 								<br>
 								<center><button class="btn btn-primary">Ubah</button></center>
-								<br>
 							</div>
 
-							<div class="col-md-2"></div>
-							<div class="col-md-10">
-								<table class="table table-striped">
-									<td style="background-color: #eeeeee;">asd</td>
+							<hr>
+							<br>
+							<div>
+								<table>
+									<tr>
+										<form method="post" action="">
+											<div><div class="col-md-1">
+											</div>
+											<div class="col-md-2">
+												<strong>Komentar</strong>
+											</div>
+											<div class="col-md-7" style=" margin-left: 25px;">
+					                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+												<br>
+												
+											</div>
+											<div class="col-md-1"><button class="btn btn-primary" type="submit">Kirim</button></div>
+										</form>
+									</tr>
+
+									<tr><td><br><hr></td></tr>
+									<tr><td><br></td></tr>
 								</table>
 							</div>
+							<br>
 						@endif
+
+							<br>
+							<hr>
+							<br>
+							<div class="col-md-1"></div>
+							<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+							<br>
+							<br>
+							<table>
+								<tr>
+									<td>
+										<div><div class="col-md-1">
+										</div>
+										<div class="col-md-2">
+											{{$tugas_akhir->nama_dosen}}
+											<br>
+											8 Maret 2017
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<div class="col-md-1"></div>
+										<div class="col-md-2">
+											{{$_SESSION["user_login"]->name}}
+											<br>
+											8 Maret 2017
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
+												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Lorem Ipsum Feedback Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum Feedback Lorem
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<div><div class="col-md-1">
+										</div>
+										<div class="col-md-2">
+											{{$tugas_akhir->nama_dosen}}
+											<br>
+											8 Maret 2017
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
+												backLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+							</table>
+						
 
 					@else
 						<form class="form-horizontal" method="post" action="">

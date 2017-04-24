@@ -109,9 +109,11 @@ class MahasiswaController extends Controller
    		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
     	$tugas_akhir = DB::table('tugas_akhir')
           ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+          ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pa.id_dosen')
           ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
           ->get()->first();
-
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
     	if ($tugas_akhir==null) {
     		return view("mahasiswa/belum_mengajukan_topik");
@@ -120,6 +122,7 @@ class MahasiswaController extends Controller
     	//Sudah mengajukan TA->otomatis topik udah
     	else {
     		$topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+
     		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir]);
     	}
     }
