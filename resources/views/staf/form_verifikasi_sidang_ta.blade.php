@@ -66,8 +66,8 @@
              <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 1:</label>
                 <div class="col-sm-6">
-					<select name="dosen_penguji_1" class="form-control select2" style="width: 100%;">
-						<option value="0">Pilih Nama Dosen</option>
+					<select name="dosen_penguji_1" class="form-control select2" style="width: 100%;" required>
+						<option value="">Pilih Nama Dosen</option>
 							@foreach ($dosen as $dosen)
 						
 						<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
@@ -80,8 +80,8 @@
 			 <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 2 :</label>
                 <div class="col-sm-6">		
-                    <select name="dosen_penguji_2" class="form-control select2" style="width: 100%;">
-							<option value="0">Pilih Nama Dosen</option>
+                    <select name="dosen_penguji_2" class="form-control select2" style="width: 100%;" required>
+							<option value="">Pilih Nama Dosen</option>
 							  @foreach ($dosen2 as $dosen)
 						
 									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
@@ -94,8 +94,8 @@
 			 <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 3 :</label>
                 <div class="col-sm-6">
-						<select name="dosen_penguji_3" class="form-control select2" style="width: 100%;">
-							<option value="0">Pilih Nama Dosen</option>
+						<select name="dosen_penguji_3" class="form-control select2" style="width: 100%;" required >
+							<option value="">Pilih Nama Dosen</option>
 							  @foreach ($dosen3 as $dosen)
 						
 									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>

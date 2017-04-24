@@ -47,9 +47,10 @@
                           <input class="form-control" name="username">
                         </div>
                         <div class='col-sm-3'>
-                          <?php echo $errors->first('username') ?>
+                     
                           <?php echo $errors->first('wrong_username') ?>
-                        </div>
+							<?php echo $errors->first('wrong_password') ?>
+						</div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-sm-3">Password:</label>
@@ -58,7 +59,7 @@
                         </div>
                         <div class='col-sm-3'>
                           <?php echo $errors->first('password') ?>
-                          <?php echo $errors->first('wrong_password') ?>
+                       
                     </div>
                       </div>
                       <center><button class="btn btn-primary" type="submit">Login</button></center>
