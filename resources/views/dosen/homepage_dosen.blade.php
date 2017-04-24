@@ -71,14 +71,17 @@
                        
                     <div class="col-xs-4"> 
         
-                       <a href="{{ route('dosen/pembimbing/home') }}"><img src="{{ asset('img/dospem.png') }}" style="width: 50% ; height: 50%"></a>
+                       <a href="{{ route('dosen/pembimbing/home') }}"><img src="{{ asset('img/dospem.png') }}" style="width: 60% ; height: 50%"><br><br>
+                            <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61">Dosen Pembimbing</button></a>
                     </div>
                         
                     <div class="col-xs-4">
-                        <a href="{{ route('dosen/penguji/home') }}"><img src="{{ asset('img/dospeng.png') }}" style="width: 50% ; height: 50%"></a>
+                        <a href="{{ route('dosen/penguji/home') }}"><img src="{{ asset('img/dospeng.png') }}" style="width: 60% ; height: 50%"><br><br>
+                            <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61">Dosen Penguji</button></a>
                     </div>
                     <div class="col-xs-4">
-                         <a href="{{ route('dosen/PA/home') }}"><img src="{{ asset('img/dosPA.png') }}" style="width: 50% ; height: 50%"></a>
+                         <a href="{{ route('dosen/PA/home') }}"><img src="{{ asset('img/dosPA.png') }}" style="width: 60% ; height: 50%"><br><br>
+                            <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61">PA</button></a>
                     </div>
                        
                    
