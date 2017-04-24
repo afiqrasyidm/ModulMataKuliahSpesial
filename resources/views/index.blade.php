@@ -79,7 +79,7 @@
                         <br/>
                     
                         
-                        <img src="{{ asset  ('dist/img/logomks.png') }}" style="width: 15% ; height: 15%">
+                        <img src="{{ asset  ('dist/img/logomks.png') }}" style="width: 15% ; height: 15%"><br>
                         <h2 class="title-index" style="color: #1e3c61">Modul Mata Kuliah Spesial</h2><br>
                         
                         <br><br>

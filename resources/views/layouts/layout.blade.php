@@ -57,6 +57,7 @@
                   <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
   				  
         					<span class="hidden-xs">
+                  
             					<?php
 								
 								//selain industri
@@ -76,7 +77,9 @@
                   <!-- User image -->
                   <li class="user-header">
                     <img src="{{ asset  ('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                    
                     <p>
+                    
                     <?php
 							//selain industri
 							 if(isset($_SESSION["user_login"])) {
@@ -88,6 +91,7 @@
 								}
 								
 						?>
+                
                     </p>
                   
                   </li>
@@ -119,6 +123,7 @@
             </div>
             <div class="pull-left info">
               <p>
+              <div class="name-user">
                 <?php
                  
 					//selain industri
@@ -130,6 +135,7 @@
 								  echo $_SESSION["user_login_industri"]->nama_industri;
 						}
                 ?>
+                </div>
               </p>
             </div>
           </div>
