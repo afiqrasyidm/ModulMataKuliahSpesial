@@ -9,6 +9,8 @@ use App\Dosen;
 use App\Pengajuan_sidang;
 use App\Dosen_penguji;
 use SSO\SSO;
+use Validator;
+use Redirect;
 
 class StafController extends Controller
 {
@@ -83,6 +85,41 @@ class StafController extends Controller
 		session_start();
 		
 	//	return Input::get('dosen_penguji_1');
+		
+				
+		//return $id_tugas_akhir;
+		 $validator = Validator::make(
+	        Input::all(),
+			  array(//Unique nya belum
+	            "dosen_penguji_1" => "required",
+	            "dosen_penguji_2" => "required",
+	            "dosen_penguji_3" => "required",
+	            
+	            )
+	      
+	    );
+		
+		$success =false;
+		
+		if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
+			$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
+		}
+		
+		else if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_3')){
+			$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
+		}
+		
+		else if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
+			$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
+		}
+			
+		else{
+			$success = true;
+		}
+		
+		
+		
+		if($success){
 		DB::table('pengajuan_sidang')
         	->where('id_pengajuan','=', Input::get('id_pengajuan'))
             ->update([
@@ -94,8 +131,6 @@ class StafController extends Controller
 				->where('pengajuan_sidang.id_pengajuan','=', Input::get('id_pengajuan'))
 				->get()->first()->id_tugas_akhir;
 				
-		//return $id_tugas_akhir;
-		
 		 $dosen_penguji1 = new dosen_penguji;
 		 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
 		 $dosen_penguji1->id_tugas_akhir = $id_tugas_akhir;
@@ -114,10 +149,17 @@ class StafController extends Controller
 		 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 		 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 		  $dosen_penguji3->save();
+			return redirect()->route('staf/verifikasi-permohonan-sidang');
+		}
 		 
-		 
+		 else {
+	        //Data error or username taken:
+	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
+	            ->withErrors($validator)
+	            ->withInput();
+	    }
 
-		return redirect()->route('staf/verifikasi-permohonan-sidang');
+	
     	//return view("staf/verifikasi_permohonan_ta");
 
 	}

@@ -292,7 +292,7 @@ class MahasiswaController extends Controller
 
 		if($tugas_akhir!= null){
 			//Jika belum mengajukan sidang
-			if($tugas_akhir->status_tugas_akhir==11){
+			if($tugas_akhir->status_tugas_akhir>=11){
 				if($sidang==null){
 					if($tugas_akhir!=NULL){
 						$informasi_ta = DB::table('tugas_akhir')
@@ -483,7 +483,7 @@ class MahasiswaController extends Controller
 			$id_tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->id_tugas_akhir;
 
 			//Validasi: Tidak bisa mengajukan
-			if($tugas_akhir!=11){
+			if($tugas_akhir<11){
 			 	return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
 

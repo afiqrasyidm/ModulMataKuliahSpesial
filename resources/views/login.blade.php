@@ -49,6 +49,7 @@
                         <div class='col-sm-3'>
                           <?php echo $errors->first('username') ?>
                           <?php echo $errors->first('wrong_username') ?>
+						     <?php echo $errors->first('wrong_password') ?>
                         </div>
                       </div>
                       <div class="form-group">
@@ -58,7 +59,7 @@
                         </div>
                         <div class='col-sm-3'>
                           <?php echo $errors->first('password') ?>
-                          <?php echo $errors->first('wrong_password') ?>
+                       
                     </div>
                       </div>
                       <center><button class="btn btn-primary" type="submit">Login</button></center>

@@ -111,11 +111,11 @@ class MainController extends Controller
 
 	    //Username tidak terdaftar
 	    else if(!$isUsernameExist) {
-	        $validator->getMessageBag()->add('wrong_username', 'username tidak terdaftar.');
+	        $validator->getMessageBag()->add('wrong_username', 'username/password salah');
 	    }
 
 	    else if((Crypt::decrypt($UserArr->first()->password) == Input::get('password'))!=1) {
-	        $validator->getMessageBag()->add('wrong_password', 'Password salah');
+	        $validator->getMessageBag()->add('wrong_password', 'username/password salah ');
 	    }
 
 	    else {

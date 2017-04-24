@@ -1,5 +1,5 @@
 @extends('layouts.layout_failed')
-@extends('layouts.layout_failed')
+
 
 @section('title','Pengajuan Pembimbing TA')
 
