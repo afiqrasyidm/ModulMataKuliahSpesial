@@ -94,11 +94,12 @@ class StafController extends Controller
 	            "dosen_penguji_1" => "required",
 	            "dosen_penguji_2" => "required",
 	            "dosen_penguji_3" => "required",
-	            
+	            "waktu_sidang" => "required",
 	            )
 	      
 	    );
 		
+    	if($validator->passes()) {
 		$success =false;
 		
 		if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
@@ -151,7 +152,7 @@ class StafController extends Controller
 		  $dosen_penguji3->save();
 			return redirect()->route('staf/verifikasi-permohonan-sidang');
 		}
-		 
+		}
 		 else {
 	        //Data error or username taken:
 	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
