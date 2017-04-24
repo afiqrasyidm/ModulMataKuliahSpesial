@@ -74,7 +74,12 @@
 							
 							 @endforeach
 					</select>
+					   
                 </div>
+				<div class='col-sm-3'>
+                          <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
+						  <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+                 </div>
             </div>
 
 			 <div class="form-group">
@@ -89,6 +94,10 @@
 							 @endforeach
 						</select>
 				</div>
+				<div class='col-sm-3'>
+                          <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
+						  <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+                 </div>
             </div>
 				
 			 <div class="form-group">
@@ -104,6 +113,10 @@
 						</select>
 				
 				</div>
+				<div class='col-sm-3'>
+                          <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+						  <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+                 </div>
             </div>
 				
             <div class="form-group">
