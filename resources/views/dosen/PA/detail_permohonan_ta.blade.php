@@ -54,7 +54,7 @@
 					        </tr>
 					        <tr>
 					          <th bgcolor="#86b7e3">Status</th>
-					          <td bgcolor="#c0c5cc">{{$tugas_akhir->status}}</td>
+					          <td bgcolor="#c0c5cc"><strong>{{$tugas_akhir->status}}</strong></td>
 					        </tr>
 					    </tbody>
 					</table>
@@ -87,11 +87,10 @@
 										</div>
 										<div class="col-md-7" style=" margin-left: 25px;">
 				                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+											<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="komentar"></textarea>
 											<br>
-											
 										</div>
-										<div class="col-md-1"><button class="btn btn-primary" type="submit">Kirim</button></div>
+										<div class="col-md-1"><button class="btn btn-primary" type="submit" name="action" value="Komentar">Kirim</button></div>
 									</form>
 								</tr>
 
@@ -112,7 +111,7 @@
 					<table>
 						<tr>
 							<td>
-								<div><div class="col-md-1">
+								<div class="col-md-1">
 								</div>
 								<div class="col-md-2">
 									{{$tugas_akhir->nama_mahasiswa}}

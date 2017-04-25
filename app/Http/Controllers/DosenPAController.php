@@ -36,8 +36,8 @@ class DosenPAController extends Controller
                 ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
                 ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
                 ->where('dosen_pa.id_dosen', '=', $id_dosen)
-                ->where('tugas_akhir.status_tugas_akhir','>=','6')
-                ->orderBy('tugas_akhir.status_tugas_akhir', 'ASC')
+                
+                ->orderBy('tugas_akhir.updated_at', 'ASC')
                 ->get();
 
         //return $tugas_akhir;

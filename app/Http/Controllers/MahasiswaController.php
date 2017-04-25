@@ -23,6 +23,7 @@ use App\Pengajuan_sidang;
 use App\Hasil_ta;
 use App\Dosen_pembimbing;
 use App\Referensi_status_sidang;
+use App\feedback_tugas_akhir;
 
 use App\Status_ta;
 use App\Status_sidang;
@@ -122,13 +123,41 @@ class MahasiswaController extends Controller
     	//Sudah mengajukan TA->otomatis topik udah
     	else {
     		$topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+    		$komentars = DB::table('feedback_tugas_akhir')
+    			->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')	
+    			->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
+    			->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
+    			->distinct()
+    			->get();
 
-    		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir]);
+    		return $komentars;
+    		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir, 'komentars' => $komentars]);
     	}
     }
 
     public function pengajuan_permohonan_ta_sukses() {
     	return view("mahasiswa/pengajuan_permohonan_ta_sukses");
+    }
+
+    public function pengajuan_permohonan_ta_submit_komentar() {
+    	session_start();
+
+   		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$tugas_akhir = DB::table('tugas_akhir')
+          ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+          ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pa.id_dosen')
+          ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
+          ->get()->first();
+
+    	$feedback_tugas_akhir = new Feedback_tugas_akhir;
+        $feedback_tugas_akhir->komentar = Input::get('komentar');
+        $feedback_tugas_akhir->id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+        $feedback_tugas_akhir->id_maker =$_SESSION["id_user"];
+        $feedback_tugas_akhir->save();
+
+        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta');
     }
 
     public function pengajuan_permohonan_ta_submit() {
