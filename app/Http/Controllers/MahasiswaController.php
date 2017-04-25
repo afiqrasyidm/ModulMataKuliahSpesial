@@ -235,15 +235,16 @@ class MahasiswaController extends Controller
 
         //sudah memilih topik
 		$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
-        
+		//sudah mengambil tugas akhir
 		if ($tugas_akhir!=NULL) {
-
+			//jika belum ambil dosen pembimbing
           if($dosenpembimbings == NULL ){
           	// return 'test';
             $dosenpembimbing = DB::table('dosen')
             ->get();
             return view("mahasiswa/pengajuan_pembimbing_ta")->with('dosenpembimbing', $dosenpembimbing);
           }
+		  //topik yang diambil dari dosen
 		else if($topik_yang_diambil->id_dosen !=NULL){
 			if($tugas_akhir->status_tugas_akhir==8){
 			
@@ -254,17 +255,32 @@ class MahasiswaController extends Controller
 			
 			  return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
 		}
+		//sudah mengajukan dosen pembimbing
           else {
           	// return 'test1';
           	$id_dosen = DB::table('topik')->where('id_topik', '=', $tugas_akhir->id_topik)->get()[0]->id_dosen;
           
-         	
-            return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
+         	//return $tugas_akhir;
+            return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings, 'tugas_akhir' => $tugas_akhir));
           }
 
         }
 
     }
+	//method yang hanya jalan jika dosen pembimbing menolak dan mahasiswa mengulangi pengajuan dosbem
+	public function pengajuan_pembimbing_ta_submit(){
+		session_start();
+		 
+		DB::table('dosen_pembimbing_ta')
+		->where('id_tugas_akhir', '=', Input::get ('id_tugas_akhir'))
+		->where('id_dosen', '=', Input::get ('id_dosen'))
+		
+		->delete();
+		
+		return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
+		
+	
+	}
 
     public function detail_dosen($id_dosen){
       session_start();

@@ -75,7 +75,7 @@
 		</form>
 
 
-		@elseif($dosenpembimbings->status_dosen_pembimbing == 1))
+		@elseif($dosenpembimbings->status_dosen_pembimbing == 1)
 			<section class="content">
 				<div class="box box-primary">
 		                <div class="box-header with-border">
@@ -143,6 +143,9 @@
 			</section>
 
 		@else 
+<form method="post" action="">
+
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 <section class="content">
 				<div class="box box-primary">
 		                <div class="box-header with-border">
@@ -172,17 +175,17 @@
 
 		                </tr>
 						        
-						<tr>
-		                <th bgcolor="#86b7e3">Pengalaman</th>
-		                <td bgcolor="#dddddd"> hard</td>
-
-		                </tr>
-		                
 				        <tr>
 						
 							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
 							<td bgcolor="#dddddd">
-								Diterima
+								@if($dosenpembimbings->status_dosen_pembimbing == 1)
+									Menunggu Persetujuan
+								@elseif($dosenpembimbings->status_dosen_pembimbing == 2)
+									Diterima
+								@else
+								    Ditolak
+								@endif
 								</td>
 
 		                </tr>
@@ -190,11 +193,21 @@
 		              </tbody>
 		              </table>
 		    <center><br><br>
-		      </center></div>
-
-
+		      </center>
+			  
+			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
+							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>				
+				@endif
+			  </div>
+				
 		        </div>
 			</section>
+			
+			<input name="id_dosen" type="text"  value="{{$dosenpembimbings->id_dosen}}" hidden>
+			<input name="id_tugas_akhir" type="text" value="{{$tugas_akhir->id_tugas_akhir}}" hidden>
+
+	</form>
+
 		@endif
 
 </div>
