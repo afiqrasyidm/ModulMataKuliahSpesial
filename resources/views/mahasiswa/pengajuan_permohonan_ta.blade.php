@@ -72,7 +72,7 @@
 									Harap ubah permohonan TA anda!</a></center>
 								@endif
 								<br>
-								<center><button class="btn btn-primary" href="">Ubah</button></center>
+								<center><a href="{{route('mahasiswa/pengajuan-permohonan-ta-ubah')}}"><button class="btn btn-primary" >Ubah</button></a></center>
 							</div>
 
 							<hr>
