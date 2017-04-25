@@ -143,6 +143,9 @@
 			</section>
 
 		@else 
+<form method="post" action="">
+
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 <section class="content">
 				<div class="box box-primary">
 		                <div class="box-header with-border">
@@ -191,14 +194,19 @@
 		              </table>
 		    <center><br><br>
 		      </center>
+			  
 			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
 							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>				
-					@endif
-
+				@endif
 			  </div>
 				
 		        </div>
 			</section>
+			
+			<input name="id_dosen" type="text"  value="{{$dosenpembimbings->id_dosen}}" hidden>
+			<input name="id_tugas_akhir" type="text" value="{{$tugas_akhir->id_tugas_akhir}}" hidden>
+
+	</form>
 
 		@endif
 
