@@ -153,14 +153,9 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			->leftJoin('topik', 'tugas_akhir.id_topik', 'topik.id_topik')
 			->where('dosen.id_user', '=',  $_SESSION["id_user"])->get();
 	//	return $bimbingan;
-		$dari_dosen = DB::table('dosen')
-			->leftJoin('topik', 'topik.id_dosen', 'dosen.id_dosen')
-			->leftJoin('tugas_akhir', 'tugas_akhir.id_topik', 'topik.id_topik')
-			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
-			->where([['dosen.id_user', '=' , $_SESSION["id_user"]], ['topik.sudah_diambil', '>', '0']])
-			->get();
+		
 
-		return view("dosen/DosenPembimbing/verifikasi_bimbingan", array('bimbingan' => $bimbingan, 'dari_dosen' => $dari_dosen));
+		return view("dosen/DosenPembimbing/verifikasi_bimbingan", array('bimbingan' => $bimbingan));
 			// return $bimbingan;
 		// return $_SESSION;
 	}

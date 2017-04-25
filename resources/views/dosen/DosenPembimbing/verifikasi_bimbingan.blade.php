@@ -73,30 +73,6 @@
 											
 										 @endforeach
 
-										  @foreach ($dari_dosen as $data)
-									<tr>
-										  <td>
-											
-											  {{$data->nama_mahasiswa}}
-											
-										  </td>
-										   
-
-										  <td>
-											{{$data->judul_ta}}
-											</td>
-											<td>
-											{{$data->topik_ta}}
-
-											</td>
-											<td>
-												Sudah diterima
-											</td>
-										
-									</tr>
-											
-										 @endforeach
-
 			
 				</tbody>
 
