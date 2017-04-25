@@ -58,15 +58,21 @@
 						        </tr>
 						        <tr>
 						          <th bgcolor="#86b7e3">Status</th>
-						          <td bgcolor="#c0c5cc">{{$tugas_akhir->status}}</td>
+						          <td bgcolor="#c0c5cc"><strong>{{$tugas_akhir->status}}</strong></td>
 						        </tr>
 						    </tbody>
 						</table>
 						
 						@if($tugas_akhir->status_tugas_akhir==6 || $tugas_akhir->status_tugas_akhir==2)
 							<div class="box-footer">
+								@if($tugas_akhir->status_tugas_akhir==2)
+									<br>
+									<center><a style="color:red;">Permohonan TA anda ditolak!
+									<br>
+									Harap ubah permohonan TA anda!</a></center>
+								@endif
 								<br>
-								<center><button class="btn btn-primary">Ubah</button></center>
+								<center><button class="btn btn-primary" href="">Ubah</button></center>
 							</div>
 
 							<hr>
@@ -82,9 +88,8 @@
 											</div>
 											<div class="col-md-7" style=" margin-left: 25px;">
 					                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-												<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+												<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="komentar"></textarea>
 												<br>
-												
 											</div>
 											<div class="col-md-1"><button class="btn btn-primary" type="submit">Kirim</button></div>
 										</form>
