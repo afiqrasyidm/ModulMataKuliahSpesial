@@ -320,7 +320,7 @@ class MahasiswaController extends Controller
 						->update(['id_maker' =>  $_SESSION["id_user"],'status_tugas_akhir' => 10]);
 			}	
 			
-			  return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings));
+			  return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings,  'tugas_akhir' => $tugas_akhir));
 		}
 		//sudah mengajukan dosen pembimbing
           else {
