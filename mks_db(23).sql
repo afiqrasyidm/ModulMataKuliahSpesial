@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2017 at 07:48 AM
+-- Generation Time: Apr 26, 2017 at 07:51 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -66,7 +66,8 @@ CREATE TABLE `dosen_pa` (
 --
 
 INSERT INTO `dosen_pa` (`id`, `created_at`, `update_at`, `id_dosen`, `id_maker`, `id_mahasiswa`) VALUES
-(1, NULL, NULL, 1, 1, 1);
+(1, NULL, NULL, 1, 1, 1),
+(2, NULL, NULL, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -733,7 +734,7 @@ ALTER TABLE `dosen`
 -- AUTO_INCREMENT for table `dosen_pa`
 --
 ALTER TABLE `dosen_pa`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `dosen_pembimbing_ta`
 --
