@@ -176,7 +176,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	 	} else {
 	 		DB::table('tugas_akhir')
 	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
-	 			->update(['status_tugas_akhir' => 9]);
+	 			->update(['status_tugas_akhir' => 8]);
 	 	}
 	 	
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');

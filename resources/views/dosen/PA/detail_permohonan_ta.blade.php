@@ -7,6 +7,8 @@
 <section class="content">
 	<br><br>
 	<div class="center-form">
+		<div style="width: 100%;"><a href="{{route('dosen/PA/verifikasi-permohonan-ta')}}">Kembali ke: Daftar Tugas Akhir</a></div>
+		<br>
 		<div class=".col-md-11">
 			<div class="box box-primary">
 				<div class="box-header with-border">
@@ -54,7 +56,7 @@
 					        </tr>
 					        <tr>
 					          <th bgcolor="#86b7e3">Status</th>
-					          <td bgcolor="#c0c5cc">{{$tugas_akhir->status}}</td>
+					          <td bgcolor="#c0c5cc"><strong>{{$tugas_akhir->status}}</strong></td>
 					        </tr>
 					    </tbody>
 					</table>
@@ -87,11 +89,10 @@
 										</div>
 										<div class="col-md-7" style=" margin-left: 25px;">
 				                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+											<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="komentar"></textarea>
 											<br>
-											
 										</div>
-										<div class="col-md-1"><button class="btn btn-primary" type="submit">Kirim</button></div>
+										<div class="col-md-1"><button class="btn btn-primary" type="submit" name="action" value="Komentar">Kirim</button></div>
 									</form>
 								</tr>
 
@@ -101,68 +102,56 @@
 						</div>
 						<br>
 					@endif
-					<br>
-					<hr>
-					<br>
-					<div class="col-md-1"></div>
-					<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
-					<br>
-					<br>
 
-					<table>
-						<tr>
-							<td>
-								<div><div class="col-md-1">
-								</div>
-								<div class="col-md-2">
-									{{$tugas_akhir->nama_mahasiswa}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
-									</div>
-								</div>
-								<div class="col-md-1"></div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									{{$_SESSION["user_login"]->name}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="222d32min-height: 60px; padding:5px; margin-left: 25px; background-color: #cccccc; border-top-color: #222d32">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Lorem Ipsum Feedback Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum Feedback Lorem
-									</div>
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<div><div class="col-md-1">
-								</div>
-								<div class="col-md-2">
-									{{$tugas_akhir->nama_mahasiswa}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
-										backLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum
-									</div>
-								</div>
-								<div class="col-md-1"></div>
-							</td>
-						</tr>
-					</table>		
+					@if(count($komentars)>0)
+						<br>
+						<hr>
+						<br>
+						<div class="col-md-1"></div>
+						<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+						<br>
+						<br>
+						<table style="width:100%;">
+							@foreach($komentars as $komentar)
+								@if($komentar->role=='dosen')
+								<tr>
+									<td>
+										<div class="col-md-1">
+										</div>
+										<div class="col-md-2">
+											<strong>{{$komentar->nama_dosen}}</strong>
+											<br>
+											{{$komentar->tugas_akhir_created_at}}
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
+												{{$komentar->komentar}}
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+								@else
+								<tr>
+									<td>
+										<div class="col-md-1"></div>
+										<div class="col-md-2">
+											<strong>{{$komentar->nama_mahasiswa}}</strong>
+											<br>
+											{{$komentar->tugas_akhir_created_at}}
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+												{{$komentar->komentar}}
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+								@endif
+							@endforeach
+						</table>
+					@endif		
 		        </div><!-- /.box-body -->
 		    </div><!-- /.box -->
 		</div>

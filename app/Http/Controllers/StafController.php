@@ -188,6 +188,23 @@ class StafController extends Controller
         return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
     }
 	
+	function detail_permohonan_ta($id_tugas_akhir) {
+        session_start();
+
+        $tugas_akhir = DB::table('tugas_akhir')
+                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+                ->leftJoin('fakultas', 'fakultas.id_fakultas', '=', 'prodi.id_fakultas')
+                ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+                ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pa.id_dosen')
+                ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+                ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
+                ->get()
+                ->first();
+
+        return view("staf/detail_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
+    }
 
     function verifikasi_ta($id_tugas_akhir){
     	session_start();
@@ -208,6 +225,6 @@ class StafController extends Controller
 
         //return $tugas_akhir;
 
-        return view("staf/verifikasi_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
+        return redirect()->route('staf/verifikasi-permohonan-ta');
     }
 }

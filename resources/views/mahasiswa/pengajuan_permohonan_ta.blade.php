@@ -58,15 +58,21 @@
 						        </tr>
 						        <tr>
 						          <th bgcolor="#86b7e3">Status</th>
-						          <td bgcolor="#c0c5cc">{{$tugas_akhir->status}}</td>
+						          <td bgcolor="#c0c5cc"><strong>{{$tugas_akhir->status}}</strong></td>
 						        </tr>
 						    </tbody>
 						</table>
 						
 						@if($tugas_akhir->status_tugas_akhir==6 || $tugas_akhir->status_tugas_akhir==2)
 							<div class="box-footer">
+								@if($tugas_akhir->status_tugas_akhir==2)
+									<br>
+									<center><a style="color:red;">Permohonan TA anda ditolak!
+									<br>
+									Harap ubah permohonan TA anda!</a></center>
+								@endif
 								<br>
-								<center><button class="btn btn-primary">Ubah</button></center>
+								<center><a href="{{route('mahasiswa/pengajuan-permohonan-ta-ubah')}}"><button class="btn btn-primary" >Ubah</button></a></center>
 							</div>
 
 							<hr>
@@ -74,7 +80,7 @@
 							<div>
 								<table>
 									<tr>
-										<form method="post" action="">
+										<form method="post" action="{{route('mahasiswa/pengajuan-permohonan-ta-submit-komentar')}}">
 											<div><div class="col-md-1">
 											</div>
 											<div class="col-md-2">
@@ -82,9 +88,8 @@
 											</div>
 											<div class="col-md-7" style=" margin-left: 25px;">
 					                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-												<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="feedback"></textarea>
+												<textarea class="textarea" style="width:100%; height: 100px; line-height: 18px; border: 2px solid #dddddd;" name="komentar"></textarea>
 												<br>
-												
 											</div>
 											<div class="col-md-1"><button class="btn btn-primary" type="submit">Kirim</button></div>
 										</form>
@@ -97,69 +102,55 @@
 							<br>
 						@endif
 
-							<br>
-							<hr>
-							<br>
-							<div class="col-md-1"></div>
-							<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
-							<br>
-							<br>
-							<table>
-								<tr>
-									<td>
-										<div><div class="col-md-1">
-										</div>
-										<div class="col-md-2">
-											{{$tugas_akhir->nama_dosen}}
-											<br>
-											8 Maret 2017
-										</div>
-										<div class="col-md-8">
-											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
-											</div>
-										</div>
-										<div class="col-md-1"></div>
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<div class="col-md-1"></div>
-										<div class="col-md-2">
-											{{$_SESSION["user_login"]->name}}
-											<br>
-											8 Maret 2017
-										</div>
-										<div class="col-md-8">
-											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
-												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Lorem Ipsum Feedback Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum Feedback Lorem
-											</div>
-										</div>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<div><div class="col-md-1">
-										</div>
-										<div class="col-md-2">
-											{{$tugas_akhir->nama_dosen}}
-											<br>
-											8 Maret 2017
-										</div>
-										<div class="col-md-8">
-											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-												Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
-												backLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum
-											</div>
-										</div>
-										<div class="col-md-1"></div>
-									</td>
-								</tr>
-							</table>
-						
-
+							@if(count($komentars)>0)
+								<br>
+								<hr>
+								<br>
+								<div class="col-md-1"></div>
+								<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+								<br>
+								<br>
+								<table style="width:100%;">
+									@foreach($komentars as $komentar)
+										@if($komentar->role=='dosen')
+										<tr>
+											<td>
+												<div class="col-md-1">
+												</div>
+												<div class="col-md-2">
+													{{$komentar->nama_dosen}}
+													<br>
+													8 Maret 2017
+												</div>
+												<div class="col-md-8">
+													<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+														{{$komentar->komentar}}
+													</div>
+												</div>
+												<div class="col-md-1"></div>
+											</td>
+										</tr>
+										@else
+										<tr>
+											<td>
+												<div class="col-md-1"></div>
+												<div class="col-md-2">
+													{{$komentar->nama_mahasiswa}}
+													<br>
+													8 Maret 2017
+												</div>
+												<div class="col-md-8">
+													<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
+														{{$komentar->komentar}}
+													</div>
+												</div>
+												<div class="col-md-1"></div>
+											</td>
+										</tr>
+										@endif
+									@endforeach
+								</table>
+							@endif
 					@else
 						<form class="form-horizontal" method="post" action="">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">

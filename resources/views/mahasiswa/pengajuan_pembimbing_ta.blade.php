@@ -143,6 +143,9 @@
 			</section>
 
 		@else 
+<form method="post" action="">
+
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 <section class="content">
 				<div class="box box-primary">
 		                <div class="box-header with-border">
@@ -191,16 +194,27 @@
 		              </table>
 		    <center><br><br>
 		      </center>
+			  
 			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
+<<<<<<< HEAD
 			  	<a href="/mahasiswa/ubah-pengajuan-pembimbing/{{$dosenpembimbings->id}}">
 							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>	
 							</a>			
 					@endif
 
+=======
+							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>				
+				@endif
+>>>>>>> 343dd4a1de3119cdfaccab65866d2f5bf6057ff9
 			  </div>
 				
 		        </div>
 			</section>
+			
+			<input name="id_dosen" type="text"  value="{{$dosenpembimbings->id_dosen}}" hidden>
+			<input name="id_tugas_akhir" type="text" value="{{$tugas_akhir->id_tugas_akhir}}" hidden>
+
+	</form>
 
 		@endif
 
