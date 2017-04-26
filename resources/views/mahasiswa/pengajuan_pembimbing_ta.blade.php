@@ -192,7 +192,9 @@
 		    <center><br><br>
 		      </center>
 			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
-							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>				
+			  	<a href="/mahasiswa/ubah-pengajuan-pembimbing/{{$dosenpembimbings->id}}">
+							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>	
+							</a>			
 					@endif
 
 			  </div>
