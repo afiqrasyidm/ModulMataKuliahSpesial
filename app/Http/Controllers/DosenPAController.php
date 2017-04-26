@@ -59,8 +59,19 @@ class DosenPAController extends Controller
                 ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
                 ->get()
                 ->first();
-        //return $tugas_akhir;
-        return view("dosen/PA/detail_permohonan_ta", ['tugas_akhir' => $tugas_akhir]);
+
+                $komentars = DB::table('feedback_tugas_akhir')
+                ->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')    
+                ->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
+                ->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
+                ->select('feedback_tugas_akhir.id_maker as tugas_akhir_id_maker', 'feedback_tugas_akhir.created_at as tugas_akhir_created_at', 'feedback_tugas_akhir.*', 'user.*', 'dosen.*', 'mahasiswa.*')
+                ->distinct()
+                ->orderBy('tugas_akhir_created_at', 'desc')
+                ->get();
+
+                $feedback_tugas_akhir =  DB::table('feedback_tugas_akhir');
+
+        return view("dosen/PA/detail_permohonan_ta", ['tugas_akhir' => $tugas_akhir, 'komentars' => $komentars]);
     }
 
     function detail_permohonan_ta_submit($id_tugas_akhir) {

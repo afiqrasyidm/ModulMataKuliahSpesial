@@ -34,6 +34,11 @@ Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-p
 
 Route::post('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit']);
 
+
+Route::get('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengajuan-permohonan-ta-ubah', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_ubah']);
+
+Route::post('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengajuan-permohonan-ta-ubah', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_ubah_submit']);
+
 Route::post('/mahasiswa/pengajuan-permohonan-ta-submit-komentar/', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit-komentar', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit_komentar']);
 
 Route::get('mahasiswa/pengajuan-permohonan-ta-sukses', ['as' => '/mahasiswa/pengajuan-permohonan-ta-sukses', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_sukses']);

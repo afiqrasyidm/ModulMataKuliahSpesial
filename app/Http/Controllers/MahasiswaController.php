@@ -127,12 +127,75 @@ class MahasiswaController extends Controller
     			->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')	
     			->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
     			->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
-    			->distinct()
-    			->get();
+    			->select('feedback_tugas_akhir.id_maker as tugas_akhir_id_maker', 'feedback_tugas_akhir.created_at as tugas_akhir_created_at', 'feedback_tugas_akhir.*', 'user.*', 'dosen.*', 'mahasiswa.*')
+                ->distinct()
+                ->orderBy('tugas_akhir_created_at', 'desc')
+                ->get();
 
-    		return $komentars;
+    		//return $komentars;
     		return view('mahasiswa/pengajuan_permohonan_ta', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir, 'komentars' => $komentars]);
     	}
+    }
+
+    public function pengajuan_permohonan_ta_ubah() {
+    	session_start();
+
+   		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$tugas_akhir = DB::table('tugas_akhir')
+          ->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+          ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen_pa', 'dosen_pa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+          ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pa.id_dosen')
+          ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
+          ->get()->first();
+
+        $topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+		$komentars = DB::table('feedback_tugas_akhir')
+			->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')	
+			->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
+			->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
+			->select('feedback_tugas_akhir.id_maker as tugas_akhir_id_maker', 'feedback_tugas_akhir.created_at as tugas_akhir_created_at', 'feedback_tugas_akhir.*', 'user.*', 'dosen.*', 'mahasiswa.*')
+            ->distinct()
+            ->orderBy('tugas_akhir_created_at', 'desc')
+            ->get();
+
+		//return $komentars;
+		return view('mahasiswa/pengajuan_permohonan_ta_ubah', ['topik' => $topik->topik_ta, 'tugas_akhir' => $tugas_akhir, 'komentars' => $komentars]);
+    }
+
+    public function pengajuan_permohonan_ta_ubah_submit() {
+    	session_start();
+    	$validator = Validator::make(
+        Input::all(),
+        array(
+           	"judul_ta" => "required",
+	        )
+	    );
+
+    	if($validator->passes()) {
+	    	$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+	    	$id_jenis_ta = 0;
+
+	    	$jenjang = $_SESSION["mahasiswa"]->jenjang;
+		      		if($jenjang=='S1') {
+		      			$id_jenis_ta = 1;
+		      		} else if ($jenjang=='S2') {
+		      			$id_jenis_ta = 2;
+		      		} else if($jenjang=='S3') {
+		      			$id_jenis_ta = 3;
+		      		}
+
+	    	DB::table('tugas_akhir')
+            ->where('id_mahasiswa', $id_mahasiswa)
+            ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
+
+            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
+	    }
+
+	    //Data error:
+	        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta')
+	            ->withErrors($validator)
+	            ->withInput();
     }
 
     public function pengajuan_permohonan_ta_sukses() {

@@ -107,60 +107,45 @@
 					<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
 					<br>
 					<br>
-
-					<table>
-						<tr>
-							<td>
-								<div class="col-md-1">
-								</div>
-								<div class="col-md-2">
-									{{$tugas_akhir->nama_mahasiswa}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
+					<table style="width:100%;">
+						@foreach($komentars as $komentar)
+							@if($komentar->role=='dosen')
+							<tr>
+								<td>
+									<div class="col-md-1">
 									</div>
-								</div>
-								<div class="col-md-1"></div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									{{$_SESSION["user_login"]->name}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="222d32min-height: 60px; padding:5px; margin-left: 25px; background-color: #cccccc; border-top-color: #222d32">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Lorem Ipsum Feedback Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum Feedback Lorem
+									<div class="col-md-2">
+										<strong>{{$komentar->nama_dosen}}</strong>
+										<br>
+										{{$komentar->tugas_akhir_created_at}}
 									</div>
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<div><div class="col-md-1">
-								</div>
-								<div class="col-md-2">
-									{{$tugas_akhir->nama_mahasiswa}}
-									<br>
-									8 Maret 2017
-								</div>
-								<div class="col-md-8">
-									<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-										Lorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum 
-										backLoremLorem Ipsum Feedback Lorem Ipsum FeedbackLorem Ipsum FeedbackLorem Ipsum
+									<div class="col-md-8">
+										<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
+											{{$komentar->komentar}}
+										</div>
 									</div>
-								</div>
-								<div class="col-md-1"></div>
-							</td>
-						</tr>
+									<div class="col-md-1"></div>
+								</td>
+							</tr>
+							@else
+							<tr>
+								<td>
+									<div class="col-md-1"></div>
+									<div class="col-md-2">
+										<strong>{{$komentar->nama_mahasiswa}}</strong>
+										<br>
+										{{$komentar->tugas_akhir_created_at}}
+									</div>
+									<div class="col-md-8">
+										<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+											{{$komentar->komentar}}
+										</div>
+									</div>
+									<div class="col-md-1"></div>
+								</td>
+							</tr>
+							@endif
+						@endforeach
 					</table>		
 		        </div><!-- /.box-body -->
 		    </div><!-- /.box -->
