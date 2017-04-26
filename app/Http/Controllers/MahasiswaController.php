@@ -116,7 +116,7 @@ class MahasiswaController extends Controller
           ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
           ->get()->first();
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
-    	if ($tugas_akhir==null) {
+    	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir==3 || $tugas_akhir->status_tugas_akhir==4 ) {
     		return view("mahasiswa/belum_mengajukan_topik");
     	}
 
