@@ -102,53 +102,56 @@
 						</div>
 						<br>
 					@endif
-					<br>
-					<hr>
-					<br>
-					<div class="col-md-1"></div>
-					<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
-					<br>
-					<br>
-					<table style="width:100%;">
-						@foreach($komentars as $komentar)
-							@if($komentar->role=='dosen')
-							<tr>
-								<td>
-									<div class="col-md-1">
-									</div>
-									<div class="col-md-2">
-										<strong>{{$komentar->nama_dosen}}</strong>
-										<br>
-										{{$komentar->tugas_akhir_created_at}}
-									</div>
-									<div class="col-md-8">
-										<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
-											{{$komentar->komentar}}
+
+					@if(count($komentars)>0)
+						<br>
+						<hr>
+						<br>
+						<div class="col-md-1"></div>
+						<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+						<br>
+						<br>
+						<table style="width:100%;">
+							@foreach($komentars as $komentar)
+								@if($komentar->role=='dosen')
+								<tr>
+									<td>
+										<div class="col-md-1">
 										</div>
-									</div>
-									<div class="col-md-1"></div>
-								</td>
-							</tr>
-							@else
-							<tr>
-								<td>
-									<div class="col-md-1"></div>
-									<div class="col-md-2">
-										<strong>{{$komentar->nama_mahasiswa}}</strong>
-										<br>
-										{{$komentar->tugas_akhir_created_at}}
-									</div>
-									<div class="col-md-8">
-										<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
-											{{$komentar->komentar}}
+										<div class="col-md-2">
+											<strong>{{$komentar->nama_dosen}}</strong>
+											<br>
+											{{$komentar->tugas_akhir_created_at}}
 										</div>
-									</div>
-									<div class="col-md-1"></div>
-								</td>
-							</tr>
-							@endif
-						@endforeach
-					</table>		
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">
+												{{$komentar->komentar}}
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+								@else
+								<tr>
+									<td>
+										<div class="col-md-1"></div>
+										<div class="col-md-2">
+											<strong>{{$komentar->nama_mahasiswa}}</strong>
+											<br>
+											{{$komentar->tugas_akhir_created_at}}
+										</div>
+										<div class="col-md-8">
+											<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
+												{{$komentar->komentar}}
+											</div>
+										</div>
+										<div class="col-md-1"></div>
+									</td>
+								</tr>
+								@endif
+							@endforeach
+						</table>
+					@endif		
 		        </div><!-- /.box-body -->
 		    </div><!-- /.box -->
 		</div>
