@@ -19,7 +19,7 @@
 <ul class="sidebar-menu">
  
   <br>
-  <li class="header-nav"><a href="{{ route('dosen/pembimbing/home') }}">Dosen Pembimbing</a></li>
+  <li class="header-nav"><a href="{{ route('dosen/pembimbing/home') }}"><span>Dosen Pembimbing</span></a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-user"></i> <span>Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
