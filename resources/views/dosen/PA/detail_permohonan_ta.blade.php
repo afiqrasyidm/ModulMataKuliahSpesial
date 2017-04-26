@@ -7,6 +7,8 @@
 <section class="content">
 	<br><br>
 	<div class="center-form">
+		<div style="width: 100%;"><a href="{{route('dosen/PA/verifikasi-permohonan-ta')}}">Kembali ke: Daftar Tugas Akhir</a></div>
+		<br>
 		<div class=".col-md-11">
 			<div class="box box-primary">
 				<div class="box-header with-border">

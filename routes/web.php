@@ -89,6 +89,8 @@ Route::get('/dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-p
 
 Route::get('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta']);
 
+Route::get('/staf/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'staf/detail-permohonan-ta', 'uses' => 'StafController@detail_permohonan_ta']);
+
 Route::post('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta_submit']);
 
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);

@@ -22,6 +22,7 @@
         <th>Topik</th>
         <th>Judul</th>
         <th>Detail</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>           
@@ -41,9 +42,12 @@
         </td>
         <td>{{$ta->topik_ta}}</td>
         <td>{{$ta->judul_ta}}</td>
+        <td>
+          <a href="/staf/detail-permohonan-ta/{{$ta->id_tugas_akhir}}">Detail</a>
+        </td>
         <td> 
           @if($ta->status_tugas_akhir == 7)
-            <a href="/staf/verifikasi-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Setujui</button></a>
+            <a href="/staf/verifikasi-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Verifikasi Sekarang</button></a>
           @elseif($ta->status_tugas_akhir > 7)
             <p><b>Telah Diverifikasi</b></p>
           @endif
