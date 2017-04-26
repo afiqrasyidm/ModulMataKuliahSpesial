@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2017 at 07:17 AM
+-- Generation Time: Apr 26, 2017 at 07:48 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -90,7 +90,8 @@ CREATE TABLE `dosen_pembimbing_ta` (
 
 INSERT INTO `dosen_pembimbing_ta` (`id`, `created_at`, `updated_at`, `id_dosen`, `id_maker`, `status_dosen_pembimbing`, `id_tugas_akhir`) VALUES
 (20, '2017-04-24 22:30:07', '2017-04-24 22:42:49', 1, 2, 2, 26),
-(21, '2017-04-24 22:30:07', '2017-04-24 22:42:49', 1, 2, 1, 25);
+(21, '2017-04-24 22:30:07', '2017-04-24 22:42:49', 1, 2, 1, 25),
+(25, '2017-04-25 22:28:23', '2017-04-25 22:28:23', 1, 2, 2, 68);
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,10 @@ CREATE TABLE `feedback_tugas_akhir` (
 --
 
 INSERT INTO `feedback_tugas_akhir` (`id_feedback_tugas_akhir`, `komentar`, `updated_at`, `created_at`, `id_maker`, `id_tugas_akhir`) VALUES
-(8, 'LOL', '2017-04-25 22:16:38', '2017-04-25 22:16:38', 1, 67);
+(13, 'LOL', '2017-04-25 22:26:04', '2017-04-25 22:26:04', 2, 67),
+(12, 'LOL', '2017-04-25 22:25:43', '2017-04-25 22:25:43', 1, 67),
+(11, 'LOLOL', '2017-04-25 22:25:30', '2017-04-25 22:25:30', 2, 67),
+(14, 'LOLOL', '2017-04-25 22:29:05', '2017-04-25 22:29:05', 2, 68);
 
 -- --------------------------------------------------------
 
@@ -262,10 +266,10 @@ CREATE TABLE `mahasiswa` (
 INSERT INTO `mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `NPM`, `email`, `jumlah_sks`, `semester`, `jenjang`, `id_user`, `id_prodi`, `IPK`, `is_sudah_ambil_ta`, `created_at`, `id_maker`, `updated_at`) VALUES
 (1, 'Afiq Rasyid Muhammad', '1406544072', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 1, 1, '4.0', 1, NULL, NULL, NULL),
 (2, 'Monica', '1406544073', 'afiq.rasyid@ui.ac.id', 115, 4, 'S3', 4, 2, '4.0', 1, NULL, NULL, NULL),
-(4, 'Anto', '1406544074', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 1, 1, '3.0', 1, NULL, NULL, NULL),
-(5, 'Ani', '1406544075', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 1, 2, '3.5', 1, NULL, NULL, NULL),
-(6, 'Anti', '1406544076', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 1, 1, '3.2', 1, NULL, NULL, NULL),
-(7, 'Ana', '1406544077', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 1, 2, '3.4', 1, NULL, NULL, NULL),
+(4, 'Anto', '1406544074', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 12, 1, '3.0', 1, NULL, NULL, NULL),
+(5, 'Ani', '1406544075', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 13, 2, '3.5', 1, NULL, NULL, NULL),
+(6, 'Anti', '1406544076', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 14, 1, '3.2', 1, NULL, NULL, NULL),
+(7, 'Ana', '1406544077', 'afiq.rasyid@ui.ac.id', 115, 4, 'S1', 15, 2, '3.4', 1, NULL, NULL, NULL),
 (8, 'fauzan', '1406544078', 'afiq.rasyid@ui.ac.id', 100, 6, 'S2', 11, 1, '4.0', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -321,6 +325,13 @@ CREATE TABLE `pengajuan_sidang` (
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengajuan_sidang`
+--
+
+INSERT INTO `pengajuan_sidang` (`id_pengajuan`, `tgl_pengajuan`, `status`, `id_mahasiswa`, `id_tugas_akhir`, `waktu_sidang`, `created_at`, `id_maker`, `updated_at`) VALUES
+(14, NULL, '1', 1, 68, NULL, '2017-04-25 22:42:42', 1, '2017-04-25 22:42:42');
 
 -- --------------------------------------------------------
 
@@ -426,7 +437,7 @@ CREATE TABLE `staf` (
 CREATE TABLE `topik` (
   `id_topik` int(10) UNSIGNED NOT NULL,
   `topik_ta` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_dosen` int(10) UNSIGNED DEFAULT NULL,
   `id_industri` int(10) UNSIGNED DEFAULT NULL,
   `maksimal_pendaftar` int(10) DEFAULT NULL,
@@ -481,7 +492,7 @@ INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajua
 (23, '5', NULL, NULL, 4, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
 (25, '5', NULL, NULL, 6, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 25),
 (26, '9', NULL, NULL, 7, NULL, '2017-04-04 18:48:42', NULL, '2017-04-04 18:48:42', NULL, 28),
-(67, '6', '2017-04-25', 1, 1, NULL, '2017-04-25 06:17:18', 7, '2017-04-25 06:17:18', 'LOL', 25);
+(68, '11', '2017-04-26', 1, 1, NULL, '2017-04-25 22:27:19', 2, '2017-04-25 22:27:19', 'LOL', 24);
 
 -- --------------------------------------------------------
 
@@ -727,7 +738,7 @@ ALTER TABLE `dosen_pa`
 -- AUTO_INCREMENT for table `dosen_pembimbing_ta`
 --
 ALTER TABLE `dosen_pembimbing_ta`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `dosen_penguji_ta`
 --
@@ -742,7 +753,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `feedback_tugas_akhir`
 --
 ALTER TABLE `feedback_tugas_akhir`
-  MODIFY `id_feedback_tugas_akhir` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_feedback_tugas_akhir` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `hasil_ta`
 --
@@ -777,7 +788,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pengajuan_sidang`
 --
 ALTER TABLE `pengajuan_sidang`
-  MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pengajuan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `prodi`
 --
@@ -797,7 +808,7 @@ ALTER TABLE `topik`
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
@@ -807,7 +818,7 @@ ALTER TABLE `universitas`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
