@@ -56,13 +56,7 @@
             }
           ?>
 
-      <li><a href=""><i class="fa fa-angle-right"></i>
-        <?php 
-            if($_SESSION["mahasiswa"]->jenjang!= null){
-              echo "Jadwal Sidang";
-            }
-          ?>
-      </a></li>
+      
 
       <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
