@@ -124,6 +124,8 @@ class MahasiswaController extends Controller
     	else {
     		$topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
     		$komentars = DB::table('feedback_tugas_akhir')
+    			->leftJoin('tugas_akhir', 'feedback_tugas_akhir.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+    			->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
     			->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')	
     			->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
     			->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
@@ -151,6 +153,8 @@ class MahasiswaController extends Controller
 
         $topik = Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
 		$komentars = DB::table('feedback_tugas_akhir')
+			->leftJoin('tugas_akhir', 'feedback_tugas_akhir.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+	    			->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
 			->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')	
 			->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
 			->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')

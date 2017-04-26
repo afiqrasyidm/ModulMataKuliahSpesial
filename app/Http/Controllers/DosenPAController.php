@@ -37,7 +37,7 @@ class DosenPAController extends Controller
                 ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
                 ->where('dosen_pa.id_dosen', '=', $id_dosen)
                 
-                ->orderBy('tugas_akhir.updated_at', 'ASC')
+                ->orderBy('tugas_akhir.updated_at', 'DESC')
                 ->get();
 
         //return $tugas_akhir;
@@ -61,6 +61,8 @@ class DosenPAController extends Controller
                 ->first();
 
                 $komentars = DB::table('feedback_tugas_akhir')
+                ->leftJoin('tugas_akhir', 'feedback_tugas_akhir.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+                ->where('tugas_akhir.id_tugas_akhir', '=', $id_tugas_akhir)
                 ->leftJoin('user', 'user.id_user', '=', 'feedback_tugas_akhir.id_maker')    
                 ->leftJoin('dosen', 'user.id_user', '=', 'dosen.id_user')
                 ->leftJoin('mahasiswa', 'user.id_user', '=', 'mahasiswa.id_user')
