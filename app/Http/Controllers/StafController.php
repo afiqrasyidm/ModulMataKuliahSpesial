@@ -152,7 +152,7 @@ class StafController extends Controller
 		  $dosen_penguji3->save();
 			return redirect()->route('staf/verifikasi-permohonan-sidang');
 		}
-		}
+		
 		 else {
 	        //Data error or username taken:
 	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
@@ -160,7 +160,7 @@ class StafController extends Controller
 	            ->withInput();
 	    }
 
-	
+	}
     	//return view("staf/verifikasi_permohonan_ta");
 
 	}

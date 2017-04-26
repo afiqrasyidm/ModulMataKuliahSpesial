@@ -18,7 +18,7 @@
 
 <ul class="sidebar-menu">
 <br>
-  <li class="header-nav"><a href="{{ route('dosen/PA/home') }}">Dosen PA</a></li>
+  <li class="header-nav"><a href="{{ route('dosen/PA/home') }}"><span>Dosen PA</span></a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
@@ -37,7 +37,7 @@
   
     <li class="treeview">
     <a href="{{ route('homepage/dosen')  }}">
-      <i class="fa fa-graduation-cap"></i> <span>Kembali ke Homepage</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-chevron-circle-left"></i> <span>Kembali ke Homepage</span> 
     </a>
  
   </li>

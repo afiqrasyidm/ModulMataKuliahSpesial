@@ -16,7 +16,7 @@
 <ul class="sidebar-menu">
    
     <br>
-  <li class="header-nav"><a href="{{ route('homepage/mahasiswa') }}">Mahasiswa</a></li>
+  <li class="header-nav"><a href="{{ route('homepage/mahasiswa') }}"><span>Mahasiswa</span></a></li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
       <i class="fa fa-edit"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
@@ -56,13 +56,7 @@
             }
           ?>
 
-      <li><a href=""><i class="fa fa-angle-right"></i>
-        <?php 
-            if($_SESSION["mahasiswa"]->jenjang!= null){
-              echo "Jadwal Sidang";
-            }
-          ?>
-      </a></li>
+      
 
       <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
