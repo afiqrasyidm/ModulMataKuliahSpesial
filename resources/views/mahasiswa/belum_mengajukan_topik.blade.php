@@ -11,8 +11,8 @@ Anda Belum Dapat Melakukan Pengajuan TA
 
 
 
-			<b>Harap memilih topik terlebih dahulu!</b>
-			Anda tidak diperkenankan melakukan pengisian formulir pengajuan tugas akhir sebelum memilih topik
+			<b>Harap memilih topik terlebih dahulu!</b><br>
+			Anda tidak diperkenankan melakukan pengisian formulir pengajuan tugas akhir sebelum memilih topik atau pemilihan topik belum diverifikasi
 			<br><br>
 			<p>Topik tugas akhir dapat dipilih <a href="{{route('mahasiswa/pengajuan-topik')}}">disini</a></p>
 	
