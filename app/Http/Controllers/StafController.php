@@ -161,6 +161,13 @@ class StafController extends Controller
 	    }
 
 	}
+	else {
+	        //Data error or username taken:
+	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
+	            ->withErrors($validator)
+	            ->withInput();
+	    }
+
     	//return view("staf/verifikasi_permohonan_ta");
 
 	}

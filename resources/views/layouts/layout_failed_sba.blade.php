@@ -38,4 +38,7 @@
   
 @endsection
 
+@section('roleUser')
+STAF
+@endsection
 

@@ -36,3 +36,7 @@
   </li>
 </ul>
 @endsection
+
+@section('roleUser')
+INDUSTRI
+@endsection
