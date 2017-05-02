@@ -11,14 +11,51 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
+
+         <div class="box box-primary">
+			
+			
+                <div class="box-header with-border">	
+	<?php
+if (isset($_SESSION["mahasiswa_pengajuan_topik"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengajuan Topik Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_pengajuan_topik"]);
+}
+?>
+
+	<?php
+if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Perubahan Topik Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_perubahan_topik"]);
+}
+?>
+
+
 @if(isset($topik))
 
-<br><br>
+
 
 
               <!-- general form elements disabled -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
+              
                   <center><h1 class="header-title">Daftar Topik TA</h1><br></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -111,13 +148,7 @@
 @else
 	
 	
-  <br>
-<br>
 
-         <div class="box box-primary">
-			
-			
-                <div class="box-header with-border">
                   <center><h1 class="header-title">Detail Pengajuan Topik</h1></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
