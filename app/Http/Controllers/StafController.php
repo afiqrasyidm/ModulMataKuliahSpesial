@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Staf;
 use App\Dosen;
+use Carbon\Carbon;
 use App\Pengajuan_sidang;
 use App\Dosen_penguji;
 use SSO\SSO;
@@ -101,24 +102,37 @@ class StafController extends Controller
 		
     	if($validator->passes()) {
 		$success =false;
+		date_default_timezone_set("Asia/Jakarta");
+        $today = date("Y-m-d h:i");
+        $temp = Input::get('waktu_sidang');
+        $createdAt = Carbon::parse($temp);
+		$suborder= $createdAt->format('Y-m-d h:i');
+		$cek_dosen = true;
+		$cek_waktu = true;
+
+			if($suborder < $today){
+				$validator->getMessageBag()->add('wrong_waktu_sidang', 'Tidak valid, karena waktu sidang sudah lewat');
+				$cek_waktu = false;
+			}
+				
+			if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
+				$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
+				$cek_dosen = false;
+			}
 		
-		if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
-			$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
-		}
-		
-		else if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_3')){
-			$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
-		}
-		
-		else if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
-			$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
-		}
+			else if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_3')){
+				$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
+				$cek_dosen = false;
+			}
 			
-		else{
-			$success = true;
-		}
-		
-		
+			else if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
+				$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
+				$cek_dosen = false;
+			}
+			
+			if($cek_waktu == true && $cek_dosen == true){
+				$success = true;
+			}
 		
 		if($success){
 		DB::table('pengajuan_sidang')

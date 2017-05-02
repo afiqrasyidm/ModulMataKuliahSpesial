@@ -130,6 +130,10 @@
                       <input class="form-control select2" style="width: 100%;" name="waktu_sidang" type="datetime-local" id="datepicker" >
                     </div>
                 </div>
+
+                <div class='col-sm-3'>
+                          <?php echo $errors->first('wrong_waktu_sidang') ?>
+                 </div>
             </div>
 			
             <input name="id_pengajuan" type="text" id="datepicker" value="{{$ta->id_pengajuan}}" hidden>
