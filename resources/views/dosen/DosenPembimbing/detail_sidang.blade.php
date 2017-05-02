@@ -14,8 +14,8 @@
 
   <br>
 <br>
-		 <div class="box-body">
-         <div class="box box-primary">
+		 <div class="box-body ">
+         <div class="box box-primary ">
 		  <form class="form-horizontal" method="post" action="">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
@@ -25,7 +25,9 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  <br>
-              <table class="table table-bordered">
+			
+			<div class = "col-sm-8">	 
+              <table class="table table-bordered" >
 
               <tbody>
                  
@@ -98,13 +100,70 @@
 
               </tbody>
               </table>
+			 
+			 </div>
 			  <br>
-			  <div class= "col-md-10">	</div>
-					<div class ="col-md-2">
+			  <div class = "col-sm-4">	 
+				
+					<table style="width:30%"  border="2">
 					
+					  <tr>
+						<td>A</td>
+						<td>>=85</td>
+					
+					  </tr>
+					  <tr>
+						<td>A-</td>
+						<td>80-85</td>
+						
+					  </tr>
+					  <tr>
+						<td>B+</td>
+						<td>75-80</td>
+					
+					  </tr>
+					  
+					   <tr>
+						<td>B</td>
+						<td>70-75</td>
+					
+					  </tr>
+					  
+					   <tr>
+						<td>B-</td>
+						<td>65-70</td>
+					
+					  </tr>
+					  
+					   <tr>
+						<td>C+</td>
+						<td>60-65</td>
+					
+					  </tr>
+					  
+					   <tr>
+						<td>C</td>
+						<td>55-60</td>
+
+					
+					  </tr>
+					  
+					   <tr>
+						<td>D</td>
+						<td>< 55</td>
+					
+					  </tr>
+					</table>
+			  </div>
+				  
+			  <div class= "col-md-10">	</div>
+				<br>
+				<br>
+					<div class ="col-md-9">
+						<center>
 						
 									<button  class="btn btn-primary" type="submit"> Sidang  Selesai</button>
-								
+						</center>		
 					</div>
     <center><br><br>
       </div>

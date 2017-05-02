@@ -224,7 +224,8 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			
 			;
    
-		
+			$_SESSION["detail_sidang_submit_first"] = true;	
+	
 			return redirect()->route('dosen/pembimbing/list-jadwal-sidang');
     	
 	}
