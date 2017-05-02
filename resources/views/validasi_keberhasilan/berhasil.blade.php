@@ -9,20 +9,21 @@ if(!empty($tugas_akhir))
 	header( "refresh:3;/mahasiswa/pengajuan-sidang-ta" );
 }
 else{
-	echo 'Pengajuan Topik berhasil';
 
+	echo 'Tunggu Sebentar';
 	
 	if($penandaRole == "industri"){
 	//sleep for 3 seconds
-		header( "refresh:3;/homepage/industri" );
+		header( "refresh:1;/homepage/industri" );
 
 	}
 	else if($penandaRole == "mahasiswa"){
-		header( "refresh:3;/mahasiswa/pengajuan-topik" );
+		header( "refresh:1;/mahasiswa/pengajuan-topik" );
 		
 	}
 	else {
-		header( "refresh:3;/homepage/dosen" );
+		
+		header( "refresh:1;/dosen/pengajuan-topik-ta" );
 	
 	}
 		

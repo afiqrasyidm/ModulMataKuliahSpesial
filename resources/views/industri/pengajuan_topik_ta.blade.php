@@ -16,6 +16,24 @@
 
 <br><br>
               <!-- general form elements disabled -->
+			  
+	<?php
+if (isset($_SESSION["industri_pengajuan_topik"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengajuan Topik Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["industri_pengajuan_topik"]);
+}
+?>
+
+
     <div class="box box-primary">
         <div class="box-header with-border">
             <center><h1 class="header-title">Pengajuan Topik TA</h1><br></center>

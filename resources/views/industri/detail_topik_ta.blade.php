@@ -9,7 +9,36 @@
 
 	<br>
 <br><br>
-
+<?php
+if (isset($_SESSION["setuju_topik"])) {
+	if($_SESSION["setuju_topik"]){
+		
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengambilan Topik Disetujui
+                   
+              </div>
+			";
+			
+			
+	}
+	else{
+		
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengambilan Topik Tidak Disetujui
+                   
+              </div>
+			";
+			
+			
+		
+	}
+			unset($_SESSION["setuju_topik"]);
+}
+?>
 
 @if(!isset($topik_belum_diambil))
  <!-- general form elements disabled -->
@@ -17,17 +46,7 @@
                 <div class="box-header with-border">
                   <center><h1 class="header-title">Daftar Pendaftar Topik {{$topik->first()->topik_ta}}</h1><br></center>
 				<br>
-				@if($topik->first()->sudah_diambil == 0)
-				<a href="/industri/hentikan-topik/{{$topik->first()->id_topik}}">
-						<button  class="btn btn-primary">Stop Penawaran Topik ini</button>
-				</a>
-				@else
-					<b>
-					Penawaran topik ini telah 
-					
-					<span style="color:red;">diberhentikan</span>
-					</b>
-				@endif
+				
 				<br>
 				<br>
 				
@@ -109,9 +128,17 @@
 								<p>{{$topik->first()->deskripsi}}</p>
 
 
-								
-											
-					
+								<center>
+								@if($topik->first()->sudah_diambil == 0)
+								<a href="/industri/hentikan-topik/{{$topik->first()->id_topik}}">
+										<button  class="btn btn-danger">Stop Penawaran Topik ini</button>
+								</a>
+								@else
+									<div class="alert alert-danger">
+										<i class="fa fa-warning"></i><b> Penawaran topik ini telah diberhentikan</b>
+									</div>
+								@endif			
+							</center>
 
 					
 				</div><!-- /.box-body -->
@@ -128,20 +155,7 @@
                 <div class="box-header with-border">
 
                   <center><h1 class="header-title">Daftar Pendaftar Topik {{$topik_belum_diambil->first()->topik_ta}}</h1><br></center>
-				<br>
-				@if($topik_belum_diambil->first()->sudah_diambil == 0)
-				<a href="/industri/hentikan-topik/{{$topik_belum_diambil->first()->id_topik}}">
-						<button  class="btn btn-primary">Stop Penawaran Topik ini</button>
-				</a>
-				@else
-					<b>
-					Penawaran Topik ini telah 
-					
-					<span style="color:red;">diberhentikan</span>
-					</b>
-				@endif
-				<br>
-				<br>
+				
 				
 			   </div><!-- /.box-header -->
 				
@@ -162,7 +176,17 @@
 
 								
 											
-					
+							<center>
+								@if($topik_belum_diambil->first()->sudah_diambil == 0)
+								<a href="/industri/hentikan-topik/{{$topik_belum_diambil->first()->id_topik}}">
+										<button  class="btn btn-danger">Stop Penawaran Topik ini</button>
+								</a>
+								@else
+									<div class="alert alert-danger">
+										<i class="fa fa-warning"></i><b> Penawaran topik ini telah diberhentikan</b>
+									</div>
+								@endif			
+							</center>
 
 					
 				</div><!-- /.box-body -->

@@ -108,8 +108,11 @@ class IndustriController extends Controller
 	       	$topik->save();
 	        $penandaRole = "industri";
 			
-			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
-	    }
+			$_SESSION["industri_pengajuan_topik"] = true;	
+		
+			
+			return redirect()->route('industri/pengajuan-topik-ta');
+		}
 
 	    //Data error or username taken:
 		return Redirect::to('industri/pengajuan-topik-ta')
@@ -185,7 +188,7 @@ class IndustriController extends Controller
 	public function setuju_topik($id_tugas_akhir, $is_disetujui, $id_topik){
 		session_start();
 		
-		if($is_disetujui==1)
+		if($is_disetujui==1){
 		DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
             ->update([
@@ -195,6 +198,9 @@ class IndustriController extends Controller
 			
 			
 			]);
+			$_SESSION["setuju_topik"] = true;	
+		
+		}
 		else{
 			DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
@@ -205,6 +211,8 @@ class IndustriController extends Controller
 			'id_maker' => $_SESSION["user_login_industri"]->id_user,
 			
 			]);
+			
+				$_SESSION["setuju_topik"] = false;	
 		}
 		return redirect()->route('industri/pengajuan-topik/detail/',$id_topik);
 		
