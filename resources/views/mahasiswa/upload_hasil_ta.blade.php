@@ -33,11 +33,22 @@
 
           <section class="content">
 
-             <div class="alert alert-success">
+<?php
+if (isset($_SESSION["detail_upload_submit_first"])) {
+  
+      echo"
+      <div class='alert alert-success'>
                     
-                   <i class="icon fa fa-check"></i> Dokumen Telah Di Upload
+                   <i class='icon fa fa-check'></i> Dokumen Telah Di Upload
                    
               </div>
+      ";
+      
+      
+      unset($_SESSION["detail_upload_submit_first"]);
+}
+?>
+           
               <table class="table table-bordered">
 
               <tbody>

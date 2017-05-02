@@ -795,6 +795,7 @@ class MahasiswaController extends Controller
 		        $hasil_ta->id_maker = $_SESSION["id_user"];
 		        $hasil_ta->save();
 
+		        $_SESSION["detail_upload_submit_first"] = true;	
 		    	return back()
 		    		->with('path',$fileName);
 	    	}
