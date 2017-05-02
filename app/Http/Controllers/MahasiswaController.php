@@ -34,7 +34,7 @@ class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
     	session_start();
-
+		$ubah=true;
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 
 		$id_mahasiswa = $mahasiswa->id_mahasiswa;
@@ -104,6 +104,97 @@ class MahasiswaController extends Controller
 		}
 	}
 
+	
+	
+	//ngajukan topik pertama kali
+	function pengajuan_topik_first() {
+    	session_start();
+		$pertama=true;
+		$ubah=true;
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+
+		$id_mahasiswa = $mahasiswa->id_mahasiswa;
+		if($mahasiswa->is_sudah_ambil_ta == 0){
+
+			 	return view("mahasiswa/mahasiswa_belum_ambil_ta");
+		}
+
+
+
+		
+		$tugas_akhir = DB::table('tugas_akhir')
+				->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+				
+				->where([
+				 ['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa],
+				
+				])
+				->get()
+				->first()
+				;
+	//	return $tugas_akhir;
+		//jika belum milih topik
+		if($tugas_akhir==NULL){
+
+
+			$topik = DB::table('topik')
+				->leftJoin('industri', 'topik.id_industri', '=', 'industri.id_industri')
+				->leftJoin('dosen', 'topik.id_dosen', '=', 'dosen.id_dosen')
+				->where('topik.sudah_diambil', '=', 0)
+				->get();
+
+
+		 	return view("mahasiswa/pengajuan_topik", array('topik' => $topik, 'ubah' => $ubah ));
+
+		}
+		//jika sudah tampilkan detailnya
+		else {
+
+
+			$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
+
+			//ambil jumlah mahasiswa yang telah mengambil topik itu
+
+			$jumlah_pengambil_topik = Tugas_akhir::where('id_topik',$tugas_akhir->id_topik )->get()->count();
+
+			//diambil industri
+			if($topik_yang_diambil->id_industri != NULL){
+
+				$industri = Industri::where('id_industri', $topik_yang_diambil->id_industri )->get()->first();
+
+
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'industri' => $industri, 'tugas_akhir' => $tugas_akhir
+				, 'jumlah_pengambil_topik' => $jumlah_pengambil_topik, 'pertama' => $pertama ) );
+			}
+			//berarti diajukan oleh dosen
+
+				else{
+
+				$dosen = Dosen::where('id_dosen', $topik_yang_diambil->id_dosen )->get()->first();
+      //
+				return view("mahasiswa/pengajuan_topik " , array('topik_yang_diambil' => $topik_yang_diambil, 'dosen' => $dosen, 'tugas_akhir' => $tugas_akhir
+				,'jumlah_pengambil_topik' => $jumlah_pengambil_topik, 'pertama' => $pertama
+
+				) );
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     public function pengajuan_permohonan_ta() {
     	session_start();
 
@@ -494,8 +585,12 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->save();
 
-			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
+			 return redirect()->route('/mahasiswa/pengajuan-topik-first');
+			 
+			 
+			 
 
+ 
 	    }
 
 	    //Data error or username taken:
@@ -533,7 +628,7 @@ class MahasiswaController extends Controller
 
 
 				}
-			return redirect()->route('mahasiswa/pengajuan-topik');
+			return redirect()->route('/mahasiswa/pengajuan-topik-first');
 	}
 	public function detail_topik_ta($id_topik){
 	 	session_start();
@@ -579,7 +674,7 @@ class MahasiswaController extends Controller
 
 			$tugas_akhir->save();
 
-			return redirect()->route('mahasiswa/pengajuan-topik');
+			return redirect()->route('/mahasiswa/pengajuan-topik-first');
 
 	}
 

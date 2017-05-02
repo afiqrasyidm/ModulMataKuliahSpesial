@@ -14,6 +14,8 @@
 @if(isset($topik))
 
 <br><br>
+
+
               <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
@@ -21,7 +23,14 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  
-          
+          @if(isset($ubah))
+			<br><br>
+			<div class="alert alert-success">
+                    
+                   <i class="icon fa fa-check"></i> Pengubahan Topik Telah Berhasil
+                   
+              </div>
+			@endif
 	<form>
 		<table class="table table-striped">
 		    <thead>
@@ -100,17 +109,30 @@
 <!-- end -->
 
 @else
+	
+	
   <br>
 <br>
 
          <div class="box box-primary">
+			
+			
                 <div class="box-header with-border">
                   <center><h1 class="header-title">Detail Pengajuan Topik</h1></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  <br>
               <table class="table table-bordered">
-
+			@if(isset($pertama))	
+			
+			<br><br>
+			<div class="alert alert-success">
+                    
+                   <i class="icon fa fa-check"></i> Pengajuan Topik Telah Berhasil
+                   
+              </div>
+			@endif
+		 
               <tbody>
                 
 				<tr>
@@ -186,6 +208,8 @@
 
 
         </section><!-- /.content -->
+		
+	
 @endif
 
    

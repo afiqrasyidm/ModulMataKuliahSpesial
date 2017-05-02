@@ -28,7 +28,6 @@ Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logou
 
 Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MainController@mahasiswa_homepage']);
 
-Route::get('/mahasiswa/pengajuan-topik', ['as' => 'mahasiswa/pengajuan-topik', 'uses' => 'MahasiswaController@pengajuan_topik']);
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
 
@@ -99,6 +98,9 @@ Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' =>
 
 Route::get('/dosen/pembimbing/pengumuman', ['as' => 'dosen/pembimbing/pengumuman', 'uses' => 'DosenPembimbingController@pengumuman']);
 
+//list topik
+Route::get('/mahasiswa/pengajuan-topik', ['as' => 'mahasiswa/pengajuan-topik', 'uses' => 'MahasiswaController@pengajuan_topik']);
+Route::get('/mahasiswa/pengajuan-topik-first', ['as' => '/mahasiswa/pengajuan-topik-first', 'uses' => 'MahasiswaController@pengajuan_topik_first']);
 
 
 //PENGAJUAN topik INDUSTRI
@@ -115,6 +117,8 @@ Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'us
 //PENGAJUAN Topik MAHASISWA
 
 Route::get('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta']);
+
+
 Route::post('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta_submit']);
 
 //PENGAJUAN Sidang MAHASISWA
