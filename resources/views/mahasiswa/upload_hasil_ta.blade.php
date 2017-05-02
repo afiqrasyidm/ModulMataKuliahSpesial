@@ -27,7 +27,22 @@
                 <div class="box-body">
                   
 <!-- test -->
-
+<?php
+if (isset($_SESSION["mahasiswa_perubahan_dokumen"])) {
+  
+      echo"
+      <div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i> Dokumen Berhasil Diubah
+                   
+              </div>
+      ";
+      
+      
+      unset($_SESSION["mahasiswa_perubahan_dokumen"]);
+}
+?>
+    
 @if(isset($hasil_ta))
 
 

@@ -733,11 +733,14 @@ class MahasiswaController extends Controller
 
 
     	public function ubah_dokumen_ta($id_tugas_akhir){
+    		session_start();
 
 			$hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir )->get()->first();
 
 
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
+
+					$_SESSION["mahasiswa_perubahan_dokumen"] = true;
 			return redirect()->route('mahasiswa/upload-hasil-ta');
 	}
 
