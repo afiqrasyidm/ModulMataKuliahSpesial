@@ -637,8 +637,10 @@ class MahasiswaController extends Controller
 
 				$pengajuan_sidang->save();
 
-
-				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
+				$_SESSION["mahasiswa_pengajuan_sidang"] = true;	
+				
+				return redirect()->route('mahasiswa/pengajuan-sidang-ta');
+				//return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
 
 			}
 

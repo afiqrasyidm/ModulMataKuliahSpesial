@@ -84,8 +84,16 @@
 
  <div class="box box-primary">
     <div class="box-header with-border">
+      <?php
+        if (isset($_SESSION["mahasiswa_pengajuan_sidang"])) {
+        echo"<div class='alert alert-success'>
+                <i class='icon fa fa-check'></i>Pengajuan Sidang Berhasil 
+            </div>";
+        unset($_SESSION["mahasiswa_pengajuan_sidang"]);
+        }
+      ?>
          <center><h1 class="header-title">Detail Pengajuan Sidang</h1></center>
-    </div><!-- /.box-header -->
+    </div>
     <div class="box-body">
      <br>
               <table class="table table-bordered">
