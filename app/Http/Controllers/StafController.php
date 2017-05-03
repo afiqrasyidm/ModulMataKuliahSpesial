@@ -17,7 +17,7 @@ class StafController extends Controller
 {
 	
 	 var $stafs;
-	 
+	 var $temp;
 	 
   //    public function __construct() {
   //       $this->stafs = Staf::all(array('nama'));
@@ -63,21 +63,38 @@ class StafController extends Controller
     	return view("staf/failed_verifikasi_permohonan_sidang");
 	}
 
+	public function ubah_pengajuan_sidang($id_tugas_akhir){
+		session_start();
+		$ta = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->get()->first();
+		$i=1;
+		$dosen =  DB::table('dosen')->get();
+		//return $dosen;
+    	return view("staf/ubah_pengajuan_sidang", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i));
+	}
+
 	function verifikasi_permohonan_sidangPost($id_pengajuan)
 	{ 
 	  session_start();
-
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get()->first();
-		
-		
+		$i=1;
 		$dosen =  DB::table('dosen')->get();
+		$temp=true;
 		//return $dosen;
-        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen));
+        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i, 'temp'));
 
        
 	}
@@ -199,6 +216,9 @@ class StafController extends Controller
 			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji3->save();
+
+			 return redirect()->route('staf/verifikasi-permohonan-sidang');
+
 			}
 		}
 		

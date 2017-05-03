@@ -22,7 +22,6 @@
     </div>
     <div class="box-body">
      <br>
-@if($ta->status==1)
 
         <form class="form-horizontal" method="post" action="">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -67,59 +66,59 @@
              <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 1:</label>
                 <div class="col-sm-6">
-					<select name="dosen_penguji_1" class="form-control select2" style="width: 100%;" required>
-						<option value="">Pilih Nama Dosen</option>
-							@foreach ($dosen as $dosen)
-						
-						<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
-							
-							 @endforeach
-					</select>
-					   
+          <select name="dosen_penguji_1" class="form-control select2" style="width: 100%;" required>
+            <option value="">Pilih Nama Dosen</option>
+              @foreach ($dosen as $dosen)
+            
+            <option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+              
+               @endforeach
+          </select>
+             
                 </div>
-				<div class='col-sm-3'>
+        <div class='col-sm-3'>
                           <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
-						  <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
                  </div>
             </div>
 
-			 <div class="form-group">
+       <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 2 :</label>
-                <div class="col-sm-6">		
+                <div class="col-sm-6">    
                     <select name="dosen_penguji_2" class="form-control select2" style="width: 100%;" required>
-							<option value="">Pilih Nama Dosen</option>
-							  @foreach ($dosen2 as $dosen)
-						
-									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
-							
-							 @endforeach
-						</select>
-				</div>
-				<div class='col-sm-3'>
+              <option value="">Pilih Nama Dosen</option>
+                @foreach ($dosen2 as $dosen)
+            
+                  <option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+              
+               @endforeach
+            </select>
+        </div>
+        <div class='col-sm-3'>
                           <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
-						  <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
                  </div>
             </div>
-				
-			 <div class="form-group">
+        
+       <div class="form-group">
                 <label class="control-label col-sm-3">Dosen Penguji 3 :</label>
                 <div class="col-sm-6">
-						<select name="dosen_penguji_3" class="form-control select2" style="width: 100%;" required >
-							<option value="">Pilih Nama Dosen</option>
-							  @foreach ($dosen3 as $dosen)
-						
-									<option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
-							
-							 @endforeach
-						</select>
-				
-				</div>
-				<div class='col-sm-3'>
+            <select name="dosen_penguji_3" class="form-control select2" style="width: 100%;" required >
+              <option value="">Pilih Nama Dosen</option>
+                @foreach ($dosen3 as $dosen)
+            
+                  <option value="{{$dosen->id_dosen}}">{{$dosen->nama_dosen}}</option>
+              
+               @endforeach
+            </select>
+        
+        </div>
+        <div class='col-sm-3'>
                           <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
-						  <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
                  </div>
             </div>
-				
+        
             <div class="form-group">
                 <label class="control-label col-sm-3">Waktu Sidang :</label>
                 <div class="col-sm-6">
@@ -136,66 +135,14 @@
                           <?php echo $errors->first('wrong_waktu_sidang') ?>
                  </div>
             </div>
-			
+      
              <input name="id_pengajuan" type="text" id="datepicker" value="{{$ta->id_pengajuan}}" hidden>
         <div class="box-footer">
-            <center><button  class="btn btn-primary" type="submit">Verified</button></center>
+            <center><button  class="btn btn-primary" type="submit">Submit Perubahan</button></center>
             <br>
         </div>
 </form>  
-        
-@else
-    <center><h1 class="header-title">Detail Verifikasi Pengajuan Sidang</h1></center>
-     <br>
-              <table class="table table-bordered">
-
-              <tbody>
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Nama Mahasiswa</th>
-                <td bgcolor="#c0c5cc">{{$ta->nama_mahasiswa}}</td>
-                </tr>
-
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">NPM</th>
-                <td bgcolor="#c0c5cc">{{$ta->NPM}}</td>
-                </tr>
-
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Judul TA</th>
-                <td bgcolor="#c0c5cc">{{$ta->judul_ta}}</td>
-                </tr>
-
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Topik TA</th>
-                <td bgcolor="#c0c5cc">{{$ta->topik_ta}}</td>
-                </tr>
-
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Dosen Pembimbing</th>
-                <td bgcolor="#c0c5cc">{{$ta->nama_dosen}}</td>
-                </tr>
-
-                @foreach($dosen as $dosen)
-                  <tr>
-                  <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
-                  <td bgcolor="#c0c5cc">{{ $dosen->nama_dosen }}</td>
-                </tr>
-                @endforeach
-          
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
-                <td bgcolor="#c0c5cc">{{$ta->waktu_sidang}}</td>
-                </tr>
-        </tbody>
-      </table>
-      <br>
-        <a href="/staf/ubah-pengajuan-sidang/{{$ta->id_tugas_akhir}}">
-          <button  class="btn btn-primary">Ubah Sidang</button>
-        </a>
-@endif
 </div>
 </section>
-
-
 @endsection
 

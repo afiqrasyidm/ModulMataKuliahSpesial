@@ -225,6 +225,10 @@ Route::get('staf/failed-verifikasi-permohonan-sidang', ['as' => 'staf/failed-ver
 Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 
+//Ubah sidang
+Route::get('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@ubah_pengajuan_sidang']);
+Route::post('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
+
 
 //Verifikasi sidang SBA
 Route::get('staf/form-verifikasi-sidang-ta', ['as' => 'staf/form-verifikasi-sidang-ta', 'uses' => 'StafController@form_verifikasi_sidang_ta']);
