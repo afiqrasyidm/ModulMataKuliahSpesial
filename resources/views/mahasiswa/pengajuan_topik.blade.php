@@ -230,11 +230,36 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
 	@if ($tugas_akhir->status_tugas_akhir > 6  )
         <p>Anda tidak bisa mengubah topik lagi, dikarenakan permohonan TA Anda telah disetujui oleh PA.</p>
 	@else
-		<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
-          <button  class="btn btn-primary" >Ubah Topik</button>
-        </a>
-		
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Topik</button>
+	
 	@endif
+	
+	 <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">Anda Yakin Ingin Mengubah Topik?</h4>
+			</div>
+
+			<div>
+					<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+					  <button  class="btn btn-primary" >Iya</button>
+					</a>
+				
+					<br>
+					<br>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  
+	
       </div>
 
 
