@@ -20,21 +20,6 @@
  <div class="box box-primary">
     <div class="box-header with-border">
 
-  <?php
-if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
-  
-      echo"
-      <div class='alert alert-success'>
-                    
-                   <i class='icon fa fa-check'></i>Perubahan Verifikasi Sidang Berhasil
-                   
-              </div>
-      ";
-      
-      
-      unset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"]);
-}
-?>
     </div>
     <div class="box-body">
      <br>
@@ -191,10 +176,10 @@ if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
                 <td bgcolor="#c0c5cc">{{$ta->nama_dosen}}</td>
                 </tr>
 
-                @foreach($dosen as $dosen)
+                @foreach($penguji as $penguji)
                   <tr>
                   <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
-                  <td bgcolor="#c0c5cc">{{ $dosen->nama_dosen }}</td>
+                  <td bgcolor="#c0c5cc">{{$penguji->nama_dosen}}</td>
                 </tr>
                 @endforeach
           

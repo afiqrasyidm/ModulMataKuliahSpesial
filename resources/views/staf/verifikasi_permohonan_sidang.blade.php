@@ -31,6 +31,22 @@ if (isset($_SESSION["sba_verifikasi_pengajuan_sidang"])) {
       unset($_SESSION["sba_verifikasi_pengajuan_sidang"]);
 }
 ?>
+
+  <?php
+if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
+  
+      echo"
+      <div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Perubahan Verifikasi Sidang Berhasil
+                   
+              </div>
+      ";
+      
+      
+      unset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"]);
+}
+?>
           <center><h1 class="header-title">Verifikasi Permohonan Sidang</h1><br></center>
       </div><!-- /.box-header -->
     <div class="box-body">
