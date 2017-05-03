@@ -76,9 +76,10 @@
           </select>
              
                 </div>
-        <div class='col-sm-3'>
-                          <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
+        <div class='col-sm-3' style ='color:#c43e11'>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
               <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2_3') ?>
                  </div>
             </div>
 
@@ -94,9 +95,10 @@
                @endforeach
             </select>
         </div>
-        <div class='col-sm-3'>
-                          <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
-              <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+        <div class='col-sm-3' style ='color:#c43e11'>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2_3') ?>
                  </div>
             </div>
         
@@ -113,9 +115,10 @@
             </select>
         
         </div>
-        <div class='col-sm-3'>
-                          <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
-              <?php echo $errors->first('wrong_dosen_penguji_2_3') ?>
+        <div class='col-sm-3' style ='color:#c43e11'>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_3') ?>
+              <?php echo $errors->first('wrong_dosen_penguji_1_2_3') ?>
                  </div>
             </div>
         
@@ -131,7 +134,7 @@
                     </div>
                 </div>
 
-                <div class='col-sm-3'>
+                <div class='col-sm-3' style ='color:#c43e11'>
                           <?php echo $errors->first('wrong_waktu_sidang') ?>
                  </div>
             </div>

@@ -145,18 +145,36 @@ class StafController extends Controller
 			}
 				
 			if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
+				}
 			}
 		
 			else if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_3')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_3') == Input::get('dosen_penguji_2')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
+				}
 			}
 			
 			else if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_3') == Input::get('dosen_penguji_1')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
+				}
 			}
 			
 			if($cek_waktu == true && $cek_dosen == true){
