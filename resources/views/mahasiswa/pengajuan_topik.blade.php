@@ -210,10 +210,9 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
                 <tr>
                 <th bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#dddddd"> 
-					     <b>
+					
 					
 						{{$tugas_akhir->status}}
-            </b>
 					</td>
 
                 </tr>
