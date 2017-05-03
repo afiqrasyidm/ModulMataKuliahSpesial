@@ -14,25 +14,19 @@
 
 <br><br>
               <!-- general form elements disabled -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <center><h1 class="header-title">Verifikasi Permohonan Sidang</h1><br></center>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  
-<!-- test -->
-
-
-      <section class="content">
-              <table class="table table-bordered">
-                  <thead>
-                      <tr>
-                        <th>NPM</th>
-                        <th>Nama Mahasiswa</th>
-                        <th>Keterangan</th>
-
-                      </tr>
-                    </thead>
+    <div class="box box-primary">
+      <div class="box-header with-border">
+          <center><h1 class="header-title">Verifikasi Permohonan Sidang</h1><br></center>
+      </div><!-- /.box-header -->
+    <div class="box-body">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+        <th>NPM</th>
+        <th>Nama Mahasiswa</th>
+        <th>Status</th>
+      </tr>
+    </thead>
               <tbody>
                 @if(isset($ta))  
                @foreach ($ta as $ta)
@@ -51,15 +45,16 @@
              
                 <td>
                    @if($ta->status == 1)
+                      <p><b>Belum Diverifikasi</b></p>
+                    @elseif($ta->status == 2) 
+                      <p><b>Telah Diverifikasi</b></p>
+                    @endif
+                </td>
+
+                <td>
                     <a href="/staf/permohonan-sidang/{{$ta->id_pengajuan}}">
                       <button  class="btn btn-primary" type="submit">Detail TA</button>
                     </a>
-                    @elseif($ta->status == 2) 
-                      <p><b>Terverifikasi</b></p>
-                    @endif
-
-                  
-
                 </td>
 
               </tr>
@@ -72,8 +67,7 @@
        
     
 
-        </section><!-- /.content -->
-
+        </section>
 
      
 
