@@ -137,10 +137,12 @@
             </div>
 			
             <input name="id_pengajuan" type="text" id="datepicker" value="{{$ta->id_pengajuan}}" hidden>
-
         <div class="box-footer">
-        
+            @if($ta->status == 1)
             <center><button  class="btn btn-primary" type="submit">Verified</button></center>
+            @else
+            <center><button  class="btn btn-primary" type="submit">Ubah Sidang</button></center>
+            @endif
             <br>
         </div>
             

@@ -84,7 +84,12 @@ class StafController extends Controller
 
 	function verifikasi_permohonan_sidang_submit(){
 		session_start();
-		
+		$ta = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->get()->first();
 	//	return Input::get('dosen_penguji_1');
 		
 				
@@ -140,31 +145,61 @@ class StafController extends Controller
             ->update([
 			'waktu_sidang' => Input::get('waktu_sidang'),
 			'id_maker' =>  $_SESSION["id_user"],
-			'status' => 2,
 			]);
-		$id_tugas_akhir =DB::table('pengajuan_sidang')  
+			
+			$id_tugas_akhir =DB::table('pengajuan_sidang')  
 				->where('pengajuan_sidang.id_pengajuan','=', Input::get('id_pengajuan'))
 				->get()->first()->id_tugas_akhir;
-				
-		 $dosen_penguji1 = new dosen_penguji;
-		 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
-		 $dosen_penguji1->id_tugas_akhir = $id_tugas_akhir;
-		 $dosen_penguji1->id_maker = $_SESSION["id_user"];
-		 $dosen_penguji1->save();
-		 
-		 $dosen_penguji2 = new dosen_penguji;
-		 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
-		 $dosen_penguji2->id_tugas_akhir = $id_tugas_akhir;
-		 $dosen_penguji2->id_maker = $_SESSION["id_user"];
-		  $dosen_penguji2->save();
-		 
-		 
-		 $dosen_penguji3 = new dosen_penguji;
-		 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
-		 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
-		 $dosen_penguji3->id_maker = $_SESSION["id_user"];
-		  $dosen_penguji3->save();
-			return redirect()->route('staf/verifikasi-permohonan-sidang');
+		
+			if($ta->status == 1){
+			 $dosen_penguji1 = new dosen_penguji;
+			 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
+			 $dosen_penguji1->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji1->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji1->save();
+			 
+			 $dosen_penguji2 = new dosen_penguji;
+			 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
+			 $dosen_penguji2->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji2->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji2->save();
+			 
+			 $dosen_penguji3 = new dosen_penguji;
+			 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
+			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji3->save();
+			
+				DB::table('pengajuan_sidang')
+	        	->where('id_pengajuan','=', Input::get('id_pengajuan'))
+	            ->update([
+				'status' => 2,
+				]);
+
+			  return redirect()->route('staf/verifikasi-permohonan-sidang');
+			}
+							
+			else{
+			   DB::table('dosen_penguji_ta')->where('id_tugas_akhir', '=', $ta->id_tugas_akhir)->delete();
+
+			  $dosen_penguji1 = new dosen_penguji;
+			 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
+			 $dosen_penguji1->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji1->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji1->save();
+			 
+			 $dosen_penguji2 = new dosen_penguji;
+			 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
+			 $dosen_penguji2->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji2->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji2->save();
+			 
+			 $dosen_penguji3 = new dosen_penguji;
+			 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
+			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
+			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
+			 $dosen_penguji3->save();
+			}
 		}
 		
 		 else {
@@ -173,7 +208,6 @@ class StafController extends Controller
 	            ->withErrors($validator)
 	            ->withInput();
 	    }
-
 	}
 	else {
 	        //Data error or username taken:
