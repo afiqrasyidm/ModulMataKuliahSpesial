@@ -19,6 +19,22 @@
 <br>
  <div class="box box-primary">
     <div class="box-header with-border">
+
+  <?php
+if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
+  
+      echo"
+      <div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Perubahan Verifikasi Sidang Berhasil
+                   
+              </div>
+      ";
+      
+      
+      unset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"]);
+}
+?>
     </div>
     <div class="box-body">
      <br>
@@ -189,10 +205,32 @@
         </tbody>
       </table>
       <br>
-        <a href="/staf/ubah-pengajuan-sidang/{{$ta->id_tugas_akhir}}">
-          <button  class="btn btn-primary">Ubah Sidang</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Verifikasi Sidang</button>
+
         </a>
 @endif
+      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Anda Yakin Ingin Mengubah Verifikasi Sidang?</h4>
+        </div>
+
+        <div>
+        <a href="/staf/ubah-pengajuan-sidang/{{$ta->id_tugas_akhir}}">
+              <button  class="btn btn-primary" >Iya</button>
+            </a>
+          
+            <br>
+            <br>
+        </div>
+        </div>
+      
+    </div>
+    </div>
 </div>
 </section>
 

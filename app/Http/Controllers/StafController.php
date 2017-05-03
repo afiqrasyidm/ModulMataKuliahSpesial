@@ -186,7 +186,8 @@ class StafController extends Controller
 			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji3->save();
-			
+			$_SESSION["sba_verifikasi_pengajuan_sidang"] = true;	
+
 				DB::table('pengajuan_sidang')
 	        	->where('id_pengajuan','=', Input::get('id_pengajuan'))
 	            ->update([
@@ -216,6 +217,7 @@ class StafController extends Controller
 			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji3->save();
+			 $_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"] = true;	
 
 			 return redirect()->route('staf/verifikasi-permohonan-sidang');
 
