@@ -9,7 +9,7 @@ use App\Dosen_pembimbing;
 use App\Tugas_akhir;
 use Illuminate\Support\Facades\Input;
 
-
+ 
 class DosenPembimbingController extends Controller
 {
     function home_dosen_pembimbing() {
@@ -44,7 +44,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
     DB::table('tugas_akhir')
             ->where('id_tugas_akhir', $id_tugas_akhir)
             ->update(['id_maker' =>  $_SESSION["id_user"],'status_tugas_akhir' => 11]);
-   
+   $_SESSION["izin_sidang"] = true;
     return redirect()->route('dosen/pembimbing/ubah-status-sidang');
     
   
