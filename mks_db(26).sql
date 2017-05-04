@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2017 at 11:09 AM
+-- Generation Time: May 05, 2017 at 01:31 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -217,6 +217,24 @@ INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`,
 (3, 'afiqrasyidm@gmail.com', 'Perusahaan aldi', 'aldi', 'aldi', 7, '2017-03-19 00:19:27', '2017-03-19 00:19:27', 0),
 (4, 'afiqrasyidm@gmail.com', 'afiq', 'afiq', 'afiq', 8, '2017-04-04 22:36:07', '2017-04-04 22:36:07', 0),
 (5, 'akbar@akbar.com', 'akbar', 'akbar', 'akbar', 10, '2017-04-07 08:54:21', '2017-04-07 08:54:21', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal_dosen`
+--
+
+CREATE TABLE `jadwal_dosen` (
+  `id_jadwal_dosen` int(10) UNSIGNED NOT NULL,
+  `waktu_mulai` datetime NOT NULL,
+  `waktu_akhir` datetime NOT NULL,
+  `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
+  `id_dosen` int(10) NOT NULL,
+  `status` int(2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `id_maker` int(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -667,6 +685,12 @@ ALTER TABLE `hasil_ta`
 ALTER TABLE `industri`
   ADD PRIMARY KEY (`id_industri`),
   ADD KEY `industri_id_user_foreign` (`id_user`);
+
+--
+-- Indexes for table `jadwal_dosen`
+--
+ALTER TABLE `jadwal_dosen`
+  ADD PRIMARY KEY (`id_jadwal_dosen`);
 
 --
 -- Indexes for table `jenis_ta`
