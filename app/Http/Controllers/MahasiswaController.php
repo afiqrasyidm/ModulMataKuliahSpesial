@@ -392,6 +392,7 @@ class MahasiswaController extends Controller
         $dosen_pembimbing->id_maker = $_SESSION["id_user"];
         $dosen_pembimbing->save();
 
+        $_SESSION["mahasiswa_pengajuan_dosbing"] = true;	
         return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
 
     }

@@ -6,6 +6,39 @@
 <div class="col-md-1">
 </div>
 <div class="col-md-10">
+
+<br>
+	<?php
+if (isset($_SESSION["mahasiswa_pengajuan_dosbing"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengajuan Dosen Pembimbing Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_pengajuan_dosbing"]);
+}
+?>
+
+	<?php
+if (isset($_SESSION["mahasiswa_perubahan_dosbing"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Perubahan Dosen Pembimbing Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_perubahan_dosbing"]);
+}
+?>
 	@if(isset($dosenpembimbing))
 
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
@@ -201,16 +234,12 @@
 		      </center>
 			  
 			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
-<<<<<<< HEAD
+
 			  	<a href="/mahasiswa/ubah-pengajuan-pembimbing/{{$dosenpembimbings->id}}">
 							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>	
 							</a>			
 					@endif
 
-=======
-							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>				
-				@endif
->>>>>>> 343dd4a1de3119cdfaccab65866d2f5bf6057ff9
 			  </div>
 				
 		        </div>
