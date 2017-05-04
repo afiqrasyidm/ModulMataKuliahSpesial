@@ -392,9 +392,25 @@ class MahasiswaController extends Controller
         $dosen_pembimbing->id_maker = $_SESSION["id_user"];
         $dosen_pembimbing->save();
 
+        $_SESSION["mahasiswa_pengajuan_dosbing"] = true;	
         return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
 
     }
+
+	public function ubah_pengajuan_pembimbing($id){
+
+		session_start();
+		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+
+			$dosbingajuanlama = dosen_pembimbing_ta::where('id', $id )->get()->first();
+
+					//menghapus ajuan dosbing
+					DB::table('dosen_pembimbing_ta')->where('id', '=', $id)->delete();
+					
+
+			return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
+
+	}
 
     function pengumuman() {
         session_start();

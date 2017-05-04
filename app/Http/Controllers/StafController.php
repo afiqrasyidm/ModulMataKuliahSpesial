@@ -17,7 +17,7 @@ class StafController extends Controller
 {
 	
 	 var $stafs;
-	 
+	 var $temp;
 	 
   //    public function __construct() {
   //       $this->stafs = Staf::all(array('nama'));
@@ -63,21 +63,45 @@ class StafController extends Controller
     	return view("staf/failed_verifikasi_permohonan_sidang");
 	}
 
+	public function ubah_pengajuan_sidang($id_tugas_akhir){
+		session_start();
+		$ta = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->get()->first();
+		$i=1;
+		$dosen =  DB::table('dosen')->get();
+		//return $dosen;
+    	return view("staf/ubah_pengajuan_sidang", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i));
+	}
+
 	function verifikasi_permohonan_sidangPost($id_pengajuan)
 	{ 
 	  session_start();
-
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get()->first();
-		
-		
+		$i=1;
 		$dosen =  DB::table('dosen')->get();
-		//return $dosen;
-        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen));
+      $penguji = DB::table('pengajuan_sidang')
+        ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
+        ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
+        ->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_ta.id_dosen')
+        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->get();
+
+        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i, 'penguji'=>$penguji));
 
        
 	}
@@ -121,18 +145,36 @@ class StafController extends Controller
 			}
 				
 			if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_2')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2', 'Dosen Penguji 1 dan 2 tidak boleh sama');
+				}
 			}
 		
 			else if(Input::get('dosen_penguji_1') == Input::get('dosen_penguji_3')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_3') == Input::get('dosen_penguji_2')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_3', 'Dosen Penguji 1 dan 3 tidak boleh sama');
+				}
 			}
 			
 			else if(Input::get('dosen_penguji_2') == Input::get('dosen_penguji_3')){
-				$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
 				$cek_dosen = false;
+
+				if(Input::get('dosen_penguji_3') == Input::get('dosen_penguji_1')){
+					$validator->getMessageBag()->add('wrong_dosen_penguji_1_2_3', 'Ketiga Dosen Penguji tidak boleh sama');
+				}
+				else{
+					$validator->getMessageBag()->add('wrong_dosen_penguji_2_3', 'Dosen Penguji 2 dan 3 tidak boleh sama');
+				}
 			}
 			
 			if($cek_waktu == true && $cek_dosen == true){
@@ -169,7 +211,8 @@ class StafController extends Controller
 			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji3->save();
-			
+			$_SESSION["sba_verifikasi_pengajuan_sidang"] = true;	
+
 				DB::table('pengajuan_sidang')
 	        	->where('id_pengajuan','=', Input::get('id_pengajuan'))
 	            ->update([
@@ -199,19 +242,30 @@ class StafController extends Controller
 			 $dosen_penguji3->id_tugas_akhir = $id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji3->save();
+			 $_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"] = true;	
+
+			 return redirect()->route('staf/verifikasi-permohonan-sidang');
+
 			}
 		}
 		
 		 else {
 	        //Data error or username taken:
-	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
+	       if($ta->status==1){
+	       	return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
 	            ->withErrors($validator)
 	            ->withInput();
+	       }
+	       else{
+			return redirect()->route('staf/ubah-pengajuan-sidang', $ta->id_tugas_akhir)
+            ->withErrors($validator)
+            ->withInput();	       
+        	}
 	    }
 	}
 	else {
 	        //Data error or username taken:
-	       return redirect()->route('staf/permohonan-sidang/',Input::get('id_pengajuan'))
+	       return redirect()->route('staf/ubah-pengajuan-sidang/',Input::get('id_tugas_akhir'))
 	            ->withErrors($validator)
 	            ->withInput();
 	    }

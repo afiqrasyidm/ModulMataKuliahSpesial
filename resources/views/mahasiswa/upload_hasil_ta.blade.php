@@ -84,11 +84,36 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
               </table>
     <center>
        
-       <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
-          <button  class="btn btn-primary">Ubah dokumen</button>
+       
+          <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah dokumen</button>
         </a>
       </div>
 
+
+   <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+     
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Anda Yakin Ingin Mengubah Dokumen TA?</h4>
+      </div>
+
+      <div>
+          <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
+            <center><button  class="btn btn-primary" >Iya</button></center>
+          </a>
+        
+          <br>
+          <br>
+      </div>
+      </div>
+      
+    </div>
+    </div>
 
         </section><!-- /.content -->
 
