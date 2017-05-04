@@ -27,17 +27,43 @@
                 <div class="box-body">
                   
 <!-- test -->
-
+<?php
+if (isset($_SESSION["mahasiswa_perubahan_dokumen"])) {
+  
+      echo"
+      <div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i> Dokumen Berhasil Diubah
+                   
+              </div>
+      ";
+      
+      
+      unset($_SESSION["mahasiswa_perubahan_dokumen"]);
+}
+?>
+    
 @if(isset($hasil_ta))
 
 
           <section class="content">
 
-             <div class="alert alert-success">
+<?php
+if (isset($_SESSION["detail_upload_submit_first"])) {
+  
+      echo"
+      <div class='alert alert-success'>
                     
-                   <i class="icon fa fa-check"></i> Dokumen Telah Di Upload
+                   <i class='icon fa fa-check'></i> Dokumen Telah Di Upload
                    
               </div>
+      ";
+      
+      
+      unset($_SESSION["detail_upload_submit_first"]);
+}
+?>
+           
               <table class="table table-bordered">
 
               <tbody>
@@ -58,11 +84,36 @@
               </table>
     <center>
        
-       <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
-          <button  class="btn btn-primary">Ubah dokumen</button>
+       
+          <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah dokumen</button>
         </a>
       </div>
 
+
+   <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+     
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Anda Yakin Ingin Mengubah Dokumen TA?</h4>
+      </div>
+
+      <div>
+          <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
+            <center><button  class="btn btn-primary" >Iya</button></center>
+          </a>
+        
+          <br>
+          <br>
+      </div>
+      </div>
+      
+    </div>
+    </div>
 
         </section><!-- /.content -->
 

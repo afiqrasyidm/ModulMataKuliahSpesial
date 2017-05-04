@@ -91,6 +91,7 @@
 								}
 								
 						?>
+            <div class="role-user">@yield('roleUser')</div>
                 
                     </p>
                   

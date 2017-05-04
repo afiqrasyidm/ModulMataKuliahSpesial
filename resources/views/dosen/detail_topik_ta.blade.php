@@ -8,6 +8,37 @@
 <div class=".col-md-11">
 
 <br><br>
+
+<?php
+if (isset($_SESSION["setuju_topik"])) {
+	if($_SESSION["setuju_topik"]){
+		
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengambilan Topik Disetujui
+                   
+              </div>
+			";
+			
+			
+	}
+	else{
+		
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengambilan Topik Tidak Disetujui
+                   
+              </div>
+			";
+			
+			
+		
+	}
+			unset($_SESSION["setuju_topik"]);
+}
+?>
 @if(!isset($topik_belum_diambil))
  <!-- general form elements disabled -->
               <div class="box box-primary">

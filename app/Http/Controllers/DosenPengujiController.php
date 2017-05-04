@@ -64,7 +64,7 @@ class DosenPengujiController extends Controller
 			//return $id_dosen;
 			
 			
-		$ta = DB::table('pengajuan_sidang')
+		$ta = DB::table('tugas_akhir')
 		
 		->leftJoin('hasil_ta', 'tugas_akhir.id_tugas_akhir', '=', 'hasil_ta.id_tugas_akhir')
         ->leftJoin('dosen_penguji_ta', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_penguji_ta.id_tugas_akhir')
@@ -78,7 +78,7 @@ class DosenPengujiController extends Controller
       
 		->get();
 
-      
+      //return 
 
 		return view("dosen/DosenPenguji/list_jadwal_sidang", array('ta' => $ta));
 

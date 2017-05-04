@@ -55,7 +55,10 @@ class DosenController extends Controller
 	       	$topik->save();
 	        $penandaRole = "dosen";
 			
-			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
+			$_SESSION["dosen_pengajuan_topik"] = true;	
+		
+			return redirect()->route('dosen/pengajuan-topik-ta');
+			
 	    
 		}
 	    //Data error or username taken:
@@ -155,6 +158,7 @@ class DosenController extends Controller
 			$dosen_pembimbing->save();
 	        
 		
+				$_SESSION["setuju_topik"] = true;	
 		
 		
 		
@@ -169,6 +173,8 @@ class DosenController extends Controller
 			'id_maker' => $_SESSION["id_user"],
 			
 			]);
+			
+			$_SESSION["setuju_topik"] = false;	
 		}
 		return redirect()->route('dosen/pengajuan-topik/detail/',$id_topik);
 		

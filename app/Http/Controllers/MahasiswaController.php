@@ -34,7 +34,7 @@ class MahasiswaController extends Controller
 {
     function pengajuan_topik() {
     	session_start();
-
+		$ubah=true;
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 
 		$id_mahasiswa = $mahasiswa->id_mahasiswa;
@@ -104,6 +104,23 @@ class MahasiswaController extends Controller
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     public function pengajuan_permohonan_ta() {
     	session_start();
 
@@ -116,7 +133,7 @@ class MahasiswaController extends Controller
           ->where('tugas_akhir.id_mahasiswa', '=', $id_mahasiswa)
           ->get()->first();
     	//Mahasiswa belum mengajukan ta || belum mengajukan topik
-    	if ($tugas_akhir==null) {
+    	if ($tugas_akhir==null || $tugas_akhir->status_tugas_akhir==3 || $tugas_akhir->status_tugas_akhir==4 ) {
     		return view("mahasiswa/belum_mengajukan_topik");
     	}
 
@@ -508,9 +525,14 @@ class MahasiswaController extends Controller
 			$tugas_akhir->id_maker = $_SESSION["id_user"];
 
 			$tugas_akhir->save();
+			$_SESSION["mahasiswa_pengajuan_topik"] = true;	
+			
+			return redirect()->route('mahasiswa/pengajuan-topik');
+			 
+			 
+			 
 
-			return view("validasi_keberhasilan/berhasil" , array('penandaRole' => $penandaRole) );
-
+ 
 	    }
 
 	    //Data error or username taken:
@@ -548,6 +570,8 @@ class MahasiswaController extends Controller
 
 
 				}
+				
+			$_SESSION["mahasiswa_perubahan_topik"] = true;	
 			return redirect()->route('mahasiswa/pengajuan-topik');
 	}
 	public function detail_topik_ta($id_topik){
@@ -593,7 +617,8 @@ class MahasiswaController extends Controller
 
 
 			$tugas_akhir->save();
-
+			
+			$_SESSION["mahasiswa_pengajuan_topik"] = true;	
 			return redirect()->route('mahasiswa/pengajuan-topik');
 
 	}
@@ -627,8 +652,10 @@ class MahasiswaController extends Controller
 
 				$pengajuan_sidang->save();
 
-
-				return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
+				$_SESSION["mahasiswa_pengajuan_sidang"] = true;	
+				
+				return redirect()->route('mahasiswa/pengajuan-sidang-ta');
+				//return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
 
 			}
 
@@ -715,6 +742,7 @@ class MahasiswaController extends Controller
 		        $hasil_ta->id_maker = $_SESSION["id_user"];
 		        $hasil_ta->save();
 
+		        $_SESSION["detail_upload_submit_first"] = true;	
 		    	return back()
 		    		->with('path',$fileName);
 	    	}
@@ -722,11 +750,14 @@ class MahasiswaController extends Controller
 
 
     	public function ubah_dokumen_ta($id_tugas_akhir){
+    		session_start();
 
 			$hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir )->get()->first();
 
 
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
+
+					$_SESSION["mahasiswa_perubahan_dokumen"] = true;
 			return redirect()->route('mahasiswa/upload-hasil-ta');
 	}
 

@@ -84,8 +84,16 @@
 
  <div class="box box-primary">
     <div class="box-header with-border">
+      <?php
+        if (isset($_SESSION["mahasiswa_pengajuan_sidang"])) {
+        echo"<div class='alert alert-success'>
+                <i class='icon fa fa-check'></i>Pengajuan Sidang Berhasil 
+            </div>";
+        unset($_SESSION["mahasiswa_pengajuan_sidang"]);
+        }
+      ?>
          <center><h1 class="header-title">Detail Pengajuan Sidang</h1></center>
-    </div><!-- /.box-header -->
+    </div>
     <div class="box-body">
      <br>
               <table class="table table-bordered">
@@ -120,14 +128,14 @@
                 @else
                   <tr>
                   <th width ="20%" bgcolor="#86b7e3">Dosen Penguji</th>
-                  <td bgcolor="#c91a22"> Dosen Penguji Belum Ditentukan </td>
+                  <td bgcolor="#c0c5cc" style ='color:#c43e11'><b> Dosen Penguji Belum Ditentukan </b></td>
                 </tr>
                 @endif
                 
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Waktu Sidang</th>
                     @if($sidang->waktu_sidang==0)
-                     <td bgcolor="#c91a22"> Jadwal Sidang Belum Ditentukan </td>
+                     <td bgcolor="#c0c5cc" style ='color:#c43e11'> <b> Jadwal Sidang Belum Ditentukan </b> </td>
                     @else
                       <td bgcolor="#c0c5cc">{{$sidang->waktu_sidang}}</td>
                     @endif
@@ -136,9 +144,7 @@
 
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Status</th>
-                <td bgcolor="#c0c5cc">
-                	{{$status->status}}
-				</td>
+                <td bgcolor="#c0c5cc"><b>{{$status->status}}</b></td>
                 </tr>
         
 				</tbody>

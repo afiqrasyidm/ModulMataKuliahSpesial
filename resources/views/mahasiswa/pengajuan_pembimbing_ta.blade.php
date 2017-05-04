@@ -71,12 +71,13 @@
 		</table>
   		<p><i>*Pilih salah satu</i></p>
 
-			
+			 
 		</form>
 
 
 		@elseif($dosenpembimbings->status_dosen_pembimbing == 1)
 			<section class="content">
+			<br><br>
 				<div class="box box-primary">
 		                <div class="box-header with-border">
 		                  <center><h1 class="header-title">Detail Pengajuan Dosen Pembimbing</h1></center>
@@ -122,6 +123,7 @@
 						
 							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
 							<td bgcolor="#dddddd">
+							<b>
 								@if($dosenpembimbings->status_dosen_pembimbing == 1)
 									Menunggu Persetujuan
 								@elseif($dosenpembimbings->status_dosen_pembimbing == 2)
@@ -129,6 +131,7 @@
 								@else
 								    Ditolak
 								@endif
+								</b>
 								</td>
 
 		                </tr>
@@ -146,7 +149,7 @@
 <form method="post" action="">
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-<section class="content">
+<section class="content"><br><br>
 				<div class="box box-primary">
 		                <div class="box-header with-border">
 		                  <center><h1 class="header-title">Detail Pengajuan Dosen Pembimbing</h1></center>
@@ -179,6 +182,7 @@
 						
 							<th bgcolor="#86b7e3"> Status Dosen Pembimbing</th>
 							<td bgcolor="#dddddd">
+							<b>
 								@if($dosenpembimbings->status_dosen_pembimbing == 1)
 									Menunggu Persetujuan
 								@elseif($dosenpembimbings->status_dosen_pembimbing == 2)
@@ -187,6 +191,7 @@
 								    Ditolak
 								@endif
 								</td>
+								</b>
 
 		                </tr>
 

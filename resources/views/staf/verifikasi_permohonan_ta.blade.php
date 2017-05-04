@@ -3,10 +3,11 @@
 @section('title','Verifikasi Pengajuan Tugas Akhir')
 
 @section('mainContent')
-<div class="col-md-12">
-  <br>
-  <br>
-  <br>
+<section class="content">
+<div class="center-form">
+<div class=".col-md-11">
+
+<br><br>
     <div class="box box-primary">
       <div class="box-header with-border">
           <center><h1 class="header-title">Verifikasi Permohonan Tugas Akhir</h1><br></center>
@@ -57,5 +58,5 @@
     </tbody>
   </table>
   <br/>
-</div>
+</div></div></div></div></section>
 @endsection

@@ -28,7 +28,6 @@ Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logou
 
 Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MainController@mahasiswa_homepage']);
 
-Route::get('/mahasiswa/pengajuan-topik', ['as' => 'mahasiswa/pengajuan-topik', 'uses' => 'MahasiswaController@pengajuan_topik']);
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
 
@@ -99,6 +98,9 @@ Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' =>
 
 Route::get('/dosen/pembimbing/pengumuman', ['as' => 'dosen/pembimbing/pengumuman', 'uses' => 'DosenPembimbingController@pengumuman']);
 
+//list topik
+Route::get('/mahasiswa/pengajuan-topik', ['as' => 'mahasiswa/pengajuan-topik', 'uses' => 'MahasiswaController@pengajuan_topik']);
+Route::get('/mahasiswa/pengajuan-topik-first', ['as' => '/mahasiswa/pengajuan-topik-first', 'uses' => 'MahasiswaController@pengajuan_topik_first']);
 
 
 //PENGAJUAN topik INDUSTRI
@@ -115,6 +117,8 @@ Route::post('dosen/pengajuan-topik-ta', ['as' => 'dosen/pengajuan-topik-ta', 'us
 //PENGAJUAN Topik MAHASISWA
 
 Route::get('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta']);
+
+
 Route::post('mahasiswa/pengajuan-topik-ta', ['as' => 'mahasiswa/pengajuan-topik-ta', 'uses' => 'MahasiswaController@pengajuan_topik_ta_submit']);
 
 //PENGAJUAN Sidang MAHASISWA
@@ -220,6 +224,10 @@ Route::get('staf/failed-verifikasi-permohonan-sidang', ['as' => 'staf/failed-ver
 
 Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
+
+//Ubah sidang
+Route::get('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@ubah_pengajuan_sidang']);
+Route::post('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 
 
 //Verifikasi sidang SBA

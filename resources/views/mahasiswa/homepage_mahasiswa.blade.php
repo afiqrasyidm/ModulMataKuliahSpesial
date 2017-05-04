@@ -10,6 +10,7 @@
 
 
  <div class="box box-primary">
+			
         <div class="box-header with-border">
             <center><b><h2 class="title-index">Alur Pengerjaan Tugas Akhir</h2></b></center>
           </div><!-- /.box-header -->

@@ -11,17 +11,63 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
+
+         <div class="box box-primary">
+			
+			
+                <div class="box-header with-border">	
+	<?php
+if (isset($_SESSION["mahasiswa_pengajuan_topik"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Pengajuan Topik Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_pengajuan_topik"]);
+}
+?>
+
+	<?php
+if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
+	
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Perubahan Topik Berhasil
+                   
+              </div>
+			";
+			
+			
+			unset($_SESSION["mahasiswa_perubahan_topik"]);
+}
+?>
+
+
 @if(isset($topik))
 
-<br><br>
+
+
+
               <!-- general form elements disabled -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
+              
                   <center><h1 class="header-title">Daftar Topik TA</h1><br></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  
-          
+          @if(isset($ubah))
+			<br><br>
+			<div class="alert alert-success">
+                    
+                   <i class="icon fa fa-check"></i> Pengubahan Topik Telah Berhasil
+                   
+              </div>
+			@endif
 	<form>
 		<table class="table table-striped">
 		    <thead>
@@ -100,17 +146,24 @@
 <!-- end -->
 
 @else
-  <br>
-<br>
+	
+	
 
-         <div class="box box-primary">
-                <div class="box-header with-border">
                   <center><h1 class="header-title">Detail Pengajuan Topik</h1></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  <br>
               <table class="table table-bordered">
-
+			@if(isset($pertama))	
+			
+			<br><br>
+			<div class="alert alert-success">
+                    
+                   <i class="icon fa fa-check"></i> Pengajuan Topik Telah Berhasil
+                   
+              </div>
+			@endif
+		 
               <tbody>
                 
 				<tr>
@@ -177,15 +230,42 @@
 	@if ($tugas_akhir->status_tugas_akhir > 6  )
         <p>Anda tidak bisa mengubah topik lagi, dikarenakan permohonan TA Anda telah disetujui oleh PA.</p>
 	@else
-		<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
-          <button  class="btn btn-primary" >Ubah Topik</button>
-        </a>
-		
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Topik</button>
+	
 	@endif
+	
+	 <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">Anda Yakin Ingin Mengubah Topik?</h4>
+			</div>
+
+			<div>
+					<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+					  <button  class="btn btn-primary" >Iya</button>
+					</a>
+				
+					<br>
+					<br>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	  
+	
       </div>
 
 
         </section><!-- /.content -->
+		
+	
 @endif
 
    
