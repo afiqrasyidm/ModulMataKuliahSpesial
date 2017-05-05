@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2017 at 01:31 AM
+-- Generation Time: May 05, 2017 at 04:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -161,7 +161,9 @@ INSERT INTO `feedback_tugas_akhir` (`id_feedback_tugas_akhir`, `komentar`, `upda
 (17, 'tolong di setujui', '2017-04-26 00:19:41', '2017-04-26 00:19:41', 1, 76),
 (18, 'ok', '2017-04-26 00:20:30', '2017-04-26 00:20:30', 2, 76),
 (19, 'Tolong disetujui', '2017-04-26 00:50:53', '2017-04-26 00:50:53', 1, 80),
-(20, 'Oke, saya setujui', '2017-04-26 00:52:12', '2017-04-26 00:52:12', 2, 80);
+(20, 'Oke, saya setujui', '2017-04-26 00:52:12', '2017-04-26 00:52:12', 2, 80),
+(21, 'Tolong setujui', '2017-05-05 00:07:22', '2017-05-05 00:07:22', 1, 101),
+(22, 'Nanti ya dikoreksi dulu', '2017-05-05 00:08:19', '2017-05-05 00:08:19', 2, 101);
 
 -- --------------------------------------------------------
 
@@ -436,6 +438,14 @@ CREATE TABLE `referensi_status_sidang_topik` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `referensi_status_sidang_topik`
+--
+
+INSERT INTO `referensi_status_sidang_topik` (`id_referensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
+(0, '', NULL, NULL, NULL),
+(1, '', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -520,6 +530,7 @@ INSERT INTO `topik` (`id_topik`, `topik_ta`, `deskripsi`, `id_dosen`, `id_indust
 (30, 'MatDas-2', 'Lorem', NULL, 4, 8, '2017-04-05 00:25:37', NULL, '2017-04-05 00:25:37', 0),
 (40, 'Matematika Diskrit 3', 'LOLOL', NULL, 3, 10, '2017-04-12 00:33:22', NULL, '2017-04-12 00:33:22', 1),
 (43, 'Agile Software Development', 'Latar Belakang Agile Software Development', NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(70, 'Topik TA PLN', 'LOrem', NULL, 3, 10, '2017-05-05 00:03:00', 7, '2017-05-05 00:03:00', 0),
 (69, 'Lorem123', 'Lorem', NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (66, 'K2', 'KKK', NULL, 3, 10, '2017-05-02 06:39:07', 7, '2017-05-02 06:39:07', 0),
 (65, 'Shand2', 'Lorem', NULL, 3, 10, '2017-05-02 06:32:47', 7, '2017-05-02 06:32:47', 1);
@@ -552,7 +563,7 @@ INSERT INTO `tugas_akhir` (`id_tugas_akhir`, `status_tugas_akhir`, `tgl_pengajua
 (23, '3', NULL, NULL, 4, NULL, '2017-04-04 18:48:42', 2, '2017-04-04 18:48:42', NULL, 28),
 (25, '4', NULL, NULL, 6, NULL, '2017-04-04 18:48:42', 7, '2017-04-04 18:48:42', NULL, 25),
 (26, '3', NULL, NULL, 7, NULL, '2017-04-04 18:48:42', 2, '2017-04-04 18:48:42', NULL, 28),
-(100, '3', NULL, NULL, 1, NULL, '2017-05-03 00:32:15', 1, '2017-05-03 00:32:15', NULL, 30);
+(101, '7', '2017-05-05', 1, 1, NULL, '2017-05-05 00:03:47', 7, '2017-05-05 00:03:47', 'Topik', 70);
 
 -- --------------------------------------------------------
 
@@ -726,6 +737,12 @@ ALTER TABLE `pengajuan_sidang`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
+-- Indexes for table `pengajuan_sidang_topik`
+--
+ALTER TABLE `pengajuan_sidang_topik`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
@@ -737,6 +754,12 @@ ALTER TABLE `prodi`
 -- Indexes for table `referensi_status_sidang`
 --
 ALTER TABLE `referensi_status_sidang`
+  ADD PRIMARY KEY (`id_referensi_status_sidang`);
+
+--
+-- Indexes for table `referensi_status_sidang_topik`
+--
+ALTER TABLE `referensi_status_sidang_topik`
   ADD PRIMARY KEY (`id_referensi_status_sidang`);
 
 --
@@ -819,7 +842,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `feedback_tugas_akhir`
 --
 ALTER TABLE `feedback_tugas_akhir`
-  MODIFY `id_feedback_tugas_akhir` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_feedback_tugas_akhir` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `hasil_ta`
 --
@@ -869,12 +892,12 @@ ALTER TABLE `staf`
 -- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
-  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_topik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `tugas_akhir`
 --
 ALTER TABLE `tugas_akhir`
-  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_tugas_akhir` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `universitas`
 --
