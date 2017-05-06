@@ -304,9 +304,7 @@ function detail_sidang_topik($id_tugas_akhir){
 		
 		 DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
-            ->update(
-			
-			[
+            ->update([
 			
 			'id_maker' =>  $_SESSION["id_user"],
 			
@@ -314,17 +312,11 @@ function detail_sidang_topik($id_tugas_akhir){
 			'nilai_ta' => Input::get('nilai_ta') ,
 			
 			
-			]
-			
-			)
-			
-			;
+			]);
 
 			DB::table('pengajuan_sidang_topik')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
-            ->update(
-			
-			[
+            ->update([
 			
 			'id_maker' =>  $_SESSION["id_user"],
 			
@@ -332,17 +324,55 @@ function detail_sidang_topik($id_tugas_akhir){
 			'status' => 4 ,
 			
 			
-			]
-			
-			)
-			
-			;
+			]);
    
 			$_SESSION["detail_sidang_submit_first"] = true;	
 	
 			return redirect()->route('dosen/pembimbing/list-jadwal-sidang-topik');
     	
 	}
+
+	function ubah_status_sidang_topik() {
+      session_start();
+
+      $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+
+     
+
+      $sidang_topik = DB::table('dosen_pembimbing_ta')
+        ->leftJoin('tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+        ->get();
+
+
+    	return view("dosen/DosenPembimbing/ubah_status_sidang_topik", array('sidang_topik' => $sidang_topik ));
+    
+    
+
+    }
+
+function ubah_status_sidang_topikPost($id_tugas_akhir)
+{ 
+  session_start();
+
+   $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+      
+			$pengajuan_sidang_topik = new Pengajuan_sidang_topik;
+
+			$pengajuan_sidang_topik->id_tugas_akhir = $id_tugas_akhir;
+			$pengajuan_sidang_topik->status = 1;
+			$pengajuan_sidang_topik->id_maker = $_SESSION["id_user"];
+
+			$pengajuan_sidang_topik->save();
+			$_SESSION["mahasiswa_pengajuan_sidang_topik"] = true;	
+ 
+	    
+    return redirect()->route('dosen/pembimbing/ubah-status-sidang-topik');
+    
+  
+}
 
 }
 

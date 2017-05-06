@@ -275,8 +275,15 @@ Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);
 
-// //detail sidang dosbem
+// detail sidang dosbem
 Route::get('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik/', 'uses' => 'DosenPembimbingController@detail_sidang_topik']);
 Route::post('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik', 'uses' => 'DosenPembimbingController@detail_sidang_topik_submit']);
+
+
+//ubah status siap sidang
+Route::get('/dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbing/ubah-status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topik']);
+
+
+Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
 
