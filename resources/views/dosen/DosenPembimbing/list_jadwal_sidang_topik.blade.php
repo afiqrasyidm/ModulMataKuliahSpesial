@@ -13,6 +13,21 @@
 
 
 <br><br>
+<?php
+if (isset($_SESSION["detail_sidang_submit_first"])) {
+  
+      echo"
+      <div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i> TA telah selesai dan nilai telah disubmit
+                   
+              </div>
+      ";
+      
+      
+      unset($_SESSION["detail_sidang_submit_first"]);
+}
+?>
               <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
