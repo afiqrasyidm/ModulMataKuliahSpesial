@@ -176,9 +176,6 @@ Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'Ma
 
 
 
-
-
-
 //upload hasil ta
 Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
 Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
@@ -286,4 +283,14 @@ Route::get('/dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimb
 
 Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
+
+//upload hasil ta final
+Route::get('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_final']);
+Route::post('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_finalPost']);
+
+//upload dokumen gagal
+Route::get('mahasiswa/failed-upload-hasil-ta-final', ['as' => 'mahasiswa/failed-upload-hasil-ta-final', 'uses' => 'MahasiswaController@failed_upload_hasil_ta_final']);
+
+//ubah dokumen ta
+Route::get('mahasiswa/ubah-dokumen-ta-final/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta-final', 'uses' => 'MahasiswaController@ubah_dokumen_ta_final']);
 
