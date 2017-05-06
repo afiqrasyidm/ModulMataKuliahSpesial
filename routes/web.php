@@ -166,6 +166,19 @@ Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/v
 
 Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'DosenPembimbingController@set_verifikasi_bimbingan');
 
+//verifikasi log bimbingan Dosen Pembimbing
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
+
+
+//homepage managerial
+
+Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'MainController@managerial_homepage']);
+
+
+
+
+
+
 //upload hasil ta
 Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
 Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);

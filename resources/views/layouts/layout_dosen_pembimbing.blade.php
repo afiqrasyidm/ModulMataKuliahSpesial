@@ -27,7 +27,7 @@
     <ul class="treeview-menu">
       <li><a href="{{ route('dosen/pembimbing/verifikasi-bimbingan') }}"><i class="fa fa-angle-right"></i>Verifikasi Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Atur Jadwal Bimbingan</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Log Bimbingan</a></li>
+      <li><a href="{{ route('dosen/pembimbing/verifikasi-log-bimbingan') }}"><i class="fa fa-angle-right"></i>Verifikasi Log Bimbingan</a></li>
     </ul>
   </li>
   <li class="treeview">

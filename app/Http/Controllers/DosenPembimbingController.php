@@ -162,6 +162,26 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			// return $bimbingan;
 		// return $_SESSION;
 	}
+	
+	function verifikasi_log_bimbingan() {
+		session_start();
+
+		$bimbingan = DB::table('dosen_pembimbing_ta')
+			->leftJoin('dosen', 'dosen_pembimbing_ta.id_dosen', 'dosen.id_dosen')
+			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir')
+			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
+			->leftJoin('topik', 'tugas_akhir.id_topik', 'topik.id_topik')
+			->where('dosen.id_user', '=',  $_SESSION["id_user"])
+			->where('dosen_pembimbing_ta.status_dosen_pembimbing', '=', 2)->get();
+
+			
+			//	return $bimbingan;
+		
+
+		return view("dosen/DosenPembimbing/verifikasi_log_bimbingan", array('bimbingan' => $bimbingan));
+			// return $bimbingan;
+		// return $_SESSION;
+	}
 
 	function set_verifikasi_bimbingan($status, $id_dpt) {
 		session_start();
