@@ -436,6 +436,13 @@ CREATE TABLE `referensi_status_sidang_topik` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+INSERT INTO `referensi_status_sidang` (`id_referensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 'Dosen Mengizinkan Sidang Topik', NULL, NULL, NULL),
+(2, 'Menunggu Verifikasi SBA', NULL, NULL, NULL),
+(3, 'Siap Sidang', NULL, NULL, NULL),
+(4, 'Selesai Sidang', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --

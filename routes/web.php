@@ -257,3 +257,13 @@ Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'us
 //detail sidang dosbem
 Route::get('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
 Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);
+
+
+//list jadwal sidang Dosbem
+Route::get('/dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);
+
+// //detail sidang dosbem
+Route::get('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik/', 'uses' => 'DosenPembimbingController@detail_sidang_topik']);
+Route::post('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik', 'uses' => 'DosenPembimbingController@detail_sidang_topik_submit']);
+
+

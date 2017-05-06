@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Dosen;
 use App\Dosen_pembimbing;
 use App\Tugas_akhir;
+use App\Pengajuan_sidang_topik;
+use App\Status_sidang_topik;
+
 use Illuminate\Support\Facades\Input;
 
  
@@ -230,4 +233,98 @@ function ubah_status_sidangPost($id_tugas_akhir)
     	
 	}
 
+		//-------------sidang topik-----------------
+
+ function list_jadwal_sidang_topik() {
+        session_start();
+
+		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+			//return $id_dosen;
+			
+			
+		$sidang_topik = DB::table('tugas_akhir')
+        ->leftJoin('dosen_pembimbing_ta', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
+        ->leftJoin('pengajuan_sidang_topik', 'tugas_akhir.id_tugas_akhir', '=', 'pengajuan_sidang_topik.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	  
+		->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+		->where('pengajuan_sidang_topik.status','>', 2)
+        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        
+		->get();
+		
+		
+		//return $ta;
+		return view("dosen/DosenPembimbing/list_jadwal_sidang_topik", array('sidang_topik' => $sidang_topik));
+
+       
+    }
+
+function detail_sidang_topik($id_tugas_akhir){
+		session_start();
+	
+		$sidang_topik = DB::table('tugas_akhir')
+        
+		->leftJoin('pengajuan_sidang_topik', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen_pembimbing_ta', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
+		->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	    
+		->where('pengajuan_sidang_topik.id_tugas_akhir','=', $id_tugas_akhir)
+	
+        
+		->get()
+		->first();
+		
+			return view('dosen/DosenPembimbing/detail_sidang_topik', array('sidang_topik' => $sidang_topik));;
+    	
+	}
+	function detail_sidang_topik_submit(){
+	
+		session_start();
+		
+		 DB::table('tugas_akhir')
+            ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
+            ->update(
+			
+			[
+			
+			'id_maker' =>  $_SESSION["id_user"],
+			
+			
+			'nilai_ta' => Input::get('nilai_ta') ,
+			
+			
+			]
+			
+			)
+			
+			;
+
+			DB::table('pengajuan_sidang_topik')
+            ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
+            ->update(
+			
+			[
+			
+			'id_maker' =>  $_SESSION["id_user"],
+			
+			
+			'status' => 4 ,
+			
+			
+			]
+			
+			)
+			
+			;
+   
+			$_SESSION["detail_sidang_submit_first"] = true;	
+	
+			return redirect()->route('dosen/pembimbing/list-jadwal-sidang-topik');
+    	
+	}
+
 }
+
+
+
