@@ -42,7 +42,7 @@
 						
 						<div class="form-group">
 						
-						  <label class="col-sm-3 control-label">Latar Belakang Topik :</label>
+						  <label class="col-sm-3 control-label">Deskripsi :</label>
 						
 								<div class="col-sm-8">
 								

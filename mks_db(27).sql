@@ -438,23 +438,6 @@ CREATE TABLE `referensi_status_sidang_topik` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-<<<<<<< HEAD:mks_db(26).sql
-
-INSERT INTO `referensi_status_sidang` (`id_referensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
-(1, 'Dosen Mengizinkan Sidang Topik', NULL, NULL, NULL),
-(2, 'Menunggu Verifikasi SBA', NULL, NULL, NULL),
-(3, 'Siap Sidang', NULL, NULL, NULL),
-(4, 'Selesai Sidang', NULL, NULL, NULL);
-=======
---
--- Dumping data for table `referensi_status_sidang_topik`
---
-
-INSERT INTO `referensi_status_sidang_topik` (`id_referensi_status_sidang`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
-(0, '', NULL, NULL, NULL),
-(1, '', NULL, NULL, NULL);
->>>>>>> cd500e7ee454f86f5ef6c63f6afbb5dec5c8e48b:mks_db(27).sql
-
 -- --------------------------------------------------------
 
 --

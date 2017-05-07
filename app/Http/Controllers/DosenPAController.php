@@ -99,11 +99,17 @@ class DosenPAController extends Controller
         $tugas_akhir = DB::table('tugas_akhir')
             ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => 7]);
-        }
+        
+        $_SESSION["penyetujuan_permohonan_ta_berhasil"] = true;
+        $_SESSION["penolakan_permohonan_ta_berhasil"] = false;
+    }
 
     function tolak_permohonan_ta($id_tugas_akhir) {
         $tugas_akhir = DB::table('tugas_akhir')
             ->where('tugas_akhir.id_tugas_akhir','=', $id_tugas_akhir)
             ->update(['status_tugas_akhir' => 2]);
+    
+        $_SESSION["penolakan_permohonan_ta_berhasil"] = true;
+        $_SESSION["penyetujuan_permohonan_ta_berhasil"] = false;
     }
 }

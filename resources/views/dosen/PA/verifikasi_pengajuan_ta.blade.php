@@ -21,7 +21,7 @@
 				<th>Matakuliah</th>
 				<th>Topik</th>
 				<th>Judul</th>
-				<th>Detail</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>			

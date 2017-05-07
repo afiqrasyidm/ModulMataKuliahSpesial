@@ -103,23 +103,6 @@ class MahasiswaController extends Controller
 			}
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
     public function pengajuan_permohonan_ta() {
     	session_start();
@@ -210,7 +193,9 @@ class MahasiswaController extends Controller
             ->where('id_mahasiswa', $id_mahasiswa)
             ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
-            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
+             $_SESSION["perubahan_pengajuan_permohonan_ta_berhasil"] = true;
+
+            return Redirect::to('/mahasiswa/pengajuan-permohonan-ta');
 	    }
 
 	    //Data error:
@@ -270,7 +255,9 @@ class MahasiswaController extends Controller
             ->where('id_mahasiswa', $id_mahasiswa)
             ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
 
-            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
+            $_SESSION["pengajuan_permohonan_ta_berhasil"] = true;
+
+            return Redirect::to('/mahasiswa/pengajuan-permohonan-ta');
 	    }
 
 	    //Data error:
