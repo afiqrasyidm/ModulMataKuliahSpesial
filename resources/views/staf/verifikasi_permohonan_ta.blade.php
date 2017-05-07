@@ -6,7 +6,14 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
-
+@php
+    if (isset($_SESSION["verifikasi_permohonan_ta_berhasil"])) {
+      echo  "<div class='alert alert-success'> 
+                    <i class='icon fa fa-check'></i>Verifikasi permohonan TA ".$_SESSION["verifikasi_permohonan_ta_berhasil"]." berhasil
+                  </div>";  
+      unset($_SESSION["verifikasi_permohonan_ta_berhasil"]);
+    }
+@endphp
 <br><br>
     <div class="box box-primary">
       <div class="box-header with-border">
@@ -26,10 +33,13 @@
         <th>Status</th>
       </tr>
     </thead>
-    <tbody>           
-        @foreach ($tugas_akhir as $ta)
+    <tbody> 
+      @php
+        $idx = 0;
+      @endphp  
+      @foreach ($tugas_akhir as $ta)
       <tr>
-          <td>{{$ta->nama_mahasiswa}}</td>
+        <td>{{$ta->nama_mahasiswa}}</td>
         <td>{{$ta->NPM}}</td>
         <td>{{$ta->nama_prodi}}</td>
         <td>
@@ -48,12 +58,36 @@
         </td>
         <td> 
           @if($ta->status_tugas_akhir == 7)
-            <a href="/staf/verifikasi-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Verifikasi Sekarang</button></a>
+            <button type="button" id="verifikasi-button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{$idx}}">Verifikasi Sekarang</button>
           @elseif($ta->status_tugas_akhir > 7)
             <p><b>Telah Diverifikasi</b></p>
           @endif
         </td>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal{{$idx}}" role="dialog"">
+          <div class="modal-dialog" style="margin-top: 15%;">
+              <!-- Modal content-->
+            <center>
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Apakah anda yakin ingin melakukan verifikasi permohonan TA atas nama <br><strong>{{ $tugas_akhir[$idx]->nama_mahasiswa }}({{ $tugas_akhir[$idx]->NPM }})</strong> ?</h4>
+                </div>
+                <div>
+                  <a href="/staf/verifikasi-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Ya</button></a>
+                  <button  class="btn btn-danger"  class="close" data-dismiss="modal">Batal</button>
+                  <br>
+                  <br>
+                </div>
+                </div>
+              </center>
+          </div>
+        </div>
       </tr>
+        @php
+          $idx += 1;
+        @endphp  
       @endforeach
     </tbody>
   </table>
