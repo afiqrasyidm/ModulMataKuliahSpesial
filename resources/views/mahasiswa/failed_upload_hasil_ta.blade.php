@@ -27,7 +27,7 @@ if($status_ta == null){
 }
 
 
-else if($status_ta->id_referensi_status_ta!=11){
+else if($status_ta->id_referensi_status_ta<11){
 	echo "<b>Harap menyelesaikan proses pembuatan tugas akhir terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan upload dokumen saat tugas akhir anda dalam status '";
 	echo $status_ta->status;

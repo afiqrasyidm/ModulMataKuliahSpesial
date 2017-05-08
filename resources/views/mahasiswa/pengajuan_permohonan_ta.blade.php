@@ -8,6 +8,21 @@
 	<br><br>
 	<div class="center-form">
 		<div class=".col-md-11">
+		@php
+		if (isset($_SESSION["pengajuan_permohonan_ta_berhasil"])) {
+			echo 	"<div class='alert alert-success'> 
+                   	<i class='icon fa fa-check'></i>Pengajuan permohonan TA anda berhasil
+              		</div>";	
+			unset($_SESSION["pengajuan_permohonan_ta_berhasil"]);
+		}
+
+		if (isset($_SESSION["perubahan_pengajuan_permohonan_ta_berhasil"])) {
+			echo 	"<div class='alert alert-success'> 
+                   	<i class='icon fa fa-check'></i>Pengajuan permohonan TA anda berhasil diubah
+              		</div>";	
+			unset($_SESSION["perubahan_pengajuan_permohonan_ta_berhasil"]);
+		}
+		@endphp
 			<div class="box box-primary">  
 				<div class="box-header with-border">
 		        	<center><h1 class="header-title">Detail Pengajuan Permohonan TA</h1></center>
@@ -72,7 +87,30 @@
 									Harap ubah permohonan TA anda!</a></center>
 								@endif
 								<br>
-								<center><a href="{{route('mahasiswa/pengajuan-permohonan-ta-ubah')}}"><button class="btn btn-primary" >Ubah</button></a></center>
+								<center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah</button></center>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog"">
+								<div class="modal-dialog" style="margin-top: 15%;">
+								  	<!-- Modal content-->
+									<center>
+									  	<div class="modal-content">
+											<div class="modal-header">
+										  		<button type="button" class="close" data-dismiss="modal">&times;</button>
+										  		<h4 class="modal-title">Anda yakin ingin mengubah permohonan TA?</h4>
+											</div>
+											<div>
+												<a href="{{route('mahasiswa/pengajuan-permohonan-ta-ubah')}}"   >
+													<button  class="btn btn-primary" >Ya</button>
+												</a>
+												<button  class="btn btn-danger"  class="close" data-dismiss="modal">batal</button>
+												<br>
+												<br>
+											</div>
+									  	</div>
+								  	</center>
+								</div>
 							</div>
 
 							<hr>
@@ -84,7 +122,7 @@
 											<div><div class="col-md-1">
 											</div>
 											<div class="col-md-2">
-												<strong>Komentar</strong>
+												<strong>Kirim Pesan ke PA</strong>
 											</div>
 											<div class="col-md-7" style=" margin-left: 25px;">
 					                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -107,7 +145,7 @@
 								<hr>
 								<br>
 								<div class="col-md-1"></div>
-								<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+								<div class="col-md-11"><strong>Pesan:</strong></div>
 								<br>
 								<br>
 								<table style="width:100%;">
@@ -120,7 +158,7 @@
 												<div class="col-md-2">
 													{{$komentar->nama_dosen}}
 													<br>
-													8 Maret 2017
+													{{$komentar->tugas_akhir_created_at}}
 												</div>
 												<div class="col-md-8">
 													<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px;">
@@ -137,7 +175,7 @@
 												<div class="col-md-2">
 													{{$komentar->nama_mahasiswa}}
 													<br>
-													8 Maret 2017
+													{{$komentar->tugas_akhir_created_at}}
 												</div>
 												<div class="col-md-8">
 													<div class="box box-primary" style="background-color: #e8e8e8; min-height: 60px; padding:5px; margin-left: 25px; border-top-color: #222d32;">

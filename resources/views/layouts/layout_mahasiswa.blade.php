@@ -53,13 +53,21 @@
               echo "Pengajuan Permohonan Sidang";
             }
           ?>
-      </a></li>
-      
+        </a></li>      
 
       <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!= null){
               echo "Dokumen TA";
+            }
+          ?>
+        
+      </a></li>
+
+       <li><a href="{{ route('mahasiswa/upload-hasil-ta-final') }}"><i class="fa fa-angle-right"></i>
+        <?php 
+            if($_SESSION["mahasiswa"]->jenjang!= null){
+              echo "Dokumen TA Final";
             }
           ?>
         

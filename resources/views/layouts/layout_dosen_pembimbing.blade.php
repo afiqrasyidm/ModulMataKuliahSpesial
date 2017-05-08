@@ -27,7 +27,7 @@
     <ul class="treeview-menu">
       <li><a href="{{ route('dosen/pembimbing/verifikasi-bimbingan') }}"><i class="fa fa-angle-right"></i>Verifikasi Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Atur Jadwal Bimbingan</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Verifikasi Log Bimbingan</a></li>
+      <li><a href="{{ route('dosen/pembimbing/verifikasi-log-bimbingan') }}"><i class="fa fa-angle-right"></i>Verifikasi Log Bimbingan</a></li>
     </ul>
   </li>
   <li class="treeview">
@@ -35,10 +35,11 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
+      <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang-topik') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang Topik</a></li>
       <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang Topik</a></li>
-      <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang</a></li>
-      <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Dokumen Sidang</a>
+      <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang TA</a></li>
+      <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang TA</a></li>
+      <li><a href=""><i class="fa fa-angle-right"></i>Dokumen Sidang TA</a>
         <ul class="treeview-menu">
           <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
           <li><a href="{{ route('dosen/pembimbing/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA</a></li>

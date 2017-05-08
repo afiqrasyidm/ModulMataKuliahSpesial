@@ -10,6 +10,23 @@
 		<div style="width: 100%;"><a href="{{route('dosen/PA/verifikasi-permohonan-ta')}}">Kembali ke: Daftar Tugas Akhir</a></div>
 		<br>
 		<div class=".col-md-11">
+		@php
+		if (isset($_SESSION["penyetujuan_permohonan_ta_berhasil"]) AND $_SESSION["penyetujuan_permohonan_ta_berhasil"]) {
+			echo 	"<div class='alert alert-success'> 
+                   	<i class='icon fa fa-check'></i>Anda berhasil <strong>menyetujui</strong> permohonan TA "."$tugas_akhir->nama_mahasiswa"."
+              		</div>";	
+			unset($_SESSION["penyetujuan_permohonan_ta_berhasil"]);
+			unset($_SESSION["penolakan_permohonan_ta_berhasil"]);
+		}
+
+		if (isset($_SESSION["penolakan_permohonan_ta_berhasil"]) AND $_SESSION["penolakan_permohonan_ta_berhasil"]) {
+			echo 	"<div class='alert alert-success'> 
+                   	<i class='icon fa fa-check'></i>Anda berhasil <strong>menolak</strong> permohonan TA "."$tugas_akhir->nama_mahasiswa"."
+              		</div>";	
+			unset($_SESSION["penyetujuan_permohonan_ta_berhasil"]);
+			unset($_SESSION["penolakan_permohonan_ta_berhasil"]);
+		}
+		@endphp
 			<div class="box box-primary">
 				<div class="box-header with-border">
 			        <center><h1 class="header-title">Detail Pengajuan Permohonan TA</h1></center>
@@ -67,13 +84,56 @@
 							<div class="box-footer">
 								<br>
 								<center>
-									<form method="post" action="">
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-primary" type="submit" name="action" value="Setujui">Setujui</button>
-										<button class="btn btn-danger" type="submit" name="action" value="Tolak">Tolak</button>
-									</form>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Setujui</button>
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2">Tolak</button>
 								</center>
 							</div>
+
+							<form method="post" action="">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+								<!-- Modal -->
+								<div class="modal fade" id="myModal1" role="dialog"">
+									<div class="modal-dialog" style="margin-top: 15%;">
+									  	<!-- Modal content-->
+										<center>
+										  	<div class="modal-content">
+												<div class="modal-header">
+											  		<button type="button" class="close" data-dismiss="modal">&times;</button>
+											  		<h4 class="modal-title">Anda yakin ingin menyetujui permohonan TA ini?</h4>
+												</div>
+												<div>
+													<button class="btn btn-primary" type="submit" name="action" value="Setujui">Setujui</button>
+													<button  class="btn btn-danger"  class="close" data-dismiss="modal">batal</button>
+													<br>
+													<br>
+												</div>
+										  	</div>
+									  	</center>
+									</div>
+								</div>
+
+								<div class="modal fade" id="myModal2" role="dialog"">
+									<div class="modal-dialog" style="margin-top: 15%;">
+									  	<!-- Modal content-->
+										<center>
+										  	<div class="modal-content">
+												<div class="modal-header">
+											  		<button type="button" class="close" data-dismiss="modal">&times;</button>
+											  		<h4 class="modal-title">Anda yakin ingin menolak permohonan TA ini?</h4>
+												</div>
+												<div>
+													<button class="btn btn-primary" type="submit" name="action" value="Tolak">Tolak</button>
+													<button  class="btn btn-danger"  class="close" data-dismiss="modal">batal</button>
+													<br>
+													<br>
+												</div>
+										  	</div>
+									  	</center>
+									</div>
+								</div>
+
+							</form>
 						@endif
 
 						<hr>
@@ -85,7 +145,8 @@
 										<div><div class="col-md-1">
 										</div>
 										<div class="col-md-2">
-											<strong>Komentar</strong>
+											<strong>Kirim pesan ke:</strong>
+											<br>{{ $tugas_akhir->nama_mahasiswa }}
 										</div>
 										<div class="col-md-7" style=" margin-left: 25px;">
 				                    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -108,7 +169,7 @@
 						<hr>
 						<br>
 						<div class="col-md-1"></div>
-						<div class="col-md-11"><strong>Daftar Komentar:</strong></div>
+						<div class="col-md-11"><strong>Pesan:</strong></div>
 						<br>
 						<br>
 						<table style="width:100%;">

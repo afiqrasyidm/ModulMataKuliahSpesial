@@ -333,6 +333,13 @@ class StafController extends Controller
                 ->get();
 
         //return $tugas_akhir;
+        $mahasiswa_terverifikasi = DB::table('tugas_akhir')
+                ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+                ->where('id_tugas_akhir', $id_tugas_akhir)
+                ->get()
+                ->first();
+
+        $_SESSION["verifikasi_permohonan_ta_berhasil"] = $mahasiswa_terverifikasi->nama_mahasiswa."(".$mahasiswa_terverifikasi->NPM.")";
 
         return redirect()->route('staf/verifikasi-permohonan-ta');
     }

@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
-
+	<script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
+    
     <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
@@ -62,7 +64,11 @@
 								
 								//selain industri
                         if(isset($_SESSION["user_login"])) {
-                            echo $_SESSION["user_login"]->name;
+							$string_name = $_SESSION["user_login"]->name;
+							
+							$string_name = explode (" ", $string_name );
+								
+                            echo $string_name[0]." ".$string_name[1] ;
                             
                         }
 						//berarti industri
@@ -129,8 +135,12 @@
                  
 					//selain industri
 				   if(isset($_SESSION["user_login"])) {
-								echo $_SESSION["user_login"]->name;
-							 }
+								$string_name = $_SESSION["user_login"]->name;
+								
+								$string_name = explode (" ", $string_name );
+									
+								echo $string_name[0]." ".$string_name[1] ;
+							}
 							//berarti industri
 					else if(isset($_SESSION["user_login_industri"])){
 								  echo $_SESSION["user_login_industri"]->nama_industri;
@@ -148,13 +158,11 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="{{ asset  ('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset  ('https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{ asset  ('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset  ('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset  ('plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -167,5 +175,9 @@
     <script src="{{ asset  ('plugins/fastclick/fastclick.min.js') }}"></script>
     <script src="{{ asset  ('dist/js/app.min.js') }}"></script>
     <script src="{{ asset  ('dist/js/demo.js') }}"></script>
-  </body>
+	<script src="{{ URL::asset  ('plugins/morris/morris.min.js') }}"></script>
+	 
+	
+ 
+ </body>
 </html>
