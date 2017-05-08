@@ -425,10 +425,13 @@ class MahasiswaController extends Controller
 
 		$sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 
+		//Jika sudah mengambil tugas akhir
 		if($tugas_akhir!= null){
-			//Jika belum mengajukan sidang
+			//Jika sudah siap sidang TA
 			if($tugas_akhir->status_tugas_akhir>=11){
+				//Jika belum mengajukan sidang
 				if($sidang==null){
+					//pengajuan sidang TA
 					if($tugas_akhir!=NULL){
 						$informasi_ta = DB::table('tugas_akhir')
 							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
@@ -436,11 +439,11 @@ class MahasiswaController extends Controller
 							->get()->first();
 		  				return view("mahasiswa/pengajuan_sidang_ta", array('informasi_ta' => $informasi_ta, 'sidang' => $sidang));
 					}
+					//Jika pengajuan sidang TA ada tapi tugas akhir terhapus
 					else{
 						 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 					}
 				}
-
 				//Jika sudah mengajukan sidang
 				else{
 
@@ -465,13 +468,12 @@ class MahasiswaController extends Controller
 					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));
 				}
 			}
-
+			//Jika belum siap sidang TA
 			else{
 			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
-
 		}
-
+		//Jika belum mengambil tugas akhir
 		else{
 			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
@@ -492,11 +494,18 @@ class MahasiswaController extends Controller
 			if($tugas_akhir->status_tugas_akhir>=5){
 				//Jika belum mengajukan sidang topik
 				if($sidang_topik==null){
+					if($tugas_akhir!=NULL){
+						//pengajuan sidang topik
 						$informasi_topik = DB::table('tugas_akhir')
 							->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
 							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 							->get()->first();
 		  				return view("mahasiswa/pengajuan_sidang_topik", array('informasi_topik' => $informasi_topik, 'sidang_topik' => $sidang_topik));
+					}
+					//Jika pengajuan sidang topik ada tapi topik terhapus
+					else{
+						 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir));
+					}
 				}
 				//Jika sudah mengajukan sidang topik
 				else{
