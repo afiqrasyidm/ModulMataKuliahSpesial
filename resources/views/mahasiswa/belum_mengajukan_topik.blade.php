@@ -9,8 +9,6 @@ Anda Belum Dapat Melakukan Pengajuan TA
 
 @section('contentMainContent')
 
-
-
 			<b>Harap memilih topik terlebih dahulu!</b><br>
 			Anda tidak diperkenankan melakukan pengisian formulir pengajuan tugas akhir sebelum memilih topik atau pemilihan topik belum diverifikasi
 			<br><br>
