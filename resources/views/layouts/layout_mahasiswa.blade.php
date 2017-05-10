@@ -24,7 +24,7 @@
     <ul class="treeview-menu">
       <li><a href="{{ route('mahasiswa/pengajuan-topik') }}"><i class="fa fa-angle-right"></i>Pengajuan Topik</a></li>
       <li><a href="{{ route('mahasiswa/pengajuan-permohonan-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Permohonan</a></li>
-    </ul>
+    </ul>  
   </li>
   <li class="treeview">
     <a href="{{ asset ('#' )  }}">
@@ -41,13 +41,11 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <?php 
-            if($_SESSION["mahasiswa"]->jenjang!="S1"){
-              echo '<li><a href=""><i class="fa fa-angle-right"></i>';
-              echo " Pengajuan Sidang Topik";
-              echo '</a></li>';
-            }
-          ?>
+            @if($_SESSION["mahasiswa"]->jenjang!="S1")
+              <li><a href="{{route('mahasiswa/pengajuan-sidang-topik')}}"><i class="fa fa-angle-right"></i>
+              Pengajuan Sidang Topik
+              </a></li>
+            @endif
 
         <li><a href="{{ route('mahasiswa/pengajuan-sidang-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
@@ -55,9 +53,7 @@
               echo "Pengajuan Permohonan Sidang";
             }
           ?>
-          </a></li>
-
-      
+        </a></li>      
 
       <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 

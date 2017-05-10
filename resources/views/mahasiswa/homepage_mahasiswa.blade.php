@@ -21,7 +21,6 @@
 		 <?php 
 
             if($_SESSION["mahasiswa"]->jenjang=="S1"){
-
               echo "<img src='";
               echo asset('img/s1.png');
               echo "' style='width: 75% ; height: auto'/>";
