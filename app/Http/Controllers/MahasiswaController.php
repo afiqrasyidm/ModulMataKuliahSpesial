@@ -493,7 +493,7 @@ class MahasiswaController extends Controller
 			//Jika sudah siap mengajukan sidang topik
 			if($tugas_akhir->status_tugas_akhir>=5){
 				//Jika belum mengajukan sidang topik
-				if($sidang_topik==null){
+				if($sidang_topik->status==1){
 					if($tugas_akhir!=NULL){
 						//pengajuan sidang topik
 						$informasi_topik = DB::table('tugas_akhir')
@@ -579,19 +579,12 @@ class MahasiswaController extends Controller
 			$_SESSION["mahasiswa_pengajuan_topik"] = true;	
 			
 			return redirect()->route('mahasiswa/pengajuan-topik');
-			 
-			 
-			 
-
- 
 	    }
 
 	    //Data error or username taken:
 		return Redirect::to('mahasiswa/pengajuan-topik-ta')
 			->withErrors($validator)
 			->withInput();
-
-
     }
 
 	public function ubah_pengajuan_topik_ta($id_topik, $id_tugas_akhir){
@@ -707,9 +700,7 @@ class MahasiswaController extends Controller
 				
 				return redirect()->route('mahasiswa/pengajuan-sidang-ta');
 				//return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
-
 			}
-
     }
 
     public function pengajuan_sidang_topik_submit() {
@@ -729,13 +720,6 @@ class MahasiswaController extends Controller
 			}
 
 			else{
-				$pengajuan_sidang = new Pengajuan_sidang_topik;
-
-				$pengajuan_sidang->id_mahasiswa = $id_mahasiswa;
-
-				$pengajuan_sidang->id_maker =  $_SESSION["id_user"];
-
-				$pengajuan_sidang->id_tugas_akhir = $id_tugas_akhir;
 
 				$pengajuan_sidang->status = "2";
 
@@ -745,7 +729,6 @@ class MahasiswaController extends Controller
 				
 				return redirect()->route('mahasiswa/pengajuan-sidang-topik');
 				//return view("validasi_keberhasilan/berhasil" , array('tugas_akhir' => $tugas_akhir));
-
 			}
 
     }
@@ -837,7 +820,6 @@ class MahasiswaController extends Controller
 	    	}
     }
 
-
     	public function ubah_dokumen_ta($id_tugas_akhir){
     		session_start();
 
@@ -849,7 +831,6 @@ class MahasiswaController extends Controller
 					$_SESSION["mahasiswa_perubahan_dokumen"] = true;
 			return redirect()->route('mahasiswa/upload-hasil-ta');
 	}
-
 
 	 	public function failed_upload_hasil_ta(){
 
