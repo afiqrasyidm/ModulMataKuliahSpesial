@@ -491,7 +491,7 @@ class MahasiswaController extends Controller
 		//Jika sudah mengambil topik
 		if($tugas_akhir!= null){
 			//Jika sudah siap mengajukan sidang topik
-			if($tugas_akhir->status_tugas_akhir>=5){
+			if($tugas_akhir->status_tugas_akhir>=10){
 				//Jika belum mengajukan sidang topik
 				if($sidang_topik->status==1){
 					if($tugas_akhir!=NULL){
@@ -715,7 +715,7 @@ class MahasiswaController extends Controller
 			$id_tugas_akhir= Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get()->first()->id_tugas_akhir;
 
 			//Validasi: Tidak bisa mengajukan
-			if($tugas_akhir<5){
+			if($tugas_akhir<10){
 			 	return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir));
 			}
 
