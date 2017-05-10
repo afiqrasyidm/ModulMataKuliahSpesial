@@ -1,5 +1,6 @@
 
 
+
 @extends('layouts.layout_managerial')
 @section('title','Home Page')
 @section('mainContent')
@@ -23,8 +24,8 @@
 				<div class="col-lg-4 col-xs-6">
 					<div class="small-box bg-green">
 						<div class="inner">
-						  <h3>53<sup style="font-size: 20px">%</sup></h3>
-						  <p>Jumlah dana untuk</p>
+						  <h3>500 Juta<sup style="font-size: 20px"></sup></h3>
+						  <p>Jumlah dana yang disediakan untuk</p>
 							  <p>Tugas Akhir</p>
 						</div>
 						<div class="icon">
@@ -35,9 +36,9 @@
 				 <div class="col-lg-4 col-xs-6">
 					<div class="small-box bg-aqua">
 						<div class="inner">
-						  <h3>53<sup style="font-size: 20px">%</sup></h3>
-						  <p>Jumlah dosen pembimbing untuk</p>
-							  <p>Tugas Akhir</p>
+						  <h3>{{$jumlah_dosen}} orang <sup style="font-size: 20px"></sup></h3>
+						  <p> Dosen pembimbing yang </p>
+							  <p>berkompeten </p>
 						</div>
 						<div class="icon">
 						 <i class="ion ion-person-add"></i>
@@ -47,12 +48,12 @@
 					<div class="col-lg-4 col-xs-6">
 						<div class="small-box bg-yellow">
 							<div class="inner">
-							  <h3>53<sup style="font-size: 20px">%</sup></h3>
-							  <p>Jumlah dosen pembimbing untuk</p>
-								  <p>Tugas Akhir</p>
+							  <h3>{{$jumlah_industri}} Perusahaan<sup style="font-size: 20px"></sup></h3>
+							  <p> Industri yang berpartisipasi</p>
+								  <p> untuk Tugas Akhir</p>
 							</div>
 							<div class="icon">
-							  <i class="ion ion-cash"></i>
+							  <i class="ion ion-briefcase"></i>
 							</div>
 						  </div>
 					 </div>
@@ -68,45 +69,23 @@
                <section class="content">
                   <br>
 				  <br>
-					<div class ="row" >
-						<div class = "col-md-6">
-							
-							
-							 <div class="box box-info">
+				  
+				  <div class ="row">
+						<div class="box box-info">
 							   <div class="box-header with-border">
-								  <h3 class="box-title">Line Chart Jumlah Tugas Akhir Per Tahun</h3>
+								  <h3 class="box-title">Line Chart Jumlah Tugas Akhir dan TA Terpublikasi</h3>
 								  <div class="box-tools pull-right">
 								  </div>
 							   </div>
 							   <div class="box-body chart-responsive">
-								  <div class="chart" id="line-chart" style="height: 300px;"></div>
+								  <div class="chart" id="line-chart-publikasi" style="height: 300px;"></div>
 							   </div>
 							   <!-- /.box-body -->
 							</div>
-						</div>
-						
-						<div class = "col-md-6">
-						
-							
-							
-							<div class="box box-warning">
-							   <div class="box-header with-border">
-								  <h3 class="box-title">Line Chart Jumlah Rekomendasi Topik Per Tahun</h3>
-								  <div class="box-tools pull-right">
-								  </div>
-							   </div>
-							   <div class="box-body chart-responsive">
-								  <div class="chart" id="line-chart-topik" style="height: 300px;"></div>
-							   </div>
-							   <!-- /.box-body -->
-							</div>
-							
-						</div>
-                        <!-- /.box -->
-                    
-					 
-                     <!-- /.col (RIGHT) -->
+					
 					</div>
+				  
+					
 					
 					<div class="row">
 					<br>
@@ -117,7 +96,7 @@
 								<!-- BAR CHART -->
 								<div class="box box-success">
 								   <div class="box-header with-border">
-									  <h3 class="box-title">Bar Chart Jumlah Tugas Akhir Per Fakultas Tahun </h3>
+									  <h3 class="box-title">Bar Chart Jumlah Tugas Akhir Per Fakultas Tahun {{$tahun}} </h3>
 									  <div class="box-tools pull-right">
 									  </div>
 								   </div>
@@ -129,25 +108,31 @@
 							</div>
 					
 					</div>
+					<br>
 					
+					
+					
+					<div class = "row">
+					
+						<div class="box box-danger">
+							<div class="box-header with-border">
+							  <h3 class="box-title"> Chart Perbandingan Mahasiswa VS Jumlah TA tahun {{$tahun}}</h3>
+							  <div class="box-tools pull-right">
+								<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+								<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<div class="box-body chart-responsive">
+							  <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+							</div><!-- /.box-body -->
+						  </div><!-- /.box -->
+						
+					<div>
 					
 					<br>
 							<br>
 							<br>
-					<div class ="row">
-						<div class="box box-info">
-							   <div class="box-header with-border">
-								  <h3 class="box-title">Line Chart Jumlah Tugas Akhir Terpublikasi</h3>
-								  <div class="box-tools pull-right">
-								  </div>
-							   </div>
-							   <div class="box-body chart-responsive">
-								  <div class="chart" id="line-chart-publikasi" style="height: 300px;"></div>
-							   </div>
-							   <!-- /.box-body -->
-							</div>
 					
-					</div>
                   <!-- /.row -->
                </section>
                <!-- /.content -->
@@ -161,97 +146,121 @@
    </div>
    <!-- /.box -->
 </section>
+
+<input type="text" id="ta_pertahun" value="{{$ta_pertahun}}" hidden  />
+
+<input type="text" id="ta_perfakulas" value="{{$ta_perfakulas}}" hidden  />
+<input type="text" id="tahun" value="{{$tahun}}" hidden  />
+
+<input type="text" id="jumlah_mahasiswa" value="{{$jumlah_mahasiswa}}" hidden  />
+
+<script>
+// Asumning you are using JQuery
+
+
+
+</script>
+
+
+
 <script>
    $(function () {
      "use strict";
 	 // LINE CHART jumlah TA
-     var line = new Morris.Line({
-       element: 'line-chart',
-		  
-		  
-		  data: [
-			{ year: '2013', value: 20 },
-			{ year: '2014', value: 10 },
-			{ year: '2015', value: 5 },
-			{ year: '2016', value: 5 },
-			{ year: '2017', value: 20 }
-		  ],
-		  // The name of the data record attribute that contains x-values.
-		  xkey: 'year',
-		  // A list of names of data record attributes that contain y-values.
-		  ykeys: ['value'],
-		  // Labels for the ykeys -- will be displayed when you hover over the
-		  // chart.
-		  labels: ['Jumlah Tugas Akhir'],
-		   hideHover: 'auto'
-     });
-	  //Line Chart Rekomendasi Topik
-	  var line = new Morris.Line({
-		element: 'line-chart-topik',
-		  
-		  
-		  data: [
-			{ year: '2013', value: 20 },
-			{ year: '2014', value: 10 },
-			{ year: '2015', value: 5 },
-			{ year: '2016', value: 5 },
-			{ year: '2017', value: 20 }
-		  ],
-		   lineColors: ['#ff9900'],
-		  // The name of the data record attribute that contains x-values.
-		  xkey: 'year',
-		  // A list of names of data record attributes that contain y-values.
-		  ykeys: ['value'],
-		  // Labels for the ykeys -- will be displayed when you hover over the
-		  // chart.
-		  labels: ['Jumlah Rekomendasi Topik'],
-		   hideHover: 'auto'
-     });
-   
-	 //Line Chart Publikasi
+
+	//ambil tahun
+	var tahun = document.getElementById('tahun').value;
+	var tahun = JSON.parse(tahun);
+	
+	//console.log(tahun);
+
+	//Perhitungan Jumlah TA dan Publikasi
+	var ta_perTahun = document.getElementById('ta_pertahun').value;
+	var ta_perTahun = JSON.parse(ta_perTahun);
+	
+	var jumlahTAperTahun = [0,0,0,0,0];
+	
+	var jumlahTAperTahunTerpublikasi = [0,0,0,0,0];
+	
+	for(var i = 0 ; i < jumlahTAperTahun.length ; i++){
+			for(var ii = 0 ; ii < ta_perTahun.length ; ii++ ){
+					//dimulai dari tahun paling tua
+					if((tahun-i).toString() ==  ta_perTahun[ii].created_at.substring( 0, 4)) {
+						jumlahTAperTahun[i]++;
+					}
+				}
+	}
+	
+	for(var i = 0 ; i < jumlahTAperTahunTerpublikasi.length ; i++){
+			for(var ii = 0 ; ii < ta_perTahun.length ; ii++ ){
+					//dimulai dari tahun paling tua
+					if((tahun-i).toString() ==  ta_perTahun[ii].created_at.substring( 0, 4)
+							&& ta_perTahun[ii].is_publish == 1
+					
+					) {
+						jumlahTAperTahunTerpublikasi[i]++;
+					}
+				}
+	}
+	
+	 //Line Chart Jumlah TA dan Publikasi
 	var line = new Morris.Line({
 		element: 'line-chart-publikasi',
 		  
 		  
 		  data: [
-			{ year: '2013', value: 20 },
-			{ year: '2014', value: 10 },
-			{ year: '2015', value: 5 },
-			{ year: '2016', value: 5 },
-			{ year: '2017', value: 20 }
+			{ year:(tahun-4).toString() , value: jumlahTAperTahun[4], value1: jumlahTAperTahunTerpublikasi[4] },
+			{ year: (tahun-3).toString(), value: jumlahTAperTahun[3], value1: jumlahTAperTahunTerpublikasi[3] },
+			{ year: (tahun-2).toString(), value: jumlahTAperTahun[2],value1: jumlahTAperTahunTerpublikasi[2] },
+			{ year:(tahun-1).toString() , value: jumlahTAperTahun[1], value1: jumlahTAperTahunTerpublikasi[1] },
+			{ year: tahun.toString(), value: jumlahTAperTahun[0], value1: jumlahTAperTahunTerpublikasi[0] }
 		  ],
 		  // The name of the data record attribute that contains x-values.
-		   lineColors: ['blue'],
+		   lineColors: ['red'],
 		  xkey: 'year',
 		  // A list of names of data record attributes that contain y-values.
-		  ykeys: ['value'],
+		  ykeys: ['value', 'value1'],
 		  // Labels for the ykeys -- will be displayed when you hover over the
 		  // chart.
-		  labels: ['Jumlah Rekomendasi Topik'],
+		  labels: ['Jumlah TA', 'Jumlah TA terpublikasi'],
 		   hideHover: 'auto'
      });
 	 
-	 
-	 
-     //BAR CHART
+
+	 // BAR CHART PERHITUNGAN
+	var ta_perfakulas = document.getElementById('ta_perfakulas').value;
+	var ta_perfakulas = JSON.parse(ta_perfakulas);
+ 
+	var jumlahTAPerFakultas = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	
+	for(var i = 1 ; i <= jumlahTAPerFakultas.length ; i++  ){
+		for (var ii = 0 ; ii < ta_perfakulas.length ; ii++ ){
+				if(ta_perfakulas[ii].id_fakultas == i){
+					jumlahTAPerFakultas[i-1]++;
+				}
+			}
+		}
+	
+	
+	 //BAR CHART VIEW
      var bar = new Morris.Bar({
        element: 'bar-chart',
        resize: true,
        data: [
-			{y: 'FK', a: 100},
-            {y: 'FKG', a: 75},
-            {y: 'FF', a: 50},
-            {y: 'FKM', a: 75},
-            {y: 'FIK', a: 50},
-            {y: 'FMIPA', a: 75},
-			{y: 'FT', a: 75},
-			{y: 'Fasil', a: 75},
-			{y: 'FH', a: 75},
-			{y: 'FEB', a: 75},
-			{y: 'FIB', a: 75},
-			{y: 'Fpsi', a: 75},
-			{y: 'FISIP', a: 75},
-			{y: 'FIA', a: 100}
+			{y: 'Fasil', a: jumlahTAPerFakultas[0]},
+			{y: 'FH', a: jumlahTAPerFakultas[1]},
+			{y: 'FK', a: jumlahTAPerFakultas[2]},
+            {y: 'FKG', a: jumlahTAPerFakultas[3]},
+            {y: 'FF', a: jumlahTAPerFakultas[4]},
+            {y: 'FKM', a: jumlahTAPerFakultas[5]},
+            {y: 'FIK', a: jumlahTAPerFakultas[6]},
+            {y: 'FMIPA', a: jumlahTAPerFakultas[7]},
+			{y: 'FT', a: jumlahTAPerFakultas[8]},
+			{y: 'FEB', a: jumlahTAPerFakultas[9]},
+			{y: 'FIB', a: jumlahTAPerFakultas[10]},
+			{y: 'Fpsi', a: jumlahTAPerFakultas[11]},
+			{y: 'FISIP', a: jumlahTAPerFakultas[12]},
+			{y: 'FIA', a: jumlahTAPerFakultas[13]}
        ],
        barColors: ['#00a65a', '#f56954'],
        xkey: 'y',
@@ -259,6 +268,37 @@
        labels: ['Jumlah Ta'],
        hideHover: 'auto'
      });
+	 
+	 //Perhitungan Perbandingan Ta Vs mahasiswa
+			
+		var jumlah_mahasiswa = document.getElementById('jumlah_mahasiswa').value;
+		var jumlah_mahasiswa = JSON.parse(jumlah_mahasiswa);
+		
+		var ta_jumlah_mahasiswa =  ta_perfakulas.length;
+		
+		
+		
+		
+	  //Perbandingan TA vs Mahasiswa CHART
+        var donut = new Morris.Donut({
+          element: 'sales-chart',
+          resize: true,
+          colors: ["#3c8dbc", "#f56954", "#00a65a"],
+          data: [
+            {label: "Perentase Mahasiswa mengambil TA", value: parseInt((ta_jumlah_mahasiswa/jumlah_mahasiswa*100))},
+            {label: "Persentase Mahasiswa Non TA", value: ( parseInt((jumlah_mahasiswa-ta_jumlah_mahasiswa)/jumlah_mahasiswa*100))}
+			],
+          hideHover: 'auto'
+        });
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
    });
 </script>
 @endsection

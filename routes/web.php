@@ -176,7 +176,7 @@ Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbi
 
 //homepage managerial
 
-Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'MainController@managerial_homepage']);
+Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'ManagerialController@managerial_homepage']);
 
 
 
