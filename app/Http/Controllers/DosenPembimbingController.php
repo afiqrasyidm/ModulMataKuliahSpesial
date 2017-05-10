@@ -12,6 +12,8 @@ use App\Status_sidang_topik;
 
 use Illuminate\Support\Facades\Input;
 
+
+
  
 class DosenPembimbingController extends Controller
 {
@@ -29,7 +31,8 @@ class DosenPembimbingController extends Controller
       $ta = DB::table('dosen_pembimbing_ta')
         ->leftJoin('tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
-        ->where('tugas_akhir.status_tugas_akhir','>', 9)->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+        ->where('tugas_akhir.status_tugas_akhir','>', 9)
+        ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->get();
 
       
@@ -337,36 +340,46 @@ function detail_sidang_topik($id_tugas_akhir){
 
       $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
 
-     
-
-      $sidang_topik = DB::table('dosen_pembimbing_ta')
-        ->leftJoin('tugas_akhir', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')
+       $pengajuan = DB::table('tugas_akhir')
+        ->join('pengajuan_sidang_topik', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')    
         ->where('tugas_akhir.status_tugas_akhir','=', 10)
         ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->get();
 
+       $sidang_topik = DB::table('tugas_akhir')
+        ->leftJoin('pengajuan_sidang_topik', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')    
+        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
+        ->where('pengajuan_sidang_topik.id_tugas_akhir','=', NULL)
+        ->get();
 
-    	return view("dosen/DosenPembimbing/ubah_status_sidang_topik", array('sidang_topik' => $sidang_topik ));
+
+			  return view("dosen/DosenPembimbing/ubah_status_sidang_topik", array('sidang_topik' => $sidang_topik, 'pengajuan' => $pengajuan));
+	    
     
+     }
     
 
-    }
+    
 
-function ubah_status_sidang_topikPost($id_tugas_akhir)
+function ubah_status_sidang_topikPost($id_tugas_akhir, $id_mahasiswa)
 { 
   session_start();
 
    $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
       
 			$pengajuan_sidang_topik = new Pengajuan_sidang_topik;
-
+			$pengajuan_sidang_topik->id_mahasiswa = $id_mahasiswa;
 			$pengajuan_sidang_topik->id_tugas_akhir = $id_tugas_akhir;
 			$pengajuan_sidang_topik->status = 1;
 			$pengajuan_sidang_topik->id_maker = $_SESSION["id_user"];
 
 			$pengajuan_sidang_topik->save();
-			$_SESSION["mahasiswa_pengajuan_sidang_topik"] = true;	
+			$_SESSION["izin_sidang"] = true;	
  
 	    
     return redirect()->route('dosen/pembimbing/ubah-status-sidang-topik');
