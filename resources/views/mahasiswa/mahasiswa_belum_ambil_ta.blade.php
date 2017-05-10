@@ -1,15 +1,17 @@
-@extends('layouts.layout_mahasiswa')
+@extends('layouts.layout_failed')
 
-@section('title','Pengumuman')
+@section('title','Pengajuan Topik')
 
-@section('mainContent')
-	<div class="col-md-3">
-	</div>
-	<div  class="col-md-9">
-		<div style="margin-top:225px;">
-			<h2 style="color:red;">Anda belum mengambil TA!</h2>
-			<p>Anda tidak diperkenankan melakukan mengambil tugas akhir dikarenakan belum ambil matkul TA pada SIAK  </p>
-			
-		</div>
-	</div>
+@section('titleMainContent')
+Anda Belum Dapat Melakukan Pengajuan Topik
+
+@endsection
+
+@section('contentMainContent')
+
+			<b>Harap memilih matakuliah Tugas Akhir pada SIAK-NG</b><br>
+			Anda tidak diperkenankan melakukan mengambil tugas akhir dikarenakan belum ambil matakuliah TA pada SIAK-NG
+			<br><br>
+			<p>SIAK-NG dapat diakses <a href="https://academic.ui.ac.id">disini</a></p>
+	
 @endsection
