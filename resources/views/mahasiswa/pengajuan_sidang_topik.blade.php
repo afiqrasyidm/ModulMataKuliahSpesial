@@ -13,9 +13,9 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
-
 @if(!isset($sidang_topik))
 <div class="box box-primary">
+
     <div class="box-header with-border">
         <center><h1 class="header-title">Pengajuan Sidang Topik</h1><br></center>
      </div><!-- /.box-header -->
@@ -148,13 +148,13 @@
 
 
 
-@endif
 
 
          </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>
             </div><!--/.col (right) -->
+@endif
 
 </section>
 
