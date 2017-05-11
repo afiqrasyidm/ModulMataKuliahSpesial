@@ -35,10 +35,17 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang-topik') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang Topik</a></li>
-      <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang Topik</a></li>
-      <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang TA</a></li>
-      <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang TA</a></li>
+     <li><a href="#"><i class="fa fa-angle-right"></i>Sidang Topik</a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang-topik') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang Topik</a></li>
+          <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang Topik</a></li>
+        </ul>
+      <li><a href="#"><i class="fa fa-angle-right"></i>Sidang TA</a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('dosen/pembimbing/ubah-status-sidang') }}"><i class="fa fa-angle-right"></i>Perizinan Sidang TA</a></li>
+          <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang TA</a></li>
+        </ul>
+      </li>
       <li><a href=""><i class="fa fa-angle-right"></i>Dokumen Sidang TA</a>
         <ul class="treeview-menu">
           <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>

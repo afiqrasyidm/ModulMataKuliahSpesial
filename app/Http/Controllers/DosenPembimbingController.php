@@ -262,9 +262,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
         session_start();
 
 		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
-			//return $id_dosen;
-			
-			
+		
 		$sidang_topik = DB::table('tugas_akhir')
         ->leftJoin('dosen_pembimbing_ta', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_pembimbing_ta.id_tugas_akhir')
         ->leftJoin('pengajuan_sidang_topik', 'tugas_akhir.id_tugas_akhir', '=', 'pengajuan_sidang_topik.id_tugas_akhir')
@@ -275,9 +273,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
         ->where('tugas_akhir.status_tugas_akhir','=', 10)
         
 		->get();
-		
-		
-		//return $ta;
+	
 		return view("dosen/DosenPembimbing/list_jadwal_sidang_topik", array('sidang_topik' => $sidang_topik));
 
        

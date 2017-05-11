@@ -27,13 +27,18 @@ if($status_ta == null){
 }
 
 
-else if($status_ta->id_referensi_status_ta<12){
+else if($status_ta->id_referensi_status_ta<11){
 	echo "<b>Harap menyelesaikan proses tugas akhir terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan upload dokumen saat tugas akhir anda dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir pada halaman utama.";
 }
 
+else if($status_ta->id_referensi_status_ta==11){
+	echo "<b>Harap menyelesaikan proses persidangan terlebih dahulu!</b>";
+	echo " Anda dapat melakukan upload dokumen final saat status tugas akhir telah selesai";
+	
+}
 
 else{
 
