@@ -185,6 +185,73 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			// return $bimbingan;
 		// return $_SESSION;
 	}
+	//memperlihatkan detail log seorang mahasiswa
+	function verifikasi_log_bimbingan_mahasiswa($id_tugas_akhir) {
+		session_start();
+		
+		$bimbingan = DB::table('log_bimbingan')
+			
+			->where('log_bimbingan.id_tugas_akhir', '=',  $id_tugas_akhir)
+			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
+			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
+			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
+		
+			
+			->get();
+
+			//return 
+				//return $bimbingan;
+		
+
+		return view("dosen/DosenPembimbing/verifikasi_log_bimbingan_mahasiswa", array('bimbingan' => $bimbingan));
+			// return $bimbingan;
+		// return $_SESSION;
+	}
+	
+	//detail log bimbingan
+	function verifikasi_log_bimbingan_mahasiswa_detail($id_log_bimbingan) {
+		session_start();
+		//return "lol";
+		$bimbingan = DB::table('log_bimbingan')
+			
+			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
+			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
+			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
+			->where('log_bimbingan.id_log_bimbingan', '=',  $id_log_bimbingan)
+			
+			
+			->get()->first();
+
+			//return 
+				//return $bimbingan;
+		
+
+		return view("dosen/DosenPembimbing/verifikasi_log_bimbingan_mahasiswa_detail", array('bimbingan' => $bimbingan));
+			// return $bimbingan;
+		// return $_SESSION;
+	}
+	
+	function setujui_log($id_log_bimbingan){
+			session_start();
+			//return "lol";
+			$_SESSION["setujui_log"] = true;	
+			
+			DB::table('log_bimbingan')
+	 			->where('id_log_bimbingan', '=', $id_log_bimbingan )
+	 			->update(
+				
+				[
+				
+				'status' => 1,
+				'id_maker' =>  $_SESSION["id_user"],
+			
+				
+				]);
+			
+			
+			return redirect()->route('dosen/pembimbing/verifikasi-log-bimbingan');
+	}
+	
 
 	function set_verifikasi_bimbingan($status, $id_dpt) {
 		session_start();

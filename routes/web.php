@@ -173,6 +173,15 @@ Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'Dosen
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
 
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan/{id_tugas_akhir}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa']);
+
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa_detail']);
+
+
+Route::get('dosen/pembimbing/setujui-log/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/setujui-log/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@setujui_log']);
+
+
+
 
 //homepage managerial
 
