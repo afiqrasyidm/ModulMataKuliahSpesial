@@ -170,6 +170,8 @@ Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/v
 
 Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'DosenPembimbingController@set_verifikasi_bimbingan');
 
+Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan']);
+
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
 
