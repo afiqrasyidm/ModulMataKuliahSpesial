@@ -858,4 +858,20 @@ class MahasiswaController extends Controller
     	return view("mahasiswa/failed_upload_hasil_ta");
 	}
 
+	public function mahasiswa_homepage(){
+		session_start();
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+		$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
+					// return $tugasakhir;
+
+							if ($tugasakhir->status_tugas_akhir == "3"){
+							$tugasakhir = "testtt";
+						}
+
+						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $tugasakhir);
+						}
+		
+	
+	
+
 }

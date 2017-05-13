@@ -26,7 +26,7 @@ Route::post('/registrasi', ['as' => 'registrasi-submit', 'uses' => 'MainControll
 
 Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logout_sso']);
 
-Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MainController@mahasiswa_homepage']);
+Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MahasiswaController@mahasiswa_homepage']);
 
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
