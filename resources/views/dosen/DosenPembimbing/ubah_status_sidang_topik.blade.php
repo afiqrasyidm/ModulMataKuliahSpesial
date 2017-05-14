@@ -34,7 +34,7 @@ if (isset($_SESSION["izin_sidang"])) {
       unset($_SESSION["izin_sidang"]);
 }
 ?>
-<!-- test -->
+<!-- blm diizinin -->
 @if(isset($sidang_topik))
 
       <section class="content">
@@ -48,45 +48,81 @@ if (isset($_SESSION["izin_sidang"])) {
                        
                       </tr>
                     </thead>
-              <tbody>
+                <tbody>
     
-               @foreach ($sidang_topik as $sidang_topik)
+    @foreach ($sidang_topik as $sidang_topik1)
 
         
                <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <tr>
                 <td>
-                    {{$sidang_topik->nama_mahasiswa}}
+                     {{$sidang_topik1->nama_mahasiswa}}
                         
                 </td>
                 <td>
-                    {{$sidang_topik->judul_ta}}
+                    {{$sidang_topik1->judul_ta}}
                       
                 </td>
              
                 <td>
-                    <a href="/dosen/pembimbing/status-sidang-topik/{{$sidang_topik->id_tugas_akhir}}">
-                      <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
-                    </a>
-                  
-                  
 
+
+
+      
+      
+          <a href="/dosen/pembimbing/status-sidang-topik/{{$sidang_topik1->id_tugas_akhir}}/{{$sidang_topik1->id_mahasiswa}}">
+                      <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
+                     </a>      
+      
+      
+      
+    @endforeach
+@endif
+
+<!-- udh di izinin -->
+@if(isset($pengajuan))
+    @foreach ($pengajuan as $pengajuan1)
+
+        
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <tr>
+                <td>
+                     {{$pengajuan1->nama_mahasiswa}}
+                        
+                </td>
+                <td>
+                    {{$pengajuan1->judul_ta}}
+                      
+                </td>
+             
+                <td>
+
+<!-- test -->
+
+      
+      
+        <p><b>Siap Sidang</b></p> 
+      
+      
+    @endforeach
+
+                   
                 </td>
 
               </tr>
-  @endforeach
+  
               
 
               </tbody>
-              </table>
-    <center>
+            </table>
+  
        
     
 
-        </section><!-- /.content -->
+    </section><!-- /.content -->
    
      
-    @endif
+@endif
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>

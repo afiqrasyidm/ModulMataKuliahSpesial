@@ -34,6 +34,7 @@ else if($status_ta->id_referensi_status_ta<11){
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir pada halaman utama.";
 }
 
+
 else if($status_sidang == null){
 	echo "<b>Harap Melakukan Pengajuan Sidang Terlebih Dahulu!</b>";
 	echo " Anda tidak dapat melakukan upload dokumen sebelum melakukan pengajuan sidang tugas akhir";

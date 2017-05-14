@@ -43,35 +43,38 @@
     <ul class="treeview-menu">
             @if($_SESSION["mahasiswa"]->jenjang!="S1")
               <li><a href="{{route('mahasiswa/pengajuan-sidang-topik')}}"><i class="fa fa-angle-right"></i>
-              Pengajuan Sidang Topik
+              Permohonan Sidang Topik
               </a></li>
             @endif
 
         <li><a href="{{ route('mahasiswa/pengajuan-sidang-ta') }}"><i class="fa fa-angle-right"></i>
         <?php 
             if($_SESSION["mahasiswa"]->jenjang!=null){
-              echo "Pengajuan Permohonan Sidang";
+              echo "Permohonan Sidang TA";
             }
           ?>
         </a></li>      
+       <li><a href="#"><i class="fa fa-angle-right"></i> Upload Dokumen</a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
+            <?php 
+                if($_SESSION["mahasiswa"]->jenjang!= null){
+                  echo "Upload Dokumen TA";
+                }
+              ?>
+            
+          </a></li>
 
-      <li><a href="{{ route('mahasiswa/upload-hasil-ta') }}"><i class="fa fa-angle-right"></i>
-        <?php 
-            if($_SESSION["mahasiswa"]->jenjang!= null){
-              echo "Dokumen TA";
-            }
-          ?>
-        
-      </a></li>
-
-       <li><a href="{{ route('mahasiswa/upload-hasil-ta-final') }}"><i class="fa fa-angle-right"></i>
-        <?php 
-            if($_SESSION["mahasiswa"]->jenjang!= null){
-              echo "Dokumen TA Final";
-            }
-          ?>
-        
-      </a></li>
+           <li><a href="{{ route('mahasiswa/upload-hasil-ta-final') }}"><i class="fa fa-angle-right"></i>
+            <?php 
+                if($_SESSION["mahasiswa"]->jenjang!= null){
+                  echo "Upload Dokumen TA Final";
+                }
+              ?>
+            
+          </a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   
