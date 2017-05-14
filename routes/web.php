@@ -173,10 +173,19 @@ Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'Dosen
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
 
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan/{id_tugas_akhir}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa']);
+
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa_detail']);
+
+
+Route::get('dosen/pembimbing/setujui-log/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/setujui-log/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@setujui_log']);
+
+
+
 
 //homepage managerial
 
-Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'MainController@managerial_homepage']);
+Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'ManagerialController@managerial_homepage']);
 
 
 
@@ -233,9 +242,13 @@ Route::get('dosen/lihat-hasil-ta', ['as' => 'dosen/lihat-hasil-ta', 'uses' => 'D
 //list pengajuan sidang (Verifikasi oleh SBA)
 Route::get('staf/verifikasi-permohonan-sidang', ['as' => 'staf/verifikasi-permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang']);
 
+//Form Verifikasi sidang SBA
+Route::get('staf/form-verifikasi-sidang-ta', ['as' => 'staf/form-verifikasi-sidang-ta', 'uses' => 'StafController@form_verifikasi_sidang_ta']);
+
 //Tidak Verifikasi sidang SBA
 Route::get('staf/failed-verifikasi-permohonan-sidang', ['as' => 'staf/failed-verifikasi-permohonan-sidang', 'uses' => 'StafController@failed_verifikasi_permohonan_sidang']);
 
+//Verifikasi sidang SBA
 Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 
@@ -243,19 +256,25 @@ Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-
 Route::get('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@ubah_pengajuan_sidang']);
 Route::post('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 
-
-//Verifikasi sidang SBA
-Route::get('staf/form-verifikasi-sidang-ta', ['as' => 'staf/form-verifikasi-sidang-ta', 'uses' => 'StafController@form_verifikasi_sidang_ta']);
-
-
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang', ['as' => 'dosen/pembimbing/list-jadwal-sidang', 'uses' => 'DosenPembimbingController@list_jadwal_sidang']);
 
+//list pengajuan sidang topik (Verifikasi oleh SBA)
+Route::get('staf/verifikasi-permohonan-sidang-topik', ['as' => 'staf/verifikasi-permohonan-sidang-topik', 'uses' => 'StafController@verifikasi_permohonan_sidang_topik']);
+
+//Form Verifikasi sidang SBA
+Route::get('staf/form-verifikasi-sidang-topik', ['as' => 'staf/form-verifikasi-sidang-topik', 'uses' => 'StafController@form_verifikasi_sidang_topik']);
+
+//Verifikasi sidang topik SBA
+Route::get('/staf/permohonan-sidang-topik/{id_pengajuan}', ['as' => 'staf/permohonan-sidang-topik/', 'uses' => 'StafController@verifikasi_permohonan_sidangtopikPost']);
+Route::post('/staf/permohonan-sidang-topik/{id_pengajuan}', ['as' => 'staf/permohonan-sidang-topik', 'uses' => 'StafController@verifikasi_permohonan_sidang_topik_submit']);
+
+//Ubah sidang topik
+Route::get('staf/ubah-pengajuan-sidang-topik/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang-topik', 'uses' => 'StafController@ubah_pengajuan_sidang_topik']);
+Route::post('staf/ubah-pengajuan-sidang-topik/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang-topik', 'uses' => 'StafController@verifikasi_permohonan_sidang_topik_submit']);
+
 //ubah status selesai sidang Dosbem
-
 Route::get('/dosen/pembimbing/sidang-selesai/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/sidang-selesai/', 'uses' => 'DosenPembimbingController@sidang_selesai']);
-
-
 
 //list jadwal sidang Dosen Penguji
 Route::get('/dosen/penguji/list-jadwal-sidang', ['as' => 'dosen/penguji/list-jadwal-sidang', 'uses' => 'DosenPengujiController@list_jadwal_sidang']);
@@ -284,8 +303,9 @@ Route::post('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '
 //ubah status siap sidang
 Route::get('/dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbing/ubah-status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topik']);
 
+Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
-Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
+// Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhirid_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
 
 //upload hasil ta final

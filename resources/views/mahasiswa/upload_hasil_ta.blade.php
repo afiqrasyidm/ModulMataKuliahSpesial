@@ -22,7 +22,7 @@
               <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <center><h1 class="header-title">Upload Hasil TA</h1><br></center>
+                  <center><h1 class="header-title">Upload Hasil TA</h1></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   
@@ -82,14 +82,20 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
 
               </tbody>
               </table>
-    <center>
+        
+@if($status_ta == 12)
+  <br><br>
+             <center>     
+             Silahkan Upload Dokumen Revisi pada Menu <b>"Upload Dokumen TA Final"</b>
+                   
+             </center> 
        
-       
+@else($status_ta==11)
+
+  <center>
           <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah dokumen</button>
-        </a>
-      </div>
-
-
+          </a>
+        </center>
    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -103,7 +109,8 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
       </div>
 
       <div>
-          <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
+
+      <a href="/mahasiswa/ubah-dokumen-ta/{{$hasil_ta->id_tugas_akhir}}"   >
             <center><button  class="btn btn-primary" >Iya</button></center>
           </a>
         
@@ -115,6 +122,8 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
     </div>
     </div>
 
+   
+@endif
         </section><!-- /.content -->
 
 
@@ -157,7 +166,7 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
     <form action="{{ url('mahasiswa/upload-hasil-ta') }}" enctype="multipart/form-data" method="POST">
 
       {{ csrf_field() }}
-
+<br>
       
        <i><center>*Upload Dokumen dengan Format PDF</center><br></i>
         <div class="center-button text-resize">
@@ -165,25 +174,25 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
            
           <input type="file" name="file" />
             
-         <br><br>
+         <br>
 
        
          </div>
          <center>
           <button type="submit" class="btn btn-primary">Upload</button>
-
+<br><br>
         </center>
  
     
 
     </form>
-
+ 
 
    
 
 <!--   end -->
 @endif
-                </div><!-- /.box-body -->
+              </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>
             </div><!--/.col (right) -->

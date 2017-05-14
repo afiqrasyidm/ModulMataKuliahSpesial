@@ -11,15 +11,22 @@
 <div class="center-form">
 <div class=".col-md-11">
 
-
+ 
 <br><br>
+
+              <!-- general form elements disabled -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <center><h1 class="header-title">List Sidang Topik</h1><br></center>
+                </div><!-- /.box-header -->
+                <div class="box-body">
 <?php
 if (isset($_SESSION["detail_sidang_submit_first"])) {
   
       echo"
       <div class='alert alert-success'>
                     
-                   <i class='icon fa fa-check'></i> TA telah selesai dan nilai telah disubmit
+                   <i class='icon fa fa-check'></i> Sidang topik telah selesai dan nilai telah disubmit
                    
               </div>
       ";
@@ -28,13 +35,6 @@ if (isset($_SESSION["detail_sidang_submit_first"])) {
       unset($_SESSION["detail_sidang_submit_first"]);
 }
 ?>
-              <!-- general form elements disabled -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <center><h1 class="header-title">List Sidang Topik</h1><br></center>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                 
 <!-- test -->
 @if(isset($sidang_topik))
 

@@ -225,10 +225,7 @@ class MainController extends Controller
 		session_start();
 		return view('staf/homepage_staf');
 	}	
-	public function managerial_homepage(){
-		session_start();
-		return view('managerial/homepage_managerial');
-	}
+	
 
 	public function dosen_homepage(){
 		session_start();
