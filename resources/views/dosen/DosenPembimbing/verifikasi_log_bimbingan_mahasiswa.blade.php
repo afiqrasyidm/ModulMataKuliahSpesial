@@ -27,8 +27,8 @@
 		    <thead>
 		      <tr>
 
-		        <th>Waktu Awal Bimbingan </th>
-				<th>Waktu Akhir Bimbingan </th>
+		        <th>Hari</th>
+				<th>Waktu Bimbingan </th>
 				<th>Detail</th>
 				
 				
@@ -42,13 +42,19 @@
 										@if($data->status_bimbingan == 0)
 										  <td>
 											
-											  {{$data->waktu_mulai}} 
+											  {{$data->nama_hari}} 
 												
 									
 										  </td>
 										  
 										  <td>
-												{{$data->waktu_akhir}}
+												
+											{{$data->waktu_mulai}} - 
+											@php
+												$value = strtotime($data->waktu_mulai) + 60*60;
+												$time = date('H:i:s', $value);
+												echo $time;
+											@endphp
 										  </td>
 										  
 										  <td>
