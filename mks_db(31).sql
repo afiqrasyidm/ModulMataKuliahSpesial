@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2017 at 03:07 PM
+-- Generation Time: May 14, 2017 at 10:36 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -34,17 +34,18 @@ CREATE TABLE `dosen` (
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `id_dosen` int(10) UNSIGNED NOT NULL,
-  `interest` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `interest` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_jadwal_submit` int(2) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`nama_dosen`, `NIP`, `id_user`, `created_at`, `id_maker`, `updated_at`, `id_dosen`, `interest`) VALUES
-('Mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis'),
-('Budi', '12311', 9, NULL, NULL, NULL, 2, 'Matdas'),
-('Anto', '444', 9, NULL, NULL, NULL, 3, 'Matdis');
+INSERT INTO `dosen` (`nama_dosen`, `NIP`, `id_user`, `created_at`, `id_maker`, `updated_at`, `id_dosen`, `interest`, `is_jadwal_submit`) VALUES
+('Mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis', NULL),
+('Budi', '12311', 9, NULL, NULL, NULL, 2, 'Matdas', NULL),
+('Anto', '444', 9, NULL, NULL, NULL, 3, 'Matdis', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,6 +171,19 @@ INSERT INTO `feedback_tugas_akhir` (`id_feedback_tugas_akhir`, `komentar`, `upda
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hari`
+--
+
+CREATE TABLE `hari` (
+  `id_hari` int(10) NOT NULL,
+  `nama_hari` varchar(10) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hasil_ta`
 --
 
@@ -231,10 +245,9 @@ INSERT INTO `industri` (`id_industri`, `email`, `nama_industri`, `nama_lengkap`,
 CREATE TABLE `jadwal_dosen` (
   `id_jadwal_dosen` int(10) UNSIGNED NOT NULL,
   `id_tugas_akhir` int(10) NOT NULL,
-  `waktu_mulai` datetime DEFAULT NULL,
-  `waktu_akhir` datetime DEFAULT NULL,
+  `waktu_mulai` time DEFAULT NULL,
+  `id_hari` int(10) DEFAULT NULL,
   `id_dosen` int(10) NOT NULL,
-  `status` int(2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -244,8 +257,8 @@ CREATE TABLE `jadwal_dosen` (
 -- Dumping data for table `jadwal_dosen`
 --
 
-INSERT INTO `jadwal_dosen` (`id_jadwal_dosen`, `id_tugas_akhir`, `waktu_mulai`, `waktu_akhir`, `id_dosen`, `status`, `created_at`, `id_maker`, `updated_at`) VALUES
-(1, 433, '2017-05-11 00:00:00', '2017-05-18 00:00:00', 1, 0, NULL, NULL, NULL);
+INSERT INTO `jadwal_dosen` (`id_jadwal_dosen`, `id_tugas_akhir`, `waktu_mulai`, `id_hari`, `id_dosen`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 433, '00:00:00', 1, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1130,6 +1143,12 @@ ALTER TABLE `feedback_tugas_akhir`
   ADD PRIMARY KEY (`id_feedback_tugas_akhir`);
 
 --
+-- Indexes for table `hari`
+--
+ALTER TABLE `hari`
+  ADD PRIMARY KEY (`id_hari`);
+
+--
 -- Indexes for table `hasil_ta`
 --
 ALTER TABLE `hasil_ta`
@@ -1289,6 +1308,11 @@ ALTER TABLE `fakultas`
 --
 ALTER TABLE `feedback_tugas_akhir`
   MODIFY `id_feedback_tugas_akhir` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `hari`
+--
+ALTER TABLE `hari`
+  MODIFY `id_hari` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `hasil_ta`
 --
