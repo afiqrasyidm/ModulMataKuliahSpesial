@@ -35,21 +35,32 @@
 										
 										 
 									<tr>
-										<th>Waktu Awal Bimbingan </th>
+										<th>Hari  Bimbingan </th>
 				
 										  <td>
 										
-											  {{$bimbingan->waktu_mulai}} 
+											  {{$bimbingan->nama_hari}} 
 										
 									
 										  </td>
 									</tr>
 										 
 									<tr> 
-											<th>Waktu Akhir Bimbingan </th>
+											<th>Waktu  Bimbingan </th>
+										
 										
 										  <td>
-												{{$bimbingan->waktu_akhir}}
+										  
+											{{$bimbingan->waktu_mulai}} - 
+											@php
+												$value = strtotime($bimbingan->waktu_mulai) + 60*60;
+												$time = date('H:i:s', $value);
+												echo $time;
+											@endphp
+											
+												
+												
+												
 										  </td>
 									</tr>
 									

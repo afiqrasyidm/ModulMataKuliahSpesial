@@ -195,6 +195,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
 			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
 			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
+			->leftJoin('hari', 'jadwal_dosen.id_hari', 'hari.id_hari')
 		
 			
 			->get();
@@ -217,6 +218,8 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
 			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
 			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
+			->leftJoin('hari', 'jadwal_dosen.id_hari', 'hari.id_hari')
+		
 			->where('log_bimbingan.id_log_bimbingan', '=',  $id_log_bimbingan)
 			
 			
