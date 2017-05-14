@@ -32,7 +32,7 @@
     </a>
     <ul class="treeview-menu">
       <li><a href="{{ route('mahasiswa/pengajuan-pembimbing-ta') }}"><i class="fa fa-angle-right"></i>Pengajuan Pembimbingan TA</a></li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Jadwal Bimbingan</a></li>
+      <li><a href="{{ route('mahasiswa/jadwal-bimbingan') }}"><i class="fa fa-angle-right"></i>Jadwal Bimbingan</a></li>
       <li><a href=""><i class="fa fa-angle-right"></i>Log Bimbingan</a></li>
     </ul>
   </li>

@@ -955,7 +955,11 @@ class MahasiswaController extends Controller
     	return view("mahasiswa/failed_upload_hasil_ta_final");
 	}
 
+	function jadwal_bimbingan() {
+		session_start();
 
+		return view("mahasiswa/jadwal_bimbingan");
+	}
  
 
 }

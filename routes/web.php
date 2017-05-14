@@ -46,7 +46,7 @@ Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-p
 
 Route::post('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta_submit']);
 
-
+Route::get('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan']);
 
 Route::get('/mahasiswa/pengumuman', ['as' => 'mahasiswa/pengumuman', 'uses' => 'MahasiswaController@pengumuman']);
 
@@ -171,6 +171,8 @@ Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/v
 Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'DosenPembimbingController@set_verifikasi_bimbingan');
 
 Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan']);
+
+Route::post('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan_submit']);
 
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
