@@ -499,15 +499,19 @@ class MahasiswaController extends Controller
 
 			//Jika sudah siap mengajukan sidang topik
 			if($tugas_akhir->status_tugas_akhir>=10){
+				
 				if($sidang_topik!=null){
+
 					//Jika belum mengajukan sidang topik
 					if($sidang_topik->status==1){
+
 						if($tugas_akhir!=NULL){
 							//pengajuan sidang topik
 							$informasi_topik = DB::table('tugas_akhir')
 								->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
 								->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 								->get()->first();
+								
 			  				return view("mahasiswa/pengajuan_sidang_topik", array('informasi_topik' => $informasi_topik, 'sidang_topik' => $sidang_topik));
 						}
 						//Jika pengajuan sidang topik ada tapi topik terhapus

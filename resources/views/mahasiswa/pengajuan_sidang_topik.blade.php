@@ -13,7 +13,7 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
-@if(!isset($sidang_topik))
+@if($sidang_topik->status == 1)
 <div class="box box-primary">
 
     <div class="box-header with-border">
