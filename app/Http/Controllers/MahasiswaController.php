@@ -413,7 +413,7 @@ class MahasiswaController extends Controller
 
 	public function failed_pengajuan_sidang_topik(){
 		session_start();
-    	return view("mahasiswa/failed_pengajuan_sidang_t");
+    	return view("mahasiswa/failed_pengajuan_sidang_topik");
 	}
 
 	public function pengajuan_sidang_ta(){
@@ -488,6 +488,10 @@ class MahasiswaController extends Controller
 
 		$sidang_topik = Pengajuan_sidang_topik::where('id_mahasiswa', $id_mahasiswa)->get()->first();
 		
+		$status_ta = DB::table('tugas_akhir')
+							->leftJoin('referensi_status_ta', 'tugas_akhir.status_tugas_akhir', '=', 'referensi_status_ta.id_referensi_status_ta')
+							->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
+							->get()->first();
 		//Jika sudah mengambil topik
 		if($tugas_akhir!= null){
 			//Jika sudah siap mengajukan sidang topik
@@ -504,7 +508,7 @@ class MahasiswaController extends Controller
 					}
 					//Jika pengajuan sidang topik ada tapi topik terhapus
 					else{
-						 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir));
+						 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir,'status_ta' => $status_ta));
 					}
 				}
 				//Jika sudah mengajukan sidang topik
@@ -528,12 +532,12 @@ class MahasiswaController extends Controller
 			}
 			//Belum siap mengajukan sidang topik
 			else{
-			 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir));
-			}
+			 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir,'status_ta' => $status_ta));
+		
 		}
 		//Jika belum mengambil topik
 		else{
-			 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir));
+			 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir,'status_ta' => $status_ta));
 			}
 	}
 
