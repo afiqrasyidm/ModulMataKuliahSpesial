@@ -18,11 +18,23 @@
           </div><!-- /.box-header -->
           <div class="box-body">
           <center>
+
+         
      <?php 
             if($_SESSION["mahasiswa"]->jenjang=="S1"){
+              // if ($tugasakhir == NULL){
+              //   echo "haha";
+              // }
+              if ($tugasakhir == NULL){
               echo "<img src='";
               echo asset('img/s1.png');
               echo "' style='width: 75% ; height: auto'/>";
+            }
+            else {
+              echo "image yg sesuai";
+            }
+
+             
             }
             else{
               echo "<img src='";

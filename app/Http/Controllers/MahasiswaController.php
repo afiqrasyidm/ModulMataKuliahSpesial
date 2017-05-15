@@ -843,23 +843,28 @@ class MahasiswaController extends Controller
     	return view("mahasiswa/failed_upload_hasil_ta");
 	}
 
-<<<<<<< HEAD
+
 	public function mahasiswa_homepage(){
 		session_start();
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 		$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
-					// return $tugasakhir;
+		$status = "";			
+					if ($tugasakhir != NULL){
+					$status = $tugasakhir->status_tugas_akhir;
+				}
 
-							if ($tugasakhir->status_tugas_akhir == "3"){
-							$tugasakhir = "testtt";
-						}
 
-						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $tugasakhir);
+						// 	if ($tugasakhir->status_tugas_akhir == NULL){
+						// 	$tugasakhir = "testtt";
+						// }
+						// $status = $tugasakhir->status_tugas_akhir;
+
+						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $status);
 						}
 		
 	
 	
-=======
+
 	function upload_hasil_ta_final() {
     	session_start();
 
@@ -973,7 +978,6 @@ class MahasiswaController extends Controller
 	}
 
 
- 
->>>>>>> 95296b43e41d450b07b7611e76c92b7935c31091
+
 
 }
