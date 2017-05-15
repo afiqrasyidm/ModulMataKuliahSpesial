@@ -984,6 +984,7 @@ class MahasiswaController extends Controller
 				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
 				->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
 
+		return 'tes';
 		if(sizeof(Input::get('pilih_jadwal')) < 1) {
 			//Todo
 		}
@@ -996,8 +997,8 @@ class MahasiswaController extends Controller
 
 				
 				DB::table('jadwal_dosen')
-				->where('id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->update(array('id_tugas_akhir' => 1));
+				->where('id_jadwal_dosen', $jadwals->id_jadwal_dosen)
+				->update(array('id_tugas_akhir' => $tugas_akhir->id_tugas_akhir));
 			}
 
 		}

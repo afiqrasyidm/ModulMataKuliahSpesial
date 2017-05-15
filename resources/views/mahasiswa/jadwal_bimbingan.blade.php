@@ -33,7 +33,7 @@
 					<div class="box-body">
 						<div class="col-md-2"></div>
 						<div class="col-md-8">
-							<form action="">
+							<form action="" method="post">
 								<table class="table-striped" style="width:100%; table-layout: fixed">
 									<tr>
 										<th style="width:10%;">No.</th>
@@ -54,13 +54,13 @@
 								@endforeach
 								</table>
 								<br>
+								*Pilih jadwal bimbingan anda. <br>
+								Apabila tidak ada jadwal yang sesuai, harap hubungi dosen pembimbing anda <br><br>
+								<center><button class="btn btn-primary">Simpan</button></center>
 							</form>
-							*Pilih jadwal bimbingan anda. <br>
-							Apabila tidak ada jadwal yang sesuai, harap hubungi dosen pembimbing anda <br>
 						</div>
 						<div class="col-md-2"></div>
 					</div>
-					<center><button class="btn btn-primary">Simpan</button></center>
 					<br>
 		        </div><!-- /.box-body -->
 		    </div><!-- /.box -->
