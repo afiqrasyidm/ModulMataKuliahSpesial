@@ -27,9 +27,20 @@ if($tugas_akhir == null){
  	echo "</a></p>";
 }
 
+else if($tugas_akhir->status_tugas_akhir==10 AND $sidang_topik == null){
+	echo "<b>Harap menunggu persetujuan izin sidang! </b>";
+	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
+	echo $status_ta->status;
+	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
+	echo "<a href='";
+ 	echo route('homepage/mahasiswa');
+ 	echo "'/>";
+ 	echo " disini";
+ 	echo "</a></p>";
+}
+
 else if($tugas_akhir->status_tugas_akhir==9){
 	echo "<b>Harap menunggu persetujuan Dosen Pembimbing!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -42,7 +53,6 @@ else if($tugas_akhir->status_tugas_akhir==9){
 
 else if($tugas_akhir->status_tugas_akhir==8){
 	echo "<b>Harap mengajukan Dosen Pembimbing terlebih dahulu!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -55,7 +65,6 @@ else if($tugas_akhir->status_tugas_akhir==8){
 
 else if($tugas_akhir->status_tugas_akhir==7){
 	echo "<b>Harap menunggu verifikasi Permohonan Tugas Akhir terlebih dahulu!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -68,7 +77,6 @@ else if($tugas_akhir->status_tugas_akhir==7){
 
 else if($tugas_akhir->status_tugas_akhir==6){
 	echo "<b>Harap menunggu verifikasi Permohonan Tugas Akhir terlebih dahulu!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -81,7 +89,6 @@ else if($tugas_akhir->status_tugas_akhir==6){
 
 else if($tugas_akhir->status_tugas_akhir==5){
 	echo "<b>Harap mengajukan permohonan Tugas Akhir terlebih dahulu!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -95,7 +102,6 @@ else if($tugas_akhir->status_tugas_akhir==5){
 
 else if($tugas_akhir->status_tugas_akhir==4){
 	echo "<b>Topik Anda tidak disetujui, harap mengulang pengambilan topik kembali!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -108,7 +114,6 @@ else if($tugas_akhir->status_tugas_akhir==4){
 
 else if($tugas_akhir->status_tugas_akhir==3){
 	echo "<b>Topik Anda masih dalam status menunggu persetujuan!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -121,7 +126,6 @@ else if($tugas_akhir->status_tugas_akhir==3){
 
 else if($tugas_akhir->status_tugas_akhir==2){
 	echo "<b>Permohonan Tugas Akhir Anda ditolak!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
@@ -134,7 +138,6 @@ else if($tugas_akhir->status_tugas_akhir==2){
 
 else if($tugas_akhir->status_tugas_akhir==2){
 	echo "<b>Permohonan Tugas Akhir Anda ditolak!</b>";
-	echo "<br>";
 	echo "Anda tidak diperkenankan melakukan pengajuan permohonan sidang topik dalam status '";
 	echo $status_ta->status;
 	echo "'. Sebagai panduan, lihat alur pengerjaan tugas akhir";
