@@ -533,7 +533,7 @@ class MahasiswaController extends Controller
 			//Belum siap mengajukan sidang topik
 			else{
 			 return view("mahasiswa/failed_pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir,'status_ta' => $status_ta));
-		
+			}
 		}
 		//Jika belum mengambil topik
 		else{
