@@ -961,7 +961,50 @@ class MahasiswaController extends Controller
 	function jadwal_bimbingan() {
 		session_start();
 
-		return view("mahasiswa/jadwal_bimbingan");
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+		$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+				->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->get()->first();
+
+		$jadwal_dosen = DB::table('jadwal_dosen')
+				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+				->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();				
+
+		return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen' => $jadwal_dosen));
+	}
+
+	function jadwal_bimbingan_submit() {
+		session_start();
+
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    	$jadwal_dosen = DB::table('jadwal_dosen')
+				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+				->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
+
+		return 'tes';
+		if(sizeof(Input::get('pilih_jadwal')) < 1) {
+			//Todo
+		}
+		else if(sizeof(Input::get('pilih_jadwal')) > 3){
+			//Todo
+		}
+		else {
+			foreach (Input::get('pilih_jadwal') as $jadwals=>$j) {
+				$result_explode = explode('|', $j);
+
+				
+				DB::table('jadwal_dosen')
+				->where('id_jadwal_dosen', $jadwals->id_jadwal_dosen)
+				->update(array('id_tugas_akhir' => $tugas_akhir->id_tugas_akhir));
+			}
+
+		}
 	}
  
 

@@ -46,6 +46,8 @@ Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-p
 
 Route::post('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta_submit']);
 
+Route::post('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan_submit']);
+
 Route::get('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan']);
 
 Route::get('/mahasiswa/pengumuman', ['as' => 'mahasiswa/pengumuman', 'uses' => 'MahasiswaController@pengumuman']);
