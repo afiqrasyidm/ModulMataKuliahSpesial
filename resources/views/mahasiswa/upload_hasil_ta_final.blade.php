@@ -22,7 +22,7 @@
               <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <center><h1 class="header-title">Upload Hasil TA</h1><br></center>
+                  <center><h1 class="header-title">Upload Hasil TA</h1></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   
@@ -67,6 +67,7 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
               <table class="table table-bordered">
 
               <tbody>
+
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dokumen</th>
                 <td bgcolor="#c0c5cc">
@@ -158,20 +159,19 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
 
       {{ csrf_field() }}
 
-      
+      <br>
        <i><center>*Upload Dokumen dengan Format PDF</center><br></i>
         <div class="center-button text-resize">
 
            
           <input type="file" name="file" />
             
-         <br><br>
-
+         <br>
        
          </div>
          <center>
           <button type="submit" class="btn btn-primary">Upload</button>
-
+          <br><br>
         </center>
  
     

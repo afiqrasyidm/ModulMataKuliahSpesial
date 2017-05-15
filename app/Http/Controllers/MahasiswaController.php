@@ -751,13 +751,14 @@ class MahasiswaController extends Controller
     			$status_sidang= Status_sidang::where('id_referensi_status_sidang', $pengajuan_sidang->status)->get()->first();
     			//return $status_sidang;
 
-	    		if($pengajuan_sidang->status==2 && $tugas_akhir->status_tugas_akhir==11){
+	    		if($pengajuan_sidang->status==2 && $tugas_akhir->status_tugas_akhir>10){
 
 			    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
 			        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+			        $status_ta = $status_ta->id_referensi_status_ta;
 
 			        if($hasil_ta!=NULL){
-			    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta) );
+			    		return view("mahasiswa/upload_hasil_ta " , array('hasil_ta' => $hasil_ta, 'status_ta' => $status_ta) );
 
 			    	}
 			    	return view("mahasiswa/upload_hasil_ta");
@@ -799,7 +800,7 @@ class MahasiswaController extends Controller
 	        if($hasil_ta==NULL){
 	        	$hasil_ta = new Hasil_ta;
 	    		$this->validate($request, [
-	            	'file' => 'required|mimes:pdf|max:10000',
+	            	'file' => 'required|mimes:pdf',
 	       		 ]);
 
 
@@ -822,13 +823,16 @@ class MahasiswaController extends Controller
     	public function ubah_dokumen_ta($id_tugas_akhir){
     		session_start();
 
+   	
 			$hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir )->get()->first();
+
 
 
 					DB::table('hasil_ta')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 
 					$_SESSION["mahasiswa_perubahan_dokumen"] = true;
 			return redirect()->route('mahasiswa/upload-hasil-ta');
+		
 	}
 
 	 	public function failed_upload_hasil_ta(){
@@ -837,5 +841,124 @@ class MahasiswaController extends Controller
 
     	return view("mahasiswa/failed_upload_hasil_ta");
 	}
+
+	function upload_hasil_ta_final() {
+    	session_start();
+
+   		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$status_ta =0;
+
+    	if($tugas_akhir!= null){
+    		$pengajuan_sidang = Pengajuan_sidang::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    		$status_ta= Status_ta::where('id_referensi_status_ta', $tugas_akhir->status_tugas_akhir)->get()->first();
+    	
+    		
+	    		if( $tugas_akhir->status_tugas_akhir==12){
+
+			    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+			        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+
+			        if($hasil_ta->dokumen_revisi!=NULL){
+			    		return view("mahasiswa/upload_hasil_ta_final " , array('hasil_ta' => $hasil_ta) );
+
+			    	}
+			    	return view("mahasiswa/upload_hasil_ta_final");
+			    }
+			    else
+			    {
+			    	return view("mahasiswa/failed_upload_hasil_ta_final", array( 'status_ta' => $status_ta ));
+			    }
+		}
+			
+
+	    
+	    else{
+
+	    	return view("mahasiswa/failed_upload_hasil_ta_final", array( 'status_ta' => $status_ta));
+	    }
+    }
+
+
+  function upload_hasil_ta_finalPost(Request $request)
+
+    {	session_start();
+
+    	$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$npm_mahasiswa = $mahasiswa->NPM;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	$id_tugas_akhir = $tugas_akhir->id_tugas_akhir;
+
+
+        $hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir)->get()->first();
+
+
+
+
+	        if($hasil_ta!=NULL){
+	        	 $id_hasil_ta = $hasil_ta->id_hasil_ta; 
+	        	
+	    		$this->validate($request, [
+	            	'file' => 'required|mimes:pdf',
+	       		 ]);
+
+
+          		$fileName = $npm_mahasiswa.'_Final'.'.'.$request->file->getClientOriginalExtension();
+
+
+	        	$request->file->move(public_path('files'), $fileName);
+	        	//return $fileName;
+
+				DB::table('hasil_ta')
+	            ->where('id_hasil_ta', $id_hasil_ta)
+	            ->update(
+				
+				['id_maker' =>  $_SESSION["id_user"],
+				 'dokumen_revisi' => $fileName,
+				]);
+
+	            $_SESSION["detail_upload_submit_first"] = true;	
+				return back()
+		    		->with('path',$fileName);
+		    
+		}
+    }
+
+
+    	public function ubah_dokumen_ta_final($id_tugas_akhir){
+    		session_start();
+
+			$hasil_ta = Hasil_ta::where('id_tugas_akhir', $id_tugas_akhir )->get()->first();
+
+ 			$id_hasil_ta = $hasil_ta->id_hasil_ta; 
+
+ 			DB::table('hasil_ta')
+	            ->where('id_hasil_ta', $id_hasil_ta)
+	            ->update(
+				
+				['id_maker' =>  $_SESSION["id_user"],
+				 'dokumen_revisi' => NULL,
+				]);
+					
+					$_SESSION["mahasiswa_perubahan_dokumen"] = true;
+			return redirect()->route('mahasiswa/upload-hasil-ta-final');
+	}
+
+
+	 	public function failed_upload_hasil_ta_final(){
+
+		session_start();
+
+    	return view("mahasiswa/failed_upload_hasil_ta_final");
+	}
+
+	function jadwal_bimbingan() {
+		session_start();
+
+		return view("mahasiswa/jadwal_bimbingan");
+	}
+ 
 
 }

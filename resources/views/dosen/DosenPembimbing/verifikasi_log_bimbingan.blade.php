@@ -2,7 +2,7 @@
 
 @extends('layouts.layout_dosen_pembimbing')
 
-@section('title','Lihat Hasil TA')
+@section('title','Log Bimbingan')
 
 
 @section('mainContent')
@@ -11,6 +11,22 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
+<?php
+if (isset($_SESSION["setujui_log"])) {
+	if($_SESSION["setujui_log"]){
+		
+			echo"
+			<div class='alert alert-success'>
+                    
+                   <i class='icon fa fa-check'></i>Bimbingan  Disetujui
+                   
+              </div>
+			";
+			
+			unset($_SESSION["setujui_log"]);
+	}
+}
+?>
 
 <br><br>
               <!-- general form elements disabled -->
@@ -37,7 +53,7 @@
 										  @foreach ($bimbingan as $data)
 									<tr>
 										  <td>
-											<a  href="#">
+											<a  href="/dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{{$data->id_tugas_akhir}}">
 											  {{$data->nama_mahasiswa}}
 											</a>
 										  </td>
