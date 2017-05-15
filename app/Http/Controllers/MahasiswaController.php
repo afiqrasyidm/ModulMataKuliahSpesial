@@ -524,7 +524,6 @@ class MahasiswaController extends Controller
 						$i=1;
 
 						$informasi_sidang_topik = DB::table('pengajuan_sidang_topik')->get()->first();
-
 						return view("mahasiswa/pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir, 'informasi_topik'=> $informasi_topik,'sidang_topik' => $sidang_topik, 'informasi_sidang_topik'=> $informasi_sidang_topik, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));				}
 			}
 			//Belum siap mengajukan sidang topik
