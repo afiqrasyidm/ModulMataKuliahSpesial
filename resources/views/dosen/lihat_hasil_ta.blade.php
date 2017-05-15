@@ -74,9 +74,13 @@
 												@endif
 											  
 											</td>
-											<td>
 												@if( !is_null($tugas_akhir->id_hasil_ta))
-													 <a href="/files/{{$tugas_akhir->dokumen}}" >	Download </a>
+
+													@if (!is_null($tugas_akhir->dokumen_revisi))
+													 <a href="/files/{{$tugas_akhir->dokumen_revisi}}">	Download </a>
+													@else
+													 <a href="/files/{{$tugas_akhir->dokumen}}">	Download </a>
+													@endif	 
 												@else
 
 												@endif											
