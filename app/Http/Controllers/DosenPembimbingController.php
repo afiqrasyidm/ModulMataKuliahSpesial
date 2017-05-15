@@ -454,6 +454,8 @@ function detail_sidang_topik($id_tugas_akhir){
 		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
 
 		$jadwals = DB::table('jadwal_dosen')
+					->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir','=','jadwal_dosen.id_tugas_akhir')
+					->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa','=','mahasiswa.id_mahasiswa')
 					->where('id_dosen', $id_dosen)
 					->get();
 
@@ -489,6 +491,8 @@ function detail_sidang_topik($id_tugas_akhir){
 		}
 
 		$jadwals = DB::table('jadwal_dosen')
+					->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir','=','jadwal_dosen.id_tugas_akhir')
+					->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa','=','mahasiswa.id_mahasiswa')
 					->where('id_dosen', $id_dosen)
 					->get();
 

@@ -194,17 +194,26 @@
 				    		for($i = 0; $i < count($jadwals); $i++) {
 				    			$hari = $jadwals[$i]->id_hari;
 				    			$jam = $jadwals[$i]->waktu_mulai;
-								$myArray[$hari-1][(int)explode(':', $jam-8)[0]] = 1;
+								$myArray[$hari-1][(int)explode(':', $jam-8)[0]] = [1, $jadwals[$i]->nama_mahasiswa];
 							}		    	
 
 				    	@endphp
 				    	<div class="col-md-12">
-				    		<div class="col-md-4">
+				    		<div class="col-md-6">
 				    			<table>
 				    				<tr>
 				    					<th style="background-color: #3c8dbc; min-width: 30px;"></th>
 				    					
-				    					<td style="padding-left: 10px;">: Alokasi jadwal untuk bimbingan TA</td>
+				    					<td style="padding-left: 10px;">: Alokasi jadwal untuk bimbingan belum diambil mahasiswa</td>
+				    				</tr>
+				    				<tr><td><br></td></tr>
+				    				<tr>
+				    					<th style="background-color: #222d32; min-width: 30px;"></th>
+
+				    					<td style="padding-left: 10px;">: Jadwal sudah diambil mahasiswa</td>
+				    				</tr>
+				    				<tr>
+				    					<td><br></td>
 				    				</tr>
 				    			</table>
 				    		</div>
@@ -229,10 +238,14 @@
 							    	</tr>
 							    	@for($i = 8; $i <= 20; $i++)
 							    	<tr style="height:30px;">
-							    		<th>{{$i<10 ? '0'.$i: $i}}:00-{{$i+1<10 ? '0'.($i+1): ($i+1)}}:00</th>
+							    		<th style="">{{$i<10 ? '0'.$i: $i}}:00-{{$i+1<10 ? '0'.($i+1): ($i+1)}}:00</th>
 							    		@for($j = 0; $j <= 5; $j++)
-							    			@if($myArray[$j][$i-8]==1)
-							    				<td style="background-color: #3c8dbc;"></td>
+							    			@if($myArray[$j][$i-8][0]==1)
+							    					@if($myArray[$j][$i-8][1]!=null)
+							    						<td style="background-color: #222d32; color:#ffffff"><center>{{$myArray[$j][$i-8][1]}}</center></td>
+							    					@else
+							    						<td style="background-color: #3c8dbc; color:#ffffff"><center>Belum Diambil</center></td>
+							    					@endif
 							    			@else
 							    				<td></td>
 							    			@endif
