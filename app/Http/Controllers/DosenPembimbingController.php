@@ -431,14 +431,10 @@ function detail_sidang_topik($id_tugas_akhir){
     
      }
     
+	function ubah_status_sidang_topikPost($id_tugas_akhir, $id_mahasiswa) { 
+  		session_start();
 
-    
-
-function ubah_status_sidang_topikPost($id_tugas_akhir, $id_mahasiswa)
-{ 
-  session_start();
-
-   $id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+   		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
       
 			$pengajuan_sidang_topik = new Pengajuan_sidang_topik;
 			$pengajuan_sidang_topik->id_mahasiswa = $id_mahasiswa;
@@ -449,13 +445,56 @@ function ubah_status_sidang_topikPost($id_tugas_akhir, $id_mahasiswa)
 			$pengajuan_sidang_topik->save();
 			$_SESSION["izin_sidang"] = true;	
  
-	    
-    return redirect()->route('dosen/pembimbing/ubah-status-sidang-topik');
-    
-  
-}
+    	return redirect()->route('dosen/pembimbing/ubah-status-sidang-topik');
+	}
+
+	function atur_jadwal_bimbingan() {
+		session_start();
+
+		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+
+		$jadwals = DB::table('jadwal_dosen')
+					->where('id_dosen', $id_dosen)
+					->get();
+
+
+		//return $jadwals;
+		return view("dosen/DosenPembimbing/atur_jadwal_bimbingan", array('jadwals' => $jadwals));
+	}
+
+	function atur_jadwal_bimbingan_submit() {
+		session_start();
+
+		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+
+		
+
+		if(sizeof(Input::get('jadwal'))>0) {
+
+			foreach (Input::get('jadwal') as $jadwals=>$j) {
+				$result_explode = explode('|', $j);
+
+				DB::table('jadwal_dosen')->insert(
+				    array(
+				            'waktu_mulai'     =>   $result_explode[1], 
+				            'id_hari'   =>   $result_explode[0],
+				        	'id_dosen'   =>   $id_dosen
+				    )
+				);
+			}
+
+			DB::table('dosen')
+			->where('id_dosen', $id_dosen)
+			->update(array('is_jadwal_submit' => 1));
+		}
+
+		$jadwals = DB::table('jadwal_dosen')
+					->where('id_dosen', $id_dosen)
+					->get();
+
+		$_SESSION["atur_jadwal_bimbingan_berhasil"] = true;
+
+		return view("dosen/DosenPembimbing/atur_jadwal_bimbingan", array('jadwals' => $jadwals));
+	}
 
 }
-
-
-
