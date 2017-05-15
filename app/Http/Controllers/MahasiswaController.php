@@ -511,7 +511,7 @@ class MahasiswaController extends Controller
 								->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
 								->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 								->get()->first();
-								
+
 			  				return view("mahasiswa/pengajuan_sidang_topik", array('informasi_topik' => $informasi_topik, 'sidang_topik' => $sidang_topik));
 						}
 						//Jika pengajuan sidang topik ada tapi topik terhapus
@@ -534,7 +534,6 @@ class MahasiswaController extends Controller
 									->where([['tugas_akhir.id_mahasiswa', '=', $id_mahasiswa]])
 									->get();
 							$i=1;
-
 							$informasi_sidang_topik = DB::table('pengajuan_sidang_topik')->get()->first();
 							return view("mahasiswa/pengajuan_sidang_topik", array('tugas_akhir' => $tugas_akhir, 'informasi_topik'=> $informasi_topik,'sidang_topik' => $sidang_topik, 'informasi_sidang_topik'=> $informasi_sidang_topik, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));				
 						}
@@ -738,9 +737,13 @@ class MahasiswaController extends Controller
 
 			else{
 
-				$pengajuan_sidang->status = "2";
-
-				$pengajuan_sidang->save();
+				DB::table('pengajuan_sidang_topik')
+	            ->where('id_tugas_akhir', $id_tugas_akhir)
+	            ->update(
+				
+				['id_maker' =>  $_SESSION["id_user"],
+				 'status' => 2,
+				]);
 
 				$_SESSION["mahasiswa_pengajuan_sidang_topik"] = true;	
 				

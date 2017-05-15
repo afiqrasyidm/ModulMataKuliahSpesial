@@ -114,7 +114,7 @@
                 </tr>
                 @endif
                
-               @if($informasi_sidang_topik->status==3)  
+               @if($informasi_sidang_topik->status>2)  
                   @foreach($informasi_penguji as $informasi_penguji)
                     <tr>
                     <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
