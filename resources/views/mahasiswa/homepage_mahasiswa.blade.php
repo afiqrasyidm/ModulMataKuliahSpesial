@@ -97,7 +97,7 @@
           }
 
           
-
+          //s2 punya
          else {
         
            if ($tugasakhir == ""){
@@ -121,6 +121,18 @@
             if ($tugasakhir == "7"){
               echo "<img src='";
               echo asset('img/S2/15.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == 9){
+              echo "<img src='";
+              echo asset('img/S2/16.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == 10){
+              echo "<img src='";
+              echo asset('img/S2/17.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
 
