@@ -147,6 +147,13 @@
                 <td bgcolor="#c0c5cc"><b>{{$status->status}}</b></td>
                 </tr>
         
+                <th width ="20%" bgcolor="#86b7e3">Nilai Akhir</th>
+                    @if($tugas_akhir->status_tugas_akhir==12)
+                      <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_ta}} </td>
+                    @else
+                     <td bgcolor="#c0c5cc" style ='color:#c43e11'><i><b>Kosong</b></i></td>
+                    @endif
+                </tr>       
 				</tbody>
 			</table>
 <br><br>
