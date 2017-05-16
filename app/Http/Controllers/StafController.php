@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use App\Pengajuan_sidang;
 use App\Pengajuan_sidang_topik;
 use App\Dosen_penguji;
+use App\Mahasiswa;
+use App\User;
 use SSO\SSO;
 use Validator;
 use Redirect;
@@ -51,9 +53,8 @@ class StafController extends Controller
      if($list_sidang=='[]'){
       	return view("staf/failed_verifikasi_permohonan_sidang");
       }
-      else{
+      else{						
       	return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
-
       }
     }
 

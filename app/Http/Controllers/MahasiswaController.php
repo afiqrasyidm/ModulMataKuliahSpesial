@@ -444,7 +444,7 @@ class MahasiswaController extends Controller
 						 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 					}
 				}
-				//Jika sudah mengajukan sidang
+				//Jika sudah mengajukan pengajuan sidang
 				else{
 
 					$status = Referensi_status_sidang::where('id_referensi_status_sidang', $sidang->status)->get()->first();
@@ -464,11 +464,11 @@ class MahasiswaController extends Controller
 					$i=1;
 
 					$informasi_sidang = DB::table('pengajuan_sidang')->get()->first();
-
+				
 					return view("mahasiswa/pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir, 'informasi_ta'=> $informasi_ta,'sidang' => $sidang, 'informasi_sidang'=> $informasi_sidang, 'status'=> $status, 'informasi_penguji'=> $informasi_penguji, 'i'=>$i));
 				}
 			}
-			//Jika belum siap sidang TA
+			//Jika belum siap mengajukan sidang TA
 			else{
 			 return view("mahasiswa/failed_pengajuan_sidang_ta", array('tugas_akhir' => $tugas_akhir));
 			}
