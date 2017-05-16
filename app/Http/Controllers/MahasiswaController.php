@@ -863,6 +863,56 @@ class MahasiswaController extends Controller
     	return view("mahasiswa/failed_upload_hasil_ta");
 	}
 
+
+	public function mahasiswa_homepage(){
+		session_start();
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+		$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
+		$status="";
+		$hasil_ta_final="";
+		$id_tugas_akhir= Tugas_akhir::select ('id_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
+		// $unggahberkas = Hasil_ta::select('id_hasil_ta')->where()
+		
+					if ($tugasakhir != NULL){
+					$status = $tugasakhir->status_tugas_akhir;
+					
+
+					$hasil_ta= Hasil_ta::select ('id_hasil_ta')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
+					
+					//udh pernah upload ta
+					if ($hasil_ta!= NULL){
+						$hasil_ta_final = Hasil_ta::select('dokumen_revisi')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
+						
+					}
+
+					//udh upload tp belum final
+					
+					
+
+					if ($status == '11' && $hasil_ta != NULL && $hasil_ta_final->dokumen_revisi==NULL){
+						$status = "Sudah upload";
+					}
+
+					//udh upload final
+					if ($status =='12' && $hasil_ta != NULL && $hasil_ta_final->dokumen_revisi!= NULL){
+						$status = "Sudah upload final";
+					}
+
+					//mahasiswa s2 yang pake sidang topik
+
+					$status_sidang_topik = Pengajuan_sidang_topik::select ('status')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
+					if ($status_sidang_topik == 3){
+						$status = "Siap sidang topik";
+
+					}
+
+				}
+						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $status);
+						}
+		
+	
+	
+
 	function upload_hasil_ta_final() {
     	session_start();
 
@@ -1024,5 +1074,4 @@ class MahasiswaController extends Controller
 		}
 	}
  
-
 }
