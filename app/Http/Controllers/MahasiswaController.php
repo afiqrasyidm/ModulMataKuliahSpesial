@@ -43,7 +43,8 @@ class MahasiswaController extends Controller
 		if($mahasiswa->is_sudah_ambil_ta == 0){
 
 			 	return view("mahasiswa/mahasiswa_belum_ambil_ta");
-		}
+
+				}
 
 
 
