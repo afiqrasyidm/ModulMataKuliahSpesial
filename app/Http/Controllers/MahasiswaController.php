@@ -483,12 +483,13 @@ class MahasiswaController extends Controller
 
 
 	public function pengajuan_sidang_topik_baru($id_tugas_akhir) {
+		DB::table('dosen_penguji_topik')->where('id_tugas_akhir', '=', $id_tugas_akhir)->delete();
 
-				DB::table('pengajuan_sidang_topik')
-	            ->where('id_tugas_akhir', $id_tugas_akhir)
-	            ->update(
-				
-				['status' => 1]);
+		DB::table('pengajuan_sidang_topik')
+        ->where('id_tugas_akhir', $id_tugas_akhir)
+        ->update(
+		
+		['status' => 1, 'waktu_sidang' => null]);
 
         return redirect()->route('mahasiswa/pengajuan-sidang-topik');
     }

@@ -97,11 +97,10 @@
 
     </div>
     <div class="box-body">
-     <br>
+
+
               <table class="table table-bordered">
-
               <tbody>
-
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Topik</th>
                 <td bgcolor="#c0c5cc">{{$informasi_topik->topik_ta}}</td>
@@ -152,26 +151,25 @@
                       <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_topik}} </td>
                 </tr>
                 @endif
-                
-                @if($informasi_sidang_topik->status==4)
-                  @if($tugas_akhir->nilai_topik=="D")
-                  <tr>
-                  <th width ="20%" bgcolor="#86b7e3">Pesan</th>
-                        <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
-                  </tr>
-                  @elseif($tugas_akhir->nilai_topik=="E")
-                  <tr>
-                  <th width ="20%" bgcolor="#86b7e3">Pesan</th>
-                        <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
-                  </tr>
-                  @endif
-                @endif
+        </tbody>
+      </table>
 
-
+      <table class="table table-bordered">
+        <tbody>
+            @if($informasi_sidang_topik->status==4)
+            <tr>
+            @if($tugas_akhir->nilai_topik=="D")
+            <th width ="20%" bgcolor="#de4a37" style ='color:#ffffff'><b>Nilai Anda tidak mencukupi untuk melanjutkan bimbingan TA & sidang TA</b> <br><i>Silahkan melakukan bimbingan dan mengajukan sidang topik kembali</i></th>
+            @elseif($tugas_akhir->nilai_topik=="E")
+            <th width ="20%" bgcolor="#de4a37" style ='color:#ffffff'><b>Nilai Anda tidak mencukupi untuk melanjutkan bimbingan TA & sidang TA</b> <br><i>Silahkan melakukan bimbingan dan mengajukan sidang topik kembali</i></th>
+            @else
+            <th width ="20%" bgcolor="#2e913d" style ='color:#ffffff'><b>Selamat, telah menyelesaikan sidang topik!</b> <br><i>Silahkan melanjutkan bimbingan Anda untuk menyelesaikan tugas akhir ini</i></th>
+            @endif
+            </tr>
+          @endif
         </tbody>
       </table>
       <br>
-
                 @if($informasi_sidang_topik->status==4)
                   @if($tugas_akhir->nilai_topik=="D")
                   <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajukan Sidang Topik Baru</button></center>
