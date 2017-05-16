@@ -10,6 +10,9 @@ use Carbon\Carbon;
 use App\Pengajuan_sidang;
 use App\Pengajuan_sidang_topik;
 use App\Dosen_penguji;
+use App\Dosen_penguji_topik;
+use App\Mahasiswa;
+use App\User;
 use SSO\SSO;
 use Validator;
 use Redirect;
@@ -45,15 +48,14 @@ class StafController extends Controller
       $ta = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
-        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '11')
         ->get();
 
      if($list_sidang=='[]'){
       	return view("staf/failed_verifikasi_permohonan_sidang");
       }
-      else{
+      else{						
       	return view("staf/verifikasi_permohonan_sidang", array('ta' => $ta));
-
       }
     }
 
@@ -64,7 +66,7 @@ class StafController extends Controller
       $ta = DB::table('pengajuan_sidang_topik')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang_topik.id_mahasiswa')
-        ->where('tugas_akhir.status_tugas_akhir','=', '10')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '10')
         ->get();
 
      if($list_sidang=='[]'){
@@ -139,8 +141,8 @@ class StafController extends Controller
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-        ->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_ta.id_dosen')
+        ->leftJoin('dosen_penguji_topik', 'dosen_penguji_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_topik.id_dosen')
         ->where('tugas_akhir.status_tugas_akhir','=', '11')
         ->get();
 
@@ -166,8 +168,8 @@ class StafController extends Controller
         ->leftJoin('tugas_akhir', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang_topik.id_mahasiswa')
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
-        ->leftJoin('dosen_penguji_ta', 'dosen_penguji_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
-        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_ta.id_dosen')
+        ->leftJoin('dosen_penguji_topik', 'dosen_penguji_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
+        ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_topik.id_dosen')
         ->where('tugas_akhir.status_tugas_akhir','=', '10')
         ->get();
 
@@ -426,19 +428,19 @@ function verifikasi_permohonan_sidang_topik_submit(){
 			]);
 
 			if($ta->status == 2){
-			 $dosen_penguji1 = new dosen_penguji;
+			 $dosen_penguji1 = new dosen_penguji_topik;
 			 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
 			 $dosen_penguji1->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji1->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji1->save();
 			 
-			 $dosen_penguji2 = new dosen_penguji;
+			 $dosen_penguji2 = new dosen_penguji_topik;
 			 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
 			 $dosen_penguji2->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji2->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji2->save();
 			 
-			 $dosen_penguji3 = new dosen_penguji;
+			 $dosen_penguji3 = new dosen_penguji_topik;
 			 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
 			 $dosen_penguji3->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];
@@ -447,30 +449,29 @@ function verifikasi_permohonan_sidang_topik_submit(){
 			$_SESSION["sba_verifikasi_pengajuan_sidang_topik"] = true;	
 
 				DB::table('pengajuan_sidang_topik')
-	        	->where('id_pengajuan','=', Input::get('id_pengajuan'))
+        		->where('id_pengajuan','=', Input::get('id_pengajuan'))
 	            ->update([
 				'status' => 3,
 				]);
-
 			  return redirect()->route('staf/verifikasi-permohonan-sidang-topik');
 			}
 							
 			else{
-			   DB::table('dosen_penguji_ta')->where('id_tugas_akhir', '=', $ta->id_tugas_akhir)->delete();
+			   DB::table('dosen_penguji_topik')->where('id_tugas_akhir', '=', $ta->id_tugas_akhir)->delete();
 
-			  $dosen_penguji1 = new dosen_penguji;
+			 $dosen_penguji1 = new dosen_penguji_topik;
 			 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
 			 $dosen_penguji1->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji1->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji1->save();
 			 
-			 $dosen_penguji2 = new dosen_penguji;
+			 $dosen_penguji2 = new dosen_penguji_topik;
 			 $dosen_penguji2->id_dosen = Input::get('dosen_penguji_2');
 			 $dosen_penguji2->id_tugas_akhir =  $ta->id_tugas_akhir;
 			 $dosen_penguji2->id_maker = $_SESSION["id_user"];
 			 $dosen_penguji2->save();
 			 
-			 $dosen_penguji3 = new dosen_penguji;
+			 $dosen_penguji3 = new dosen_penguji_topik;
 			 $dosen_penguji3->id_dosen = Input::get('dosen_penguji_3');
 			 $dosen_penguji3->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji3->id_maker = $_SESSION["id_user"];

@@ -61,11 +61,13 @@ class MainController extends Controller
 						$_SESSION["prodi"] = $prodi;
 						
 						$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa)->get()->first();
-						if ($tugasakhir==NULL){
-							$tugasakhir = "testtt";
-						}
+							$status = "";
+							if ($tugasakhir != NULL){
+								$status = $tugasakhir->status_tugas_akhir;
+							}
 
-						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $tugasakhir);
+						 return redirect ()->route("homepage/mahasiswa");
+
 
 				}
 
@@ -222,51 +224,6 @@ class MainController extends Controller
     	return view('delay');
     }
 	
-	public function mahasiswa_homepage(){
-		session_start();
-
-if(SSO::authenticate())	{
-			$user = SSO::getUser();
-			$_SESSION["user_login"] = $user;
-			
-			$username=$user->username;
-			
-			$UserArr = User::where('username', $username )->get();
-			
-			$isUsernameExist = count($UserArr)>0;
-			
-			if($isUsernameExist){
-				$roleUser = User::where('username', $username)->get()->first();
-				
-				$_SESSION["role_user"] = $roleUser->role;
-				
-				$_SESSION["id_user"] = $roleUser->id_user;
-				
-				if( ($roleUser->role == "mahasiswa" )){		
-						//ambil row dimahasiswa
-						
-						$mahasiswa=Mahasiswa::where('id_user',$roleUser->id_user)->get()->first();
-						
-						$_SESSION["mahasiswa"] = $mahasiswa;
-							
-						//cek fakultas apakah FTBS atau tidak, untuk sementara hanya ada fasilkom dan fh
-						$prodi= Prodi::where('id_prodi',$mahasiswa->id_prodi )->get()->first();
-						
-						$fakultas = Fakultas::where('id_fakultas',$mahasiswa->id_fakultas )->get()->first();
-						
-						$_SESSION["fakultas"] = $fakultas;
-						$_SESSION["prodi"] = $prodi;
-
-
-
-		$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
-		
-
-						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $tugasakhir);
-						}
-					}
-				}
-	}
 	
 	public function staf_homepage(){
 		session_start();

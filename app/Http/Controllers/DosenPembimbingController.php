@@ -91,7 +91,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	  
 		->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
 		->where('pengajuan_sidang.status','=', 2)
-        ->where('tugas_akhir.status_tugas_akhir','!=', 12)
+        ->where('tugas_akhir.status_tugas_akhir','=', 11)
         
 		->get();
 		

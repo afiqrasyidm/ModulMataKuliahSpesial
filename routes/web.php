@@ -26,7 +26,7 @@ Route::post('/registrasi', ['as' => 'registrasi-submit', 'uses' => 'MainControll
 
 Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logout_sso']);
 
-Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MainController@mahasiswa_homepage']);
+Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MahasiswaController@mahasiswa_homepage']);
 
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
@@ -136,6 +136,9 @@ Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as
 //PENGAJUAN Sidang Topik MAHASISWA S2 S3
 Route::get('mahasiswa/pengajuan-sidang-topik', ['as' => '/mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik']);
 Route::post('mahasiswa/pengajuan-sidang-topik', ['as' => 'mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_submit']);
+
+//PENGAJUAN Sidang Topik Baru MHS S2 S3
+Route::get('mahasiswa/pengajuan-sidang-topik-baru/{id_tugas_akhir}', ['as' => '/mahasiswa/pengajuan-sidang-topik-baru', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_baru']);
 
 //Tidak bisa sidang topik
 Route::get('mahasiswa/failed-pengajuan-sidang-topik', ['as' => 'mahasiswa/failed-pengajuan-sidang-topik', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_topik']);

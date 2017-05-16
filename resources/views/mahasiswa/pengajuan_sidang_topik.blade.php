@@ -13,7 +13,7 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
-@if(!isset($sidang_topik))
+@if($sidang_topik->status == 1)
 <div class="box box-primary">
 
     <div class="box-header with-border">
@@ -89,14 +89,18 @@
         unset($_SESSION["mahasiswa_pengajuan_sidang_topik"]);
         }
       ?>
+         @if($informasi_sidang_topik->status==4)
+          <center><h1 class="header-title">Hasil Sidang Topik</h1></center>
+         @else
          <center><h1 class="header-title">Detail Pengajuan Sidang Topik</h1></center>
+         @endif
+
     </div>
     <div class="box-body">
-     <br>
+
+
               <table class="table table-bordered">
-
               <tbody>
-
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Topik</th>
                 <td bgcolor="#c0c5cc">{{$informasi_topik->topik_ta}}</td>
@@ -114,7 +118,7 @@
                 </tr>
                 @endif
                
-               @if($informasi_sidang_topik->status==3)  
+               @if($informasi_sidang_topik->status>2)  
                   @foreach($informasi_penguji as $informasi_penguji)
                     <tr>
                     <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
@@ -140,20 +144,63 @@
                 <th width ="20%" bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#c0c5cc"><b>{{$status->status}}</b></td>
                 </tr>
-
+                    
+                @if($informasi_sidang_topik->status==4)
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Nilai Sidang Topik</th>
-                    @if($informasi_sidang_topik->status==4)
-                      <td bgcolor="#c0c5cc"> <b> {{$tugas_akhir->nilai_ta}} </b> </td>
-                    @else
-                     <td bgcolor="#c0c5cc" style ='color:#c43e11'><i><b>Kosong</b></i></td>
-                    @endif
+                      <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_topik}} </td>
                 </tr>
-        
+                @endif
         </tbody>
       </table>
-<br><br>
 
+      <table class="table table-bordered">
+        <tbody>
+            @if($informasi_sidang_topik->status==4)
+            <tr>
+            @if($tugas_akhir->nilai_topik=="D")
+            <th width ="20%" bgcolor="#de4a37" style ='color:#ffffff'><b>Nilai Anda tidak mencukupi untuk melanjutkan bimbingan TA & sidang TA</b> <br><i>Silahkan melakukan bimbingan dan mengajukan sidang topik kembali</i></th>
+            @elseif($tugas_akhir->nilai_topik=="E")
+            <th width ="20%" bgcolor="#de4a37" style ='color:#ffffff'><b>Nilai Anda tidak mencukupi untuk melanjutkan bimbingan TA & sidang TA</b> <br><i>Silahkan melakukan bimbingan dan mengajukan sidang topik kembali</i></th>
+            @else
+            <th width ="20%" bgcolor="#2e913d" style ='color:#ffffff'><b>Selamat, telah menyelesaikan sidang topik!</b> <br><i>Silahkan melanjutkan bimbingan Anda untuk menyelesaikan tugas akhir ini</i></th>
+            @endif
+            </tr>
+          @endif
+        </tbody>
+      </table>
+      <br>
+                @if($informasi_sidang_topik->status==4)
+                  @if($tugas_akhir->nilai_topik=="D")
+                  <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajukan Sidang Topik Baru</button></center>
+                  @endif
+
+                  @if($tugas_akhir->nilai_topik=="E")
+                  <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajukan Sidang Topik Baru</button></center>
+                  @endif
+                @endif
+
+
+<br><br>
+      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Anda Yakin Ingin Mengajukan Sidang Topik Baru?</h4>
+        </div>
+
+        <div>
+        <a href="/mahasiswa/pengajuan-sidang-topik-baru/{{$tugas_akhir->id_tugas_akhir}}">
+              <button  class="btn btn-primary" >Iya</button>
+            </a>
+          
+            <br>
+            <br>
+        </div>
+        </div>
 
 
 
