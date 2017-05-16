@@ -13,7 +13,7 @@
 <section class="content">
 <div class="center-form">
 <div class=".col-md-11">
-@if(!isset($sidang_topik))
+@if($sidang_topik->status == 1)
 <div class="box box-primary">
 
     <div class="box-header with-border">
@@ -114,7 +114,7 @@
                 </tr>
                 @endif
                
-               @if($sidang_topik->status==3)  
+               @if($informasi_sidang_topik->status>2)  
                   @foreach($informasi_penguji as $informasi_penguji)
                     <tr>
                     <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
@@ -134,13 +134,21 @@
                     @else
                       <td bgcolor="#c0c5cc">{{$informasi_sidang_topik->waktu_sidang}}</td>
                     @endif
-        
                 </tr>
+                
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#c0c5cc"><b>{{$status->status}}</b></td>
                 </tr>
 
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Nilai Sidang Topik</th>
+                    @if($informasi_sidang_topik->status==4)
+                      <td bgcolor="#c0c5cc"> <b> {{$tugas_akhir->nilai_ta}} </b> </td>
+                    @else
+                     <td bgcolor="#c0c5cc" style ='color:#c43e11'><i><b>Kosong</b></i></td>
+                    @endif
+                </tr>
         
         </tbody>
       </table>

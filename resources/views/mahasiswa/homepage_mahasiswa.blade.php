@@ -13,14 +13,17 @@
       
 
         <div class="box-header with-border">
+
             <center><b><h2 class="title-index">Alur Pengerjaan Tugas Akhir</h2></b></center>
          
           </div><!-- /.box-header -->
           <div class="box-body">
           <center>
 
-         {{ $tugasakhir }}
+        
      <?php 
+    
+
             if($_SESSION["mahasiswa"]->jenjang=="S1"){
                 
               if ($tugasakhir == ""){
@@ -48,6 +51,12 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
            
+           else if ($tugasakhir == "8"){
+              echo "<img src='";
+              echo asset('img/S1/7.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
            else if ($tugasakhir == "9"){
               echo "<img src='";
               echo asset('img/S1/7.png');
@@ -86,6 +95,42 @@
 
 
           }
+
+          
+
+         else {
+        
+           if ($tugasakhir == ""){
+              echo "<img src='";
+              echo asset('img/S2/12.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+            
+            if ($tugasakhir == "3"){
+              echo "<img src='";
+              echo asset('img/S2/13.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == "6"){
+              echo "<img src='";
+              echo asset('img/S2/14.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == "7"){
+              echo "<img src='";
+              echo asset('img/S2/15.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == "Siap sidang topik"){
+              echo "<img src='";
+              echo asset('img/S2/16.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+          }
+
           ?>
             </center>
           </div>
