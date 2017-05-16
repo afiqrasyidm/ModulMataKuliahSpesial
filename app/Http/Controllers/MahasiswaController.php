@@ -961,45 +961,58 @@ class MahasiswaController extends Controller
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-		$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
-				->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->get()->first();
-
 		$jadwal_dosen = DB::table('jadwal_dosen')
 				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
-				->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();				
+				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->get();
 
-		return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen' => $jadwal_dosen));
+		if(sizeof($jadwal_dosen)>0) {
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen));
+		}
+		else {
+
+			$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
+
+			$jadwal_dosen = DB::table('jadwal_dosen')
+					->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+					->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
+
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen' => $jadwal_dosen));
+		}
 	}
 
 	function jadwal_bimbingan_submit() {
 		session_start();
 
+		$arr = Input::get('pilih_jadwal');
+
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
-    	$jadwal_dosen = DB::table('jadwal_dosen')
-				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
-				->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
-
-		return 'tes';
-		if(sizeof(Input::get('pilih_jadwal')) < 1) {
+		if(sizeof($arr) < 1) {
 			//Todo
+			return 'on construct';
 		}
-		else if(sizeof(Input::get('pilih_jadwal')) > 3){
+		else if(sizeof($arr) > 3){
 			//Todo
+			return 'on construct';
 		}
 		else {
-			foreach (Input::get('pilih_jadwal') as $jadwals=>$j) {
-				$result_explode = explode('|', $j);
-
-				
+			for ($i=0; $i<sizeof($arr); $i++) {
 				DB::table('jadwal_dosen')
-				->where('id_jadwal_dosen', $jadwals->id_jadwal_dosen)
+				->where('id_jadwal_dosen', $arr[$i])
 				->update(array('id_tugas_akhir' => $tugas_akhir->id_tugas_akhir));
 			}
 
+			$jadwal_dosen = DB::table('jadwal_dosen')
+				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->get();	
+
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen));
 		}
 	}
  

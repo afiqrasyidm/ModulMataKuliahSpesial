@@ -221,8 +221,6 @@
 				    	<br>
 				    	<br>
 				    	<br>
-				    	
-				    	<form class="form-horizontal" method="post" action="">
 				    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 				    		<div class="col-md-12" style="width:100%;">
@@ -257,8 +255,7 @@
 						    	<!-- div class="col-md-12">
 						    		<center><button class="btn btn-primary" type="submit">Ubah Jadwal</button></center>
 						    	</div-->
-					    	</div>		    		
-				    	</form>
+					    	</div>
 				    @endif	
 			    </div>
 			</div>
