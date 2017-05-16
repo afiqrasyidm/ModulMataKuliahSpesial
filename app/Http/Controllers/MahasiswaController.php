@@ -481,6 +481,18 @@ class MahasiswaController extends Controller
 
 	}
 
+
+	public function pengajuan_sidang_topik_baru($id_tugas_akhir) {
+
+				DB::table('pengajuan_sidang_topik')
+	            ->where('id_tugas_akhir', $id_tugas_akhir)
+	            ->update(
+				
+				['status' => 1]);
+
+        return redirect()->route('mahasiswa/pengajuan-sidang-topik');
+    }
+
 	public function pengajuan_sidang_topik(){
 		session_start();
 		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;

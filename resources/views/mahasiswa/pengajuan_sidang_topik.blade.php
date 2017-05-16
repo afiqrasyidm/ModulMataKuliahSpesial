@@ -152,22 +152,57 @@
                       <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_topik}} </td>
                 </tr>
                 @endif
-
-                @if($tugas_akhir->nilai_topik=="D")
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Pesan</th>
-                      <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
-                </tr>
-                @elseif($tugas_akhir->nilai_topik=="E")
-                <tr>
-                <th width ="20%" bgcolor="#86b7e3">Pesan</th>
-                      <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
-                </tr>
+                
+                @if($informasi_sidang_topik->status==4)
+                  @if($tugas_akhir->nilai_topik=="D")
+                  <tr>
+                  <th width ="20%" bgcolor="#86b7e3">Pesan</th>
+                        <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
+                  </tr>
+                  @elseif($tugas_akhir->nilai_topik=="E")
+                  <tr>
+                  <th width ="20%" bgcolor="#86b7e3">Pesan</th>
+                        <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
+                  </tr>
+                  @endif
                 @endif
+
+
         </tbody>
       </table>
-<br><br>
+      <br>
 
+                @if($informasi_sidang_topik->status==4)
+                  @if($tugas_akhir->nilai_topik=="D")
+                  <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajukan Sidang Topik Baru</button></center>
+                  @endif
+
+                  @if($tugas_akhir->nilai_topik=="E")
+                  <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajukan Sidang Topik Baru</button></center>
+                  @endif
+                @endif
+
+
+<br><br>
+      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Anda Yakin Ingin Mengajukan Sidang Topik Baru?</h4>
+        </div>
+
+        <div>
+        <a href="/mahasiswa/pengajuan-sidang-topik-baru/{{$tugas_akhir->id_tugas_akhir}}">
+              <button  class="btn btn-primary" >Iya</button>
+            </a>
+          
+            <br>
+            <br>
+        </div>
+        </div>
 
 
 
