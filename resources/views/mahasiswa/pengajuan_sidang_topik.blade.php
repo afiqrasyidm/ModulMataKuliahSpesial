@@ -89,7 +89,12 @@
         unset($_SESSION["mahasiswa_pengajuan_sidang_topik"]);
         }
       ?>
+         @if($informasi_sidang_topik->status==4)
+          <center><h1 class="header-title">Hasil Sidang Topik</h1></center>
+         @else
          <center><h1 class="header-title">Detail Pengajuan Sidang Topik</h1></center>
+         @endif
+
     </div>
     <div class="box-body">
      <br>
@@ -140,16 +145,25 @@
                 <th width ="20%" bgcolor="#86b7e3">Status</th>
                 <td bgcolor="#c0c5cc"><b>{{$status->status}}</b></td>
                 </tr>
-
+                    
+                @if($informasi_sidang_topik->status==4)
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Nilai Sidang Topik</th>
-                    @if($informasi_sidang_topik->status==4)
-                      <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_ta}} </td>
-                    @else
-                     <td bgcolor="#c0c5cc" style ='color:#c43e11'><i><b>Kosong</b></i></td>
-                    @endif
+                      <td bgcolor="#c0c5cc"> {{$tugas_akhir->nilai_topik}} </td>
                 </tr>
-        
+                @endif
+
+                @if($tugas_akhir->nilai_topik=="D")
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Pesan</th>
+                      <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
+                </tr>
+                @elseif($tugas_akhir->nilai_topik=="E")
+                <tr>
+                <th width ="20%" bgcolor="#86b7e3">Pesan</th>
+                      <td bgcolor="#c0c5cc"> Nilai Sidang Topik anda berada dibawah nilai kelulusan, silahkan mengambil topik kembali</td>
+                </tr>
+                @endif
         </tbody>
       </table>
 <br><br>

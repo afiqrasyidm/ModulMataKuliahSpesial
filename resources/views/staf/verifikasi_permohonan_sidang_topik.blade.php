@@ -69,7 +69,7 @@ if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang_topik"])) {
                 <td>
                    @if($ta->status == 2)
                       <p><b>Belum Diverifikasi</b></p>
-                    @elseif($ta->status == 3) 
+                    @elseif($ta->status >= 3) 
                       <p><b>Telah Diverifikasi</b></p>
                     @endif
                 </td>
