@@ -61,6 +61,10 @@ class MainController extends Controller
 						$_SESSION["prodi"] = $prodi;
 						
 						$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa)->get()->first();
+							$status = "";
+							if ($tugasakhir != NULL){
+								$status = $tugasakhir->status_tugas_akhir;
+							}
 
 						 return redirect ()->route("homepage/mahasiswa");
 

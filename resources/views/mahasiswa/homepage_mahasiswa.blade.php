@@ -19,28 +19,73 @@
           <div class="box-body">
           <center>
 
-         
+         {{ $tugasakhir }}
      <?php 
             if($_SESSION["mahasiswa"]->jenjang=="S1"){
-              // if ($tugasakhir == NULL){
-              //   echo "haha";
-              // }
-              if ($tugasakhir == NULL){
+                
+              if ($tugasakhir == ""){
               echo "<img src='";
-              echo asset('img/s1.png');
-              echo "' style='width: 75% ; height: auto'/>";
-            }
-            else {
-              echo "image yg sesuai";
+              echo asset('img/S1/11.png');
+              echo "' style='width: 100% ; height: auto'/>";
             }
 
-             
-            }
-            else{
+            else if ($tugasakhir == "3"){
               echo "<img src='";
-              echo asset('img/s2.png');
-              echo "' style='width: 75% ; height: auto'/>";
+              echo asset('img/S1/10.png');
+              echo "' style='width: 100% ; height: auto'/>";
             }
+
+
+            else if ($tugasakhir == "6"){
+              echo "<img src='";
+              echo asset('img/S1/9.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "7"){
+              echo "<img src='";
+              echo asset('img/S1/8.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+           
+           else if ($tugasakhir == "9"){
+              echo "<img src='";
+              echo asset('img/S1/7.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "10"){
+              echo "<img src='";
+              echo asset('img/S1/6.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "11"){
+              echo "<img src='";
+              echo asset('img/S1/4.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "Sudah upload"){
+              echo "<img src='";
+              echo asset('img/S1/3.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "12"){
+              echo "<img src='";
+              echo asset('img/S1/2.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+             else if ($tugasakhir == "Sudah upload final"){
+              echo "<img src='";
+              echo asset('img/S1/1.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+
+          }
           ?>
             </center>
           </div>

@@ -848,10 +848,35 @@ class MahasiswaController extends Controller
 		session_start();
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
 		$tugasakhir = Tugas_akhir::select ('status_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
-		$status = "";			
+		$status="";
+		$hasil_ta_final="";
+		// $unggahberkas = Hasil_ta::select('id_hasil_ta')->where()
+		
 					if ($tugasakhir != NULL){
 					$status = $tugasakhir->status_tugas_akhir;
+					$id_tugas_akhir= Tugas_akhir::select ('id_tugas_akhir')->where('id_mahasiswa', $mahasiswa->id_mahasiswa)->get()->first();
+
+					$hasil_ta= Hasil_ta::select ('id_hasil_ta')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
+					
+					//udh pernah upload ta
+					if ($hasil_ta!= NULL){
+						$hasil_ta_final = Hasil_ta::select('dokumen_revisi')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
+						
+					}
+
+					//udh upload tp belum final
+					if ($status == '11' && $hasil_ta != NULL && $hasil_ta_final==NULL){
+						$status = "Sudah upload";
+					}
+
+					//udh upload final
+					if ($status =='12' && $hasil_ta != NULL && $hasil_ta_final!= NULL){
+						$status = "Sudah upload final";
+					}
 				}
+					
+
+			
 
 
 						// 	if ($tugasakhir->status_tugas_akhir == NULL){
