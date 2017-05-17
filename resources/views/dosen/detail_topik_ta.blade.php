@@ -123,7 +123,7 @@ if (isset($_SESSION["setuju_topik"])) {
 
 				<center>
 				@if($topik->first()->sudah_diambil == 0)
-				<a href="/dosen/hentikan-topik/{{$topik->first()->id_topik}}">
+				<a href="{{ route('dosen/hentikan-topik/', $topik->first()->id_topik ) }}">
 						<button class="btn btn-danger">Stop Penawaran Topik ini</button>
 				</a>
 				@else

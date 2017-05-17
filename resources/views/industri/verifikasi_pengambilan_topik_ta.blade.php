@@ -37,7 +37,8 @@
 
            <tr>
           <td>
-            <a href="/industri/pengajuan-topik/detail/{{$topik->id_topik}}">
+		  
+            <a href="{{ route('industri/pengajuan-topik/detail/', $topik->id_topik ) }}">
               {{$topik->topik_ta}}
             </a>
           </td>

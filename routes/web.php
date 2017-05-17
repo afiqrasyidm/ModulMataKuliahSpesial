@@ -71,8 +71,10 @@ Route::get('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidang
 Route::post('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidang-ta', 'uses' => 'MahasiswaController@pengajuan_sidang_ta_submit']);
 //Tidak bisa sidang
 Route::get('mahasiswa/failed-pengajuan-sidang-ta', ['as' => 'mahasiswa/failed-pengajuan-sidang-ta', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_ta']);
+
 //UBAH PENGAJUAN TA
-Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-pengajuan-topik-ta', 'uses' => 'MahasiswaController@ubah_pengajuan_topik_ta']);
+Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', 'uses' => 'MahasiswaController@ubah_pengajuan_topik_ta']);
+
 //PENGAJUAN Sidang Topik MAHASISWA S2 S3
 Route::get('mahasiswa/pengajuan-sidang-topik', ['as' => '/mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik']);
 Route::post('mahasiswa/pengajuan-sidang-topik', ['as' => 'mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_submit']);
@@ -81,7 +83,7 @@ Route::get('mahasiswa/pengajuan-sidang-topik-baru/{id_tugas_akhir}', ['as' => '/
 //Tidak bisa sidang topik
 Route::get('mahasiswa/failed-pengajuan-sidang-topik', ['as' => 'mahasiswa/failed-pengajuan-sidang-topik', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_topik']);
 //Mengambil topik dari industri dan dosen
-Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
+Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri/', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
 //detail topik TA
 Route::get('mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik/detail/', 'uses' => 'MahasiswaController@detail_topik_ta']);
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
@@ -115,12 +117,14 @@ Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ub
 Route::get('/dosen/pembimbing/status-sidang/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidangPost']);
 //verifikasi pengambilan topik industri
 Route::get('/industri/verifikasi-pengambilan-topik-ta', ['as' => 'industri/verifikasi-pengambilan-topik-ta', 'uses' => 'IndustriController@verifikasi_pengambilan_topik_ta']);
+
 //detail topik industri
-Route::get('/industri/pengajuan-topik/detail/{id_topik}', ['as' => 'industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+Route::get('industri/pengajuan-topik/detail/{id_topik}', ['as' => 'industri/pengajuan-topik/detail/', 'uses' => 'IndustriController@detail_topik_ta']);
+
 //Disetujui dan tidak disetuk topik oleh industri
 Route::get('/industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['as' => 'industri/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', 'uses' => 'IndustriController@setuju_topik']);
 //industri stop pengajuan topik
-Route::get('/industri/hentikan-topik/{id_topik}', ['as' => '/industri/hentikan-topik/{id_topik}', 'uses' => 'IndustriController@hentikan_topik']);
+Route::get('industri/hentikan-topik/{id_topik}', ['as' => 'industri/hentikan-topik/', 'uses' => 'IndustriController@hentikan_topik']);
 //verifikasi pengambilan topik dosen
 Route::get('/dosen/verifikasi-pengambilan-topik-ta', ['as' => 'dosen/verifikasi-pengambilan-topik-ta', 'uses' => 'DosenController@verifikasi_pengambilan_topik_ta']);
 //detail topik dosen
@@ -128,7 +132,7 @@ Route::get('/dosen/pengajuan-topik/detail/{id_topik}', ['as' => 'dosen/pengajuan
 //Disetujui dan tidak disetuk topik oleh dosen
 Route::get('/dosen/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', ['as' => 'dosen/setuju-topik/{id_tugas_akhir}/{is_disetujui}/{id_topik}', 'uses' => 'DosenController@setuju_topik']);
 //dosen stop pengajuan topik
-Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/{id_topik}', 'uses' => 'DosenController@hentikan_topik']);
+Route::get('/dosen/hentikan-topik/{id_topik}', ['as' => '/dosen/hentikan-topik/', 'uses' => 'DosenController@hentikan_topik']);
 //industri lihat hasil ta
 Route::get('industri/lihat-hasil-ta', ['as' => 'industri/lihat-hasil-ta', 'uses' => 'IndustriController@lihat_hasil_ta']);
 //dosen lihat hasil ta

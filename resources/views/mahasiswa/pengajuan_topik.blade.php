@@ -250,6 +250,9 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
 
 			<div>
 					<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+					
+					
+					
 					  <button  class="btn btn-primary" >Iya</button>
 					</a>
 				

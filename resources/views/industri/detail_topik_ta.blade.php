@@ -95,6 +95,8 @@ if (isset($_SESSION["setuju_topik"])) {
 										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
 											<button  class="btn btn-primary">Setuju</button>
 										</a>
+										
+										
 										<a href="/industri/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
 											<button  class="btn btn-danger">Tidak Setuju</button>
 										</a>
@@ -130,7 +132,7 @@ if (isset($_SESSION["setuju_topik"])) {
 
 								<center>
 								@if($topik->first()->sudah_diambil == 0)
-								<a href="/industri/hentikan-topik/{{$topik->first()->id_topik}}">
+								<a href="{{ route('industri/hentikan-topik/', $topik->first()->id_topik ) }}">
 										<button  class="btn btn-danger">Stop Penawaran Topik ini</button>
 								</a>
 								@else
