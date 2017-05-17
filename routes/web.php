@@ -24,7 +24,7 @@ Route::get('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengaj
 Route::post('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengajuan-permohonan-ta-ubah', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_ubah_submit']);
 Route::post('/mahasiswa/pengajuan-permohonan-ta-submit-komentar/', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit-komentar', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit_komentar']);
 Route::get('mahasiswa/pengajuan-permohonan-ta-sukses', ['as' => '/mahasiswa/pengajuan-permohonan-ta-sukses', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_sukses']);
-Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta']);
+Route::get('mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta']);
 Route::post('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta_submit']);
 Route::post('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan_submit']);
 Route::get('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan']);
@@ -87,13 +87,13 @@ Route::get('mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => 'mahasiswa/pe
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //detail pembimbing TA
-Route::get('/mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => '/mahasiswa/pengajuan-pembimbing-ta/detail/', 'uses' => 'MahasiswaController@detail_dosen']);
+Route::get('mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => 'mahasiswa/pengajuan-pembimbing-ta/detail/', 'uses' => 'MahasiswaController@detail_dosen']);
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //ajukan pembimbing
 Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
 Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_bimbingan']);
-Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'DosenPembimbingController@set_verifikasi_bimbingan');
+Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', ['as' => 'dosen/pembimbing/verifikasi-bimbingan/set/', 'uses'=> 'DosenPembimbingController@set_verifikasi_bimbingan']);
 Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan']);
 Route::post('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan_submit']);
 //verifikasi log bimbingan Dosen Pembimbing
