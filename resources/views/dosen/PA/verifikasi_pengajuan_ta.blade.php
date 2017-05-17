@@ -43,7 +43,7 @@
 		 		<td>{{$ta->judul_ta}}</td>
 				<td> 
 					@if($ta->status_tugas_akhir == 6)
-						<a href="/dosen/PA/detail-permohonan-ta/{{$ta->id_tugas_akhir}}">Menunggu Persetujuan PA</a>
+						<a href="{{route('dosen/PA/detail-permohonan-ta/', $ta->id_tugas_akhir)}}">Menunggu Persetujuan PA</a>
 					@elseif($ta->status_tugas_akhir == 2)
 						<p style="color:red;"><b>TA Ditolak</b></p>
 					@elseif($ta->status_tugas_akhir > 6)
@@ -51,7 +51,7 @@
 					@endif
 				</td>
 				<td>
-					<a href="/dosen/PA/detail-permohonan-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Detail</button></a>
+					<a href="{{route('dosen/PA/detail-permohonan-ta/', $ta->id_tugas_akhir)}}"><button  class="btn btn-primary">Detail</button></a>
 				</td>
 			</tr>
 		 	@endforeach
