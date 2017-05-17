@@ -367,6 +367,8 @@ function detail_sidang_topik($id_tugas_akhir){
 	
 		session_start();
 		
+
+		
 		 DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
             ->update([
@@ -374,7 +376,7 @@ function detail_sidang_topik($id_tugas_akhir){
 			'id_maker' =>  $_SESSION["id_user"],
 			
 			
-			'nilai_ta' => Input::get('nilai_ta') ,
+			'nilai_topik' => Input::get('nilai_topik') ,
 			
 			
 			]);

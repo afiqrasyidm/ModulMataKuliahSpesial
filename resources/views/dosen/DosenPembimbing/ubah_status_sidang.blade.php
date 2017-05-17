@@ -67,10 +67,10 @@ if (isset($_SESSION["izin_sidang"])) {
                 <td>
                    @if($ta->status_tugas_akhir == 10)
 
-                    <a href="/dosen/pembimbing/status-sidang/{{$ta->id_tugas_akhir}}">
+                    <a href="{{ route('dosen/pembimbing/status-sidang/' ,$ta->id_tugas_akhir)}}">
                       <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
                     </a>
-                    @elseif($ta->status_tugas_akhir == 11) 
+                    @elseif($ta->status_tugas_akhir >10) 
                       <p><b>Siap Sidang</b></p>
                     @endif
 

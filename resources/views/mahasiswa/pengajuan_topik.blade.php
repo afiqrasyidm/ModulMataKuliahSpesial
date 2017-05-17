@@ -85,8 +85,10 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
 
            <tr>
           <td>
-            <a href="mahasiswa/pengajuan-topik/detail/{{$topik->id_topik}}">
-              {{$topik->topik_ta}}
+		  
+              <a href="{{ route('mahasiswa/pengajuan-topik/detail/', $topik->id_topik) }}">
+				 
+		      {{$topik->topik_ta}}
             </a>
           </td>
           <td>
