@@ -12,8 +12,6 @@ Anda Belum Dapat Melakukan Pengajuan Sidang
 
 
 <?php
-
-
 if($tugas_akhir == null){
 	
 	echo "<b>Harap mengambil Tugas Akhir terlebih dahulu!</b>";
@@ -30,31 +28,26 @@ if($tugas_akhir == null){
 else if($tugas_akhir->status_tugas_akhir==10){
 	echo "<b>Harap menyelesaikan Bimbingan Tugas Akhir terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang TA tugas akhir sebelum menyelesaikan bimbingan tugas akhir";
- 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
 }
 
 else if($tugas_akhir->status_tugas_akhir==9){
 	echo "<b>Harap menunggu persetujuan Dosen Pembimbing terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang TA tugas akhir sebelum mendapatkan Dosen Pembimbing TA";
- 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
 }
 
 else if($tugas_akhir->status_tugas_akhir==8){
 	echo "<b>Harap memilih Dosen Pembimbing TA terlebih dahulu!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang TA tugas akhir sebelum mendapatkan Dosen Pembimbing TA";
- 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
 }
 
 else if($tugas_akhir->status_tugas_akhir==7){
 	echo "<b>Harap menunggu verifikasi Tugas Akhir Anda oleh SBA!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang TA sebelum pengajuan Tugas Akhir Anda diverifikasi oleh SBA";
- 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
 }
 
 else if($tugas_akhir->status_tugas_akhir==6){
 	echo "<b>Harap menunggu verifikasi Tugas Akhir Anda oleh PA!</b>";
 	echo " Anda tidak diperkenankan melakukan pengajuan permohonan sidang TA sebelum pengajuan Tugas Akhir Anda diverifikasi oleh PA";
- 	//echo "<p>Silahkan mengajukan bimbingan TA <a href="{{route('mahasiswa/pengajuan-permohonan-ta')}}">disini</a></p>";
 }
 
 else if($tugas_akhir->status_tugas_akhir==5){

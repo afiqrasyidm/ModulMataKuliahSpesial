@@ -43,7 +43,10 @@
 	</table>
 
 		<center>
-			<a href="/mahasiswa/pengajuan-dosbing/{{$dosenpembimbing->id_dosen}}">
+
+			<a href="{{ route('mahasiswa/pengajuan-dosbing/', $dosenpembimbing->id_dosen) }}">
+
+		
 			<button class="btn btn-primary">Pilih Sebagai Pembimbing</button>
 		</a>
 		</center>
