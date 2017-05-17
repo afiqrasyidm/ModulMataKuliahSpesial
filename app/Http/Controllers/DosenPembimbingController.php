@@ -408,7 +408,7 @@ function detail_sidang_topik($id_tugas_akhir){
         ->join('pengajuan_sidang_topik', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')    
-        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        ->where('tugas_akhir.status_tugas_akhir','>', 9)
         ->where('mahasiswa.jenjang','!=', 'S1')
         ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->get();
@@ -417,7 +417,7 @@ function detail_sidang_topik($id_tugas_akhir){
         ->leftJoin('pengajuan_sidang_topik', 'pengajuan_sidang_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'tugas_akhir.id_mahasiswa')    
-        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        ->where('tugas_akhir.status_tugas_akhir','>', 9)
         ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->where('mahasiswa.jenjang','!=', 'S1')
         ->where('pengajuan_sidang_topik.id_tugas_akhir','=', NULL)

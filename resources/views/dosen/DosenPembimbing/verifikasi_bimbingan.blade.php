@@ -57,7 +57,12 @@
 
 										 
 											@if($data->status_dosen_pembimbing == 1)
-											 <a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/2/'.$data->id) }}"type="button" class="btn btn-primary">Terima</a>
+
+											
+
+											<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/2', $data->id) }}" type="button" class="btn btn-primary">Terima</a>
+
+						
 												
 											</a>
 											<a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/3/'.$data->id) }}" type="button" class="btn btn-danger">Tolak</a>
