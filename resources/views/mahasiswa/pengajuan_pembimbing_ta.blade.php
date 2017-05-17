@@ -86,7 +86,11 @@ if (isset($_SESSION["mahasiswa_perubahan_dosbing"])) {
 
 				<tr>
 					<td>
-						<a href="/mahasiswa/pengajuan-pembimbing-ta/detail/{{$dosenpembimbing->id_dosen}}">
+						
+
+						<a href="{{ route('mahasiswa/pengajuan-pembimbing-ta/detail/', $dosenpembimbing->id_dosen) }}">
+
+						
 							{{$dosenpembimbing->nama_dosen}}
 						</a>
 
@@ -235,7 +239,11 @@ if (isset($_SESSION["mahasiswa_perubahan_dosbing"])) {
 			  
 			  	@if($dosenpembimbings->status_dosen_pembimbing == 3)
 
-			  	<a href="/mahasiswa/ubah-pengajuan-pembimbing/{{$dosenpembimbings->id}}">
+<!-- 				<a href="{{ route('mahasiswa/pengajuan-topik/detail/', $topik->id_topik) }}"> -->
+
+					<a href="{{ route('mahasiswa/ubah-pengajuan-pembimbing/', $dosenpembimbings->id) }}">
+						
+			 <!--  	<a href="/mahasiswa/ubah-pengajuan-pembimbing/{{$dosenpembimbings->id}}"> -->
 							<button  class="btn btn-primary" type="submit">Ajukan Ulang</button>	
 							</a>			
 					@endif

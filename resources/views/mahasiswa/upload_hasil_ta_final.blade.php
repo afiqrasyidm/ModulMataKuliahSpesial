@@ -104,7 +104,7 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
       </div>
 
       <div>
-          <a href="/mahasiswa/ubah-dokumen-ta-final/{{$hasil_ta->id_tugas_akhir}}"   >
+          <a href="{{ route('mahasiswa/ubah-dokumen-ta-final/' , $hasil_ta->id_tugas_akhir)}}"   >
             <center><button  class="btn btn-primary" >Iya</button></center>
           </a>
         
