@@ -209,7 +209,7 @@
         </div>
 
         <div>
-        <a href="/staf/ubah-pengajuan-sidang-topik/{{$ta->id_tugas_akhir}}">
+        <a href="{{ route('staf/ubah-pengajuan-sidang-topik/',$ta->id_tugas_akhir) }}">
               <button  class="btn btn-primary" >Iya</button>
             </a>
           
