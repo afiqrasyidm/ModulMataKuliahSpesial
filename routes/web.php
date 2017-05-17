@@ -137,6 +137,9 @@ Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as
 Route::get('mahasiswa/pengajuan-sidang-topik', ['as' => '/mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik']);
 Route::post('mahasiswa/pengajuan-sidang-topik', ['as' => 'mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_submit']);
 
+//PENGAJUAN Sidang Topik Baru MHS S2 S3
+Route::get('mahasiswa/pengajuan-sidang-topik-baru/{id_tugas_akhir}', ['as' => '/mahasiswa/pengajuan-sidang-topik-baru', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_baru']);
+
 //Tidak bisa sidang topik
 Route::get('mahasiswa/failed-pengajuan-sidang-topik', ['as' => 'mahasiswa/failed-pengajuan-sidang-topik', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_topik']);
 

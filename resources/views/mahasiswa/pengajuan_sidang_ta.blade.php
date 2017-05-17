@@ -92,7 +92,12 @@
         unset($_SESSION["mahasiswa_pengajuan_sidang"]);
         }
       ?>
+         @if($tugas_akhir->status_tugas_akhir==12)
+         <center><h1 class="header-title">Hasil Sidang TA</h1></center>
+         @else
          <center><h1 class="header-title">Detail Pengajuan Sidang</h1></center>
+         @endif
+
     </div>
     <div class="box-body">
      <br>
