@@ -46,8 +46,8 @@ Route::get('/testStaf', 'StafController@cari_staf' );
 Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@industri_homepage']);
 Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'IndustriController@pengumuman']);
 Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAController@homepage_dosen_PA']);
-Route::get('dosen/PA/verifikasi-permohonan-ta/', ['as' => 'dosen/PA/verifikasi-permohonan-ta/', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
-Route::get('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta']);
+Route::get('dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
+Route::get('dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta/', 'uses' => 'DosenPAController@detail_permohonan_ta']);
 Route::get('/staf/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'staf/detail-permohonan-ta', 'uses' => 'StafController@detail_permohonan_ta']);
 Route::post('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta_submit']);
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
@@ -106,8 +106,8 @@ Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'Ma
 
 
 //upload hasil ta
-Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
-Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
+Route::get('mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
+Route::post('mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
 
 //upload dokumen gagal
 Route::get('mahasiswa/failed-upload-hasil-ta', ['as' => 'mahasiswa/failed-upload-hasil-ta', 'uses' => 'MahasiswaController@failed_upload_hasil_ta']);
@@ -178,7 +178,7 @@ Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen
 
 
 //list jadwal sidang Dosbem
-Route::get('/dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);
+Route::get('dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);
 
 // detail sidang dosbem
 Route::get('dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/detail-sidang-topik/', 'uses' => 'DosenPembimbingController@detail_sidang_topik']);
@@ -189,8 +189,8 @@ Route::get('dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbi
 Route::get('dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
 //upload hasil ta final
-Route::get('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_final']);
-Route::post('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_finalPost']);
+Route::get('mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_final']);
+Route::post('mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_finalPost']);
 //upload dokumen gagal
 Route::get('mahasiswa/failed-upload-hasil-ta-final', ['as' => 'mahasiswa/failed-upload-hasil-ta-final', 'uses' => 'MahasiswaController@failed_upload_hasil_ta_final']);
 //ubah dokumen ta
