@@ -193,7 +193,7 @@
         </div>
 
         <div>
-        <a href="/mahasiswa/pengajuan-sidang-topik-baru/{{$tugas_akhir->id_tugas_akhir}}">
+        <a href="{{ route('mahasiswa/pengajuan-sidang-topik-baru/',$tugas_akhir->id_tugas_akhir) }}">
               <button  class="btn btn-primary" >Iya</button>
             </a>
           

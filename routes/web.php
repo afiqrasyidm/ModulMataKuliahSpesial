@@ -103,16 +103,23 @@ Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_b
 Route::get('dosen/pembimbing/setujui-log/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/setujui-log/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@setujui_log']);
 //homepage managerial
 Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'ManagerialController@managerial_homepage']);
+
+
 //upload hasil ta
 Route::get('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_ta']);
 Route::post('/mahasiswa/upload-hasil-ta', ['as' => 'mahasiswa/upload-hasil-ta', 'uses' => 'MahasiswaController@upload_hasil_taPost']);
+
 //upload dokumen gagal
 Route::get('mahasiswa/failed-upload-hasil-ta', ['as' => 'mahasiswa/failed-upload-hasil-ta', 'uses' => 'MahasiswaController@failed_upload_hasil_ta']);
+
 //ubah dokumen ta
-Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta', 'uses' => 'MahasiswaController@ubah_dokumen_ta']);
+Route::get('mahasiswa/ubah-dokumen-ta/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta/', 'uses' => 'MahasiswaController@ubah_dokumen_ta']);
+
 //ubah status siap sidang
-Route::get('/dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
-Route::get('/dosen/pembimbing/status-sidang/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidangPost']);
+Route::get('dosen/pembimbing/ubah-status-sidang', ['as' => 'dosen/pembimbing/ubah-status-sidang', 'uses' => 'DosenPembimbingController@ubah_status_sidang']);
+Route::get('dosen/pembimbing/status-sidang/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/status-sidang/', 'uses' => 'DosenPembimbingController@ubah_status_sidangPost']);
+
+
 //verifikasi pengambilan topik industri
 Route::get('/industri/verifikasi-pengambilan-topik-ta', ['as' => 'industri/verifikasi-pengambilan-topik-ta', 'uses' => 'IndustriController@verifikasi_pengambilan_topik_ta']);
 //detail topik industri
@@ -168,19 +175,23 @@ Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'us
 //detail sidang dosbem
 Route::get('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
 Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);
+
+
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);
+
 // detail sidang dosbem
-Route::get('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik/', 'uses' => 'DosenPembimbingController@detail_sidang_topik']);
-Route::post('/dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang-topik', 'uses' => 'DosenPembimbingController@detail_sidang_topik_submit']);
+Route::get('dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/detail-sidang-topik/', 'uses' => 'DosenPembimbingController@detail_sidang_topik']);
+Route::post('dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/detail-sidang-topik', 'uses' => 'DosenPembimbingController@detail_sidang_topik_submit']);
+
 //ubah status siap sidang
-Route::get('/dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbing/ubah-status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topik']);
-Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
-// Route::get('/dosen/pembimbing/status-sidang-topik/{id_tugas_akhirid_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
+Route::get('dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbing/ubah-status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topik']);
+Route::get('dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
+
 //upload hasil ta final
 Route::get('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_final']);
 Route::post('/mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_finalPost']);
 //upload dokumen gagal
 Route::get('mahasiswa/failed-upload-hasil-ta-final', ['as' => 'mahasiswa/failed-upload-hasil-ta-final', 'uses' => 'MahasiswaController@failed_upload_hasil_ta_final']);
 //ubah dokumen ta
-Route::get('mahasiswa/ubah-dokumen-ta-final/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta-final', 'uses' => 'MahasiswaController@ubah_dokumen_ta_final']);
+Route::get('mahasiswa/ubah-dokumen-ta-final/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-dokumen-ta-final/', 'uses' => 'MahasiswaController@ubah_dokumen_ta_final']);
