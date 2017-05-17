@@ -83,7 +83,7 @@ Route::get('mahasiswa/failed-pengajuan-sidang-topik', ['as' => 'mahasiswa/failed
 //Mengambil topik dari industri dan dosen
 Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik-ta-dosen-industri', 'uses'=> 'MahasiswaController@pengajuan_topik_ta_dosen_industri']);
 //detail topik TA
-Route::get('/mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => '/mahasiswa/pengajuan-topik/detail/', 'uses' => 'MahasiswaController@detail_topik_ta']);
+Route::get('mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => 'mahasiswa/pengajuan-topik/detail/', 'uses' => 'MahasiswaController@detail_topik_ta']);
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //detail pembimbing TA
