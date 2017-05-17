@@ -465,8 +465,6 @@ function detail_sidang_topik($id_tugas_akhir){
 
 		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
 
-		
-
 		if(sizeof(Input::get('jadwal'))>0) {
 
 			foreach (Input::get('jadwal') as $jadwals=>$j) {

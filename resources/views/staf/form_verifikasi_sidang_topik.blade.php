@@ -193,8 +193,9 @@
         </tbody>
       </table>
       <br>
+      @if($ta->status!=4)
           <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Verifikasi Sidang Topik</button></center>
-
+      @endif
         </a>
 @endif
       <div class="modal fade" id="myModal" role="dialog">
