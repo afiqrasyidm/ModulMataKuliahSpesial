@@ -2,7 +2,7 @@
 
 @extends('layouts.layout_staf')
 
-@section('title','Verifikasi Permohonan Sidang')
+@section('title','Verifikasi Permohonan Sidang TA')
 
 
 @section('mainContent')
@@ -47,7 +47,7 @@ if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
       unset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"]);
 }
 ?>
-          <center><h1 class="header-title">Verifikasi Permohonan Sidang</h1><br></center>
+          <center><h1 class="header-title">Verifikasi Permohonan Sidang TA</h1><br></center>
       </div><!-- /.box-header -->
     <div class="box-body">
   <table class="table table-striped">
@@ -77,7 +77,7 @@ if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
                 <td>
                    @if($ta->status == 1)
                       <p><b>Belum Diverifikasi</b></p>
-                    @elseif($ta->status == 2) 
+                    @elseif($ta->status >= 2) 
                       <p><b>Telah Diverifikasi</b></p>
                     @endif
                 </td>

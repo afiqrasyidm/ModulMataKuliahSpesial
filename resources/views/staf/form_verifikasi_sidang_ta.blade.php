@@ -28,7 +28,7 @@
         <form class="form-horizontal" method="post" action="">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-         <center><h1 class="header-title">Verifikasi Pengajuan Sidang</h1></center>
+         <center><h1 class="header-title">Verifikasi Pengajuan Sidang TA</h1></center>
             <div class="form-group">
                 <label class="control-label col-sm-3">Nama Mahasiswa :</label>
                 <div class="col-sm-6">
@@ -149,8 +149,9 @@
 </form>  
         
 @else
-    <center><h1 class="header-title">Detail Verifikasi Pengajuan Sidang</h1></center>
+    <center><h1 class="header-title">Detail Verifikasi Pengajuan Sidang TA</h1></center>
      <br>
+
               <table class="table table-bordered">
 
               <tbody>
@@ -193,7 +194,9 @@
         </tbody>
       </table>
       <br>
-          <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Verifikasi Sidang</button></center>
+      @if($ta->status_tugas_akhir!=12)
+          <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ubah Verifikasi Sidang TA</button></center>
+      @endif
 
         </a>
 @endif
@@ -204,7 +207,7 @@
         <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Anda Yakin Ingin Mengubah Verifikasi Sidang?</h4>
+          <h4 class="modal-title">Anda Yakin Ingin Mengubah Verifikasi Sidang TA?</h4>
         </div>
 
         <div>
