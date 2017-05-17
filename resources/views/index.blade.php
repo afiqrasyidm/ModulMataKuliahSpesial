@@ -85,12 +85,12 @@
                         <br><br>
                         <div class="col-xs-6">
                          <a href="{{ route('login-sso') }}">
-                            <img src="{{ asset  ('dist/img/ui.png') }}" style="width: 50% ; height: 30%"><br><br>
+                            <img src="{{ asset  ('dist/img/ui.png') }}" style="width: 60% ; height: 40%"><br><br>
                            <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61; ">Login SSO</button></a>
                         </div>
                         <div class="col-xs-6">
                         <a href="{{ route('login') }}">
-                            <img src="{{ asset  ('dist/img/industri.png') }}" style="width: 50% ; height: 30%"><br><br>
+                            <img src="{{ asset  ('dist/img/industri.png') }}" style="width: 60% ; height: 40%"><br><br>
                             <button type="button" class="btn btn-default" style="background-color: #f5f5f5; color: #1e3c61">Login Industri</button></a>
                         </div>
                     </center>
