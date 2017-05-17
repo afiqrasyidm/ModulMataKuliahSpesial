@@ -14,7 +14,7 @@
 			echo 	"<div class='alert alert-success'> 
                    	<i class='icon fa fa-check'></i>Pembuatan log bimbingan berhasil
               		</div>";	
-			unset($_SESSION["atur_jadwal_bimbingan_berhasil"]);
+			unset($_SESSION["buat_log_bimbingan_berhasil"]);
 		}
 		@endphp
 			<div class="box box-primary">  
@@ -81,6 +81,36 @@
 						  <center><button class="btn btn-primary" type="submit">Submit Log</button></center>
 						</div>
 					</form>
+					<hr>
+					<br>
+					<label>Daftar Log Bimbingan:</label>
+					<br><br>
+					<table class="table table-striped">
+					    <thead>
+					        <tr>
+					        <th>Waktu Mulai</th>
+					        <th>Waktu Selesai</th>
+					        <th>Deskripsi</th>
+					        <th>Status</th>
+					      </tr>
+					    </thead>
+					    <tbody> 
+					    	@foreach($log_bimbingan as $log)
+					    		<tr>
+					    			<td>{{$log->waktu_mulai}}</td>
+					    			<td>{{$log->waktu_selesai}}</td>
+					    			<td>{{$log->keterangan}}</td>
+					    			<td>
+					    				@if($log->status_bimbingan==0)
+					    					belum diverifikasi
+					    				@else
+					    					<label style="color:green;">telah diverifikasi</label>
+					    				@endif
+					    			</td>
+					    		</tr>
+					    	@endforeach
+					    </tbody>
+					</table>
 	        	</div><!-- /.box-body -->
 		    </div><!-- /.box -->
 		</div>
