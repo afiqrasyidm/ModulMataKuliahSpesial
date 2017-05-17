@@ -914,7 +914,7 @@ class MahasiswaController extends Controller
 					}
 
 					//mahasiswa s2 yang pake sidang topik
-
+				if($mahasiswa -> jenjang == "S2" || $mahasiswa -> jenjang === "S3"){
 					$status_sidang_topik = Pengajuan_sidang_topik::select ('status')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
 					
 					if ($status < 11)
@@ -931,10 +931,11 @@ class MahasiswaController extends Controller
 					}
 				
 				}
-					
+				
+			}	
 
 						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $status);
-						}
+	}
 		
 	
 	
