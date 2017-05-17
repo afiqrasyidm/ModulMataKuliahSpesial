@@ -100,9 +100,13 @@ Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/
 Route::post('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan_submit']);
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
-Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan/{id_tugas_akhir}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa']);
-Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa_detail']);
-Route::get('dosen/pembimbing/setujui-log/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/setujui-log/{id_log_bimbingan}', 'uses'=> 'DosenPembimbingController@setujui_log']);
+
+
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa']);
+
+Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa_detail']);
+
+Route::get('dosen/pembimbing/setujui-log/{id_log_bimbingan}', ['as' => 'dosen/pembimbing/setujui-log/', 'uses'=> 'DosenPembimbingController@setujui_log']);
 //homepage managerial
 Route::get('/homepage/managerial', ['as' => 'homepage/managerial', 'uses' => 'ManagerialController@managerial_homepage']);
 //upload hasil ta
@@ -170,7 +174,7 @@ Route::get('/dosen/pembimbing/dokumen-ta', ['as' => 'dosen/pembimbing/dokumen-ta
 //dokumen TA dosenPenguji
 Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'uses' => 'DosenPengujiController@dokumen_ta']);
 //detail sidang dosbem
-Route::get('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
+Route::get('dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/detail-sidang/', 'uses' => 'DosenPembimbingController@detail_sidang']);
 Route::post('/dosen/pembimbing/detail-sidang/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/detail-sidang', 'uses' => 'DosenPembimbingController@detail_sidang_submit']);
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang-topik', ['as' => 'dosen/pembimbing/list-jadwal-sidang-topik', 'uses' => 'DosenPembimbingController@list_jadwal_sidang_topik']);

@@ -77,7 +77,9 @@ if (isset($_SESSION["detail_sidang_submit_first"])) {
 													
 											
 					@else
-						<a href="/dosen/pembimbing/detail-sidang/{{$ta->id_tugas_akhir}}">
+						
+					 <a href="{{ route('dosen/pembimbing/detail-sidang/', $ta->id_tugas_akhir ) }}">
+      
 						  <button  class="btn btn-primary" type="submit"> Detail</button>
 						</a>
 					@endif  
