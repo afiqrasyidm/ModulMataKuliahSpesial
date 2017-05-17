@@ -1090,6 +1090,11 @@ class MahasiswaController extends Controller
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
+    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+    				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
+
 		if(sizeof($arr) < 1) {
 			//Todo
 			return 'on construct';
@@ -1108,9 +1113,9 @@ class MahasiswaController extends Controller
 			$jadwal_dosen = DB::table('jadwal_dosen')
 				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
 				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->get();	
+				->get();
 
-			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen));
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen , 'nama_dosen' => $dosen_pembimbing->nama_dosen));
 		}
 	}
  
