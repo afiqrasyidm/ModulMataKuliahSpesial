@@ -24,7 +24,7 @@ Route::get('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengaj
 Route::post('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengajuan-permohonan-ta-ubah', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_ubah_submit']);
 Route::post('/mahasiswa/pengajuan-permohonan-ta-submit-komentar/', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit-komentar', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit_komentar']);
 Route::get('mahasiswa/pengajuan-permohonan-ta-sukses', ['as' => '/mahasiswa/pengajuan-permohonan-ta-sukses', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_sukses']);
-Route::get('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta']);
+Route::get('mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta']);
 Route::post('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-pembimbing-ta', 'uses' => 'MahasiswaController@pengajuan_pembimbing_ta_submit']);
 Route::post('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan_submit']);
 Route::get('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan']);
@@ -46,8 +46,8 @@ Route::get('/testStaf', 'StafController@cari_staf' );
 Route::get('/homepage/industri', ['as' => 'homepage/industri', 'uses' => 'MainController@industri_homepage']);
 Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'IndustriController@pengumuman']);
 Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAController@homepage_dosen_PA']);
-Route::get('/dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
-Route::get('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta']);
+Route::get('dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
+Route::get('dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta/', 'uses' => 'DosenPAController@detail_permohonan_ta']);
 Route::get('/staf/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'staf/detail-permohonan-ta', 'uses' => 'StafController@detail_permohonan_ta']);
 Route::post('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta_submit']);
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
@@ -77,7 +77,7 @@ Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as
 Route::get('mahasiswa/pengajuan-sidang-topik', ['as' => '/mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik']);
 Route::post('mahasiswa/pengajuan-sidang-topik', ['as' => 'mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_submit']);
 //PENGAJUAN Sidang Topik Baru MHS S2 S3
-Route::get('mahasiswa/pengajuan-sidang-topik-baru/{id_tugas_akhir}', ['as' => '/mahasiswa/pengajuan-sidang-topik-baru', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_baru']);
+Route::get('mahasiswa/pengajuan-sidang-topik-baru/{id_tugas_akhir}', ['as' => 'mahasiswa/pengajuan-sidang-topik-baru/', 'uses' => 'MahasiswaController@pengajuan_sidang_topik_baru']);
 //Tidak bisa sidang topik
 Route::get('mahasiswa/failed-pengajuan-sidang-topik', ['as' => 'mahasiswa/failed-pengajuan-sidang-topik', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_topik']);
 //Mengambil topik dari industri dan dosen
@@ -87,13 +87,13 @@ Route::get('mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => 'mahasiswa/pe
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //detail pembimbing TA
-Route::get('/mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => '/mahasiswa/pengajuan-pembimbing-ta/detail/', 'uses' => 'MahasiswaController@detail_dosen']);
+Route::get('mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => 'mahasiswa/pengajuan-pembimbing-ta/detail/', 'uses' => 'MahasiswaController@detail_dosen']);
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //ajukan pembimbing
 Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
 Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_bimbingan']);
-Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', 'DosenPembimbingController@set_verifikasi_bimbingan');
+Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', ['as' => 'dosen/pembimbing/verifikasi-bimbingan/set/', 'uses'=> 'DosenPembimbingController@set_verifikasi_bimbingan']);
 Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan']);
 Route::post('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan_submit']);
 //verifikasi log bimbingan Dosen Pembimbing
@@ -150,7 +150,7 @@ Route::get('staf/failed-verifikasi-permohonan-sidang', ['as' => 'staf/failed-ver
 Route::get('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang/', 'uses' => 'StafController@verifikasi_permohonan_sidangPost']);
 Route::post('/staf/permohonan-sidang/{id_pengajuan}', ['as' => 'staf/permohonan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 //Ubah sidang
-Route::get('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@ubah_pengajuan_sidang']);
+Route::get('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang/', 'uses' => 'StafController@ubah_pengajuan_sidang']);
 Route::post('staf/ubah-pengajuan-sidang/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang', 'uses' => 'StafController@verifikasi_permohonan_sidang_submit']);
 //list jadwal sidang Dosbem
 Route::get('/dosen/pembimbing/list-jadwal-sidang', ['as' => 'dosen/pembimbing/list-jadwal-sidang', 'uses' => 'DosenPembimbingController@list_jadwal_sidang']);
@@ -162,7 +162,7 @@ Route::get('staf/form-verifikasi-sidang-topik', ['as' => 'staf/form-verifikasi-s
 Route::get('/staf/permohonan-sidang-topik/{id_pengajuan}', ['as' => 'staf/permohonan-sidang-topik/', 'uses' => 'StafController@verifikasi_permohonan_sidangtopikPost']);
 Route::post('/staf/permohonan-sidang-topik/{id_pengajuan}', ['as' => 'staf/permohonan-sidang-topik', 'uses' => 'StafController@verifikasi_permohonan_sidang_topik_submit']);
 //Ubah sidang topik
-Route::get('staf/ubah-pengajuan-sidang-topik/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang-topik', 'uses' => 'StafController@ubah_pengajuan_sidang_topik']);
+Route::get('staf/ubah-pengajuan-sidang-topik/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang-topik/', 'uses' => 'StafController@ubah_pengajuan_sidang_topik']);
 Route::post('staf/ubah-pengajuan-sidang-topik/{id_tugas_akhir}', ['as' => 'staf/ubah-pengajuan-sidang-topik', 'uses' => 'StafController@verifikasi_permohonan_sidang_topik_submit']);
 //ubah status selesai sidang Dosbem
 Route::get('/dosen/pembimbing/sidang-selesai/{id_tugas_akhir}', ['as' => '/dosen/pembimbing/sidang-selesai/', 'uses' => 'DosenPembimbingController@sidang_selesai']);
