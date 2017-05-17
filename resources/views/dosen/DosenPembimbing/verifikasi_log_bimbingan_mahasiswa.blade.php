@@ -13,7 +13,9 @@
 <div class=".col-md-11">
 
 <br><br>
-              <!-- general form elements disabled -->
+		@if(count($bimbingan)>0)			
+
+	<!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <center><h1 class="header-title">Daftar Log Bimbingan Mahasiswa {{$bimbingan->first()->nama_mahasiswa}}</h1><br></center>
@@ -27,34 +29,28 @@
 		    <thead>
 		      <tr>
 
-		        <th>Hari</th>
-				<th>Waktu Bimbingan </th>
+				<th>Waktu Mulai </th>
+				<th>Waktu Waktu Akhir </th>
 				<th>Detail</th>
 				
 				
 				</tr>
 		    </thead>
 		    <tbody>						
-										
 										  @foreach ($bimbingan as $data)
 									<tr>
 									
 										@if($data->status_bimbingan == 0)
-										  <td>
-											
-											  {{$data->nama_hari}} 
-												
-									
-										  </td>
+										  
 										  
 										  <td>
 												
 											{{$data->waktu_mulai}} - 
-											@php
-												$value = strtotime($data->waktu_mulai) + 60*60;
-												$time = date('H:i:s', $value);
-												echo $time;
-											@endphp
+										  </td>
+										  <td>
+										 
+										 	{{$data->waktu_selesai}} 
+										 
 										  </td>
 										  
 										  <td>
@@ -72,9 +68,12 @@
 											
 										 @endforeach
 
-			
 				</tbody>
 
+			@else
+				<h1> Mahasiswa ini Belum membuat log bimbingan apapun</h1>
+				
+			@endif
 
 
 

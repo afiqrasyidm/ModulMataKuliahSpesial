@@ -95,7 +95,7 @@
          @if($tugas_akhir->status_tugas_akhir==12)
          <center><h1 class="header-title">Hasil Sidang TA</h1></center>
          @else
-         <center><h1 class="header-title">Detail Pengajuan Sidang</h1></center>
+         <center><h1 class="header-title">Detail Pengajuan Sidang TA</h1></center>
          @endif
 
     </div>
@@ -123,7 +123,7 @@
                 </tr>
                
 
-               @if($sidang->status==2)  
+               @if($sidang->status>=2)  
                   @foreach($informasi_penguji as $informasi_penguji)
                     <tr>
                     <th width ="20%" bgcolor="#86b7e3">Dosen Penguji {{ $i++ }} </th>
@@ -161,6 +161,16 @@
                 </tr>       
 				</tbody>
 			</table>
+
+      <table class="table table-bordered">
+        <tbody>
+            @if($tugas_akhir->status_tugas_akhir==12)
+            <tr>
+            <th width ="20%" bgcolor="#2e913d" style ='color:#ffffff'><b>Selamat telah menyelesaikan sidang TA!</b> <br><i>Silahkan mengunggah dokumen TA Anda</i></th>
+            </tr>
+          @endif
+        </tbody>
+      </table>
 <br><br>
 
 

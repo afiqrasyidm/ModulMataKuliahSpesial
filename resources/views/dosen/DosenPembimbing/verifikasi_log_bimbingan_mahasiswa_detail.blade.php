@@ -34,35 +34,36 @@
 		    <tbody>						
 										
 										 
-									<tr>
-										<th>Hari  Bimbingan </th>
-				
-										  <td>
-										
-											  {{$bimbingan->nama_hari}} 
-										
-									
-										  </td>
-									</tr>
+
 										 
 									<tr> 
-											<th>Waktu  Bimbingan </th>
+											<th>Waktu  Mulai Bimbingan </th>
 										
 										
 										  <td>
 										  
-											{{$bimbingan->waktu_mulai}} - 
-											@php
-												$value = strtotime($bimbingan->waktu_mulai) + 60*60;
-												$time = date('H:i:s', $value);
-												echo $time;
-											@endphp
+											{{$bimbingan->waktu_mulai}}   
+												
+												
+												
+										  </td>
+									</tr>
+									
+										 
+									<tr> 
+											<th>Waktu  Selesai Bimbingan </th>
+										
+										
+										  <td>
+										  
+											{{$bimbingan->waktu_selesai}} 
 											
 												
 												
 												
 										  </td>
 									</tr>
+									
 									
 									
 									<tr>

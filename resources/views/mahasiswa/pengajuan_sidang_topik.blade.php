@@ -163,7 +163,7 @@
             @elseif($tugas_akhir->nilai_topik=="E")
             <th width ="20%" bgcolor="#de4a37" style ='color:#ffffff'><b>Nilai Anda tidak mencukupi untuk melanjutkan bimbingan TA & sidang TA</b> <br><i>Silahkan melakukan bimbingan dan mengajukan sidang topik kembali</i></th>
             @else
-            <th width ="20%" bgcolor="#2e913d" style ='color:#ffffff'><b>Selamat, telah menyelesaikan sidang topik!</b> <br><i>Silahkan melanjutkan bimbingan Anda untuk menyelesaikan tugas akhir ini</i></th>
+            <th width ="20%" bgcolor="#2e913d" style ='color:#ffffff'><b>Selamat telah menyelesaikan sidang topik!</b> <br><i>Silahkan melanjutkan bimbingan Anda untuk menyelesaikan tugas akhir ini</i></th>
             @endif
             </tr>
           @endif

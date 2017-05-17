@@ -94,10 +94,12 @@
             }
 
 
+
+
           }
 
           
-
+          //s2 punya
          else {
         
            if ($tugasakhir == ""){
@@ -118,17 +120,60 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-            if ($tugasakhir == "7"){
+            if ($tugasakhir == "7" || $tugasakhir =="8"){
               echo "<img src='";
               echo asset('img/S2/15.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-            if ($tugasakhir == "Siap sidang topik"){
+            if ($tugasakhir == 9){
               echo "<img src='";
               echo asset('img/S2/16.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
+
+            if ($tugasakhir == 10){
+              echo "<img src='";
+              echo asset('img/S2/17.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            if ($tugasakhir == "Siap sidang topik"){
+              echo "<img src='";
+              echo asset('img/S2/18.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+             if ($tugasakhir == "Done sidang topik"){
+              echo "<img src='";
+              echo asset('img/S2/19.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+             if ($tugasakhir == 11){
+              echo "<img src='";
+              echo asset('img/S2/20.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+             else if ($tugasakhir == 12){
+              echo "<img src='";
+              echo asset('img/S2/23.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+            else if ($tugasakhir == "Sudah upload"){
+              echo "<img src='";
+              echo asset('img/S2/22.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
+             else if ($tugasakhir == "Sudah upload final"){
+              echo "<img src='";
+              echo asset('img/S2/24.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+
           }
 
           ?>

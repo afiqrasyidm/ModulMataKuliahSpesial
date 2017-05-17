@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2017 at 02:28 PM
+-- Generation Time: May 17, 2017 at 08:24 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -299,7 +299,8 @@ CREATE TABLE `log_bimbingan` (
   `id_tugas_akhir` int(10) UNSIGNED NOT NULL,
   `id_dosen_pembimbing` int(10) NOT NULL,
   `status_bimbingan` int(2) NOT NULL,
-  `id_jadwal_dosen` int(10) NOT NULL,
+  `waktu_mulai` datetime DEFAULT NULL,
+  `waktu_selesai` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -309,8 +310,8 @@ CREATE TABLE `log_bimbingan` (
 -- Dumping data for table `log_bimbingan`
 --
 
-INSERT INTO `log_bimbingan` (`id_log_bimbingan`, `keterangan`, `id_tugas_akhir`, `id_dosen_pembimbing`, `status_bimbingan`, `id_jadwal_dosen`, `created_at`, `id_maker`, `updated_at`) VALUES
-(1, 'LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL  ', 433, 41, 0, 1, '2017-04-30 17:00:00', 2, NULL);
+INSERT INTO `log_bimbingan` (`id_log_bimbingan`, `keterangan`, `id_tugas_akhir`, `id_dosen_pembimbing`, `status_bimbingan`, `waktu_mulai`, `waktu_selesai`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 'LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL LOL  ', 435, 41, 1, '2017-05-18 00:00:00', '2017-05-01 00:00:00', '2017-04-30 17:00:00', 2, NULL);
 
 -- --------------------------------------------------------
 

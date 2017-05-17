@@ -901,29 +901,41 @@ class MahasiswaController extends Controller
 					}
 
 					//udh upload tp belum final
-					
-					
+
 
 					if ($status == '11' && $hasil_ta != NULL && $hasil_ta_final->dokumen_revisi==NULL){
 						$status = "Sudah upload";
 					}
 
+
 					//udh upload final
-					if ($status =='12' && $hasil_ta != NULL && $hasil_ta_final->dokumen_revisi!= NULL){
+					else if ($status =='12' && $hasil_ta != NULL && $hasil_ta_final->dokumen_revisi!= NULL){
 						$status = "Sudah upload final";
 					}
 
 					//mahasiswa s2 yang pake sidang topik
-
+				if($mahasiswa -> jenjang == "S2" || $mahasiswa -> jenjang === "S3"){
 					$status_sidang_topik = Pengajuan_sidang_topik::select ('status')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
-					if ($status_sidang_topik == 3){
-						$status = "Siap sidang topik";
+					
+					if ($status < 11)
+					{
+								if ($status_sidang_topik->status == 1){
+									$status = "Siap sidang topik";
 
+								}
+
+								if ($status_sidang_topik->status == 3){
+									$status = "Done sidang topik";
+
+								}
 					}
-
+				
 				}
+				
+			}	
+
 						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $status);
-						}
+	}
 		
 	
 	
