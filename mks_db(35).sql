@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2017 at 08:24 AM
+-- Generation Time: May 17, 2017 at 08:47 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -43,7 +43,7 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`nama_dosen`, `NIP`, `id_user`, `created_at`, `id_maker`, `updated_at`, `id_dosen`, `interest`, `is_jadwal_submit`) VALUES
-('Mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis', NULL),
+('Mischelle', '123', 2, NULL, NULL, NULL, 1, 'Anaprancis', 1),
 ('Budi', '12311', 9, NULL, NULL, NULL, 2, 'Matdas', NULL),
 ('Anto', '444', 9, NULL, NULL, NULL, 3, 'Matdis', NULL);
 
@@ -272,6 +272,14 @@ CREATE TABLE `jadwal_dosen` (
   `id_maker` int(10) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `jadwal_dosen`
+--
+
+INSERT INTO `jadwal_dosen` (`id_jadwal_dosen`, `id_tugas_akhir`, `waktu_mulai`, `id_hari`, `id_dosen`, `created_at`, `id_maker`, `updated_at`) VALUES
+(1, 435, '08:00:00', 2, 1, NULL, NULL, NULL),
+(2, 435, '09:00:00', 2, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1352,6 +1360,11 @@ ALTER TABLE `hasil_ta`
 --
 ALTER TABLE `industri`
   MODIFY `id_industri` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `jadwal_dosen`
+--
+ALTER TABLE `jadwal_dosen`
+  MODIFY `id_jadwal_dosen` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jenis_ta`
 --
