@@ -28,9 +28,11 @@ Route::get('/logout-sso', ['as' => 'logout-sso', 'uses' => 'MainController@logou
 
 Route::get('/homepage/mahasiswa', ['as' => 'homepage/mahasiswa', 'uses' => 'MahasiswaController@mahasiswa_homepage']);
 
+
 Route::get('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta']);
 
 Route::post('/mahasiswa/pengajuan-permohonan-ta', ['as' => 'mahasiswa/pengajuan-permohonan-ta-submit', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_submit']);
+
 
 Route::get('/mahasiswa/pengajuan-permohonan-ta-ubah', ['as' => 'mahasiswa/pengajuan-permohonan-ta-ubah', 'uses' => 'MahasiswaController@pengajuan_permohonan_ta_ubah']);
 
@@ -47,10 +49,6 @@ Route::post('/mahasiswa/pengajuan-pembimbing-ta', ['as' => 'mahasiswa/pengajuan-
 Route::post('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan_submit']);
 
 Route::get('/mahasiswa/jadwal-bimbingan', ['as' => 'mahasiswa/jadwal-bimbingan', 'uses' => 'MahasiswaController@jadwal_bimbingan']);
-
-Route::get('/mahasiswa/log-bimbingan', ['as' => 'mahasiswa/log-bimbingan', 'uses' => 'MahasiswaController@log_bimbingan']);
-
-Route::post('/mahasiswa/log-bimbingan', ['as' => 'mahasiswa/log-bimbingan', 'uses' => 'MahasiswaController@log_bimbingan_submit']);
 
 Route::get('/mahasiswa/pengumuman', ['as' => 'mahasiswa/pengumuman', 'uses' => 'MahasiswaController@pengumuman']);
 
@@ -152,7 +150,7 @@ Route::get('mahasiswa/pengajuan-topik-ta-dosen-industri/{id_topik}', ['as' => 'm
 //detail topik TA
 
 
-Route::get('/mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => '/mahasiswa/pengajuan-topik/detail/', 'uses' => 'MahasiswaController@detail_topik_ta']);
+Route::get('/mahasiswa/pengajuan-topik/detail/{id_topik}', ['as' => '/mahasiswa/pengajuan-topik/detail/{id_topik}', 'uses' => 'MahasiswaController@detail_topik_ta']);
 
 
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
