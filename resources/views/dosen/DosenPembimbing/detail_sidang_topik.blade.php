@@ -60,7 +60,7 @@
                 <th bgcolor="#86b7e3">Input Nilai</th>
 				
                 <td bgcolor="#dddddd"> 
-					<select name="nilai_ta">
+					<select name="nilai_topik">
 							<option value="A">A</option>
 							<option value="A-">A-</option>
 							<option value="B+">B+</option>
