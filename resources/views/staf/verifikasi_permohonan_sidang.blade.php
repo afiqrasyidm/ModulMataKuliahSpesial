@@ -83,7 +83,7 @@ if (isset($_SESSION["sba_perubahan_verifikasi_pengajuan_sidang"])) {
                 </td>
 
                 <td>
-                    <a href="/staf/permohonan-sidang/{{$ta->id_pengajuan}}">
+                    <a href="{{ route('staf/permohonan-sidang/',$ta->id_pengajuan) }}">
                       <button  class="btn btn-primary" type="submit">Detail TA</button>
                     </a>
                 </td>
