@@ -194,14 +194,12 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			->where('log_bimbingan.id_tugas_akhir', '=',  $id_tugas_akhir)
 			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
 			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
-			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
-			->leftJoin('hari', 'jadwal_dosen.id_hari', 'hari.id_hari')
 		
 			
 			->get();
 
 			//return 
-				//return $bimbingan;
+			
 		
 
 		return view("dosen/DosenPembimbing/verifikasi_log_bimbingan_mahasiswa", array('bimbingan' => $bimbingan));
@@ -217,8 +215,6 @@ function ubah_status_sidangPost($id_tugas_akhir)
 			
 			->leftJoin('tugas_akhir', 'tugas_akhir.id_tugas_akhir', 'log_bimbingan.id_tugas_akhir')
 			->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', 'tugas_akhir.id_mahasiswa')
-			->leftJoin('jadwal_dosen', 'jadwal_dosen.id_jadwal_dosen', 'log_bimbingan.id_jadwal_dosen')
-			->leftJoin('hari', 'jadwal_dosen.id_hari', 'hari.id_hari')
 		
 			->where('log_bimbingan.id_log_bimbingan', '=',  $id_log_bimbingan)
 			
@@ -245,7 +241,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 				
 				[
 				
-				'status' => 1,
+				'status_bimbingan' => 1,
 				'id_maker' =>  $_SESSION["id_user"],
 			
 				
@@ -371,6 +367,8 @@ function detail_sidang_topik($id_tugas_akhir){
 	
 		session_start();
 		
+
+		
 		 DB::table('tugas_akhir')
             ->where('id_tugas_akhir', Input::get('id_tugas_akhir'))
             ->update([
@@ -378,7 +376,7 @@ function detail_sidang_topik($id_tugas_akhir){
 			'id_maker' =>  $_SESSION["id_user"],
 			
 			
-			'nilai_ta' => Input::get('nilai_ta') ,
+			'nilai_topik' => Input::get('nilai_topik') ,
 			
 			
 			]);

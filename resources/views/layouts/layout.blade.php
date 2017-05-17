@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset ('plugins/datepicker/datepicker3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker-bs3.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' )  }}">
+    <link rel="stylesheet" href="{{ asset ('css/clockpicker.css' )  }}">
+<link rel="stylesheet" href="{{ asset ('css/standalone.css' )  }}">
     <link rel="stylesheet" href="{{ asset ('css/layout.css' )  }}">
 	<script type="text/javascript" src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
@@ -175,8 +177,8 @@
     <script src="{{ asset  ('plugins/fastclick/fastclick.min.js') }}"></script>
     <script src="{{ asset  ('dist/js/app.min.js') }}"></script>
     <script src="{{ asset  ('dist/js/demo.js') }}"></script>
-	<script src="{{ URL::asset  ('plugins/morris/morris.min.js') }}"></script>
-	 
+	   <script src="{{ URL::asset  ('plugins/morris/morris.min.js') }}"></script>
+	   <script type="text/javascript" src="{{ URL::asset('js/clockpicker.js') }}"></script>
 	
  
  </body>

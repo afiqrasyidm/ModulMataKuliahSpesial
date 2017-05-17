@@ -133,20 +133,20 @@ class StafController extends Controller
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
         ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
-        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '11')
         ->get()->first();
 		$i=1;
 		$dosen =  DB::table('dosen')->get();
-      $penguji = DB::table('pengajuan_sidang')
+       $penguji = DB::table('pengajuan_sidang')
         ->leftJoin('tugas_akhir', 'pengajuan_sidang.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('mahasiswa', 'mahasiswa.id_mahasiswa', '=', 'pengajuan_sidang.id_mahasiswa')
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
         ->leftJoin('dosen_penguji_topik', 'dosen_penguji_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_topik.id_dosen')
-        ->where('tugas_akhir.status_tugas_akhir','=', '11')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '11')
         ->get();
 
-        	return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i, 'penguji'=>$penguji));
+        return view("staf/form_verifikasi_sidang_ta", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i, 'penguji'=>$penguji));
 
        
 	}
@@ -160,7 +160,7 @@ class StafController extends Controller
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
         ->leftJoin('dosen_pembimbing_ta', 'dosen_pembimbing_ta.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_pembimbing_ta.id_dosen')
-        ->where('tugas_akhir.status_tugas_akhir','=', '10')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '10')
         ->get()->first();
 		$i=1;
 		$dosen =  DB::table('dosen')->get();
@@ -170,7 +170,7 @@ class StafController extends Controller
         ->leftJoin('topik', 'topik.id_topik', '=', 'tugas_akhir.id_topik')
         ->leftJoin('dosen_penguji_topik', 'dosen_penguji_topik.id_tugas_akhir', '=', 'tugas_akhir.id_tugas_akhir')
         ->leftJoin('dosen', 'dosen.id_dosen', '=', 'dosen_penguji_topik.id_dosen')
-        ->where('tugas_akhir.status_tugas_akhir','=', '10')
+        ->where('tugas_akhir.status_tugas_akhir','>=', '10')
         ->get();
 
         return view("staf/form_verifikasi_sidang_topik", array('ta' => $ta, 'dosen' => $dosen, 'dosen2' => $dosen, 'dosen3' => $dosen, 'i'=>$i, 'penguji'=>$penguji));
@@ -428,7 +428,7 @@ function verifikasi_permohonan_sidang_topik_submit(){
 			]);
 
 			if($ta->status == 2){
-			 $dosen_penguji1 = new dosen_penguji_topik;
+			 $dosen_penguji1 = new Dosen_penguji_topik;
 			 $dosen_penguji1->id_dosen = Input::get('dosen_penguji_1');
 			 $dosen_penguji1->id_tugas_akhir = $ta->id_tugas_akhir;
 			 $dosen_penguji1->id_maker = $_SESSION["id_user"];

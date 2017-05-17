@@ -914,7 +914,7 @@ class MahasiswaController extends Controller
 					}
 
 					//mahasiswa s2 yang pake sidang topik
-
+				if($mahasiswa -> jenjang == "S2" || $mahasiswa -> jenjang === "S3"){
 					$status_sidang_topik = Pengajuan_sidang_topik::select ('status')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
 					
 					if ($status < 11)
@@ -931,10 +931,11 @@ class MahasiswaController extends Controller
 					}
 				
 				}
-					
+				
+			}	
 
 						 return view("mahasiswa/homepage_mahasiswa")->with('tugasakhir', $status);
-						}
+	}
 		
 	
 	
@@ -1058,20 +1059,20 @@ class MahasiswaController extends Controller
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
 
+    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+    				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
+
 		$jadwal_dosen = DB::table('jadwal_dosen')
 				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
 				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
 				->get();
 
 		if(sizeof($jadwal_dosen)>0) {
-			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen));
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen, 'nama_dosen' => $dosen_pembimbing->nama_dosen));
 		}
 		else {
-
-			$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
-					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-					->get()->first();
-
 			$jadwal_dosen = DB::table('jadwal_dosen')
 					->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
 					->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
@@ -1088,6 +1089,11 @@ class MahasiswaController extends Controller
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+    				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
 
 		if(sizeof($arr) < 1) {
 			//Todo
@@ -1107,10 +1113,75 @@ class MahasiswaController extends Controller
 			$jadwal_dosen = DB::table('jadwal_dosen')
 				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
 				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->get();	
+				->get();
 
-			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen));
+			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen , 'nama_dosen' => $dosen_pembimbing->nama_dosen));
 		}
 	}
  
+ 	function log_bimbingan() {
+ 		session_start();
+
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+    				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
+
+		$jadwal_dosen = DB::table('jadwal_dosen')
+				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->get();
+
+		$log_bimbingan = DB::table('log_bimbingan')
+				->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->orderBy('waktu_mulai', 'desc')
+				->get();
+
+		return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan));
+ 	}
+
+ 	function log_bimbingan_submit() {
+ 		session_start();
+
+		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
+    	$id_mahasiswa = $mahasiswa->id_mahasiswa;
+    	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+
+    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+    				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
+					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get()->first();
+
+		$date = Input::get('tanggal');
+		$time = Input::get('waktu_mulai');
+		$time2 = Input::get('waktu_selesai');
+
+		$combinedDTMulai = date('Y-m-d H:i:s', strtotime("$date $time"));
+		$combinedDTSelesai = date('Y-m-d H:i:s', strtotime("$date $time2"));
+
+    	DB::table('log_bimbingan')->insert(
+				    array(
+				            'keterangan' => Input::get('deskripsi_log'), 
+				            'id_tugas_akhir'   =>  $tugas_akhir->id_tugas_akhir,
+				        	'waktu_mulai'   =>  $combinedDTMulai,
+				        	'waktu_selesai'   =>  $combinedDTSelesai,
+				        	'id_dosen_pembimbing'   =>  $dosen_pembimbing->id_dosen,
+				        	'status_bimbingan'   =>  0,
+				        	'id_maker'   =>   $_SESSION["id_user"],
+				    )
+				);
+
+    	$log_bimbingan = DB::table('log_bimbingan')
+				->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+				->orderBy('waktu_mulai', 'desc')
+				->get();
+
+    	$_SESSION["buat_log_bimbingan_berhasil"] = true;
+
+    	return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan));
+ 	}
 }
