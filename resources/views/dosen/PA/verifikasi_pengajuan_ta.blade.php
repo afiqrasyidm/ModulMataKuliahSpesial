@@ -1,4 +1,4 @@
-@extends('layouts.layout_dosen_pa')
+@extends('layouts.layout_dosen_PA')
 
 @section('title','Verifikasi Pengajuan Tugas Akhir')
 
