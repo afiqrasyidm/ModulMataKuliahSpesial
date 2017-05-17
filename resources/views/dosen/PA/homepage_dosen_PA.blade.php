@@ -16,7 +16,7 @@
           </div><!-- /.box-header -->
           <div class="box-body">
           <center><br>
-		<img src="{{ asset('img/PA.png') }}" style="width: 50% ; height: 50%">
+		<img src="{{ asset('img/PA.png') }}" style="width: 80% ; height: 50%">
             </center>
           </div>
 
