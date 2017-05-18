@@ -194,7 +194,7 @@ Route::post('dosen/pembimbing/detail-sidang-topik/{id_tugas_akhir}', ['as' => 'd
 
 //ubah status siap sidang
 Route::get('dosen/pembimbing/ubah-status-sidang-topik', ['as' => 'dosen/pembimbing/ubah-status-sidang-topik', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topik']);
-Route::get('dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
+Route::get('dosen/pembimbing/status-sidang-topik/{id_tugas_akhir}/{id_mahasiswa}', ['as' => 'dosen/pembimbing/status-sidang-topik/', 'uses' => 'DosenPembimbingController@ubah_status_sidang_topikPost']);
 
 //upload hasil ta final
 Route::get('mahasiswa/upload-hasil-ta-final', ['as' => 'mahasiswa/upload-hasil-ta-final', 'uses' => 'MahasiswaController@upload_hasil_ta_final']);

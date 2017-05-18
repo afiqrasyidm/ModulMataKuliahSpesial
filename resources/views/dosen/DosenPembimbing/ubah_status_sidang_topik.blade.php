@@ -70,11 +70,9 @@ if (isset($_SESSION["izin_sidang"])) {
 
       
       
-          <a href="/dosen/pembimbing/status-sidang-topik/{{$sidang_topik1->id_tugas_akhir}}/{{$sidang_topik1->id_mahasiswa}}">
+        <a href="{{ route('dosen/pembimbing/status-sidang-topik/', array('id_tugas_akhir' => $sidang_topik1->id_tugas_akhir, 'id_mahasiswa' => $sidang_topik1->id_mahasiswa)) }}">
                       <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
                      </a>      
-      
-      
       
     @endforeach
 @endif
