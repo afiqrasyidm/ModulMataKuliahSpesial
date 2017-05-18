@@ -108,7 +108,7 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
             
-            if ($tugasakhir == "3"){
+            if ($tugasakhir == "3" || $tugasakhir == "4" || $tugasakhir == "5"){
               echo "<img src='";
               echo asset('img/S2/13.png');
               echo "' style='width: 100% ; height: auto'/>";
