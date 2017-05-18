@@ -150,9 +150,17 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-             if ($tugasakhir == 11){
+             if ($tugasakhir == "Bimbingan"){
+				
               echo "<img src='";
               echo asset('img/S2/20.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+			
+			 if ($tugasakhir == 11){
+				
+              echo "<img src='";
+              echo asset('img/S2/21.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
 
