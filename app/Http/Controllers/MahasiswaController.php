@@ -704,6 +704,12 @@ class MahasiswaController extends Controller
 								if ($status_sidang_topik->status == 3){
 									$status = "Done sidang topik";
 								}
+								
+								if ($status_sidang_topik->status == 4){
+									$status = "Bimbingan";
+									
+								}
+								
 					}
 				
 				}
