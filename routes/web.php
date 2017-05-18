@@ -73,7 +73,7 @@ Route::post('mahasiswa/pengajuan-sidang-ta', ['as' => 'mahasiswa/pengajuan-sidan
 Route::get('mahasiswa/failed-pengajuan-sidang-ta', ['as' => 'mahasiswa/failed-pengajuan-sidang-ta', 'uses' => 'MahasiswaController@failed_pengajuan_sidang_ta']);
 
 //UBAH PENGAJUAN TA
-Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', 'uses' => 'MahasiswaController@ubah_pengajuan_topik_ta']);
+Route::get('mahasiswa/ubah-pengajuan-topik-ta/{id_topik}/{id_tugas_akhir}', ['as' => 'mahasiswa/ubah-pengajuan-topik-ta/', 'uses' => 'MahasiswaController@ubah_pengajuan_topik_ta']);
 
 //PENGAJUAN Sidang Topik MAHASISWA S2 S3
 Route::get('mahasiswa/pengajuan-sidang-topik', ['as' => '/mahasiswa/pengajuan-sidang-topik', 'uses' => 'MahasiswaController@pengajuan_sidang_topik']);

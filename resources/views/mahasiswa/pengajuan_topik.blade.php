@@ -1,5 +1,4 @@
 
-
 @extends('layouts.layout_mahasiswa')
 
 @section('title','Pengajuan Topik TA')
@@ -249,9 +248,13 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
 			</div>
 
 			<div>
-					<a href="/mahasiswa/ubah-pengajuan-topik-ta/{{$topik_yang_diambil->id_topik}}/{{$tugas_akhir->id_tugas_akhir}}"   >
+				<a href=" {{ route('mahasiswa/ubah-pengajuan-topik-ta/', array('id_topik' => $topik_yang_diambil->id_topik,  'id_tugas_akhir' => $tugas_akhir->id_tugas_akhir)) }}" >
+					 
 					
 					
+
+				
+				
 					
 					  <button  class="btn btn-primary" >Iya</button>
 					</a>
@@ -284,4 +287,3 @@ if (isset($_SESSION["mahasiswa_perubahan_topik"])) {
 </section>
 
 @endsection
-
