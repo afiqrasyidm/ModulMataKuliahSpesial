@@ -54,8 +54,13 @@
 										  </td>
 										  
 										  <td>
-												<a  href="/dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/{{$data->id_log_bimbingan}}">
-												<button  class="btn btn-primary" >	
+										  
+										  
+					 <a href="{{ route('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa-detail/', $data->id_log_bimbingan ) }}">
+      
+												
+		
+						<button  class="btn btn-primary" >	
 														Detail
 												</button>
 												</a>

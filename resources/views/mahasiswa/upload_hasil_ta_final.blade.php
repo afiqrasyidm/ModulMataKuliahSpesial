@@ -61,9 +61,13 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
       
       
       unset($_SESSION["detail_upload_submit_first"]);
-}
+	  
+
+	  }
+
+
 ?>
-           
+
               <table class="table table-bordered">
 
               <tbody>
@@ -71,7 +75,7 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dokumen</th>
                 <td bgcolor="#c0c5cc">
-                 <a href="/files/{{$hasil_ta->dokumen}}" >{{$hasil_ta->dokumen_revisi}}</a></td>
+                 <a href="{{ url('/') }}/files/{{$hasil_ta->dokumen}}" >{{$hasil_ta->dokumen_revisi}}</a></td>
 
                 </tr>
 
@@ -102,11 +106,15 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Anda Yakin Ingin Mengubah Dokumen TA?</h4>
       </div>
-
+<br>
       <div>
-          <a href="{{ route('mahasiswa/ubah-dokumen-ta-final/' , $hasil_ta->id_tugas_akhir)}}"   >
-            <center><button  class="btn btn-primary" >Iya</button></center>
+       <center>
+          <a href="{{ route('mahasiswa/ubah-dokumen-ta-final/' , $hasil_ta->id_tugas_akhir)}}">
+            <button  class="btn btn-primary" >Iya</button>
           </a>
+             <button  class="btn btn-danger"  class="close" data-dismiss="modal">Batal</button>
+        </center>
+         
         
           <br>
           <br>

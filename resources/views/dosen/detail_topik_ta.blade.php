@@ -86,10 +86,27 @@ if (isset($_SESSION["setuju_topik"])) {
 									
 									<td> 
 										@if($topiks->status_tugas_akhir == 3)
-										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/1/{{$topiks->id_topik}}">
+										<a href="{{ route('dosen/setuju-topik/', 
+											
+											array( 'id_tugas_akhir'=> $topiks->id_tugas_akhir,
+											'is_disetujui' => 1, 'id_topik' =>$topiks->id_topik
+											
+											)) 
+											
+											}}"
+									
+									
+									
 											<button  class="btn btn-primary">Setuju</button>
 										</a>
-										<a href="/dosen/setuju-topik/{{$topiks->id_tugas_akhir}}/2/{{$topiks->id_topik}}">
+										<a href="{{ route('dosen/setuju-topik/', 
+											
+											array( 'id_tugas_akhir'=> $topiks->id_tugas_akhir,
+											'is_disetujui' => 2, 'id_topik' =>$topiks->id_topik
+											
+											)) 
+											
+											}}">
 											<button  class="btn btn-danger">Tidak Setuju</button>
 										</a>
 										@elseif($topiks->status_tugas_akhir == 4)
@@ -123,7 +140,7 @@ if (isset($_SESSION["setuju_topik"])) {
 
 				<center>
 				@if($topik->first()->sudah_diambil == 0)
-				<a href="/dosen/hentikan-topik/{{$topik->first()->id_topik}}">
+				<a href="{{ route('dosen/hentikan-topik/', $topik->first()->id_topik ) }}">
 						<button class="btn btn-danger">Stop Penawaran Topik ini</button>
 				</a>
 				@else
@@ -172,7 +189,7 @@ if (isset($_SESSION["setuju_topik"])) {
 											
 					<center>
 					@if($topik_belum_diambil->first()->sudah_diambil == 0)
-					<a href="/dosen/hentikan-topik/{{$topik_belum_diambil->first()->id_topik}}">
+					<a href="dosen/hentikan-topik/{{$topik_belum_diambil->first()->id_topik}}">
 							<button  class="btn btn-danger">Stop Penawaran Topik ini</button>
 					</a>
 					@else

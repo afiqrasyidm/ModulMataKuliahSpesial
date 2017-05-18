@@ -80,7 +80,12 @@
 				
 				
 										  <td>
-												<a  href="/dosen/pembimbing/setujui-log/{{$bimbingan->id_log_bimbingan}}">
+								
+								
+													 <a href="{{ route('dosen/pembimbing/setujui-log/', $bimbingan->id_log_bimbingan ) }}">
+      
+												
+								
 												<button  class="btn btn-primary" >	
 														Verifikasi
 												</button>

@@ -53,8 +53,11 @@ if (isset($_SESSION["setujui_log"])) {
 										  @foreach ($bimbingan as $data)
 									<tr>
 										  <td>
-											<a  href="/dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{{$data->id_tugas_akhir}}">
-											  {{$data->nama_mahasiswa}}
+										
+					 <a href="{{ route('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/', $data->id_tugas_akhir ) }}">
+      
+									
+												{{$data->nama_mahasiswa}}
 											</a>
 										  </td>
 										   

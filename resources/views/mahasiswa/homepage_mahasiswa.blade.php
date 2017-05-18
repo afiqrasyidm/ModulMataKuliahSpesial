@@ -32,7 +32,7 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-            else if ($tugasakhir == "3"){
+            else if ($tugasakhir == "3" || $tugasakhir == "4" || $tugasakhir == "5" ){
               echo "<img src='";
               echo asset('img/S1/10.png');
               echo "' style='width: 100% ; height: auto'/>";
@@ -108,7 +108,7 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
             
-            if ($tugasakhir == "3"){
+            if ($tugasakhir == "3" || $tugasakhir == "4" || $tugasakhir == "5"){
               echo "<img src='";
               echo asset('img/S2/13.png');
               echo "' style='width: 100% ; height: auto'/>";
@@ -150,9 +150,17 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-             if ($tugasakhir == 11){
+             if ($tugasakhir == "Bimbingan"){
+				
               echo "<img src='";
               echo asset('img/S2/20.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
+			
+			 if ($tugasakhir == 11){
+				
+              echo "<img src='";
+              echo asset('img/S2/21.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
 
