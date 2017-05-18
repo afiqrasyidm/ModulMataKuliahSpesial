@@ -94,18 +94,13 @@ if (isset($_SESSION["izin_sidang"])) {
                 </td>
              
                 <td>
-
-<!-- test -->
-
-      
-      
-        <p><b>Siap Sidang</b></p> 
-      
+                    <p><b>Siap Sidang</b></p> 
+                </td>
       
     @endforeach
 
                    
-                </td>
+                
 
               </tr>
   
