@@ -60,13 +60,16 @@
 
 											
 
-											<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/2', $data->id) }}" type="button" class="btn btn-primary">Terima</a>
+											<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/',  array( 'status'=> 2,
+											'id_dpt' => $data->id )) }}" type="button" class="btn btn-primary">Terima</a>
 
+						
 						
 												
 											</a>
-											<a href="{{ url('dosen/pembimbing/verifikasi-bimbingan/set/3/'.$data->id) }}" type="button" class="btn btn-danger">Tolak</a>
-											
+												<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/',  array( 'status'=> 1,
+												'id_dpt' => $data->id )) }}" type="button" class="btn btn-primary">Tolak</a>
+
 											</a>
 											@elseif($data->status_dosen_pembimbing == 2)
 												<p style="color:green;"><b>Diterima</b></p>

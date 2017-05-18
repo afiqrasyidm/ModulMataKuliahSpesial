@@ -93,7 +93,7 @@ Route::get('mahasiswa/pengajuan-pembimbing-ta/detail/{id_dosen}', ['as' => 'maha
 Route::get('/forbidden_access', ['as' => '/forbidden_access', 'uses' => 'MainController@forbidden_access']);
 Route::get('/page-not-found', ['as' => '/page-not-found', 'uses' => 'MainController@page_not_found']);
 //ajukan pembimbing
-Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
+Route::get('mahasiswa/pengajuan-dosbing/{id_dosen}', ['as' => 'mahasiswa/pengajuan-dosbing/', 'uses'=> 'MahasiswaController@pengajuan_dosenpembimbing']);
 Route::get('dosen/pembimbing/verifikasi-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_bimbingan']);
 Route::get('dosen/pembimbing/verifikasi-bimbingan/set/{status}/{id_dpt}', ['as' => 'dosen/pembimbing/verifikasi-bimbingan/set/', 'uses'=> 'DosenPembimbingController@set_verifikasi_bimbingan']);
 Route::get('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing/atur-jadwal-bimbingan', 'uses'=> 'DosenPembimbingController@atur_jadwal_bimbingan']);

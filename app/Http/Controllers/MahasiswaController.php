@@ -694,9 +694,10 @@ class MahasiswaController extends Controller
 					$status_sidang_topik = Pengajuan_sidang_topik::select ('status')->where('id_tugas_akhir', $id_tugas_akhir->id_tugas_akhir)->get()->first();
 				
 					
-					if ($status == 11)
+					if ($status == 10)
 					{
-				
+
+						
 								if ($status_sidang_topik->status == 1){
 									$status = "Siap sidang topik";
 								}
