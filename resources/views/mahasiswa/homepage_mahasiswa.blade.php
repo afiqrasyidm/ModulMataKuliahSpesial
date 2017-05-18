@@ -32,7 +32,7 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-            else if ($tugasakhir == "3"){
+            else if ($tugasakhir == "3" || $tugasakhir == "4" || $tugasakhir == "5" ){
               echo "<img src='";
               echo asset('img/S1/10.png');
               echo "' style='width: 100% ; height: auto'/>";
