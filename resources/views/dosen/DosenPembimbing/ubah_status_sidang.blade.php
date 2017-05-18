@@ -54,6 +54,7 @@ if (isset($_SESSION["izin_sidang"])) {
 
         
                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @if($ta->jenjang == "S1" OR ($ta->jenjang != "S1" AND $ta->nilai_topik !=  Null))
               <tr>
                 <td>
                      {{$ta->nama_mahasiswa}}
@@ -64,21 +65,19 @@ if (isset($_SESSION["izin_sidang"])) {
                       
                 </td>
              
-                <td>
-                   @if($ta->status_tugas_akhir == 10)
+                <td> 
 
-                    <a href="{{ route('dosen/pembimbing/status-sidang/' ,$ta->id_tugas_akhir)}}">
-                      <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
-                    </a>
+                   @if($ta->status_tugas_akhir == 10)
+                        <a href="{{ route('dosen/pembimbing/status-sidang/' ,$ta->id_tugas_akhir)}}">
+                          <button  class="btn btn-primary" type="submit">Izinkan Sidang</button>
+                        </a>
+                       
                     @elseif($ta->status_tugas_akhir >10) 
                       <p><b>Siap Sidang</b></p>
                     @endif
-
-                  
-
                 </td>
-
               </tr>
+         @endif
   @endforeach
               
 
