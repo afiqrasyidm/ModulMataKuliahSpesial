@@ -35,7 +35,6 @@ class DosenPembimbingController extends Controller
         ->where('dosen_pembimbing_ta.id_dosen','=', $id_dosen)
         ->get();
 
-      //return $ta;
 
     return view("dosen/DosenPembimbing/ubah_status_sidang", array('ta' => $ta));
 
