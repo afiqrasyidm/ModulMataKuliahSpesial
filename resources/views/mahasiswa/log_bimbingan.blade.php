@@ -16,6 +16,18 @@
               		</div>";	
 			unset($_SESSION["buat_log_bimbingan_berhasil"]);
 		}
+		if (isset($_SESSION["error_tanggal"])) {
+			echo 	"<div class='alert alert-danger'> 
+                   	Waktu mulai tidak boleh lebih muda dari waktu selesai!
+              		</div>";	
+			unset($_SESSION["error_tanggal"]);
+		}
+		if (isset($_SESSION["input_kosong"])) {
+			echo 	"<div class='alert alert-danger'> 
+                   	Harap mengisi semua isian input!
+              		</div>";	
+			unset($_SESSION["input_kosong"]);
+		}
 		@endphp
 			<div class="box box-primary">  
 				@if($tugas_akhir->status_tugas_akhir==10)
