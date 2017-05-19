@@ -162,11 +162,9 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
 
     @endif
 
+      <form action="" enctype="multipart/form-data" method="POST">
 
-    <form action="{{ url('mahasiswa/upload-hasil-ta-final') }}" enctype="multipart/form-data" method="POST">
-
-      {{ csrf_field() }}
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <br>
        <i><center>*Upload Dokumen dengan Format PDF</center><br></i>
         <div class="center-button text-resize">
