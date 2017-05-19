@@ -43,7 +43,6 @@ if (isset($_SESSION["mahasiswa_perubahan_dosbing"])) {
 
 	<center><h2>Pengajuan Pembimbing TA</h2></center>
 	<br/>
-	<br>
 
 	<form class="form-horizontal">
 		  <div class="form-group">
@@ -150,8 +149,7 @@ if (isset($_SESSION["mahasiswa_perubahan_dosbing"])) {
 							<br>Operating Systems: Design and Implementation, co-authored with Albert Woodhull
 							<br>Modern Operating Systems
 							<br>Distributed Operating Systems
-							<br>Structured Computer Organization
-							<br>Distributed Systems: Principles and Paradigms, co-authored with Maarten van Steen
+
 		                </td>
 
 		                </tr>
