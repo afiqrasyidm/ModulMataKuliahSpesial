@@ -34,7 +34,7 @@ Route::get('/mahasiswa/pengumuman', ['as' => 'mahasiswa/pengumuman', 'uses' => '
 Route::get('/homepage/staf', ['as' => 'homepage/staf', 'uses' => 'MainController@staf_homepage']);
 Route::get('/staf/post-pengumuman', ['as' => 'staf/post-pengumuman', 'uses' => 'StafController@post_pengumuman']);
 Route::get('/staf/verifikasi-permohonan-ta', ['as' => 'staf/verifikasi-permohonan-ta', 'uses' => 'StafController@verifikasi_permohonan_ta']);
-Route::get('/staf/verifikasi-ta/{id_tugas_akhir}', ['as' => 'staf/verifikasi-ta/{id_tugas_akhir}', 'uses' => 'StafController@verifikasi_ta']);
+Route::get('staf/verifikasi-ta/{id_tugas_akhir}', ['as' => 'staf/verifikasi-ta', 'uses' => 'StafController@verifikasi_ta']);
 Route::get('/homepage/dosen', ['as' => 'homepage/dosen', 'uses' => 'MainController@dosen_homepage']);
 Route::get('/dosen/penguji/home', ['as' => 'dosen/penguji/home', 'uses' => 'DosenPengujiController@home_dosen_penguji']);
 Route::get('/dosen/penguji/atur-jadwal-sidang', ['as' => 'dosen/penguji/atur-jadwal-sidang', 'uses' => 'DosenPengujiController@atur_jadwal_sidang_dosen_penguji']);
@@ -48,7 +48,7 @@ Route::get('industri/pengumuman', ['as' => 'industri/pengumuman', 'uses' => 'Ind
 Route::get('/dosen/PA/home', ['as' => 'dosen/PA/home', 'uses' => 'DosenPAController@homepage_dosen_PA']);
 Route::get('dosen/PA/verifikasi-permohonan-ta', ['as' => 'dosen/PA/verifikasi-permohonan-ta', 'uses' => 'DosenPAController@verifikasi_permohonan_ta']);
 Route::get('dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta/', 'uses' => 'DosenPAController@detail_permohonan_ta']);
-Route::get('/staf/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'staf/detail-permohonan-ta', 'uses' => 'StafController@detail_permohonan_ta']);
+Route::get('staf/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'staf/detail-permohonan-ta', 'uses' => 'StafController@detail_permohonan_ta']);
 Route::post('/dosen/PA/detail-permohonan-ta/{id_tugas_akhir}', ['as' => 'dosen/PA/detail-permohonan-ta', 'uses' => 'DosenPAController@detail_permohonan_ta_submit']);
 Route::get('/dosen/PA/pengumuman', ['as' => 'dosen/PA/pengumuman', 'uses' => 'DosenPAController@pengumuman']);
 Route::get('/dosen/pembimbing/home', ['as' => 'dosen/pembimbing/home', 'uses' => 'DosenPembimbingController@home_dosen_pembimbing']);
@@ -179,7 +179,8 @@ Route::get('/dosen/penguji/list-jadwal-sidang', ['as' => 'dosen/penguji/list-jad
 //dokumen TA dosbem
 Route::get('/dosen/pembimbing/dokumen-ta', ['as' => 'dosen/pembimbing/dokumen-ta', 'uses' => 'DosenPembimbingController@dokumen_ta']);
 
-
+//list jadwal sidang topik Dosen Penguji
+Route::get('dosen/penguji/list-jadwal-sidang-topik', ['as' => 'dosen/penguji/list-jadwal-sidang-topik', 'uses' => 'DosenPengujiController@list_jadwal_sidang_topik']);
 
 //dokumen TA dosenPenguji
 Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'uses' => 'DosenPengujiController@dokumen_ta']);

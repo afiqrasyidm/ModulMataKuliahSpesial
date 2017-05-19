@@ -34,7 +34,6 @@
     <ul class="treeview-menu">
       <li><a href="{{ route('staf/verifikasi-permohonan-sidang-topik') }}"><i class="fa fa-angle-right"></i>Permohonan Sidang Topik</a></li>
       <li><a href="{{ route('staf/verifikasi-permohonan-sidang') }}"><i class="fa fa-angle-right"></i>Permohonan Sidang TA</a></li>
-      <li><a href="{{ route('mahasiswa/pengajuan-pembimbing-ta') }}"><i class="fa fa-angle-right"></i>Atur Jadwal Sidang</a></li>
     </ul>
   </li>
   <li class="treeview">

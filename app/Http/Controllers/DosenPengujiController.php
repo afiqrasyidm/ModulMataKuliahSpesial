@@ -87,4 +87,26 @@ class DosenPengujiController extends Controller
 	}
 
 
+	 function list_jadwal_sidang_topik() {
+        session_start();
+
+		$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+		
+		$sidang_topik = DB::table('tugas_akhir')
+        ->leftJoin('dosen_penguji_topik', 'tugas_akhir.id_tugas_akhir', '=', 'dosen_penguji_topik.id_tugas_akhir')
+        ->leftJoin('pengajuan_sidang_topik', 'tugas_akhir.id_tugas_akhir', '=', 'pengajuan_sidang_topik.id_tugas_akhir')
+        ->leftJoin('mahasiswa', 'tugas_akhir.id_mahasiswa', '=', 'mahasiswa.id_mahasiswa')
+	  
+		->where('dosen_penguji_topik.id_dosen','=', $id_dosen)
+		->where('pengajuan_sidang_topik.status','=', 3)
+        ->where('tugas_akhir.status_tugas_akhir','=', 10)
+        
+		->get();
+
+		return view("dosen/DosenPenguji/list_jadwal_sidang_topik", array('sidang_topik' => $sidang_topik));
+
+       
+    }
+
+
 }

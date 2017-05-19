@@ -66,7 +66,7 @@
 												@if( !is_null($tugas_akhir->id_hasil_ta))
 													 <a href="{{ url('/') }}/files/{{$tugas_akhir->dokumen}}" >	Download </a>
 												@else
-
+													Dokumen belum diunggah
 												@endif											
 												
 												</td>
