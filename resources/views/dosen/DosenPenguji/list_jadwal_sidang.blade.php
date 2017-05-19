@@ -61,7 +61,7 @@
                 <td>
                     
                     @if( !is_null($ta->dokumen))
-						<a href="/files/{{$ta->dokumen}}" >	Download </a>
+						<a href="{{ url('/') }}/files/{{$ta->dokumen}}" >	Download </a>
 													
 													
 													
