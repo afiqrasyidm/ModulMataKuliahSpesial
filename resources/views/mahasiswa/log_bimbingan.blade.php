@@ -18,12 +18,19 @@
 		}
 		@endphp
 			<div class="box box-primary">  
+				@if($tugas_akhir->status_tugas_akhir==10)
 				<div class="box-header with-border">
-		        	<center><h1 class="header-title">Submit Log Bimbingan</h1></center>
+		        	<center>
+		        	<h1 class="header-title">
+					
+		        	Submit Log Bimbingan
+		        	</h1></center>
 				</div><!-- /.box-header -->
+				@endif
 				
 				<div class="box-body">
 					<br/>
+					@if($tugas_akhir->status_tugas_akhir==10)
 					<form class="form-horizontal" method="post" action="">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						  <div class="form-group">
@@ -81,6 +88,7 @@
 						  <center><button class="btn btn-primary" type="submit">Submit Log</button></center>
 						</div>
 					</form>
+					@endif
 					<hr>
 					<br>
 					<label>Daftar Log Bimbingan:</label>
