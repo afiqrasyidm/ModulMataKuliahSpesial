@@ -179,7 +179,8 @@ Route::get('/dosen/penguji/list-jadwal-sidang', ['as' => 'dosen/penguji/list-jad
 //dokumen TA dosbem
 Route::get('/dosen/pembimbing/dokumen-ta', ['as' => 'dosen/pembimbing/dokumen-ta', 'uses' => 'DosenPembimbingController@dokumen_ta']);
 
-
+//list jadwal sidang topik Dosen Penguji
+Route::get('dosen/penguji/list-jadwal-sidang-topik', ['as' => 'dosen/penguji/list-jadwal-sidang-topik', 'uses' => 'DosenPengujiController@list_jadwal_sidang_topik']);
 
 //dokumen TA dosenPenguji
 Route::get('/dosen/penguji/dokumen-ta', ['as' => 'dosen/penguji/dokumen-ta', 'uses' => 'DosenPengujiController@dokumen_ta']);

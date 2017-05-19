@@ -83,7 +83,7 @@
 													 <a href="{{ url('/') }}/files/{{$tugas_akhir->dokumen}}">	Download </a>
 													@endif	 
 												@else
-													
+													Dokumen belum diunggah
 												@endif											
 												
 												</td>
