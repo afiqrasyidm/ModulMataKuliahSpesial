@@ -252,12 +252,11 @@ function ubah_status_sidangPost($id_tugas_akhir)
 
 	function set_verifikasi_bimbingan($status, $id_dpt) {
 		session_start();
-
 	 	$pembimbing = Dosen_pembimbing::find($id_dpt);
 	 	$pembimbing->status_dosen_pembimbing = $status;
 	 	// $dosen_pembimbing->id_maker = $_SESSION["id_user"];
 	 	$pembimbing->save();
-
+	
 	 	if($status == 2) {
 	 		DB::table('tugas_akhir')
 	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
@@ -267,6 +266,7 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	 		DB::table('tugas_akhir')
 	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
 	 			->update(['status_tugas_akhir' => 8]);
+				
 	 	}
 	 	
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
