@@ -25,14 +25,14 @@
 		@endphp
 			<div class="box box-primary">
 				<div class="box-header with-border">
-			        <center><h1 class="header-title">Atur Jadwal Bimbingan</h1></center>
+			        <center><h1 class="header-title">Jadwal Bimbingan</h1></center>
 				</div><!-- /.box-header -->
 					
 			    <div class="box-body">
 			    	@if(count($jadwals) < 1)
 			    	
 		    		<div class="col-md-6">
-		    			<strong>*Silahkan memilih alokasi waktu bimbingan perminggu</strong>
+		    			<strong>*Silahkan memilih alokasi jadwal bimbingan perminggu</strong>
 		    		</div>
 		    		<!--
 		    		<div class="col-md-4">

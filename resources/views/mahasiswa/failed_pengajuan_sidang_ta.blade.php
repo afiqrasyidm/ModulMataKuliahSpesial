@@ -16,7 +16,7 @@ if($tugas_akhir == null){
 	
 	echo "<b>Harap mengambil Tugas Akhir terlebih dahulu!</b>";
 	echo " Anda tidak dapat melakukan pengajuan permohonan sidang TA sebelum mengambil tugas akhir";
-	echo "<br><br>";
+	echo "<br>";
  	echo "<p>Silahkan mengambil tugas akhir";
  	echo "<a href='";
  	echo route('mahasiswa/pengajuan-permohonan-ta');
@@ -53,7 +53,7 @@ else if($tugas_akhir->status_tugas_akhir==6){
 else if($tugas_akhir->status_tugas_akhir==5){
 	echo "<b>Harap mengambil Tugas Akhir terlebih dahulu!</b>";
 	echo " Anda tidak dapat melakukan pengajuan permohonan sidang TA sebelum mengambil tugas akhir";
-	echo "<br><br>";
+	echo "<br>";
  	echo "<p>Silahkan mengambil tugas akhir";
  	echo "<a href='";
  	echo route('mahasiswa/pengajuan-permohonan-ta');
