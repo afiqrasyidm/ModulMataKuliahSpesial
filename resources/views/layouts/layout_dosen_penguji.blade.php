@@ -24,7 +24,6 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-<<<<<<< HEAD
       <li><a href="{{ route('dosen/penguji/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Sidang Topik</a></li>
        <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Sidang Tugas Akhir</a></li>
       
