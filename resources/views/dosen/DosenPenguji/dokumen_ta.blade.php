@@ -1,6 +1,5 @@
 
-
-@extends('layouts.layout_dosen_pembimbing')
+@extends('layouts.layout_dosen_penguji')
 
 @section('title','Lihat Hasil TA')
 
