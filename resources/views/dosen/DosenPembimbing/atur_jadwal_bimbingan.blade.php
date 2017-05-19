@@ -31,8 +31,8 @@
 			    <div class="box-body">
 			    	@if(count($jadwals) < 1)
 			    	
-		    		<div class="col-md-4">
-		    			<strong>*Pilih alokasi waktu bimbingan dengan mencentang kotak</strong>
+		    		<div class="col-md-6">
+		    			<strong>*Silahkan memilih alokasi waktu bimbingan perminggu</strong>
 		    		</div>
 		    		<!--
 		    		<div class="col-md-4">

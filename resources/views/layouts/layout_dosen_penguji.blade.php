@@ -24,14 +24,7 @@
       <i class="fa fa-graduation-cap"></i> <span>Sidang</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang</a></li>
-      <li><a href="#"><i class="fa fa-angle-right"></i>Dokumen Sidang </a>
-          <ul class="treeview-menu">
-              <li><a href="{{ route('dosen/penguji/feedback-sidang') }}"><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
-               <li><a href="{{ route('dosen/penguji/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA</a></li>
-          </ul>
-      </li>
-      
+      <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Sidang</a></li>      
     </ul>
   </li>
 

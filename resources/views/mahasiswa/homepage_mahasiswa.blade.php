@@ -39,7 +39,7 @@
             }
 
 
-            else if ($tugasakhir == "6"){
+            else if ($tugasakhir == "6" || $tugasakhir == "7"){
               echo "<img src='";
               echo asset('img/S1/9.png');
               echo "' style='width: 100% ; height: auto'/>";
@@ -55,7 +55,7 @@
            else if ($tugasakhir == "8"){
               echo "masuk sini bapak";
               echo "<img src='";
-              echo asset('img/S1/7.png');
+              echo asset('img/S1/8.png');
               echo "' style='width: 100% ; height: auto'/>";
             }
 

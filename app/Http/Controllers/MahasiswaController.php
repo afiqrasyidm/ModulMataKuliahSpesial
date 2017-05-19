@@ -153,7 +153,9 @@ class MahasiswaController extends Controller
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
             ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
-            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
+
+            $_SESSION["perubahan_pengajuan_permohonan_ta_berhasil"] = true;
+            return redirect()->route('mahasiswa/pengajuan-permohonan-ta');
 	    }
 	    //Data error:
 	        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta')
@@ -202,10 +204,12 @@ class MahasiswaController extends Controller
 	    	DB::table('tugas_akhir')
             ->where('id_mahasiswa', $id_mahasiswa)
             ->update(['judul_ta' => Input::get('judul_ta'), 'status_tugas_akhir' => 6, 'tgl_pengajuan' => Carbon::today()->toDateString(), 'id_jenis_ta' => $id_jenis_ta]);
-            return redirect()->route('/mahasiswa/pengajuan-permohonan-ta-sukses');
+
+            $_SESSION["pengajuan_permohonan_ta_berhasil"] = true;
+            return redirect()->route('mahasiswa/pengajuan-permohonan-ta');
 	    }
 	    //Data error:
-	        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta')
+	        return Redirect::to('mahasiswa/pengajuan-permohonan-ta')
 	            ->withErrors($validator)
 	            ->withInput();
     }
@@ -815,23 +819,37 @@ class MahasiswaController extends Controller
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
-    	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
+
+    	if($tugas_akhir==NULL) {
+    		return view("mahasiswa/failed_general", array('action' => 'Mengisi Jadwal Bimbingan'));
+    	}
+
+    	else if($tugas_akhir->status_tugas_akhir<=9) {
+    		return view("mahasiswa/failed_general", array('tugas_akhir' => $tugas_akhir, 'minimal_status' => 10, 'action' => 'Mengisi Jadwal Bimbingan'));
+    	}
+
+    	else {
+    		$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
     				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
 					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
 					->get()->first();
-		$jadwal_dosen = DB::table('jadwal_dosen')
-				->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
-				->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->get();
-		if(sizeof($jadwal_dosen)>0) {
-			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen, 'nama_dosen' => $dosen_pembimbing->nama_dosen));
-		}
-		else {
+
 			$jadwal_dosen = DB::table('jadwal_dosen')
 					->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
-					->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)->get();
-			return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen' => $jadwal_dosen));
-		}
+					->where('jadwal_dosen.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->get();
+
+			if(sizeof($jadwal_dosen)>0) {
+				return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen_taken' => $jadwal_dosen, 'nama_dosen' => $dosen_pembimbing->nama_dosen));
+			}
+			else {
+				$jadwal_dosen = DB::table('jadwal_dosen')
+						->leftJoin('hari', 'jadwal_dosen.id_hari','=','hari.id_hari')
+						->where('jadwal_dosen.id_dosen', $dosen_pembimbing->id_dosen)
+						->where('jadwal_dosen.id_tugas_akhir', NULL)->get();
+				return view("mahasiswa/jadwal_bimbingan", array( 'jadwal_dosen' => $jadwal_dosen));
+			}
+    	}    	
 	}
 	function jadwal_bimbingan_submit() {
 		session_start();
@@ -870,6 +888,15 @@ class MahasiswaController extends Controller
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
+    	
+    	if($tugas_akhir==NULL) {
+    		return view("mahasiswa/failed_general", array('action' => 'Mengisi Jadwal Bimbingan'));
+    	}
+    	
+    	else if($tugas_akhir->status_tugas_akhir<=9) {
+    		return view("mahasiswa/failed_general", array('tugas_akhir' => $tugas_akhir, 'minimal_status' => 10, 'action' => 'Mengisi Log Bimbingan'));
+    	}
+    	
     	$dosen_pembimbing = DB::table('dosen_pembimbing_ta')
     				->leftJoin('dosen', 'dosen.id_dosen','=','dosen_pembimbing_ta.id_dosen')
 					->where('dosen_pembimbing_ta.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
@@ -882,8 +909,9 @@ class MahasiswaController extends Controller
 				->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
 				->orderBy('waktu_mulai', 'desc')
 				->get();
-		return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan));
+		return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
  	}
+
  	function log_bimbingan_submit() {
  		session_start();
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
