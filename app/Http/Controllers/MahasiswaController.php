@@ -241,6 +241,7 @@ class MahasiswaController extends Controller
     	// $data['dosenpembimbing'] = $dosenpembimbing;
     	// if(count($dosenpembimbings) > 0)
     	// 	$dosen_pembimbing = $dosenpembimbings;
+
         //sudah memilih topik
 		$topik_yang_diambil= Topik::where('id_topik', $tugas_akhir->id_topik)->get()->first();
 		//sudah mengambil tugas akhir
@@ -252,6 +253,7 @@ class MahasiswaController extends Controller
             ->get();
             return view("mahasiswa/pengajuan_pembimbing_ta")->with('dosenpembimbing', $dosenpembimbing);
           }
+
 		  //topik yang diambil dari dosen
 		else if($topik_yang_diambil->id_dosen !=NULL){
 			if($tugas_akhir->status_tugas_akhir==8){
@@ -263,6 +265,7 @@ class MahasiswaController extends Controller
 			
 			  return view("mahasiswa/pengajuan_pembimbing_ta", array('dosenpembimbings' => $dosenpembimbings,  'tugas_akhir' => $tugas_akhir));
 		}
+
 		//sudah mengajukan dosen pembimbing
           else {
           	// return 'test1';
@@ -292,8 +295,11 @@ class MahasiswaController extends Controller
         $dosenpembimbing = Dosen::where('id_dosen', $id_dosen)->get()->first();
           return view("mahasiswa/detail_dosen " , array('dosenpembimbing' => $dosenpembimbing) );
     }
+
     public function pengajuan_dosenpembimbing($id_dosen){
         session_start();
+        $id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
+        $tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
         $id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;
         $id_tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa)->get();
         // return $id_tugas_akhir;
@@ -304,8 +310,14 @@ class MahasiswaController extends Controller
         $dosen_pembimbing->id_maker = $_SESSION["id_user"];
         $dosen_pembimbing->save();
         $_SESSION["mahasiswa_pengajuan_dosbing"] = true;	
+
+        DB::table('tugas_akhir')
+						->where('id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+						->update(['id_maker' =>  $_SESSION["id_user"],'status_tugas_akhir' => 9]);
+
         return redirect()->route('mahasiswa/pengajuan-pembimbing-ta');
     }
+
 	public function ubah_pengajuan_pembimbing($id){
 		session_start();
 		$id_mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first()->id_mahasiswa;

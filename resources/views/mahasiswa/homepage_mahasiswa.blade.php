@@ -22,7 +22,7 @@
 
         
      <?php 
-    
+   
 
             if($_SESSION["mahasiswa"]->jenjang=="S1"){
                 
@@ -45,13 +45,15 @@
               echo "' style='width: 100% ; height: auto'/>";
             }
 
-            // else if ($tugasakhir == "7"){
-            //   echo "<img src='";
-            //   echo asset('img/S1/8.png');
-            //   echo "' style='width: 100% ; height: auto'/>";
-            // }
+            else if ($tugasakhir == "7"){
+
+              echo "<img src='";
+              echo asset('img/S1/8.png');
+              echo "' style='width: 100% ; height: auto'/>";
+            }
            
            else if ($tugasakhir == "8"){
+              echo "masuk sini bapak";
               echo "<img src='";
               echo asset('img/S1/8.png');
               echo "' style='width: 100% ; height: auto'/>";
