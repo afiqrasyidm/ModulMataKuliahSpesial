@@ -654,7 +654,7 @@ class MahasiswaController extends Controller
 	        if($hasil_ta==NULL){
 	        	$hasil_ta = new Hasil_ta;
 	    		$this->validate($request, [
-	            	'file' => 'required|mimes:pdf',
+	            	'file' => 'required|mimes:pdf|max:1500000',
 	       		 ]);
           		$fileName = $npm_mahasiswa.'.'.$request->file->getClientOriginalExtension();
 	        	$request->file->move(public_path('files'), $fileName);
@@ -777,7 +777,7 @@ class MahasiswaController extends Controller
 	        	 $id_hasil_ta = $hasil_ta->id_hasil_ta; 
 	        	
 	    		$this->validate($request, [
-	            	'file' => 'required|mimes:pdf',
+	            	'file' => 'required|mimes:pdf|max:1500000',
 	       		 ]);
           		$fileName = $npm_mahasiswa.'_Final'.'.'.$request->file->getClientOriginalExtension();
 	        	$request->file->move(public_path('files'), $fileName);
@@ -955,6 +955,11 @@ class MahasiswaController extends Controller
 				        	'id_maker'   =>   $_SESSION["id_user"],
 				    )
 				);
+
+			$log_bimbingan = DB::table('log_bimbingan')
+					->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->orderBy('waktu_mulai', 'desc')
+					->get();
 
 	    	$_SESSION["buat_log_bimbingan_berhasil"] = true;
 	    	return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
