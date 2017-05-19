@@ -16,6 +16,13 @@
 			unset($_SESSION["pengajuan_permohonan_ta_berhasil"]);
 		}
 
+		if (isset($_SESSION["input_error"])) {
+			echo 	"<div class='alert alert-success'> 
+                   	<i class='icon fa fa-check'></i>Harap periksa input anda
+              		</div>";	
+			unset($_SESSION["input_error"]);
+		}
+
 		if (isset($_SESSION["perubahan_pengajuan_permohonan_ta_berhasil"])) {
 			echo 	"<div class='alert alert-success'> 
                    	<i class='icon fa fa-check'></i>Pengajuan permohonan TA anda berhasil diubah

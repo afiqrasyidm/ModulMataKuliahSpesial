@@ -3,7 +3,7 @@
 @section('title','Pengajuan Sidang TA')
 
 @section('titleMainContent')
-Anda Belum Dapat Melakukan Verifikasi Pengajuan Sidang
+Anda Belum Dapat Melakukan Verifikasi Pengajuan Sidang TA
 
 @endsection
 

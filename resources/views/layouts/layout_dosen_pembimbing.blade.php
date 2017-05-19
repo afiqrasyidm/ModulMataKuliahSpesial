@@ -46,11 +46,7 @@
           <li><a href="{{ route('dosen/pembimbing/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang TA</a></li>
         </ul>
       </li>
-      <li><a href=""><i class="fa fa-angle-right"></i>Dokumen Sidang TA</a>
-        <ul class="treeview-menu">
-          <li><a href=""><i class="fa fa-angle-right"></i>Feedback Sidang</a></li>
-          <li><a href="{{ route('dosen/pembimbing/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA</a></li>
-        </ul>  
+      <li><a href="{{ route('dosen/pembimbing/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA</a>  
       </li>
     </ul>
   </li>

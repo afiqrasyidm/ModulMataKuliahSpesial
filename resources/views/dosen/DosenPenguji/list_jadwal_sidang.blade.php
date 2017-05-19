@@ -14,7 +14,7 @@
               <!-- general form elements disabled -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <center><h1 class="header-title">List Jadwal Sidang</h1><br></center>
+                  <center><h1 class="header-title">List Sidang</h1><br></center>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   

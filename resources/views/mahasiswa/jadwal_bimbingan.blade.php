@@ -37,6 +37,7 @@
 								<form action="" method="post">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+									@if(count($jadwal_dosen)>0)
 									<table class="table-striped" style="width:100%; table-layout: fixed">
 										<tr>
 											<th style="width:10%;">No.</th>
@@ -58,8 +59,12 @@
 									</table>
 									<br>
 									*Pilih jadwal bimbingan anda. <br>
-									Apabila tidak ada jadwal yang sesuai, harap hubungi dosen pembimbing anda <br><br>
+									Apabila tidak ada/belum ada jadwal yang sesuai, harap hubungi dosen pembimbing anda <br><br>
 									<center><button class="btn btn-primary" type="submit">Simpan</button></center>
+									@else
+										<br>
+										<center>Maaf, dosen pembimbing anda belum melakukan pengisian jadwal bimbingan</center><br>
+									@endif
 								</form>
 							</div>
 							<div class="col-md-2"></div>

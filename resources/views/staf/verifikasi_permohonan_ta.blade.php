@@ -54,7 +54,7 @@
         <td>{{$ta->topik_ta}}</td>
         <td>{{$ta->judul_ta}}</td>
         <td>
-          <a href="/staf/detail-permohonan-ta/{{$ta->id_tugas_akhir}}">Detail</a>
+          <a href="{{route('staf/detail-permohonan-ta', $ta->id_tugas_akhir)}}">Detail</a>
         </td>
         <td> 
           @if($ta->status_tugas_akhir == 7)
@@ -75,7 +75,7 @@
                     <h4 class="modal-title">Apakah anda yakin ingin melakukan verifikasi permohonan TA atas nama <br><strong>{{ $tugas_akhir[$idx]->nama_mahasiswa }}({{ $tugas_akhir[$idx]->NPM }})</strong> ?</h4>
                 </div>
                 <div>
-                  <a href="/staf/verifikasi-ta/{{$ta->id_tugas_akhir}}"><button  class="btn btn-primary">Ya</button></a>
+                  <a href="{{route('staf/verifikasi-ta', $ta->id_tugas_akhir)}}"><button  class="btn btn-primary">Ya</button></a>
                   <button  class="btn btn-danger"  class="close" data-dismiss="modal">Batal</button>
                   <br>
                   <br>
