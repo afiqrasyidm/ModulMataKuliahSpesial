@@ -67,7 +67,7 @@
 						
 												
 											</a>
-												<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/',  array( 'status'=> 1,
+												<a href="{{ route('dosen/pembimbing/verifikasi-bimbingan/set/',  array( 'status'=> 3,
 												'id_dpt' => $data->id )) }}" type="button" class="btn btn-primary">Tolak</a>
 
 											</a>

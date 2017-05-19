@@ -158,6 +158,7 @@ class MahasiswaController extends Controller
             return redirect()->route('mahasiswa/pengajuan-permohonan-ta');
 	    }
 	    //Data error:
+	    	$_SESSION["input_kosong"] = true;
 	        return Redirect::to('/mahasiswa/pengajuan-permohonan-ta')
 	            ->withErrors($validator)
 	            ->withInput();
@@ -209,6 +210,7 @@ class MahasiswaController extends Controller
             return redirect()->route('mahasiswa/pengajuan-permohonan-ta');
 	    }
 	    //Data error:
+	    	$_SESSION["input_kosong"] = true;
 	        return Redirect::to('mahasiswa/pengajuan-permohonan-ta')
 	            ->withErrors($validator)
 	            ->withInput();
@@ -914,6 +916,7 @@ class MahasiswaController extends Controller
 
  	function log_bimbingan_submit() {
  		session_start();
+
 		$mahasiswa= Mahasiswa::where('id_user', $_SESSION["id_user"])->get()->first();
     	$id_mahasiswa = $mahasiswa->id_mahasiswa;
     	$tugas_akhir = Tugas_akhir::where('id_mahasiswa', $id_mahasiswa )->get()->first();
@@ -926,7 +929,24 @@ class MahasiswaController extends Controller
 		$time2 = Input::get('waktu_selesai');
 		$combinedDTMulai = date('Y-m-d H:i:s', strtotime("$date $time"));
 		$combinedDTSelesai = date('Y-m-d H:i:s', strtotime("$date $time2"));
-    	DB::table('log_bimbingan')->insert(
+
+		$log_bimbingan = DB::table('log_bimbingan')
+					->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->orderBy('waktu_mulai', 'desc')
+					->get();
+
+		if(Input::get('tanggal')==NULL || Input::get('waktu_mulai')==NULL || Input::get('waktu_selesai')==NULL || Input::get('deskripsi_log')==NULL) {
+			$_SESSION["input_kosong"] = true;
+			return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
+		}
+
+		else if($combinedDTMulai>=$combinedDTSelesai) {
+			$_SESSION["error_tanggal"] = true;
+			return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
+		}
+
+		else {
+			DB::table('log_bimbingan')->insert(
 				    array(
 				            'keterangan' => Input::get('deskripsi_log'), 
 				            'id_tugas_akhir'   =>  $tugas_akhir->id_tugas_akhir,
@@ -937,11 +957,9 @@ class MahasiswaController extends Controller
 				        	'id_maker'   =>   $_SESSION["id_user"],
 				    )
 				);
-    	$log_bimbingan = DB::table('log_bimbingan')
-				->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
-				->orderBy('waktu_mulai', 'desc')
-				->get();
-    	$_SESSION["buat_log_bimbingan_berhasil"] = true;
-    	return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan));
+
+	    	$_SESSION["buat_log_bimbingan_berhasil"] = true;
+	    	return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
+		}
  	}
 }

@@ -101,6 +101,10 @@ Route::post('dosen/pembimbing/atur-jadwal-bimbingan', ['as' => 'dosen/pembimbing
 //verifikasi log bimbingan Dosen Pembimbing
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan']);
 
+//ganti bimbingan
+Route::get('mahasiswa/ubah-pengajuan-pembimbing/{id}', ['as' => 'mahasiswa/ubah-pengajuan-pembimbing/', 'uses'=> 'MahasiswaController@ubah_pengajuan_pembimbing']);
+
+
 
 Route::get('dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/{id_tugas_akhir}', ['as' => 'dosen/pembimbing/verifikasi-log-bimbingan-mahasiswa/', 'uses'=> 'DosenPembimbingController@verifikasi_log_bimbingan_mahasiswa']);
 

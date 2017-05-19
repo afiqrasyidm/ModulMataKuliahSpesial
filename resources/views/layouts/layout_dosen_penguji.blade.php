@@ -25,9 +25,10 @@
     </a>
     <ul class="treeview-menu">
 
-      <li><a href="{{ route('dosen/penguji/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang Topik</a></li>
-       <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Jadwal Sidang</a></li> 
-      <li><a href="{{ route('dosen/penguji/dokumen-ta') }}"><i class="fa fa-angle-right"></i>Download Dokumen TA </a>   
+
+      <li><a href="{{ route('dosen/penguji/list-jadwal-sidang-topik') }}"><i class="fa fa-angle-right"></i>List Sidang Topik</a></li>
+       <li><a href="{{ route('dosen/penguji/list-jadwal-sidang') }}"><i class="fa fa-angle-right"></i>List Sidang Tugas Akhir</a></li> 
+       
       </li>
       
     </ul>
