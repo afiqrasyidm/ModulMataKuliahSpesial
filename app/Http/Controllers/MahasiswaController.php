@@ -958,6 +958,11 @@ class MahasiswaController extends Controller
 				    )
 				);
 
+			$log_bimbingan = DB::table('log_bimbingan')
+					->where('log_bimbingan.id_tugas_akhir', $tugas_akhir->id_tugas_akhir)
+					->orderBy('waktu_mulai', 'desc')
+					->get();
+
 	    	$_SESSION["buat_log_bimbingan_berhasil"] = true;
 	    	return view("mahasiswa/log_bimbingan", array( 'log_bimbingan' => $log_bimbingan, 'tugas_akhir' => $tugas_akhir));
 		}
