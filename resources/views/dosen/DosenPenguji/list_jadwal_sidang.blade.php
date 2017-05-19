@@ -1,6 +1,4 @@
-
-
-@extends('layouts.layout_dosen_pembimbing')
+@extends('layouts.layout_dosen_penguji')
 
 @section('title','List Jadwal Persidangan')
 
