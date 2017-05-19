@@ -70,7 +70,10 @@ class DosenController extends Controller
 	
 	public function verifikasi_pengambilan_topik_ta(){
 			session_start();
+			
 			$id_dosen= Dosen::where('id_user', $_SESSION["id_user"])->get()->first()->id_dosen;
+			
+
 			$topik= Topik::where(
 			[
 			['id_dosen', $id_dosen],

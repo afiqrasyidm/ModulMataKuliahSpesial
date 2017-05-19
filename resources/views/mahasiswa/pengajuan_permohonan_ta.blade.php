@@ -16,6 +16,13 @@
 			unset($_SESSION["pengajuan_permohonan_ta_berhasil"]);
 		}
 
+		if (isset($_SESSION["input_kosong"])) {
+			echo 	"<div class='alert alert-danger'> 
+                   	Judul TA tidak boleh kosong!
+              		</div>";	
+			unset($_SESSION["input_kosong"]);
+		}
+
 		if (isset($_SESSION["input_error"])) {
 			echo 	"<div class='alert alert-success'> 
                    	<i class='icon fa fa-check'></i>Harap periksa input anda
