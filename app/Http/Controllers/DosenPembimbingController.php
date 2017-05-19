@@ -273,7 +273,16 @@ function ubah_status_sidangPost($id_tugas_akhir)
 	 		DB::table('tugas_akhir')
 	 			->where('id_tugas_akhir', '=', $pembimbing->id_tugas_akhir)
 	 			->update(['status_tugas_akhir' => 8]);
+<<<<<<< HEAD
 
+
+	 		DB::table('dosen_pembimbing_ta')
+	 		->where('id', '=', $id_dpt)
+	 		->update(['status_dosen_pembimbing' => 3 ]);
+
+=======
+
+>>>>>>> 8cd1bf186733851fc80baf654d5094b834f65e1e
 	 	}
 	 	
 	 	return redirect()->route('dosen/pembimbing/verifikasi-bimbingan');
