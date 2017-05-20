@@ -75,7 +75,7 @@ if (isset($_SESSION["detail_upload_submit_first"])) {
                 <tr>
                 <th width ="20%" bgcolor="#86b7e3">Dokumen</th>
                 <td bgcolor="#c0c5cc">
-                 <a href="{{ url('/') }}/files/{{$hasil_ta->dokumen}}" >{{$hasil_ta->dokumen_revisi}}</a></td>
+                 <a href="{{ url('/') }}/files/{{$hasil_ta->dokumen_revisi}}" >{{$hasil_ta->dokumen_revisi}}</a></td>
 
                 </tr>
 
