@@ -283,10 +283,10 @@
         var donut = new Morris.Donut({
           element: 'sales-chart',
           resize: true,
-          colors: ["#3c8dbc", "#f56954", "#00a65a"],
+          colors: ["green", "black", "#00a65a"],
           data: [
-            {label: "Perentase Mahasiswa mengambil TA", value: parseInt((ta_jumlah_mahasiswa/jumlah_mahasiswa*100))},
-            {label: "Persentase Mahasiswa Non TA", value: ( parseInt((jumlah_mahasiswa-ta_jumlah_mahasiswa)/jumlah_mahasiswa*100))}
+            {label: "Perentase Mahasiswa mengambil TA ", value: parseInt((ta_jumlah_mahasiswa/jumlah_mahasiswa*100))},
+            {label: "Persentase Mahasiswa Non TA ", value: ( parseInt((jumlah_mahasiswa-ta_jumlah_mahasiswa)/jumlah_mahasiswa*100))}
 			],
           hideHover: 'auto'
         });
@@ -302,4 +302,5 @@
    });
 </script>
 @endsection
+
 
